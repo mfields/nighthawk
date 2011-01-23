@@ -437,6 +437,11 @@ h2.entry-title {
 	margin:0 auto;
 }
 
+.entry.format-quote {
+	background-color:transparent;
+	border-color:transparent;
+}
+
 .embed {
 	width:100%;
 }
