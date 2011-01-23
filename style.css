@@ -161,7 +161,6 @@ textarea:focus {
 	
 }
 
-
 .heading-action { font-size:.6em; color:#A39887; }
 
 /* Template */
@@ -172,7 +171,7 @@ body {
 	padding:0;
 	color:#2a3142;
 	background-color:#375876;
-	background-image:url( images/diagonal-stripes-003.png );
+	background-image:url( images/diagonal-stripes.png );
 	background-attachment:fixed;
 }
 
