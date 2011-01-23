@@ -46,10 +46,10 @@ if ( ! empty( $featured_image ) ) {
  * Will be displayed in single views via ghostbird_title() in an H1 element.
  */
 if ( ! is_singular() ) {
-	the_title( "\n" . '<h2 class="post-title"><a href="' . get_permalink() . '">', '</a></h2>' );
+	the_title( "\n" . '<h2 class="entry-title"><a href="' . get_permalink() . '">', '</a></h2>' );
 }
 
-print "\n" . '<div class="post-content">';
+print "\n" . '<div class="entry-content">';
 if ( ( is_archive() || is_home() ) && ( 'page' == get_post_type() || 'gallery' == get_post_format() ) ) {
 	the_excerpt();
 }
@@ -61,7 +61,7 @@ print "\n" . '</div><!--post-content-->';
 wp_link_pages( array( 'before' => '<div class="page-link">' . __( 'Pages:', 'ghostbird' ), 'after' => '</div>' ) );	
 ?>
 
-<div class="meta">
+<div class="entry-meta">
 <?php ghostbird_entry_meta_date(); ?>
 <?php ghostbird_entry_meta_taxonomy(); ?>
 </div><!--meta-->

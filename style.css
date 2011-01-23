@@ -3,37 +3,12 @@ Theme Name: Ghostbird
 Description: 
 Author: Michael Fields
 Author URI: http://wordpress.mfields.org/
-Version: 0.2
-License: GNU General Public License v2.0
+Version: 0.9
+License: GNU General Public License v2.0 or later
 License URI: http://www.gnu.org/licenses/gpl-2.0.html
-Tags: one-column, flexible-width, custom-header, custom-background, custom-menu, editor-style, sticky-post, theme-options, threaded-comments
+Tags: one-column, flexible-width, custom-header, custom-background, custom-menu, theme-options, threaded-comments
 Copyright 2010 Michael Fields.
 */
-
-
-/* mfields user interface color chart
- *
- * YELLOW
- *  - background ..... fffabf ...... 55 - 25 - 100
- *  - border ......... f2e76d ...... 55 - 55 -  95
- *
- * GREEN
- *  - background ..... bfffc5 ..... 125 - 25 - 100
- *  - border ......... a3d9a7 ..... 125 - 25 -  85
- *
- * BLUE
- *  - background ..... e4edf5 ..... 200 - 25 - 100
- *  - border ......... cadae8 ..... 200 - 25 -  90
- *
- * RED
- *  - background ..... ffd9d9 ....... 0 - 15 - 100
- *  - border ......... e5b8b8 ....... 0 - 20 -  90
- *
- *
- * Blue Lighter .... #376EA0
- * Blue Darker ..... #5F9BD7
- * Red Dark ........ #880000
- */
 
 body {
 	font-family:Trebuchet,arial,sans-serif;
@@ -44,9 +19,10 @@ body {
 h1, h2, h3, h4, h5, h6 { margin:0; padding:0; line-height:1.2em; clear:both; }
 h1 { font-size:1.50em; margin-bottom:.67em; }
 h2 { font-size:1.38em; margin-bottom:.73em; }
-h3, caption { font-size:1.13em; margin-bottom:.89em; }
+h3 { font-size:1.13em; margin-bottom:.89em; }
 h4 { font-size:1.06em; margin-bottom:.94em; }
-h5, h6 { font-size:1.00em; margin-bottom:.90em; }
+h5,
+h6 { font-size:1.00em; margin-bottom:.90em; }
 
 /*h1, h2, h3, h4, h5, h6 { margin:0 0 3.75em 0; }*/
 
@@ -59,10 +35,19 @@ p, ul, ol, dl, pre, table, address, blockquote, fieldset, form {
 }
 
 /* Lists */
-ul, ol { padding-left:1.5em; }
-ul ul, ol ol, ul ol, ol ul { margin:0; }
-dt, dd { margin:0; padding:0; }
-dd { margin-bottom:1.5em; }
+ul, ol {
+	padding-left:1.5em;
+}
+ul ul, ol ol, ul ol, ol ul {
+	margin:0;
+}
+dt, dd {
+	margin:0;
+	padding:0;
+}
+dd {
+	margin-bottom:1.5em;
+}
 
 /* Blocks that need padding */
 pre, fieldset, blockquote {
@@ -87,12 +72,19 @@ blockquote blockquote { margin-right:0; }
 .comment blockquote blockquote { margin-left:0; }
 
 blockquote p:first-child,
-blockquote blockquote:first-child { margin-top:0; }
+blockquote blockquote:first-child {
+	margin-top:0;
+}
 
 blockquote p:last-child,
-blockquote blockquote:last-child { margin-bottom:0; }
+blockquote blockquote:last-child {
+	margin-bottom:0;
+}
 
-a { color:#5588bb; text-decoration:none; }
+a {
+	color:#5588bb;
+	text-decoration:none;
+}
 
 big {
 	position:relative;
@@ -105,29 +97,43 @@ small {
 }
 	
 /* Typography: Style + Color */
-pre, tt, code, samp, kbd, var { font-family:Consolas, "Courier New", Courier, monospace; }
-var{ color:#003560; font-weight:bold; font-style:normal; }
-h1, h2, h3, h4, h5, h6,
-h1 a, h2 a, h3 a, h4 a, h5 a, h6 a
-caption {
+pre, tt, code, samp, kbd, var {
+	font-family:Consolas, "Courier New", Courier, monospace;
+}
+var {
+	color:#003560;
+	font-weight:bold;
+	font-style:normal;
+}
+h1, h2, h3, h4, h5, h6, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
 	font-weight:bold;
 	text-decoration:none;
 	color:#3a5066;
 }
-dt{ font-weight:bold; }
+dt {
+	font-weight:bold;
+}
 ins {
 	text-decoration:none;
 	background-color:#fffabf;
 	background-color:#bfffc5; 
 }
-del, strike, s { text-decoration:line-through; }
-pre { border:.1em solid #ccc; }
+del, strike, s {
+	text-decoration:line-through;
+}
+pre {
+	border:.1em solid #ccc;
+}
 blockquote {
 	border:.1em solid #ccc;
 	font-style:italic;
 }
-a img { border-width:0; }
-a.edit-term img{ border-width:0; }
+a img {
+	border-width:0;
+}
+a.edit-term img {
+	border-width:0;
+}
 a:focus {
 	color:#333;
 	background:#bfeaff;
@@ -139,29 +145,42 @@ a:focus img {
 }
 
 /* Colors */
-del, strike, s, .required { color:#880000; }
-.required { position:relative; top:.125em; font-weight:bold; font-size:1.5em; }
+del, strike, s, .required {
+	color:#880000;
+}
+.required {
+	position:relative;
+	top:.125em;
+	font-weight:bold;
+	font-size:1.5em;
+}
 
 /* Forms */
-legend { padding:.5em }
+legend {
+	padding:.5em;
+}
 input,
 textarea {
 	padding:.5em;
 	border:.1em solid #ccc;
-	}
-fieldset { padding:.5em 1em; border:.1em solid #ccc; }
-input[type="file"] { padding:0; }
+}
+fieldset {
+	padding:.5em 1em;
+	border:.1em solid #ccc;
+}
+input[type="file"] {
+	padding:0;
+}
 input:focus,
 textarea:focus {
-	background-color:#fffabf;
-	outline:.2em solid #f2e76d;
-	
 	background-color:#dae6ed;
 	outline:.2em solid #54778a;
-	
 }
 
-.heading-action { font-size:.6em; color:#A39887; }
+.heading-action {
+	font-size:.6em;
+	color:#a39887;
+}
 
 /* Template */
 body {
@@ -170,23 +189,16 @@ body {
 	margin:0;
 	padding:0;
 	color:#2a3142;
-	background-color:#375876;
-	background-image:url( images/diagonal-stripes.png );
-	background-attachment:fixed;
+	background:#375876 url( images/diagonal-stripes.png ) fixed;
 }
 
 #wrap {
-	position:relative;
-	z-index:3;
-	max-width:49.8em; /* Total width of 50em. See border-width. */
+	max-width:50em;
 	margin:1em auto 0;
 	padding:2em 4em;
-	/*background:#3a5e7d url( images/burst.png ) 50% 0 no-repeat;*/
 	background:transparent;
 }
 #header {
-	position:relative;
-	z-index:100;
 	margin:0;
 	min-height:100px;
 	background:transparent url( images/rays.png ) center bottom no-repeat;
@@ -196,32 +208,31 @@ body {
 	text-align:center;
 }
 #site-title {
+	margin:1em 0 0;
 	font-size:3em;
 	font-weight:bold;
 	text-align:center;
-	margin:1em 0 0;
 }
 #site-title,
 #site-title a {
 	color:#fff;
 }
 #tagline {
+	margin:1em 0 0;
 	color:#2a3142;
 	font-style:italic;
 	text-align:center;
-	margin:1em 0 0;
 }
 
 #menu-top {
 	position:relative;
-	z-index:100;
 	margin:0 -10px 0;
 	padding:.25em 0 0;
 	border-width:0;
 	color:#fff;
 	text-align:left;
 	background:#600 url( images/horizontal-stripes.png );
-	/*min-height:57px; /* Needed for stiches.png. */
+	min-height:50px; /* Needed for stiches.png. */
 }
 #menu-top:before {
 	content:'';
@@ -248,15 +259,16 @@ body {
 	border-width:0 0 5px 10px;
 }
 #menu-top ul {
-	margin:0 30px;
-	padding:.5em 0;
+	position:relative;
+	margin:0;
+	padding:.5em 30px;
 	list-style-type:none;
 	text-align:center;
 }
 #menu-top ul:before {
 	content:'';
 	position:absolute;
-	top:7px;
+	top:4px;
 	left:-5px;
 	width:27px;
 	height:39px;
@@ -266,7 +278,7 @@ body {
 #menu-top ul:after {
 	content:'';
 	position:absolute;
-	top:7px;
+	top:4px;
 	right:-5px;
 	width:27px;
 	height:39px;
@@ -277,23 +289,21 @@ body {
 	display:inline;
 	margin:0 .25em 1em;
 	padding:0;
-	line-height:2.5em
+	line-height:2.5em;
 }
 #menu-top li a {
+	padding:.35em .6em;
 	font-weight:bold;
 	text-align:center;
 	cursor:pointer;
-	outline:0;
-	padding:.35em .6em;
 	font-weight:bold;
 	color:#e9d6d6;
 	background-color:#111;
-	-webkit-transition: background-color, -webkit-box-shadow 0.2s linear;
+	outline:0;
+	-webkit-transition:background-color, -webkit-box-shadow 0.2s linear;
 }
 
 #page {
-	position:relative;
-	z-index:3;
 	padding:0 1.5em 1.5em;
 	color:#666;
 	background:#fffef2 url( images/yellow-dots.png );
@@ -337,9 +347,11 @@ body {
 .entry:first-child {
 	padding-top:3em;
 }
-.entry p:first-child { margin-top:0; }
+.entry p:first-child {
+	margin-top:0;
+}
 .entry img {
-	border:.1em solid #ccc !important; /* Important used to override gallery shortcode inline styles. */
+	border:.1em solid #ccc !important; /* "Important" used to override gallery shortcode inline styles. */
 }
 .entry pre {
 	padding:5%;
@@ -350,7 +362,9 @@ body {
 .entry pre code {
 	white-space:pre-wrap;
 }
-.entry .attachment-ghostbird_detail { margin-right:10px; }
+.entry .attachment-ghostbird_detail {
+	margin-right:10px;
+}
 
 
 /* Featured image. */
@@ -376,46 +390,68 @@ body {
 	padding:0;
 	border-width:0;
 }
-h2.post-title { clear:none; margin-bottom:.25em }
+h2.entry-title {
+	clear:none;
+	margin-bottom:.25em;
+}
 .format-status p,
-.many .format-gallery p { margin-top:0; }
-.format-status p,
-.format-status h2 { margin-left:75px; }
-.format-gallery p { margin-bottom:0; }
+.many .format-gallery p {
+	margin-top:0;
+}
+.format-status .entry-title,
+.format-status .entry-content,
+.format-status .entry-meta {
+	margin-left:75px;
+}
+.format-status .entry-meta {
+	margin-top:-.85em;
+}
+.format-gallery p {
+	margin-bottom:0;
+}
 .format-image img {	
 	display:block;
 	margin:0 auto;
 	padding:15px;
 	border:.1em solid #ccc;
-	}
+}
 .many .format-chat pre {
 	height:18em;
 	overflow:auto;
 	padding:.75em 1em;
 	font-size:.9em;
 	margin:0 auto;
-	}
-
-.format-status .meta { margin-top:-.85em; }
+}
 
 .format-quote h2,
 .format-image h2,
 .format-chat  h2,
-.format-quote .meta,
-.format-image .meta,
-.format-chat  .meta { text-align:center; }
+.format-quote .entry-meta,
+.format-image .entry-meta,
+.format-chat  .entry-meta {
+	text-align:center;
+}
 
-.format-quote blockquote { width:30em; margin:0 auto; }
+.format-quote blockquote {
+	width:30em;
+	margin:0 auto;
+}
 
-.embed { width:100%; }
+.embed {
+	width:100%;
+}
 
 /* Meta. */
-.meta {
+.entry-meta {
 	clear:both;
 	margin:1.75em 0 0;
 }
-.meta p { margin:0; }
-.meta .datetime { color:#888; }
+.entry-meta p {	
+	margin:0;
+}
+.entry-meta .datetime {
+	color:#888;
+}
 
 #author-box {
 	margin:1.5em 0;
@@ -449,8 +485,16 @@ h2.post-title { clear:none; margin-bottom:.25em }
 
 /* Comment List */
 .comment-list,
-.comment-list .children { list-style-type:none; margin:0; padding:0; }
-.comment-list .avatar { float:left; width:45px; height:45px; }
+.comment-list .children {
+	list-style-type:none;
+	margin:0;
+	padding:0;
+}
+.comment-list .avatar {
+	float:left;
+	width:45px;
+	height:45px;
+}
 .comment-author {
 	font-weight:bold;
 	font-size:1.3em;
@@ -458,7 +502,7 @@ h2.post-title { clear:none; margin-bottom:.25em }
 	display:block;
 	margin:0 0 .25em 55px;
 	line-height:1;
-	}
+}
 .comment-meta {
 	display:block;
 	margin-left:55px;
@@ -479,11 +523,17 @@ h2.post-title { clear:none; margin-bottom:.25em }
 .comment .comment:last-child {
 	margin-bottom:0;
 }
-.comment-content p { margin:1em 0; }
+.comment-content p {
+	margin:1em 0;
+}
 .comment-content p:first-child,
-.comment-content p:only-child { margin-top:0; }
+.comment-content p:only-child {
+	margin-top:0;
+}
 .comment-content p:last-child,
-.comment-content p:only-child { margin-bottom:0; }
+.comment-content p:only-child {
+	margin-bottom:0;
+}
 
 
 .trackback {
@@ -548,7 +598,11 @@ h2.post-title { clear:none; margin-bottom:.25em }
 	width:79%;
 	height:15em;
 }
-.required { display:none; height:0; width:0; }
+.required {
+	display:none;
+	height:0;
+	width:0;
+}
 #discussion-guidelines {
 	width:75%;
 	margin:0 0 1em 17.5%;
@@ -576,7 +630,7 @@ input#submit {
 	text-align:center;
 	color:#fff;
 	background:#600 url( images/horizontal-stripes.png );
-	}
+}
 #page-footer a {
 	font-weight:bold;
 	text-align:center;
@@ -597,14 +651,17 @@ input#submit {
 	padding:0;
 	border-width:0;
 }
-.newer-posts, .back-posts { float:left; }
-.older-posts, .more-posts { float:right; }
+.newer-posts, .back-posts {
+	float:left;
+}
+.older-posts, .more-posts {
+	float:right;
+}
 
 
 #widgets {
 	clear:both;
 	position:relative;
-	/*margin-top:1.5em;*/
 	background-color:#fbeace;
 	margin:0 .5em;
 	padding:1em;
@@ -642,13 +699,9 @@ input#submit {
 }
 #widgets .widget-title,
 #widgets .widget-container ol,
-#widgets .widget-container ul {
-	margin-top:0;
-}
+#widgets .widget-container ul,
 #widgets .widget-container p:first-child,
-#widgets .widget-container ul:first-child {
-	margin-top:0;
-}
+#widgets .widget-container ul:first-child,
 #widgets .textwidget p:first-child {
 	margin-top:0;
 }
@@ -720,23 +773,23 @@ input#submit {
 .button,
 input#submit,
 #searchsubmit {
+	padding:.5em;
+	border-width:0;
 	line-height:1;
 	text-align:center;
 	text-decoration:none;
-	cursor:pointer;
-	padding:.5em;
+	font-size:1em;
+	font-weight:bold;
 	color:#fff;
 	background-color:#54778a;
-	font-weight:bold;
-	border-width:0;
-	font-size:1em;
+	cursor:pointer;
 }
 
 
 /* Dialog Boxen. */
 .dialog {
-	padding:.5em .75em;
 	margin:0 0 1.5em;
+	padding:.5em .75em;
 	border:.25em dotted #acd2e5;
 	background-color:#bfeaff;
 }
@@ -746,22 +799,37 @@ input#submit,
 
 
 /* WordPress generated classes. */
-.clear { clear:both; }
+.clear {
+	clear:both;
+}
 .sticky {}
 .wp-smiley {}
-.alignnone { margin:0 1em 0 0; }
-.alignleft { float:left; margin:0 1em 1em 0; }
-.alignright { float:right; margin:0 0 1em 1em; }
-.aligncenter { display:block;margin:1em auto; }
+.alignnone {
+	margin:0 1em 0 0;
+}
+.alignleft {
+	float:left;
+	margin:0 1em 1em 0;
+}
+.alignright {
+	float:right;
+	margin:0 0 1em 1em;
+}
+.aligncenter {
+	display:block;
+	margin:1em auto;
+}
 .bypostauthor {}
 .wp-caption-text {}
 
-.aligncenter .wp-caption-text { text-align:center }
+.aligncenter .wp-caption-text {
+	text-align:center
+}
 
 
 /* Small text, lighter color */
 small,
-.meta,
+.entry-meta,
 #intro-meta,
 .wp-caption-text,
 .gallery-caption {
@@ -821,11 +889,17 @@ blockquote,
 	-webkit-box-shadow: .2em .2em .3em rgba( 0, 0, 0, 0.3 );
 	-moz-box-shadow:    .2em .2em .3em rgba( 0, 0, 0, 0.3 );
 }
-.entry p img.wp-smiley { border-width:0; box-shadow:none; -webkit-box-shadow:none; -moz-box-shadow:none; }
+
+/* Reset shadows for certain elements. */
+.entry p img.wp-smiley {
+	border-width:0;
+	box-shadow:none;
+	-webkit-box-shadow:none;
+	-moz-box-shadow:none;
+}
 
 
 /* Rounded corners: Top. */
-#wrap,
 #submit,
 #menu-top,
 #menu-top li a,
@@ -842,7 +916,6 @@ blockquote,
 
 
 /* Rounded corners: Bottom. */
-#wrap,
 #intro,
 #submit,
 #widgets,
@@ -887,10 +960,21 @@ table#wp-calendar {
 	width:14.28%;
 	border:.1em solid #a3afb5;
 }
-#wp-calendar tbody td a { display:block; font-weight:bold; }
-#wp-calendar tbody td#today { background-color:#bfeaff; font-weight:bold; color:#54778a; }
-#wp-calendar #next { text-align:right; }
-#wp-calendar #prev { text-align:left; }
+#wp-calendar tbody td a {
+	display:block;
+	font-weight:bold;
+}
+#wp-calendar tbody td#today {
+	background-color:#bfeaff;
+	font-weight:bold;
+	color:#54778a;
+}
+#wp-calendar #next {
+	text-align:right;
+}
+#wp-calendar #prev {
+	text-align:left;
+}
 
 
 /* I make plugins plugin. */
@@ -905,4 +989,4 @@ li.cws-imp-plugin {
 	margin:0;
 	padding:0;
 	list-style-type:none;
-	}
+}
