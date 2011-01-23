@@ -144,7 +144,7 @@ function _ghostbird_custom_image_header_live() {
 function _ghostbird_custom_image_header_admin() {
 	
 	$h = HEADER_IMAGE_HEIGHT + 10;
-	$background_color = get_theme_mod( 'background_color', '444' );
+	$background_color = get_theme_mod( 'background_color', '375876' );
 	
 	print <<< EOF
 <style type="text/css">

@@ -168,14 +168,10 @@ textarea:focus {
 body {
 	position:relative;
 	z-index:0;
-	
 	margin:0;
 	padding:0;
 	color:#2a3142;
-	background-color:#7184b3;
-	
-	background-color:#434d5c;
-	
+	background-color:#375876;
 	background-image:url( images/diagonal-stripes-003.png );
 	background-attachment:fixed;
 }
@@ -431,7 +427,7 @@ body {
 	text-align:center;
 }
 #menu-bottom li {
-	display:inline-block;
+	display:inline;
 	padding:.5em;
 }
 #menu-bottom a {
