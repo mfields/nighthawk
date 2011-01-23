@@ -11,7 +11,6 @@
  * functions documentation for details on useage.
  *
  * BEFORE DEV RELEASE
- * @todo Author name in intro meta on all single entries.
  * @todo Ensure that all settings actually do something.
  * 
  * BEFORE 1.0 RELEASE

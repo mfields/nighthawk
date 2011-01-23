@@ -194,7 +194,7 @@ function ghostbird_title( $before = '', $after = '', $print = true ) {
  */
 function ghostbird_byline( $before = '', $after = '' ) {
 	$author_name = '';
-	if ( is_singular() ) {
+	if ( is_singular() && ! is_attachment() ) {
 		$author_name = get_the_author();
 		/* get_the_author() only works inside the loop. Need to do manual labor if ghostbird_byline() is used outsode the loop. */
 		if ( empty( $author_name ) ) {
