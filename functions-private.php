@@ -78,7 +78,7 @@ function _ghostbird_widgets_init() {
 	register_sidebar( array(
 		'name'          => __( 'Discussion Guidelines', 'ghostbird' ),
 		'id'            => 'discussion-guidelines',
-		'description'   => __( 'Add a text widget to this area and instruct your visitors how they should comment on your posts and pages.', 'ghostbird' ),
+		'description'   => __( 'Add a text widget to this area and instruct your visitors how they should comment on your posts and pages. The content of this area will display above the textarea in the comment form.', 'ghostbird' ),
 		'before_widget' => '<div id="%1$s" class="widget-container %2$s">',
 		'after_widget'  => '</div>',
 		'before_title'  => '<h3 class="widget-title">',
