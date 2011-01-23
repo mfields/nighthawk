@@ -212,9 +212,8 @@ function _ghostbird_body_class( $classes ) {
  * @since     1.0
  */
 function _ghostbird_page_menu_wrap( $menu, $args ) {
-	if ( isset( $args['container'] ) && isset( $args['container_id'] ) && 'div' == $args['container'] && ( 'menu' == $args['container_id'] || 'menu-bottom' == $args['container_id'] ) ) {
+	if ( isset( $args['container'] ) && isset( $args['container_id'] ) && 'div' == $args['container'] && ( 'menu-top' == $args['container_id'] || 'menu-bottom' == $args['container_id'] ) ) {
 		return "<{$args['container']} id='{$args['container_id']}'>{$menu}</{$args['container']}>";
-		$i++;
 	}
 	return $menu;
 }
