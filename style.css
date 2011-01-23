@@ -221,13 +221,12 @@ body {
 	position:relative;
 	z-index:100;
 	margin:0 -10px 0;
-	padding:.3em 1em .3em .75em;
-	min-height:1.2em;
+	padding:.25em 0 0;
 	border-width:0;
 	color:#fff;
 	text-align:left;
 	background:#600 url( images/horizontal-stripes.png );
-	min-height:50px;
+	/*min-height:57px; /* Needed for stiches.png. */
 }
 #menu:before {
 	content:'';
@@ -254,41 +253,43 @@ body {
 	border-width:0 0 5px 10px;
 }
 #menu ul {
-	margin:1em 0 0;
-	padding:0;
+	margin:0 30px;
+	padding:.5em 0;
 	list-style-type:none;
 	text-align:center;
 }
 #menu ul:before {
 	content:'';
 	position:absolute;
-	top:5px;
+	top:7px;
 	left:-5px;
 	width:27px;
-	height:47px;
+	height:39px;
 	display:block;
 	background:transparent url( images/stiches.png ) 0 0 no-repeat;
 }
 #menu ul:after {
 	content:'';
 	position:absolute;
-	top:5px;
+	top:7px;
 	right:-5px;
 	width:27px;
-	height:47px;
+	height:39px;
 	display:block;
 	background:transparent url( images/stiches.png ) -27px 0 no-repeat;
 }
 #menu li {
-	display:inline-block;
+	display:inline;
 	margin:0 .25em 1em;
+	padding:0;
+	line-height:2.5em
 }
 #menu li a {
 	font-weight:bold;
 	text-align:center;
 	cursor:pointer;
 	outline:0;
-	padding:.25em .5em;
+	padding:.35em .6em;
 	font-weight:bold;
 	color:#e9d6d6;
 	background-color:#111;
