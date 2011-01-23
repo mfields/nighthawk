@@ -46,6 +46,8 @@ get_header();
 
 <h1><?php do_action( 'ghostbird_title' ); ?></h1>
 
+<?php ghostbird_byline( '<p class="byline">', '</p>' ); ?>
+
 <?php do_action( 'ghostbird_intro_description' ); ?>
 
 <?php ghostbird_intro_meta( '<div id="intro-meta">', '</div>' ); ?>

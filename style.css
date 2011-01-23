@@ -319,6 +319,9 @@ body {
 #intro p:only-child { margin-top:0; }
 #intro p:last-child,
 #intro p:only-child { margin-bottom:0; }
+#intro p.byline {
+	margin-top:0;
+}
 #intro-meta {
 	margin-top:.5em;
 }

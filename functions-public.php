@@ -181,6 +181,38 @@ function ghostbird_title( $before = '', $after = '', $print = true ) {
 }
 
 /**
+ * Byline.
+ *
+ * Display the author of an entry in singular views.
+ *
+ * @param     string    Text to print before.
+ * @param     string    Text to print after.
+ * @return    void
+ *
+ * @access    public
+ * @since     1.0
+ */
+function ghostbird_byline( $before = '', $after = '' ) {
+	$author_name = '';
+	if ( is_singular() ) {
+		$author_name = get_the_author();
+		/* get_the_author() only works inside the loop. Need to do manual labor if ghostbird_byline() is used outsode the loop. */
+		if ( empty( $author_name ) ) {
+			global $posts;
+			if ( isset( $posts[0]->post_author ) ) {
+				$author = get_userdata( $posts[0]->post_author );
+				if ( isset( $author->display_name ) ) {
+					$author_name = esc_html( $author->display_name );
+				}
+			}
+		}
+	}
+	if ( ! empty( $author_name ) ) {
+		print $before . sprintf( __( 'By %1$s', 'ghostbird' ), $author_name ) . $after;
+	}
+}
+
+/**
  * Print term description if one is available.
  *
  * Child themes and plugins should use the 'ghostbird-description-override'
