@@ -34,6 +34,7 @@
  * @todo Add credit link in the footer.
  * @todo Add donation link in the settings page.
  * @todo Pretty-up the calendar widget.
+ * @todo Alpha for yellow-dots.png. Change name to halftone-small.png.
  *
  * FUTURE RELEASE
  * @todo Add header widget. Intended for search form?
