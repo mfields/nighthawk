@@ -9,9 +9,6 @@
  * and most function as template tags printing data 
  * directly to the browser. Please read the each 
  * functions documentation for details on useage.
- *
- * BEFORE DEV RELEASE
- * @todo Ensure that all settings actually do something.
  * 
  * BEFORE 1.0 RELEASE
  * @todo Style global tables.
@@ -33,13 +30,15 @@
  * @todo Add donation link in the settings page.
  * @todo Pretty-up the calendar widget.
  * @todo Alpha for yellow-dots.png. Change name to halftone-small.png.
- *
+ * @todo Ensure that all settings actually do something.
+ * 
  * FUTURE RELEASE
  * @todo Add header widget. Intended for search form?
  * @todo Add detail images to gallery posts.
  * @todo "and" for taxonomy lists.
  * @todo Add support for taxonomy images plugin.
  * @todo Add support for wp_pagenavi plugin.
+ * @todo Add custom template for Long Description plugin.
  *
  * @package      Ghostbird
  * @subpackage   Functions
@@ -83,7 +82,7 @@ function _ghostbird_setup() {
 	load_theme_textdomain( 'ghostbird', get_template_directory() . '/languages' );
 	
 	add_theme_support( 'menus' );
-	add_theme_support( 'post-formats', array( 'aside', 'audio', 'chat', 'status', 'image', 'gallery', 'video', 'quote' ) );
+	add_theme_support( 'post-formats', array( 'aside', 'audio', 'chat', 'gallery', 'image', 'status', 'video', 'quote' ) );
 	add_theme_support( 'post-thumbnails' );
 	add_theme_support( 'automatic-feed-links' );
 	add_custom_background();

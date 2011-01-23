@@ -1,18 +1,15 @@
-= What Makes it Different =
-	- No messy sidebar distracting readers from your content!
-	
-= What Makes it the Same =
-
-= Features =
+Ghostbird is a one-column theme for the WordPress publishing platform.
 
 * Post Formats
-	- Image
-	- Gallery
-	- Chat
-	- Status
 	- Aside
-	- Video
+	- Audio
+	- Chat
+	- Gallery
+	- Image
 	- Standard
+	- Status
+	- Video
+	- Quote
 	
 * HTML5
 	- Kinda.
@@ -27,14 +24,11 @@
 	- Bottom
 	
 * Custom widget areas
-	- Discussion Guidelines.
-	- Timeline Description
-	- Search Description
+	- Discussion Guidelines
+	- 3 all-purpose widgetize bottom areas.
 	
 * Native support for custom post post_types and taxonomies
 
 * Plugin support
-	- WP PageNavi
 	- SyntaxHighlighter Evolved
-	- Taxonomy Images ........................................... DO THIS
-	- Long Description .......................................... DO THIS
+	- I Make Plugins
