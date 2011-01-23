@@ -445,6 +445,23 @@ h2.entry-title {
 	border-color:transparent;
 }
 
+.chat-log {
+	background:#fff;
+	border:.1em solid #e2dcd2;
+}
+.many .chat-log {
+	height:18em;
+	overflow:auto;
+}
+
+.chat-log em {
+	display:block;
+	padding:.5em
+}
+.chat-log .alt {
+	background:#fff7eb;
+}
+
 .embed {
 	width:100%;
 }
@@ -753,7 +770,7 @@ input#submit {
 	background-color:#fff;
 }
 
-.embellishment {
+.embellishment { /* What in the name of?!?!?!?! */
 	margin:0 1.5em 1.5em;
 	padding:1em 1.5em 1em;
 	overflow:auto;

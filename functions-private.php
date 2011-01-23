@@ -342,6 +342,25 @@ function _ghostbird_filter_content_for_image_format( $content ) {
 	return $content;
 }
 
+function _ghostbird_filter_content_for_chat_format( $content ) {
+	if ( 'chat' == get_post_format() ) {
+		/* Attempt to match the first pre element. */
+		preg_match( '/<pre>(.*?)<\/pre>/s', $content, $matches );
+
+		if ( isset( $matches[1] ) ) {
+			$lines = explode( "\n", $matches[1] );
+			$filtered = '';
+			foreach ( (array) $lines as $order => $line ) {
+				$filtered.= "\n" . '<em' . ( 1 == $order % 2 ? '' : ' class="alt"' ) . '>' . str_replace( array( '<br>', '<br />', '<br/>' ), '', $line ) . '</em>';
+			}
+			if ( $filtered ) {
+				$content = "\n" . '<div class="chat-log">' . preg_replace( '/<pre>(.*?)<\/pre>/s', $filtered, $content, 1 ) . '</div>';
+			}
+		}
+	}
+	return $content;
+}
+
 /**
  * Gallery Format: Featured Image
  *

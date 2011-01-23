@@ -32,6 +32,7 @@
  * @todo Pretty-up the calendar widget.
  * @todo Alpha for yellow-dots.png. Change name to halftone-small.png.
  * @todo Ensure that all settings actually do something.
+ * @todo Less saturation on #author-box bg color.
  * 
  * FUTURE RELEASE
  * @todo Add header widget. Intended for search form?
@@ -116,6 +117,7 @@ function _ghostbird_setup() {
 	add_filter( 'post_class',                 '_ghostbird_post_class_more' );
 	add_filter( 'post_thumbnail_html',        '_ghostbird_featured_image_first_attachment' );
 	add_filter( 'post_thumbnail_html',        '_ghostbird_featured_image_avatar' );
+	add_filter( 'the_content',                '_ghostbird_filter_content_for_chat_format', 12 );
 	add_filter( 'the_content',                '_ghostbird_filter_content_for_image_format', 0 );
 	add_action( 'the_content',                '_ghostbird_related_images' );
 	add_filter( 'embed_oembed_html',          '_ghostbird_oembed_dataparse', 10, 4 );
