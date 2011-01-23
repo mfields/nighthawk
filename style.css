@@ -888,7 +888,6 @@ blockquote,
 .entry p img,
 .author-avatar,
 .featured-image,
-.singular .entry,
 .syntaxhighlighter {
 	box-shadow:         .2em .2em .3em rgba( 0, 0, 0, 0.3 );
 	-webkit-box-shadow: .2em .2em .3em rgba( 0, 0, 0, 0.3 );
