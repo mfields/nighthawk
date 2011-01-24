@@ -31,9 +31,8 @@ add_action( 'admin_init', '_ghostbird_admin_init' );
 function ghostbird_settings_default( $keys = false ) {
 	return array(
 		/* Boolean */
-		'css_responsive'          => 1,
 		'content_image_format'    => 1,
-		'display_site_title'      => 1,
+		'display_site_title'      => 0,
 		'display_tagline'         => 1,
 		'display_author'          => 1,
 		'display_author_link'     => 0,

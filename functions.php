@@ -2,13 +2,12 @@
 /**
  * Theme Setup
  *
- * Functions are roughly defined in the order that
- * they would be called during a template request.
- *
- * Any function with public access may be used freely
- * and most function as template tags printing data 
- * directly to the browser. Please read the each 
- * functions documentation for details on useage.
+ * @package      Ghostbird
+ * @subpackage   Functions
+ * @author       Michael Fields <michael@mfields.org>
+ * @copyright    Copyright (c) 2011, Michael Fields
+ * @license      http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since        1.0
  * 
  * BEFORE 1.0 RELEASE
  * @todo Style global tables.
@@ -40,12 +39,6 @@
  * @todo Add support for wp_pagenavi plugin.
  * @todo Add custom template for Long Description plugin.
  *
- * @package      Ghostbird
- * @subpackage   Functions
- * @author       Michael Fields <michael@mfields.org>
- * @copyright    Copyright (c) 2011, Michael Fields
- * @license      http://opensource.org/licenses/gpl-2.0.php GNU Public License
- * @since        1.0
  */
 
 /**
