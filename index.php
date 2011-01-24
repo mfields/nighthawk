@@ -42,15 +42,12 @@ get_header();
 
 <div id="content">
 
-<div id="intro">
-
-<h1><?php do_action( 'ghostbird_title' ); ?></h1>
-
-<?php ghostbird_byline( '<p class="byline">', '</p>' ); ?>
-
-<?php do_action( 'ghostbird_intro_description' ); ?>
-
-<?php ghostbird_intro_meta( '<div id="intro-meta">', '</div>' ); ?>
+<div id="intro"><?php
+	ghostbird_title( '<h1>', '</h1>' );
+	ghostbird_byline( '<p id="byline">', '</p>' );
+	ghostbird_description( '<div id="description">', '</div>' );
+	ghostbird_intro_meta( '<div id="intro-meta">', '</div>' );
+?>
 
 </div>
 

@@ -312,6 +312,8 @@ body {
 	color:#444;
 }
 
+
+/* Intro box */
 #intro {
 	margin:0 0 1.5em;
 	padding:1em 1.5em 1em;
@@ -325,15 +327,18 @@ body {
 	line-height:1;
 	margin-bottom:.25em;
 }
-#intro p:first-child,
-#intro p:only-child { margin-top:0; }
-#intro p:last-child,
-#intro p:only-child { margin-bottom:0; }
-#intro p.byline {
-	margin-top:0;
-}
+#description p:first-child,
+#description p:only-child { margin-top:.25em; }
+#description p:last-child,
+#description p:only-child { margin-bottom:0; }
+
+#byline,
 #intro-meta {
-	margin-top:.5em;
+	margin:.5em 0 0;
+	color:#85775f;
+	font-size:.8em;
+	line-height:1.5;
+	font-weight:normal;
 }
 #intro a {
 	color:#54778a;
@@ -352,7 +357,9 @@ body {
 }
 .entry img {
 	background-color:#fff;
-	border:.1em solid #ccc !important; /* "Important" used to override gallery shortcode inline styles. */
+	border-style:solid;
+	border-color:#ccc;
+	border-width:.1em;
 }
 .entry pre {
 	padding:5%;
@@ -641,11 +648,11 @@ h2.entry-title {
 #discussion-guidelines-widgets {
 	line-height:1.35em
 }
-input#submit {
+#subscribe,
+input#submit,
+.logged-in-as,
+.subscribe-to-comments {
 	margin-left:17.5%;
-}
-#subscribe {
-	margin-left:17.5%; /* Subscribe to comments plugin. */
 }
 
 
@@ -828,7 +835,6 @@ input#submit,
 	clear:both;
 }
 .sticky {}
-.wp-smiley {}
 .alignnone {
 	margin:0 1em 0 0;
 }
@@ -855,7 +861,6 @@ input#submit,
 /* Small text, lighter color */
 small,
 .entry-meta,
-#intro-meta,
 .wp-caption-text,
 .gallery-caption {
 	color:#888;
@@ -905,7 +910,7 @@ fieldset,
 blockquote,
 .dialog,
 .gallery img,
-.entry p img,
+.entry img,
 .author-avatar,
 .featured-image,
 .syntaxhighlighter {
@@ -915,8 +920,8 @@ blockquote,
 }
 
 /* Reset shadows for certain elements. */
-.entry p img.wp-smiley {
-	border-width:0;
+.entry img.wp-smiley {
+	border-width:0; 
 	box-shadow:none;
 	-webkit-box-shadow:none;
 	-moz-box-shadow:none;

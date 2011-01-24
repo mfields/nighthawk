@@ -33,6 +33,7 @@
  * @todo Alpha for yellow-dots.png. Change name to halftone-small.png.
  * @todo Ensure that all settings actually do something.
  * @todo Less saturation on #author-box bg color.
+ * @todo Make dialog colors match new theme colors.
  * 
  * FUTURE RELEASE
  * @todo Add header widget. Intended for search form?
@@ -126,7 +127,6 @@ function _ghostbird_setup() {
 	
 	/* Custom actions. */
 	add_action( 'ghostbird_logo',             'ghostbird_logo', 10, 2 );
-	add_action( 'ghostbird_title',            'ghostbird_title', 10, 3 );
 	add_action( 'ghostbird_paged_navigation', 'ghostbird_paged_nav', 10, 2 );
 	
 	/* Hooks controlable by settings panel. */
@@ -141,9 +141,6 @@ function _ghostbird_setup() {
 	}
 	if ( ! empty( $settings['display_tagline'] ) ) {
 		add_action( 'ghostbird_tagline', 'ghostbird_tagline', 10, 2 );
-	}
-	if ( ! empty( $settings['display_description'] ) ) {
-		add_action( 'ghostbird_intro_description', 'ghostbird_intro_description');
 	}
 	
 	/* Ghostbird hooking into SyntaxHighlighter Evolved plugin. */

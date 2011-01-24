@@ -208,12 +208,12 @@ function ghostbird_byline( $before = '', $after = '' ) {
 		}
 	}
 	if ( ! empty( $author_name ) ) {
-		print $before . sprintf( __( 'By %1$s', 'ghostbird' ), $author_name ) . $after;
+		print "\n" . $before . sprintf( __( 'By %1$s', 'ghostbird' ), $author_name ) . $after;
 	}
 }
 
 /**
- * Print term description if one is available.
+ * Print current view description.
  *
  * Child themes and plugins should use the 'ghostbird-description-override'
  * filter to add custom data to this function.
@@ -223,21 +223,21 @@ function ghostbird_byline( $before = '', $after = '' ) {
  * @access    public
  * @since     1.0
  */
-function ghostbird_intro_description() {
+function ghostbird_description( $before = '', $after = '' ) {
 	$desc = apply_filters( 'ghostbird-description-override', '' );
 	if ( empty( $desc ) ) {
 		if ( is_category() || is_tag() || is_tax() ) {
 			$desc = term_description();
 		}
 		if ( is_page() ) {
-			global $post;
-			if ( isset( $post->post_excerpt ) && ! empty( $post->post_excerpt ) ) {
+			$excerpt = get_post_field( 'post_excerpt', get_the_ID() );
+			if ( ! empty( $excerpt ) ) {
 				$desc = apply_filters( 'the_excerpt', get_the_excerpt() );
 			}
 		}
 	}
 	if ( ! empty( $desc ) ) {
-		print "\n" . '<div id="description">' . $desc . '</div>';
+		print "\n" . $before . $desc . $after;
 	}
 }
 

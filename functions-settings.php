@@ -35,7 +35,6 @@ function ghostbird_settings_default( $keys = false ) {
 		'content_image_format'    => 1,
 		'display_site_title'      => 1,
 		'display_tagline'         => 1,
-		'display_description'     => 1,
 		'display_author'          => 1,
 		'display_author_link'     => 0,
 		'syntaxhighlighter_theme' => 1,
@@ -147,7 +146,6 @@ function _ghostbird_control_plugins() {
 function _ghostbird_control_elements() {
 	_ghostbird_control_boolean( 'display_site_title',  __( 'Display site title.', 'ghostbird' ) );
 	_ghostbird_control_boolean( 'display_tagline',     __( 'Display tagline.', 'ghostbird' ) );
-	_ghostbird_control_boolean( 'display_description', __( 'Display description.', 'ghostbird' ) );
 	_ghostbird_control_boolean( 'display_author',      __( 'Display post author box at the bottom of all posts.', 'ghostbird' ) );
 	_ghostbird_control_boolean( 'display_author_link', __( 'Enable link to author archives after description.', 'ghostbird' ) );
 }
