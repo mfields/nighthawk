@@ -358,6 +358,30 @@ function ghostbird_intro_meta( $before = '', $after = '' ) {
 	}
 }
 
+/**
+ * Entry Meta Date
+ *
+ * Generate and display a sentence containing the date
+ * and time that the global post object was published
+ * and a link to the comments section. The date and time
+ * string will be linked to the post's single view. The
+ * comment link should not display in singular views.
+ *
+ * If the current logged-in user has the capability to
+ * edit the post, an edit link will be displayed as well.
+ *
+ * An example sentence might read:
+ * "Posted on January 24, 2011 at 12:20 am * Comment * Edit"
+ * 
+ * The star (*) character in the above example represents a
+ * bullet point U+2022 (8226) which is included via the css
+ * :before pseudo class.
+ * 
+ * @return    void
+ *
+ * @access    public
+ * @since     1.0
+ */
 function ghostbird_entry_meta_date() {
 	
 	print "\n" . '<p>';
@@ -373,7 +397,7 @@ function ghostbird_entry_meta_date() {
 	if ( is_single() ) {
 		$datestamp =  '<span class="datetime" title="' . $title_attr . '">' . get_the_time( $date_format ) . '</span>';
 	}
-	// get_the_author()
+	
 	printf( __( 'Posted on %1$s', 'ghostbird' ), $datestamp );
 	
 	/* Comments */
@@ -392,8 +416,11 @@ function ghostbird_entry_meta_date() {
 }
 
 /**
+ * Entry Taxonomy Meta
+ *
  * Generate and display a sentence containing all core
- * taxonomies associated with the "post" post_type.
+ * taxonomies associated with the global post object 
+ * having the "post" post_type.
  * 
  * The sentence should conform to the following structure:
  * "This FORMAT is filed under CATEGORY, CATEGORY, CATEGORY and tagged TAG, TAG, TAG."
@@ -454,6 +481,18 @@ function ghostbird_entry_meta_taxonomy() {
 	}
 }
 
+/**
+ * Paged Navigation
+ * 
+ * Print appropriate paged navigation for the current view.
+ *
+ * @return    void
+ *
+ * @access    public
+ * @since     1.0
+ *
+ * @todo      Add support for wp_pagenavi plugin.
+ */
 function ghostbird_paged_nav( $before = '', $after = '' ) {
 	$clear = '<div class="clear"></div>';
 	if ( is_singular() ) {
@@ -462,9 +501,6 @@ function ghostbird_paged_nav( $before = '', $after = '' ) {
 		next_post_link( '<div class="newer-posts">%link</div>', __( '<span>&laquo;</span> Back', 'ghostbird' ) );
 		print $clear . $after;
 	}
-	// else if ( function_exists( 'wp_pagenavi' ) && ( is_archive() || is_home() ) ) {
-		// wp_pagenavi();
-	// }
 	else {
 		$next = get_next_posts_link( __( 'More <span>&raquo;</span>', 'ghostbird' ) );
 		if ( ! empty( $next ) ) {

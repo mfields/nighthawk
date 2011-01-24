@@ -138,10 +138,31 @@ function _ghostbird_admin_init() {
 	$ghostbird_settings = ghostbird_get_settings();
 }
 
+/**
+ * Plugin compatibility.
+ *
+ * Prints all setting controls for plugin compatibility.
+ *
+ * @return    void
+ *
+ * @access    private
+ * @since     1.0
+ */
 function _ghostbird_control_plugins() {
 	_ghostbird_control_boolean( 'syntaxhighlighter_theme',  __( 'Enable custom theme for the SyntaxHighlighter Evolved plugin.', 'ghostbird' ) );
 }
 
+/**
+ * Elements.
+ *
+ * Prints all setting controls for elements. "Elements"
+ * are certain structures that a user may want to hide.
+ *
+ * @return    void
+ *
+ * @access    private
+ * @since     1.0
+ */
 function _ghostbird_control_elements() {
 	_ghostbird_control_boolean( 'display_site_title',  __( 'Display site title.', 'ghostbird' ) );
 	_ghostbird_control_boolean( 'display_tagline',     __( 'Display tagline.', 'ghostbird' ) );
@@ -149,18 +170,41 @@ function _ghostbird_control_elements() {
 	_ghostbird_control_boolean( 'display_author_link', __( 'Enable link to author archives after description.', 'ghostbird' ) );
 }
 
+/**
+ * Content Filters.
+ *
+ * Print all setting controls which allow users to
+ * enable/disable Ghostbird's content filters.
+ *
+ * @return    void
+ *
+ * @access    private
+ * @since     1.0
+ *
+ * @todo      Add all filters!!!
+ */
+function _ghostbird_control_content() {
+	_ghostbird_control_boolean( 'content_image_format', __( 'Automatically embed images from plain urls.', 'ghostbird' ) );
+}
+
+/**
+ * Boolean control.
+ *
+ * Generates and prints a form element/label to
+ * control a boolean setting.
+ * 
+ * 
+ * @param     string    The key of a recognized setting. See ghostbird_settings_default() for a list.
+ * @param     string    Localized, human-readable label for the setting.
+ * @return    void
+ *
+ * @access    private
+ * @since     1.0
+ */
 function _ghostbird_control_boolean( $id, $label ) {
 	global $ghostbird_settings;
 	if ( isset( $ghostbird_settings[$id] ) ) {
 		print "\n\n" . '<input' . ( ! empty( $ghostbird_settings[$id] ) ? ' checked="checked"' : '' ) . ' type="checkbox" id="ghostbird-' . $id . '" name="ghostbird[' . $id . ']" value="1" /> ';
 		print "\n" . '<label for="ghostbird-' . $id . '">' . $label . '</label><br />';
 	}
-}
-
-function _ghostbird_control_content() {
-	_ghostbird_control_boolean( 'content_image_format', __( 'Automatically embed images from plain urls.', 'ghostbird' ) );
-}
-
-function ghostbird_display_controls() {
-	print '<p>Main description of this section here.</p>';
 }
