@@ -146,7 +146,7 @@ function _ghostbird_control_plugins() {
 function _ghostbird_control_elements() {
 	_ghostbird_control_boolean( 'display_site_title',  __( 'Display site title.', 'ghostbird' ) );
 	_ghostbird_control_boolean( 'display_tagline',     __( 'Display tagline.', 'ghostbird' ) );
-	_ghostbird_control_boolean( 'display_author',      __( 'Display post author box at the bottom of all posts.', 'ghostbird' ) );
+	_ghostbird_control_boolean( 'display_author',      __( 'Display author box at the bottom of all entries.', 'ghostbird' ) );
 	_ghostbird_control_boolean( 'display_author_link', __( 'Enable link to author archives after description.', 'ghostbird' ) );
 }
 

@@ -193,6 +193,7 @@ function ghostbird_title( $before = '', $after = '', $print = true ) {
  * @since     1.0
  */
 function ghostbird_byline( $before = '', $after = '' ) {
+	$byline = '';
 	$author_name = '';
 	if ( is_singular() && ! is_attachment() ) {
 		$author_name = get_the_author();
@@ -208,7 +209,11 @@ function ghostbird_byline( $before = '', $after = '' ) {
 		}
 	}
 	if ( ! empty( $author_name ) ) {
-		print "\n" . $before . sprintf( __( 'By %1$s', 'ghostbird' ), $author_name ) . $after;
+		$byline = sprintf( __( 'By %1$s', 'ghostbird' ), $author_name );
+	}
+	$byline = apply_filters( 'ghostbird-byline', $byline, $author_name );
+	if ( ! empty( $byline ) ) {
+		print "\n" . $before . $byline . $after;
 	}
 }
 
@@ -217,8 +222,8 @@ function ghostbird_byline( $before = '', $after = '' ) {
  *
  * Child themes and plugins should use the 'ghostbird-description'
  * filter to add custom data to this function. For instance, if you would 
- * like to add a custom description for a custom post_type archive view,
- * you may want to use code similar to:
+ * like to add a description for a custom post_type archive view, you may
+ * want to use code similar to:
  * 
  * <code>
  * function mfields_ghostbird_description( $description ) {
@@ -237,7 +242,6 @@ function ghostbird_byline( $before = '', $after = '' ) {
  */
 function ghostbird_description( $before = '', $after = '' ) {
 	$desc = '';
-	
 	if ( is_category() || is_tag() || is_tax() ) {
 		$desc = term_description();
 	}
@@ -247,7 +251,6 @@ function ghostbird_description( $before = '', $after = '' ) {
 			$desc = apply_filters( 'the_excerpt', get_the_excerpt() );
 		}
 	}
-	
 	$desc = apply_filters( 'ghostbird-description', $desc );
 	if ( ! empty( $desc ) ) {
 		print "\n" . $before . $desc . $after;
@@ -304,16 +307,16 @@ function ghostbird_intro_meta( $before = '', $after = '' ) {
 			
 			switch( $term->taxonomy ) {
 				case 'category' :
-					$feed_title = 'Get updates when a new post is published in the ' . $term_name . ' category.';
+					$feed_title = 'Get updates when a new entry is added to the ' . $term_name . ' category.';
 					$sentence = 'There are ' . $total . ' entries in this ' . $taxonomy_name . '.';
 					if ( 1 == $total ) {
-						$sentence = 'There is 1 post in this ' . $taxonomy_name . '.';
+						$sentence = 'There is 1 entry in this ' . $taxonomy_name . '.';
 						
 					}
 					break;
 				case 'post_tag' :
 					$feed_title = 'Get updates when a new entry is tagged with ' . $term_name;
-					$sentence = $total . ' posts have been tagged with the term <em>&#8220;' . $term_name . '&#8221;</em>.';
+					$sentence = $total . ' entries have been tagged with the term <em>&#8220;' . $term_name . '&#8221;</em>.';
 					if ( 1 == $total ) {
 						$sentence = '1 entry has been tagged with the term <em>&#8220;' . $term_name . '&#8221;</em>.';
 					}
@@ -389,11 +392,12 @@ function ghostbird_entry_meta_date() {
 }
 
 /**
- * Generate and display a human readable sentence containing all core
+ * Generate and display a sentence containing all core
  * taxonomies associated with the "post" post_type.
  * 
  * The sentence should conform to the following structure:
- * This FORMAT is filed under CATEGORY, CATEGORY, CATEGORY and tagged TAG, TAG, TAG.
+ * "This FORMAT is filed under CATEGORY, CATEGORY, CATEGORY and tagged TAG, TAG, TAG."
+ *
  * Each capitalized value in the above example should be linked to an
  * archive page that lists all posts of that taxonomy.
  *
@@ -526,6 +530,7 @@ function ghostbird_author( $before = '', $after = '' ) {
  *
  * @todo      localize
  * @todo      Fix gnarly plurals -> appending an 's'.
+ * @todo      Possibly allow to return a verb as well.
  *
  * @access    public
  * @since     1.0
