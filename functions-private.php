@@ -24,10 +24,19 @@
  */
 
 /**
- * Remove empty heading tag from the calendar widget.
+ * Calendar Widget Title
  *
- * @param     array     Classes for the body tag.
- * @return    array     Modified classes for the body tag.
+ * For some reason, WordPress will print a non-breaking space
+ * entity wrapped in the appropriate tags for the calendar
+ * widget even if the title's value is left empty by the user.
+ * This function will remove the empty heading tag.
+ *
+ * Note: empty values are IMPORTANT! in parameters.
+ *
+ * @param     string         The value of the calendar widget's title for this instance.
+ * @param     n/a            n/a
+ * @param     n/a            n/a
+ * @return    string         Calendar widget title.
  *
  * @access    private
  * @since     1.0
