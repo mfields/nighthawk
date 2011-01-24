@@ -172,35 +172,18 @@ function _ghostbird_custom_image_header_live() {
  * @since     1.0
  */
 function _ghostbird_custom_image_header_admin() {
-	
-	$h = HEADER_IMAGE_HEIGHT + 10;
 	$background_color = get_theme_mod( 'background_color', '375876' );
-	
 	print <<< EOF
 <style type="text/css">
 div#headimg {
-	
-	max-height:20px !important;
 	overflow:hidden;
-	
-	/*
-	height:20px !important;
-	padding:10px;
 	background-color:#{$background_color};
 	background-repeat:no-repeat;
-	background-position:10px 10px;
-	*/
-}
-#headimg h1,
-#headimg #desc {
-	position:relative;
-	left:999em;
-	display:none !important;
+	background-position:50% 50%;
+	padding:0 2em;
 }
 </style>
 EOF;
-
-
 }
 
 /**
