@@ -461,7 +461,7 @@ h2.entry-title {
 	overflow:auto;
 }
 
-.chat-log em {
+.chat-log span {
 	display:block;
 	padding:.5em
 }

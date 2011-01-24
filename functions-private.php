@@ -39,6 +39,14 @@ function _ghostbird_calendar_title( $title = '', $instance = '', $id_base = '' )
 	return $title;
 }
 
+/**
+ * Register Widgetized Areas
+ *
+ * @return    void.
+ *
+ * @access    private
+ * @since     1.0
+ */
 function _ghostbird_widgets_init() {
 	
 	/* Area 1 - Left column below content. */
@@ -86,6 +94,19 @@ function _ghostbird_widgets_init() {
 	) );
 }
 
+/**
+ * Discussion Guidelines
+ *
+ * The discussion guidelines section is delivered via a widgetized
+ * area. If the 'discussion-guidelines' area is active its contents
+ * will be prepended to the textarea created by comment_form() in
+ * comments.php. 
+ *
+ * @return    string    The contents of all widgets assigned to the discussion-guidelines area.
+ *
+ * @access    private
+ * @since     1.0
+ */
 function _ghostbird_discussion_guidelines() {
 	$widget = '';
 	if ( is_active_sidebar( 'discussion-guidelines' ) ) {
@@ -269,7 +290,7 @@ function _ghostbird_post_class_featured( $classes ) {
 }
 
 /**
- * Filter content for posts having an image format.
+ * Post Content: Image format.
  *
  * This filter will allow authors to post only a url to an image
  * in the post content and have the image display properly in the
@@ -342,6 +363,26 @@ function _ghostbird_filter_content_for_image_format( $content ) {
 	return $content;
 }
 
+/**
+ * Post Content: Chat format.
+ *
+ * This filter is designed to be attached to the post_content hook.
+ * In the event that the current global post object has been assigned
+ * a format of "chat", this function will attemt to find the first pre
+ * tag in $content. This pre tag is understood to contain the contents
+ * of a chat transcript. If the transcript is found each line will be 
+ * enclosed in a span element and odd numbered lines will be given the
+ * class attribute of "alt". The pre tag is then replaced with a div
+ * tag with a class attribute of "chat-log".
+ *
+ * @param     string    post_content field of the current entry.
+ * @return    string    Filtered results for chat formats, unaltered value of $content otherwise.
+ *
+ * @access    private
+ * @since     1.0
+ *
+ * @todo      Allow users to disable via UI.
+ */
 function _ghostbird_filter_content_for_chat_format( $content ) {
 	if ( 'chat' == get_post_format() ) {
 		/* Attempt to match the first pre element. */
@@ -351,7 +392,7 @@ function _ghostbird_filter_content_for_chat_format( $content ) {
 			$lines = explode( "\n", $matches[1] );
 			$filtered = '';
 			foreach ( (array) $lines as $order => $line ) {
-				$filtered.= "\n" . '<em' . ( 1 == $order % 2 ? '' : ' class="alt"' ) . '>' . str_replace( array( '<br>', '<br />', '<br/>' ), '', $line ) . '</em>';
+				$filtered.= "\n" . '<span' . ( 1 == $order % 2 ? '' : ' class="alt"' ) . '>' . str_replace( array( '<br>', '<br />', '<br/>' ), '', $line ) . '</span>';
 			}
 			if ( $filtered ) {
 				$content = "\n" . '<div class="chat-log">' . preg_replace( '/<pre>(.*?)<\/pre>/s', $filtered, $content, 1 ) . '</div>';
@@ -362,7 +403,7 @@ function _ghostbird_filter_content_for_chat_format( $content ) {
 }
 
 /**
- * Gallery Format: Featured Image
+ * Featured Image: Gallery format.
  *
  * Use the first image attachment for the featured image in
  * archive views. This function should respect a user's
@@ -395,6 +436,8 @@ function _ghostbird_featured_image_first_attachment( $html ) {
 }
 
 /**
+ * Featured Image: Status format.
+ *
  * Use the avatar for the featured image on status posts.
  *
  * @param     string    Thumbnail html or empty string.
@@ -504,11 +547,37 @@ function _ghostbird_author_link( $description ) {
 	return $description;
 }
 
-function _ghostbird_comment_meta() {
+/**
+ * Comment Date.
+ *
+ * Return the date and time that the current global comment  
+ * was submitted. This string will be linked directly to the 
+ * comment it represents. 
+ *
+ * @return    string         Linked comment date.
+ *
+ * @access    private
+ * @since     1.0
+ */
+function _ghostbird_comment_date() {
 	global $comment;
 	return "\n" . '<a class="comment-date" href="' . get_comment_link( $comment->comment_ID ) . '"  title="' . esc_attr__( 'Direct link to this comment.', 'ghostbird' ) . '">' . sprintf( __( '%1$s at %2$s', 'ghostbird' ), get_comment_date(),  get_comment_time() ) . '</a>';
 }
 
+/**
+ * Comment start.
+ *
+ * Prints most of a single comment.
+ * @see _ghostbird_comment_end().
+ *
+ * @param     stdClass       Comment object.
+ * @param     array          Arguments passed to wp_list_comments() merged with default values.
+ * @param     int            Position of the current comment in relation to the root comment of this tree. Starts at zero.
+ * @param     void
+ *
+ * @access    private
+ * @since     1.0
+ */
 function _ghostbird_comment_start( $comment, $args, $depth ) {
 	
 	$GLOBALS['comment'] = $comment;
@@ -524,7 +593,7 @@ function _ghostbird_comment_start( $comment, $args, $depth ) {
 			print "\n" . $avatar;
 			print "\n" . '<span class="comment-author">' . get_comment_author_link( $comment->comment_ID ) . '</span>';
 			
-			print "\n" . '<span class="comment-meta">' . _ghostbird_comment_meta();
+			print "\n" . '<span class="comment-meta">' . _ghostbird_comment_date();
 			if ( current_user_can( 'edit_comment', $comment->comment_ID ) ) {
 				print "\n" . '<span class="comment-edit"> <a href="' . get_edit_comment_link( $comment->comment_ID ) . '">' . __( 'Edit', 'ghostbird' ) . '</a></span>';
 			}
@@ -549,11 +618,27 @@ function _ghostbird_comment_start( $comment, $args, $depth ) {
 	}
 }
 
+/**
+ * Comment end.
+ *
+ * Custom callback for wp_list_comments().
+ * Print a closing html list-item element.
+ *
+ * @param     stdClass       Comment object.
+ * @param     array          Arguments passed to wp_list_comments() merged with default values.
+ * @param     int            Position of the current comment in relation to the root comment of this tree. Starts at zero.
+ * @param     void
+ *
+ * @access    private
+ * @since     1.0
+ */
 function _ghostbird_comment_end( $comment, $args, $depth ) {
 	print '</li>';
 }
 
 /**
+ * Comment Reply Script.
+ *
  * Enqueue comment reply script on singular views.
  *
  * In the event that a user has threaded comments enabled

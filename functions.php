@@ -19,11 +19,8 @@
  * @todo Excerpt filters for [...]
  * @todo HTML validataion.
  * @todo CSS validataion FWIW.
- * @todo Ensure that all public functions have no internal dependencies.
  * @todo Add meta to search archives intro box.
  * @todo Update and test style-editor.
- * @todo Social icons in the header?
- * @todo Searchform in the header?
  * @todo Lighter fonts in Widgets.
  * @todo Add Ghostbird settings page link to menu bar.
  * @todo Style all features of the Syntax Highler plugin.
