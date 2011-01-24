@@ -32,3 +32,4 @@ Ghostbird is a one-column theme for the WordPress publishing platform.
 * Plugin support
 	- SyntaxHighlighter Evolved
 	- I Make Plugins
+	- Subscribe to comments

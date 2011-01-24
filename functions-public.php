@@ -196,7 +196,7 @@ function ghostbird_byline( $before = '', $after = '' ) {
 	$author_name = '';
 	if ( is_singular() && ! is_attachment() ) {
 		$author_name = get_the_author();
-		/* get_the_author() only works inside the loop. Need to do manual labor if ghostbird_byline() is used outsode the loop. */
+		/* get_the_author() only works inside the loop. Need to do manual labor if ghostbird_byline() is used outside the loop. */
 		if ( empty( $author_name ) ) {
 			global $posts;
 			if ( isset( $posts[0]->post_author ) ) {
@@ -215,8 +215,20 @@ function ghostbird_byline( $before = '', $after = '' ) {
 /**
  * Print current view description.
  *
- * Child themes and plugins should use the 'ghostbird-description-override'
- * filter to add custom data to this function.
+ * Child themes and plugins should use the 'ghostbird-description'
+ * filter to add custom data to this function. For instance, if you would 
+ * like to add a custom description for a custom post_type archive view,
+ * you may want to use code similar to:
+ * 
+ * <code>
+ * function mfields_ghostbird_description( $description ) {
+ *     if ( is_post_type_archive( 'mfields_bookmark' ) ) {
+ *         return '<p>I created this section to store webpages that I have read, found interesting or may need to reference in the future. Not all bookmarks found here directly pertain to WordPress.</p>';
+ *     }
+ *     return $description;
+ * }
+ * add_filter( 'ghostbird-description', 'mfields_ghostbird_description' );
+ * </code>
  *
  * @return    void
  *
@@ -224,18 +236,19 @@ function ghostbird_byline( $before = '', $after = '' ) {
  * @since     1.0
  */
 function ghostbird_description( $before = '', $after = '' ) {
-	$desc = apply_filters( 'ghostbird-description-override', '' );
-	if ( empty( $desc ) ) {
-		if ( is_category() || is_tag() || is_tax() ) {
-			$desc = term_description();
-		}
-		if ( is_page() ) {
-			$excerpt = get_post_field( 'post_excerpt', get_the_ID() );
-			if ( ! empty( $excerpt ) ) {
-				$desc = apply_filters( 'the_excerpt', get_the_excerpt() );
-			}
+	$desc = '';
+	
+	if ( is_category() || is_tag() || is_tax() ) {
+		$desc = term_description();
+	}
+	if ( is_page() ) {
+		$excerpt = get_post_field( 'post_excerpt', get_the_ID() );
+		if ( ! empty( $excerpt ) ) {
+			$desc = apply_filters( 'the_excerpt', get_the_excerpt() );
 		}
 	}
+	
+	$desc = apply_filters( 'ghostbird-description', $desc );
 	if ( ! empty( $desc ) ) {
 		print "\n" . $before . $desc . $after;
 	}
