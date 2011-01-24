@@ -12,7 +12,6 @@
  * BEFORE 1.0 RELEASE
  * @todo Style global tables.
  * @todo Revisit post formats.
- * @todo Document everything in the Functions subpackage.
  * @todo Test "big" tag across browsers - not sure about positioning here :)
  * @todo Completely test and rewrite all examples in docs or remove if feeling lazy ;)
  * @todo Excerpt filters for [...]

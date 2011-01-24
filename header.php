@@ -28,7 +28,7 @@
 <html <?php language_attributes(); ?>>
 <head>
 <meta charset="<?php bloginfo( 'charset' ); ?>">
-<title>Michael Fields<?php wp_title(); ?></title>
+<title><?php bloginfo( 'blogname' ); ?><?php wp_title(); ?></title>
 <link rel="stylesheet" media="all" href="<?php print get_stylesheet_uri(); ?>" />
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 <link rel="profile" href="http://gmpg.org/xfn/11">
