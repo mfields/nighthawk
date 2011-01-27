@@ -31,6 +31,7 @@ add_action( 'admin_init', '_ghostbird_admin_init' );
 function ghostbird_settings_default( $keys = false ) {
 	return array(
 		/* Boolean */
+		'content_chat_format'     => 1,
 		'content_image_format'    => 1,
 		'display_site_title'      => 0,
 		'display_tagline'         => 1,
@@ -184,7 +185,8 @@ function _ghostbird_control_elements() {
  * @todo      Add all filters!!!
  */
 function _ghostbird_control_content() {
-	_ghostbird_control_boolean( 'content_image_format', __( 'Automatically embed images from plain urls.', 'ghostbird' ) );
+	_ghostbird_control_boolean( 'content_chat_format',  __( 'Enable the chat post format content filter.', 'ghostbird' ) );
+	_ghostbird_control_boolean( 'content_image_format', __( 'Enable the image format content filter.', 'ghostbird' ) );
 }
 
 /**

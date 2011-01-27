@@ -112,8 +112,6 @@ function _ghostbird_setup() {
 	add_filter( 'post_class',                 '_ghostbird_post_class_more' );
 	add_filter( 'post_thumbnail_html',        '_ghostbird_featured_image_first_attachment' );
 	add_filter( 'post_thumbnail_html',        '_ghostbird_featured_image_avatar' );
-	add_filter( 'the_content',                '_ghostbird_filter_content_for_chat_format', 12 );
-	add_filter( 'the_content',                '_ghostbird_filter_content_for_image_format', 0 );
 	add_action( 'the_content',                '_ghostbird_related_images' );
 	add_filter( 'embed_oembed_html',          '_ghostbird_oembed_dataparse', 10, 4 );
 	add_filter( 'embed_googlevideo',          '_ghostbird_oembed_dataparse', 10, 2 );
@@ -135,6 +133,12 @@ function _ghostbird_setup() {
 	}
 	if ( ! empty( $settings['display_tagline'] ) ) {
 		add_action( 'ghostbird_tagline', 'ghostbird_tagline', 10, 2 );
+	}
+	if ( ! empty( $settings['content_chat_format'] ) ) {
+		add_filter( 'the_content', '_ghostbird_filter_content_for_chat_format', 12 );
+	}
+	if ( ! empty( $settings['content_image_format'] ) ) {
+		add_filter( 'the_content', '_ghostbird_filter_content_for_image_format', 0 );
 	}
 	
 	/* Ghostbird hooking into SyntaxHighlighter Evolved plugin. */
