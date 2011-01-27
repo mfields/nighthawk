@@ -236,12 +236,15 @@ function ghostbird_byline( $before = '', $after = '' ) {
  * add_filter( 'ghostbird-description', 'mfields_ghostbird_description' );
  * </code>
  *
- * @return    void
+ * @param     string         Text to print before the description.
+ * @param     string         Text to print after the description.
+ * @param     bool           True to print the description, false to return it as a string.
+ * @return    void/string
  *
  * @access    public
  * @since     1.0
  */
-function ghostbird_description( $before = '', $after = '' ) {
+function ghostbird_description( $before = '', $after = '', $print = true ) {
 	$desc = '';
 	if ( is_category() || is_tag() || is_tax() ) {
 		$desc = term_description();
@@ -254,7 +257,11 @@ function ghostbird_description( $before = '', $after = '' ) {
 	}
 	$desc = apply_filters( 'ghostbird-description', $desc );
 	if ( ! empty( $desc ) ) {
-		print "\n" . $before . $desc . $after;
+		$desc = "\n" . $before . $desc . $after;
+		if ( ! $print ) {
+			return $desc;
+		}
+		print $desc;
 	}
 }
 
