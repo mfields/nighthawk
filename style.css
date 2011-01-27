@@ -485,15 +485,18 @@ h2.entry-title {
 	color:#888;
 }
 
+
+/* Author Box */
 #author-box {
 	margin:1.5em 0;
 	padding:1em 1.5em 1em;
-	border:.1em solid #e2caa0;
-	background-color:#fbeace;
+	border:.1em solid #eeddbe;
+	background-color:#faefdc;
+	color:#85775f;
 }
 #author-box .author-name {
-	font-size:1em;
-	margin-bottom:.25em;
+	font-size:1.3em;
+	margin-bottom:.1em;
 	clear:none;
 }
 #author-box .author-avatar {
@@ -508,7 +511,6 @@ h2.entry-title {
 #author-box .author-bio p:last-child {
 	margin:0;
 }
-
 #author-box.has-avatar .author-name,
 #author-box.has-avatar .author-bio {
 	margin-left:100px;
