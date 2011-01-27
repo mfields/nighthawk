@@ -533,7 +533,7 @@ function _ghostbird_author( $before = '', $after = '' ) {
  */
 function _ghostbird_author_link( $description ) {
 	if ( ! empty( $description ) ) {
-		$link = '<a href="' . get_author_posts_url( get_the_author_meta( 'ID' ) ) . '">' . sprintf( __( ' View all entries by %s.', 'ghostbird' ), get_the_author() ) . '</a>';
+		$link = "\n" . '<a href="' . get_author_posts_url( get_the_author_meta( 'ID' ) ) . '">' . sprintf( __( ' View all entries by %s.', 'ghostbird' ), get_the_author() ) . '</a>';
 		$description.= apply_filters( 'ghostbird_author_link', $link );
 	}
 	return $description;
