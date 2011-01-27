@@ -81,11 +81,6 @@ blockquote blockquote:last-child {
 	margin-bottom:0;
 }
 
-a {
-	color:#5588bb;
-	text-decoration:none;
-}
-
 big {
 	position:relative;
 	top:.1em;
@@ -127,6 +122,10 @@ pre {
 blockquote {
 	border:.1em solid #ccc;
 	font-style:italic;
+}
+a {
+	color:#5588bb;
+	text-decoration:none;
 }
 a img {
 	border-width:0;
@@ -322,6 +321,7 @@ body {
 	border-style:solid;
 	border-color:#e2caa0;
 	background-color:#fbeace;
+	color:#666;
 }
 #intro h1 {
 	line-height:1;
@@ -492,7 +492,7 @@ h2.entry-title {
 	padding:1em 1.5em 1em;
 	border:.1em solid #eeddbe;
 	background-color:#faefdc;
-	color:#85775f;
+	color:#666;
 }
 #author-box .author-name {
 	font-size:1.3em;
@@ -696,12 +696,13 @@ input#submit,
 #widgets {
 	clear:both;
 	position:relative;
-	background-color:#fbeace;
+	background-color:#faefdc;
 	margin:0 .5em;
 	padding:1em;
 	border-width:0 .1em .1em;
 	border-style:solid;
 	border-color:#e2caa0;
+	color:#666;
 }
 #widgets a {
 	color:#54778a;
@@ -990,13 +991,18 @@ table#wp-calendar {
 	text-transform:capitalize;
 	text-align:center;
 }
+#wp-calendar thead {
+	background-color:#5588bb;
+	border:.1em solid #888;
+	color:#fff;
+}
 #wp-calendar tbody td {
 	padding:1.5% 0;
 	background-color:#fff;
 	text-align:center;
 	width:14.28%;
-	border:.1em solid #a3afb5;
-	border:.1em solid #d6c7b0;
+	border:.1em solid #888;
+	font-weight:bold;
 }
 #wp-calendar tbody td a {
 	display:block;
