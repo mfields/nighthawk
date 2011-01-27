@@ -113,6 +113,7 @@ function ghostbird_title( $before = '', $after = '', $print = true ) {
 		$o = apply_filters( 'ghostbird_title_timeline', __( 'Timeline', 'ghostbird' ) );
 		if ( is_paged() ) {
 			$o = apply_filters( 'ghostbird_title_timeline_paged', '<a href="' . home_url() . '">' . $o . '</a>' );
+			$o.= ' <span class="heading-action">Page ' . (int) get_query_var( 'paged' ) . '<span>';
 		}
 	}
 	else if ( is_singular() ) {

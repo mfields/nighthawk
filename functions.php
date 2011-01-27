@@ -29,6 +29,11 @@
  * @todo Ensure that all settings actually do something.
  * @todo Less saturation on #author-box bg color.
  * @todo Make dialog colors match new theme colors.
+ * @todo Rename .heading-action class everywhere.
+ * 
+ * @todo *Desaturate all text that appears outside of #page.
+ * @todo Left margin on blockquotes.
+ * @todo Bottom margin on quote post h2's.
  * 
  * FUTURE RELEASE
  * @todo Add header widget. Intended for search form?

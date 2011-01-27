@@ -971,9 +971,15 @@ table#wp-calendar {
 	font-size:1em;
 	border-collapse:collapse;
 }
-#widgets.count-1 table#wp-calendar { margin:0; }
-#wp-calendar tr { background:transparent; }
-#wp-calendar td { color:#a3afb5; }
+#widgets.count-1 table#wp-calendar {
+	margin:0;
+}
+#wp-calendar tr {
+	background:transparent;
+}
+#wp-calendar td {
+	color:#a3afb5;
+}
 #wp-calendar caption {
 	text-align:center;
 }
@@ -988,6 +994,7 @@ table#wp-calendar {
 	text-align:center;
 	width:14.28%;
 	border:.1em solid #a3afb5;
+	border:.1em solid #d6c7b0;
 }
 #wp-calendar tbody td a {
 	display:block;
