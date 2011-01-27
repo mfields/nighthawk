@@ -55,7 +55,7 @@ get_header();
 <?php
 
 if ( ! have_posts() && ! is_search() ) {
-	print '<div class="hentry">' . __( 'Sorry, no posts were found', 'ghostbird' ) . '</div>';
+	print '<div class="entry">' . __( 'Sorry, no posts were found', 'ghostbird' ) . '</div>';
 }
 else {
 	while ( have_posts() ) {

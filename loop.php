@@ -28,7 +28,7 @@
 <div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 <?php
 
-do_action( 'ghostbird_hentry_start' );
+do_action( 'ghostbird_entry_start' );
 
 /*
  * Featured image.
@@ -66,6 +66,6 @@ wp_link_pages( array( 'before' => '<div class="page-link">' . __( 'Pages:', 'gho
 <?php ghostbird_entry_meta_taxonomy(); ?>
 </div><!--meta-->
 
-<?php do_action( 'ghostbird_hentry_end' ); ?>
+<?php do_action( 'ghostbird_entry_end' ); ?>
 
-</div><!--hentry-->
+</div><!--entry-->

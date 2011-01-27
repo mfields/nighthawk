@@ -107,7 +107,7 @@ function _ghostbird_setup() {
 	add_action( 'wp_print_scripts',           '_ghostbird_comment_reply_js' );
 	add_action( 'body_class',                 '_ghostbird_body_class' );
 	add_filter( 'wp_page_menu',               '_ghostbird_page_menu_wrap', 10, 2 );
-	add_filter( 'post_class',                 '_ghostbird_post_class_hentry' );
+	add_filter( 'post_class',                 '_ghostbird_post_class_entry' );
 	add_filter( 'post_class',                 '_ghostbird_post_class_featured' );
 	add_filter( 'post_class',                 '_ghostbird_post_class_more' );
 	add_filter( 'post_thumbnail_html',        '_ghostbird_featured_image_first_attachment' );

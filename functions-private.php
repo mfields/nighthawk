@@ -240,7 +240,7 @@ function _ghostbird_page_menu_wrap( $menu, $args ) {
  * @access    private
  * @since     1.0
  */
-function _ghostbird_post_class_hentry( $classes ) {
+function _ghostbird_post_class_entry( $classes ) {
 	if ( ! in_array( 'entry', $classes ) ) {
 		$classes[] = 'entry';
 	}
@@ -453,7 +453,7 @@ function _ghostbird_featured_image_avatar( $html ) {
  * by using the following code:
  * 
  * <code>
- * <?php remove_action( 'ghostbird_hentry_end', 'ghostbird_related_images' ); ?>
+ * <?php remove_action( 'ghostbird_entry_end', 'ghostbird_related_images' ); ?>
  * </code>
  * 
  * Code similar to the following can be used to change the title text.
