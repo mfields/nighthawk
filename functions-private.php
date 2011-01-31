@@ -638,12 +638,21 @@ function _ghostbird_comment_end( $comment, $args, $depth ) {
  * appropriate javascript files on single views where 
  * commenting is enabled.
  *
+ * If a user has actived the Discussion Guidelines widgetized
+ * area, its javascript file will be added to the queue as well.
+ *
  * @access    private
  * @since     1.0
  */
 function _ghostbird_comment_reply_js() {
+	if ( is_admin() || ! comments_open() || post_password_required() ) {
+		return;
+	}
 	if ( is_singular() && get_option( 'thread_comments' ) ) {
 		wp_enqueue_script( 'comment-reply' );
+	}
+	if ( is_active_sidebar( 'discussion-guidelines' ) ) {
+		wp_enqueue_script( 'ghostbird-discussion', get_template_directory_uri() . '/discussion-guidelines.js', array(), GHOSTBIRD_VERSION, true );
 	}
 }
 
