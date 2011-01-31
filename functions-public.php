@@ -561,8 +561,8 @@ function ghostbird_author( $before = '', $after = '' ) {
  * Returns a noun representing the type or format of the global
  * post object. This function is used internally by the 
  * ghostbird_entry_meta_taxonomy() function to create a sentence much
- * like the following: "This Audio Clip is filed under News."
- * where "Audio Clip" is the post label and "News" is the category.
+ * like the following: "This Status Update is filed under News."
+ * where "Status Update" is the post label and "News" is the category.
  *
  * The output of this function may be extended by using the
  * 'ghostbird_post_label' filter. This may be necessary if you 
@@ -594,14 +594,6 @@ function ghostbird_post_label( $singular = true ) {
 			case 'status' :
 				$single = __( 'Status Update', 'ghostbird' );
 				$plural = __( 'Status Updates', 'ghostbird' );
-				break;
-			case 'chat' :
-				$single = __( 'Chat Transcript', 'ghostbird' );
-				$plural = __( 'Chat Transcripts', 'ghostbird' );
-				break;
-			case 'audio' :
-				$single = __( 'Audio Clip', 'ghostbird' );
-				$plural = __( 'Audio Clips', 'ghostbird' );
 				break;
 			default :
 				$single = get_post_format_string( $post_format );

@@ -2,14 +2,9 @@ Ghostbird is a one-column theme for the WordPress publishing platform.
 
 * Post Formats
 	- Aside
-	- Audio
-	- Chat
 	- Gallery
-	- Image
 	- Standard
 	- Status
-	- Video
-	- Quote
 	
 * HTML5
 	- Kinda.

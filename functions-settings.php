@@ -31,8 +31,6 @@ add_action( 'admin_init', '_ghostbird_admin_init' );
 function ghostbird_settings_default( $keys = false ) {
 	return array(
 		/* Boolean */
-		'content_chat_format'     => 1,
-		'content_image_format'    => 1,
 		'display_site_title'      => 0,
 		'display_tagline'         => 1,
 		'display_author'          => 1,
@@ -132,7 +130,6 @@ function _ghostbird_settings_page() {
 function _ghostbird_admin_init() {
 	register_setting( 'ghostbird', 'ghostbird', 'ghostbird_clean_settings' );
 	add_settings_section( 'ghostbird_main', 'Ghostbird Settings Section', create_function( '', 'return true;' ), 'ghostbird' );
-	add_settings_field( 'content',  __( 'Post Content', 'ghostbird' ),   '_ghostbird_control_content',  'ghostbird', 'ghostbird_main' );
 	add_settings_field( 'elements', __( 'Elements', 'ghostbird' ),       '_ghostbird_control_elements', 'ghostbird', 'ghostbird_main' );
 	add_settings_field( 'plugins',  __( 'Plugin Support', 'ghostbird' ), '_ghostbird_control_plugins',  'ghostbird', 'ghostbird_main' );
 	global $ghostbird_settings;
@@ -169,24 +166,6 @@ function _ghostbird_control_elements() {
 	_ghostbird_control_boolean( 'display_tagline',     __( 'Display tagline.', 'ghostbird' ) );
 	_ghostbird_control_boolean( 'display_author',      __( 'Display author box at the bottom of all entries.', 'ghostbird' ) );
 	_ghostbird_control_boolean( 'display_author_link', __( 'Enable link to author archives after description.', 'ghostbird' ) );
-}
-
-/**
- * Content Filters.
- *
- * Print all setting controls which allow users to
- * enable/disable Ghostbird's content filters.
- *
- * @return    void
- *
- * @access    private
- * @since     1.0
- *
- * @todo      Add all filters!!!
- */
-function _ghostbird_control_content() {
-	_ghostbird_control_boolean( 'content_chat_format',  __( 'Enable the chat post format content filter.', 'ghostbird' ) );
-	_ghostbird_control_boolean( 'content_image_format', __( 'Enable the image format content filter.', 'ghostbird' ) );
 }
 
 /**

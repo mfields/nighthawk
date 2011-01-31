@@ -417,57 +417,6 @@ h2.entry-title {
 .format-gallery p {
 	margin-bottom:0;
 }
-.format-image img {	
-	display:block;
-	margin:0 auto;
-	padding:15px;
-	border:.1em solid #ccc;
-}
-.many .format-chat pre {
-	height:18em;
-	overflow:auto;
-	padding:.75em 1em;
-	font-size:.9em;
-	margin:0 auto;
-}
-
-.format-quote h2,
-.format-image h2,
-.format-chat  h2,
-.format-quote .entry-meta,
-.format-image .entry-meta,
-.format-chat  .entry-meta {
-	text-align:center;
-}
-
-.format-quote blockquote {
-	width:30em;
-	margin:0 auto;
-}
-
-.entry.format-chat,
-.entry.format-image,
-.entry.format-quote {
-	background-color:transparent;
-	border-color:transparent;
-}
-
-.chat-log {
-	background:#fff;
-	border:.1em solid #e2dcd2;
-}
-.many .chat-log {
-	height:18em;
-	overflow:auto;
-}
-
-.chat-log span {
-	display:block;
-	padding:.5em
-}
-.chat-log .alt {
-	background:#fff7eb;
-}
 
 .embed {
 	width:100%;
