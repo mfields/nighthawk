@@ -239,17 +239,19 @@ function ghostbird_tagline( $before = '', $after = '' ) {
  */
 function ghostbird_title( $before = '', $after = '', $print = true ) {
 	$o = '';
+	$url = '';
 	$post_type_qv = get_query_var( 'post_type' );
 	if ( 'page' == $post_type_qv ) {
 		$o = __( 'Pages', 'ghostbird' );
 		if ( is_paged() ) {
-			$o = apply_filters( 'ghostbird_title_timeline_paged', '<a href="' . add_query_arg( 'post_type', 'page', trailingslashit( home_url() ) ) . '">' . $o . '</a>' );
+			$url = add_query_arg( 'post_type', 'page', trailingslashit( home_url() ) );
+			$o = apply_filters( 'ghostbird_title_timeline_paged', '<a href="' . esc_url( $url ) . '">' . $o . '</a>' );
 		}
 	}
 	else if ( is_home() ) {
 		$o = apply_filters( 'ghostbird_title_timeline', __( 'Timeline', 'ghostbird' ) );
 		if ( is_paged() ) {
-			$o = apply_filters( 'ghostbird_title_timeline_paged', '<a href="' . home_url() . '">' . $o . '</a>' );
+			$o = apply_filters( 'ghostbird_title_timeline_paged', '<a href="' . esc_url( home_url() ) . '">' . $o . '</a>' );
 			$o.= ' <span class="heading-action">Page ' . (int) get_query_var( 'paged' ) . '<span>';
 		}
 	}
@@ -272,7 +274,8 @@ function ghostbird_title( $before = '', $after = '', $print = true ) {
 			}
 			$o = apply_filters( "ghostbird_title_taxonomy_{$term->taxonomy}", $term->name );
 			if ( is_paged() ) {
-				$o = apply_filters( 'ghostbird_title_timeline_paged', '<a href="' . get_term_link( $term, $term->taxonomy ) . '">' . $o . '</a>' );
+				$url = get_term_link( $term, $term->taxonomy );
+				$o = apply_filters( 'ghostbird_title_timeline_paged', '<a href="' . esc_url( $url ) . '">' . $o . '</a>' );
 			}
 		}
 	}
@@ -304,11 +307,12 @@ function ghostbird_title( $before = '', $after = '', $print = true ) {
 		global $wp_query;
 		$post_type = $wp_query->get_queried_object();
 		if ( isset( $post_type->name ) && is_paged() ) {
-			$o = apply_filters( 'ghostbird_title_timeline_paged', '<a href="' . get_post_type_archive_link( $post_type->name ) . '">' . $o . '</a>' );
+			$url = get_post_type_archive_link( $post_type->name );
+			$o = apply_filters( 'ghostbird_title_timeline_paged', '<a href="' . esc_url( $url ) . '">' . $o . '</a>' );
 		}
 	}
 
-	$o = "\n" . $before . apply_filters( 'ghostbird-title-text', $o ) . $after;
+	$o = "\n" . $before . apply_filters( 'ghostbird-title-text', $o, $url ) . $after;
 
 	if ( $print ) {
 		print $o;
