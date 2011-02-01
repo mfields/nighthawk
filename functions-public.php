@@ -564,17 +564,26 @@ function ghostbird_author( $before = '', $after = '' ) {
  * like the following: "This Status Update is filed under News."
  * where "Status Update" is the post label and "News" is the category.
  *
- * The output of this function may be extended by using the
- * 'ghostbird_post_label' filter. This may be necessary if you 
- * are using custom post_types on your installation. Ghostbird
- * will attempt to use the value of "singular_name" as defined in
- * the post_type's "labels" array if no custom filter is defined.
- * 
- * @return    string    An appropriate label for the post.
+ * A "post label" can be one of two things: Post Format or Custom Post Type Label
+ 
+ * For "posts" having a post format, a string representing the format will be used.
+ * If no format has been defined (assumung "standard" post format) This function
+ * will use the term "entry".
  *
- * @todo      localize
- * @todo      Fix gnarly plurals -> appending an 's'.
- * @todo      Possibly allow to return a verb as well.
+ * Even though Ghostbird does not support all available post_formats
+ * any blog may have posts associated with unsupported formats.
+ * This function should return a valid result for every post format
+ * regardless of whether it supports it.
+ *
+ * For all other post_types, Ghostbird will use the values defined in
+ * the post_type's "labels" array for singular and plural values.
+ *
+ * The output of this function may be extended by using the built-in filters:
+ * 
+ * 'ghostbird_post_label_single' and 'ghostbird_post_label_plural'
+ * 
+ * @param     bool      True for singular label, false for plural label.
+ * @return    string    An appropriate label for the post.
  *
  * @access    public
  * @since     1.0
@@ -586,18 +595,47 @@ function ghostbird_post_label( $singular = true ) {
 	
 	if ( 'post' == $post_type ) {
 		switch ( $post_format ) {
-			case '' :
-			case 'standard' :
-				$single = __( 'Entry', 'ghostbird' );
-				$plural = __( 'Entries', 'ghostbird' );
+			case 'aside' :
+				$single = _x( 'Aside', 'post format term', 'ghostbird' );
+				$plural = _x( 'Asides', 'post format term', 'ghostbird' );
+				break;
+			case 'audio' :
+				$single = _x( 'Audio file', 'post format term', 'ghostbird' );
+				$plural = _x( 'Audio files', 'post format term', 'ghostbird' );
+				break;
+			case 'chat' :
+				$single = _x( 'Chat Transcript', 'post format term', 'ghostbird' );
+				$plural = _x( 'Chat Transcripts', 'post format term', 'ghostbird' );
+				break;
+			case 'gallery' :
+				$single = _x( 'Gallery', 'post format term', 'ghostbird' );
+				$plural = _x( 'Galleries', 'post format term', 'ghostbird' );
+				break;
+			case 'image' :
+				$single = _x( 'Image', 'post format term', 'ghostbird' );
+				$plural = _x( 'Images', 'post format term', 'ghostbird' );
+				break;
+			case 'link' :
+				$single = _x( 'Link', 'post format term', 'ghostbird' );
+				$plural = _x( 'Links', 'post format term', 'ghostbird' );
+				break;
+			case 'quote' :
+				$single = _x( 'Quote', 'post format term', 'ghostbird' );
+				$plural = _x( 'Quotes', 'post format term', 'ghostbird' );
 				break;
 			case 'status' :
-				$single = __( 'Status Update', 'ghostbird' );
-				$plural = __( 'Status Updates', 'ghostbird' );
+				$single = _x( 'Status Update', 'post format term', 'ghostbird' );
+				$plural = _x( 'Status Updates', 'post format term', 'ghostbird' );
 				break;
+			case 'video' :
+				$single = _x( 'Video', 'post format term', 'ghostbird' );
+				$plural = _x( 'Videos', 'post format term', 'ghostbird' );
+				break;
+			case '' :
+			case 'standard' :
 			default :
-				$single = get_post_format_string( $post_format );
-				$plural = get_post_format_string( $post_format ) . 's';
+				$single = _x( 'Entry', 'post format term', 'ghostbird' );
+				$plural = _x( 'Entries', 'post format term', 'ghostbird' );
 				break;
 		}
 	}
