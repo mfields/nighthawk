@@ -384,17 +384,22 @@ function ghostbird_byline( $before = '', $after = '' ) {
  * @since     1.0
  */
 function ghostbird_description( $before = '', $after = '', $print = true ) {
-	$desc = '';
+	$description = '';
 	if ( is_category() || is_tag() || is_tax() ) {
-		$desc = term_description();
+		$description = term_description();
 	}
-	$desc = apply_filters( 'ghostbird-description', $desc );
-	if ( ! empty( $desc ) ) {
-		$desc = "\n" . $before . $desc . $after;
-		if ( ! $print ) {
-			return $desc;
+	if ( is_page() ) {
+		if ( has_excerpt() ) {
+			$description = apply_filters( 'the_excerpt', get_the_excerpt() );
 		}
-		print $desc;
+	}
+	$description = apply_filters( 'ghostbird-description', $description );
+	if ( ! empty( $description ) ) {
+		$description = "\n" . $before . $description . $after;
+		if ( ! $print ) {
+			return $description;
+		}
+		print $description;
 	}
 }
 
@@ -1219,7 +1224,7 @@ function _ghostbird_excerpt_more_auto( $more ) {
  * @since     1.0
  */
 function _ghostbird_excerpt_more_custom( $excerpt ) {
-	if ( has_excerpt() && ! is_attachment() ) {
+	if ( has_excerpt() && ! is_attachment() && ! is_page() ) {
 		$excerpt .= ghostbird_continue_reading_link();
 	}
 	return $excerpt;
