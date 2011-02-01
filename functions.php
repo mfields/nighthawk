@@ -388,12 +388,6 @@ function ghostbird_description( $before = '', $after = '', $print = true ) {
 	if ( is_category() || is_tag() || is_tax() ) {
 		$desc = term_description();
 	}
-	if ( is_page() ) {
-		$excerpt = get_post_field( 'post_excerpt', get_the_ID() );
-		if ( ! empty( $excerpt ) ) {
-			$desc = apply_filters( 'the_excerpt', get_the_excerpt() );
-		}
-	}
 	$desc = apply_filters( 'ghostbird-description', $desc );
 	if ( ! empty( $desc ) ) {
 		$desc = "\n" . $before . $desc . $after;
