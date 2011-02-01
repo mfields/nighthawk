@@ -13,7 +13,6 @@
  * @todo Style global tables.
  * @todo Test "big" tag across browsers - not sure about positioning here :)
  * @todo Completely test and rewrite all examples in docs or remove if feeling lazy ;)
- * @todo Excerpt filters for [...]
  * @todo HTML validataion.
  * @todo CSS validataion FWIW.
  * @todo Add meta to search archives intro box.
@@ -107,6 +106,8 @@ function _ghostbird_setup() {
 	add_filter( 'post_thumbnail_html',        '_ghostbird_featured_image_first_attachment' );
 	add_filter( 'post_thumbnail_html',        '_ghostbird_featured_image_avatar' );
 	add_action( 'the_content',                '_ghostbird_related_images' );
+	add_filter( 'excerpt_more',               '_ghostbird_excerpt_more_auto' );
+	add_filter( 'get_the_excerpt',            '_ghostbird_excerpt_more_custom' );
 	add_filter( 'embed_oembed_html',          '_ghostbird_oembed_dataparse', 10, 4 );
 	add_filter( 'embed_googlevideo',          '_ghostbird_oembed_dataparse', 10, 2 );
 	add_action( 'widget_title',               '_ghostbird_calendar_title', 10, 3 );
@@ -490,6 +491,20 @@ function ghostbird_intro_meta( $before = '', $after = '' ) {
 	if ( ! empty( $sentence ) ) {
 		print "\n" . $before . $sentence . $after;
 	}
+}
+
+/**
+ * Continue Reading Link.
+ *
+ * Get a link to the global post's single view
+ * with the phraze "Continue Reading".
+ *
+ * @return    string         Permalink with the text "Continue Reading".
+ *
+ * @since     1.0
+ */
+function ghostbird_continue_reading_link() {
+	return ' <a href="'. get_permalink() . '">' . __( 'Continue reading', 'ghostbird' ) . '</a>';
 }
 
 /**
@@ -1165,6 +1180,47 @@ function _ghostbird_related_images( $content ) {
 		}
 	}
 	return $content;
+}
+
+/**
+ * Excerpt More (auto).
+ *
+ * In cases where a post does not have an excerpt defined
+ * WordPress will append the string "[...]" to a shortened
+ * version of the post_content field. Ghostbird will replace
+ * this string with an ellipsis followed by a link to the 
+ * full post.
+ *
+ * This filter is attached to the 'excerpt_more' hook
+ * in the _ghostbird_setup() function.
+ *
+ * @return    string         An ellipsis followed by a link to the single post.
+ *
+ * @since     1.0
+ */
+function _ghostbird_excerpt_more_auto( $more ) {
+	return ' &hellip; ' . ghostbird_continue_reading_link();
+}
+
+/**
+ * Excerpt More (custom).
+ *
+ * For posts that have a custom excerpt defined, WordPress
+ * will show this excerpt instead of shortening the post_content.
+ * Ghostbird will append a link to the post's single view to the excerpt.
+ *
+ * This filter is attached to the 'get_the_excerpt' hook
+ * in the _ghostbird_setup() function.
+ *
+ * @return    string         Excerpt with a link to the post's single view.
+ *
+ * @since     1.0
+ */
+function _ghostbird_excerpt_more_custom( $excerpt ) {
+	if ( has_excerpt() && ! is_attachment() ) {
+		$excerpt .= ghostbird_continue_reading_link();
+	}
+	return $excerpt;
 }
 
 /**
