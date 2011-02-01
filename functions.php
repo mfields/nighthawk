@@ -23,12 +23,9 @@
  * @todo Add credit link in the footer.
  * @todo Add donation link in the settings page.
  * @todo Pretty-up the calendar widget.
- * @todo Alpha for yellow-dots.png. Change name to halftone-small.png.
  * @todo Make dialog colors match new theme colors.
  * @todo Rename .heading-action class everywhere.
- * 
  * @todo Left margin on blockquotes.
- * @todo Bottom margin on quote post h2's.
  * 
  * FUTURE RELEASE
  * @todo Add header widget. Intended for search form?
