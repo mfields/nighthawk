@@ -239,7 +239,11 @@ function ghostbird_tagline( $before = '', $after = '' ) {
  */
 function ghostbird_title( $before = '', $after = '', $print = true ) {
 	$o = '';
-	if ( is_home() ) {
+	$post_type_qv = get_query_var( 'post_type' );
+	if ( 'page' == $post_type_qv ) {
+		$o = __( 'Pages', 'ghostbird' );
+	}
+	else if ( is_home() ) {
 		$o = apply_filters( 'ghostbird_title_timeline', __( 'Timeline', 'ghostbird' ) );
 		if ( is_paged() ) {
 			$o = apply_filters( 'ghostbird_title_timeline_paged', '<a href="' . home_url() . '">' . $o . '</a>' );
