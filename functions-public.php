@@ -606,8 +606,8 @@ function ghostbird_post_label( $singular = true ) {
 				$plural = _x( 'Asides', 'post format term', 'ghostbird' );
 				break;
 			case 'audio' :
-				$single = _x( 'Audio file', 'post format term', 'ghostbird' );
-				$plural = _x( 'Audio files', 'post format term', 'ghostbird' );
+				$single = _x( 'Audio File', 'post format term', 'ghostbird' );
+				$plural = _x( 'Audio Files', 'post format term', 'ghostbird' );
 				break;
 			case 'chat' :
 				$single = _x( 'Chat Transcript', 'post format term', 'ghostbird' );
