@@ -1,6 +1,6 @@
 /*
 Theme Name: Ghostbird
-Description: 
+Description: A one-column theme for WordPress.
 Author: Michael Fields
 Author URI: http://wordpress.mfields.org/
 Version: 0.9.2
@@ -327,10 +327,10 @@ body {
 	line-height:1;
 	margin-bottom:.25em;
 }
-#description p:first-child,
-#description p:only-child { margin-top:.25em; }
-#description p:last-child,
-#description p:only-child { margin-bottom:0; }
+#summary p:first-child,
+#summary p:only-child { margin-top:.25em; }
+#summary p:last-child,
+#summary p:only-child { margin-bottom:0; }
 
 #byline,
 #intro-meta {

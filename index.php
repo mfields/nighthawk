@@ -10,7 +10,7 @@
  * <ol>
  * <li>Includes header.php.</li>
  * <li>Prints view title if available.</li>
- * <li>Prints view description if available.</li>
+ * <li>Prints summary if available.</li>
  * <li>Runs the WordPress Loop.</li>
  * <li>Includes loop.php.</li>
  * <li>Includes comments.php.</li>
@@ -45,7 +45,7 @@ get_header();
 <div id="intro"><?php
 	ghostbird_title( '<h1>', '</h1>' );
 	ghostbird_byline( '<p id="byline">', '</p>' );
-	ghostbird_description( '<div id="description">', '</div>' );
+	ghostbird_summary( '<div id="summary">', '</div>' );
 	ghostbird_intro_meta( '<div id="intro-meta">', '</div>' );
 ?>
 

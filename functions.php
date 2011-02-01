@@ -359,47 +359,55 @@ function ghostbird_byline( $before = '', $after = '' ) {
 }
 
 /**
- * Print current view description.
+ * Summary.
  *
- * Child themes and plugins should use the 'ghostbird-description'
+ * This function is will look for a summary for the
+ * queried object. There are currently 2 supported summary
+ * types. The first is for taxonomy term views. If the queried
+ * term has a value in its description field, this will be used 
+ * as the summary. The second is for pages. Ghostbird enables
+ * the exceprt field for pages which is intended to be used as a 
+ * summary for the page.
+ *
+ * Child themes and plugins should use the 'ghostbird_summary'
  * filter to add custom data to this function. For instance, if you would
- * like to add a description for a custom post_type archive view, you may
+ * like to add a summary for a custom post_type archive view, you may
  * want to use code similar to:
  *
  * <code>
- * function mfields_ghostbird_description( $description ) {
+ * function mfields_ghostbird_summary( $summary ) {
  *     if ( is_post_type_archive( 'mfields_bookmark' ) ) {
- *         return '<p>I created this section to store webpages that I have read, found interesting or may need to reference in the future. Not all bookmarks found here directly pertain to WordPress.</p>';
+ *         $summary = '<p>I created this section to store webpages that I have read, found interesting or may need to reference in the future. Not all bookmarks found here directly pertain to WordPress.</p>';
  *     }
- *     return $description;
+ *     return $summary;
  * }
- * add_filter( 'ghostbird-description', 'mfields_ghostbird_description' );
+ * add_filter( 'ghostbird_summary', 'mfields_ghostbird_summary' );
  * </code>
  *
- * @param     string         Text to print before the description.
- * @param     string         Text to print after the description.
- * @param     bool           True to print the description, false to return it as a string.
+ * @param     string         Text to print before the summary.
+ * @param     string         Text to print after the summary.
+ * @param     bool           True to print the summary, false to return it as a string.
  * @return    void/string
  *
  * @since     1.0
  */
-function ghostbird_description( $before = '', $after = '', $print = true ) {
-	$description = '';
+function ghostbird_summary( $before = '', $after = '', $print = true ) {
+	$summary = '';
 	if ( is_category() || is_tag() || is_tax() ) {
-		$description = term_description();
+		$summary = term_description();
 	}
 	if ( is_page() ) {
 		if ( has_excerpt() ) {
-			$description = apply_filters( 'the_excerpt', get_the_excerpt() );
+			$summary = apply_filters( 'the_excerpt', get_the_excerpt() );
 		}
 	}
-	$description = apply_filters( 'ghostbird-description', $description );
-	if ( ! empty( $description ) ) {
-		$description = "\n" . $before . $description . $after;
+	$summary = apply_filters( 'ghostbird_summary', $summary );
+	if ( ! empty( $summary ) ) {
+		$summary = "\n" . $before . $summary . $after;
 		if ( ! $print ) {
-			return $description;
+			return $summary;
 		}
-		print $description;
+		print $summary;
 	}
 }
 
