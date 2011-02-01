@@ -362,12 +362,20 @@ function ghostbird_byline( $before = '', $after = '' ) {
  * Summary.
  *
  * This function is will look for a summary for the
- * queried object. There are currently 2 supported summary
- * types. The first is for taxonomy term views. If the queried
+ * queried object. There are currently 3 supported summary
+ * types:
+ *
+ * The first is for taxonomy term archives. If the queried
  * term has a value in its description field, this will be used 
- * as the summary. The second is for pages. Ghostbird enables
+ * as the summary.
+ *
+ * The second is for pages. Ghostbird enables
  * the exceprt field for pages which is intended to be used as a 
  * summary for the page.
+ *
+ * The third is for author archives. If the queried author has
+ * filled out the "Biographical Info" portion of their profile
+ * this data will be used as the summary.
  *
  * Child themes and plugins should use the 'ghostbird_summary'
  * filter to add custom data to this function. For instance, if you would
@@ -396,10 +404,12 @@ function ghostbird_summary( $before = '', $after = '', $print = true ) {
 	if ( is_category() || is_tag() || is_tax() ) {
 		$summary = term_description();
 	}
-	if ( is_page() ) {
-		if ( has_excerpt() ) {
-			$summary = apply_filters( 'the_excerpt', get_the_excerpt() );
-		}
+	else if ( is_page() && has_excerpt() ) {
+		$summary = apply_filters( 'the_excerpt', get_the_excerpt() );
+	}
+	else if ( is_author() ) {
+		global $wp_query;
+		$summary = get_the_author_meta( 'description', $wp_query->get_queried_object_id() );
 	}
 	$summary = apply_filters( 'ghostbird_summary', $summary );
 	if ( ! empty( $summary ) ) {
@@ -1260,7 +1270,7 @@ function _ghostbird_author( $before = '', $after = '' ) {
  * @since     1.0
  */
 function _ghostbird_author_link( $description ) {
-	if ( ! empty( $description ) ) {
+	if ( ! empty( $description ) && ! is_author() ) {
 		$link = "\n" . '<a href="' . get_author_posts_url( get_the_author_meta( 'ID' ) ) . '">' . sprintf( __( ' View all entries by %s.', 'ghostbird' ), get_the_author() ) . '</a>';
 		$description.= apply_filters( 'ghostbird_author_link', $link );
 	}
