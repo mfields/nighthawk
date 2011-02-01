@@ -457,8 +457,14 @@ function ghostbird_entry_meta_taxonomy() {
 	$post_tags  = get_the_tag_list( '', ', ' );
 	$categories = get_the_category_list( ', ' );
 	
-	if( ! empty( $label ) && ! empty( $label_url ) ) {
-		$label = '<a href="' . esc_url( $label_url ) . '">' . esc_html( $label ) . '</a>';
+	if ( ! empty( $label ) && ! empty( $label_url ) ) {
+		$plural = ghostbird_post_label( false );
+		$title = '';
+		if ( ! empty( $plural ) ) {
+			$title = sprintf( esc_attr__( 'View all %1$s', 'ghostbird' ), strtolower( $plural ) );
+			$title = ' title="' . $title . '"';
+		}
+		$label = '<a href="' . esc_url( $label_url ) . '"' . $title . '>' . esc_html( $label ) . '</a>';
 	}
 	
 	if ( ! empty( $label ) ) {
