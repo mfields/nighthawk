@@ -16,7 +16,6 @@
  * get_posts(), get_pages() or get_children().
  *
  * @package      Ghostbird
- * @subpackage   Templates
  * @author       Michael Fields <michael@mfields.org>
  * @copyright    Copyright (c) 2011, Michael Fields
  * @license      http://opensource.org/licenses/gpl-2.0.php GNU Public License

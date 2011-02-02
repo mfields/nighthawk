@@ -3,7 +3,6 @@
  * Functions
  *
  * @package      Ghostbird
- * @subpackage   Functions
  * @author       Michael Fields <michael@mfields.org>
  * @copyright    Copyright (c) 2011, Michael Fields
  * @license      http://opensource.org/licenses/gpl-2.0.php GNU Public License
