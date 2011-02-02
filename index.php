@@ -14,7 +14,6 @@
  * <li>Runs the WordPress Loop.</li>
  * <li>Includes loop.php.</li>
  * <li>Includes comments.php.</li>
- * <li>Includes sidebar.php</li>
  * <li>Includes footer.php</li>
  * </ol>
  * 

@@ -15,7 +15,7 @@
  * template may be duplicated inside a child theme
  * and edited there.
  * 
- * This file should close any html tags opend in header.php.
+ * This file should close any html tags opened in header.php.
  * 
  * @package      Ghostbird
  * @author       Michael Fields <michael@mfields.org>
