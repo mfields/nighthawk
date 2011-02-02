@@ -3,9 +3,9 @@
  * Comments Template
  *
  * This file is responsible for displaying all 
- * comments for a post object in single views.
+ * comments for the global post object in single views.
  *
- * No html tags are left open.
+ * This template should leave no html tags open.
  *
  * If you find that modifications need to be made
  * to this file, it is suggested that you create a 
@@ -17,10 +17,6 @@
  * @copyright    Copyright (c) 2011, Michael Fields
  * @license      http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since        1.0
- * 
- * @todo Fully test comment widget javascript.
- * @todo Conditionally add javascipt.
- * @todo Move javascipt into it's own file and enqueue via private function.
  */
 
 if ( ! comments_open() || post_password_required() ) {
