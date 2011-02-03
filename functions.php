@@ -448,11 +448,11 @@ function ghostbird_summary_meta( $before = '', $after = '', $print = true ) {
 		}
 		if ( isset( $parent->ID ) && isset( $parent->post_title ) ) {
 			$parent_link = '<a href="' . get_permalink( $parent->ID ) . '">' . apply_filters( 'the_title', $parent->post_title ) . '</a>';
-			$sentence = 'This file is attached to ' . $parent_link;
+			$sentence = sprintf( __( 'This file is attached to %1$s.', 'ghostbird' ), $parent_link );
 			if ( isset( $attachment->post_mime_type ) && 0 === strpos( $attachment->post_mime_type, 'image' ) ) {
-				$sentence = 'This image is attached to ' . $parent_link;
+				$sentence = sprintf( __( 'This image is attached to %1$s.', 'ghostbird' ), $parent_link );
 				if ( 'gallery' == get_post_format( $parent->ID ) ) {
-					$sentence = 'This image is part of the gallery titled ' . $parent_link . '.';
+					$sentence = sprintf( __( 'This image is part of the gallery titled %1$s.', 'ghostbird' ), $parent_link );
 				}
 			}
 		}
