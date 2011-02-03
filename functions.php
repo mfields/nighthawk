@@ -430,7 +430,7 @@ function ghostbird_summary( $before = '', $after = '', $print = true ) {
  * @todo      localize
  * @since     1.0
  */
-function ghostbird_intro_meta( $before = '', $after = '' ) {
+function ghostbird_intro_meta( $before = '', $after = '', $print = true ) {
 	$sentence = '';
 
 	global $wp_query;
@@ -513,7 +513,13 @@ function ghostbird_intro_meta( $before = '', $after = '' ) {
 		$sentence.= ' <span class="subscribe"><a href="' . $feed_url . '" title="' . $feed_title . '">' . __( 'Subscribe', 'ghostbird' ) . '</a></span>';
 	}
 	if ( ! empty( $sentence ) ) {
-		print "\n" . $before . $sentence . $after;
+		$sentence = "\n" . $before . $sentence . $after;
+		if ( $print ) {
+			print $sentence;
+		}
+		else {
+			return $sentence;
+		}
 	}
 }
 
