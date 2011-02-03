@@ -120,9 +120,6 @@ function _ghostbird_setup() {
 	if ( ! empty( $settings['display_site_title'] ) ) {
 		add_action( 'ghostbird_site_title', 'ghostbird_site_title', 10, 2 );
 	}
-	if ( ! empty( $settings['display_author'] ) ) {
-		add_action( 'ghostbird_author', '_ghostbird_author', 10, 3 );
-	}
 	if ( ! empty( $settings['display_author_link'] ) ) {
 		add_filter( 'get_the_author_description', '_ghostbird_author_link', 9 );
 	}
@@ -697,15 +694,20 @@ function ghostbird_paged_nav( $before = '', $after = '' ) {
  *
  * Author's avatar will not be printed on status posts.
  *
- * @return    void
+ * @param     string         Text to prepend to the author bio.
+ * @param     string         Text to append to the author bio.
+ * @param     bool           True to print, false to return a string. Defaults to true.
+ * @return    void/string
+ *
+ * @todo Allow to be hidden by postmeta.
  *
  * @since     1.0
  */
-function ghostbird_author( $before = '', $after = '' ) {
+function ghostbird_author_bio( $before = '', $after = '', $print = true ) {
+	$author_bio = '';
 	if ( get_the_author_meta( 'description' ) ) {
-		$size   = apply_filters( 'ghostbird_author_size', 60 );
 		$class  = '';
-		$avatar = get_avatar( get_the_author_meta( 'user_email' ), $size );
+		$avatar = get_avatar( get_the_author_meta( 'user_email' ), apply_filters( 'ghostbird_author_size', 60 ) );
 		if ( ! empty( $avatar ) && 'status' != get_post_format() ) {
 			$class.= ' class="has-avatar"';
 			$avatar = "\n" . '<div class="author-avatar">' . $avatar . '</div>';
@@ -713,12 +715,21 @@ function ghostbird_author( $before = '', $after = '' ) {
 		else {
 			$avatar = '';
 		}
-		print "\n\n";
-		print "\n" . '<div id="author-box"' . $class . '>';
-		print $avatar;
-		print "\n" . '<h2 class="author-name">' . sprintf( esc_attr__( 'About %s', 'ghostbird' ), get_the_author() ) . '</h2>';
-		print "\n" . '<div class="author-bio">' . get_the_author_meta( 'description' ) . '</div>';
-		print "\n" . '</div><!--author-box-->';
+		$author_bio.= "\n\n";
+		$author_bio.= "\n" . '<div id="author-box"' . $class . '>';
+		$author_bio.= $avatar;
+		$author_bio.= "\n" . '<h2 class="author-name">' . sprintf( esc_attr__( 'About %s', 'ghostbird' ), get_the_author() ) . '</h2>';
+		$author_bio.= "\n" . '<div class="author-bio">' . get_the_author_meta( 'description' ) . '</div>';
+		$author_bio.= "\n" . '</div><!--author-box-->';
+	}
+	if ( ! empty( $author_bio ) ) {
+		$author_bio = $before . $author_bio . $after;
+		if ( $print ) {
+			print $author_bio;
+		}
+		else {
+			return $author_bio;
+		}
 	}
 }
 
@@ -1256,19 +1267,6 @@ function _ghostbird_excerpt_more_custom( $excerpt ) {
 }
 
 /**
- * Print the author bio on single post views.
- *
- * @return    void
- *
- * @since     1.0
- */
-function _ghostbird_author( $before = '', $after = '' ) {
-	if ( is_single() ) {
-		print ghostbird_author( $before, $after );
-	}
-}
-
-/**
  * Append a link to the author's archive view to their description.
  *
  * @param     string    Author description.
@@ -1452,7 +1450,6 @@ function ghostbird_settings_default( $keys = false ) {
 		/* Boolean */
 		'display_site_title'      => 0,
 		'display_tagline'         => 1,
-		'display_author'          => 1,
 		'display_author_link'     => 0,
 		'syntaxhighlighter_theme' => 1,
 		);
@@ -1583,7 +1580,6 @@ function _ghostbird_control_plugins() {
 function _ghostbird_control_elements() {
 	_ghostbird_control_boolean( 'display_site_title',  __( 'Display site title.', 'ghostbird' ) );
 	_ghostbird_control_boolean( 'display_tagline',     __( 'Display tagline.', 'ghostbird' ) );
-	_ghostbird_control_boolean( 'display_author',      __( 'Display author box at the bottom of all entries.', 'ghostbird' ) );
 	_ghostbird_control_boolean( 'display_author_link', __( 'Enable link to author archives after description.', 'ghostbird' ) );
 }
 

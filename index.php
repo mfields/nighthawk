@@ -62,7 +62,7 @@ else {
 	}
 }
 
-do_action( 'ghostbird_author' );
+ghostbird_author_bio();
 
 comments_template( '', true );
 
