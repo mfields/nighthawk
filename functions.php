@@ -361,7 +361,7 @@ function ghostbird_byline( $before = '', $after = '' ) {
  * Summary.
  *
  * This function is will look for a summary for the
- * queried object. There are currently 3 supported summary
+ * queried object. There are currently 4 supported summary
  * types:
  *
  * The first is for taxonomy term archives. If the queried
@@ -376,20 +376,12 @@ function ghostbird_byline( $before = '', $after = '' ) {
  * filled out the "Biographical Info" portion of their profile
  * this data will be used as the summary.
  *
- * Child themes and plugins should use the 'ghostbird_summary'
- * filter to add custom data to this function. For instance, if you would
- * like to add a summary for a custom post_type archive view, you may
- * want to use code similar to:
+ * The fourth is for post_type archive pages. If the post_type
+ * has been registered with a 'description' property, the value
+ * of this property will be used as the summary.
  *
- * <code>
- * function mfields_ghostbird_summary( $summary ) {
- *     if ( is_post_type_archive( 'mfields_bookmark' ) ) {
- *         $summary = '<p>I created this section to store webpages that I have read, found interesting or may need to reference in the future. Not all bookmarks found here directly pertain to WordPress.</p>';
- *     }
- *     return $summary;
- * }
- * add_filter( 'ghostbird_summary', 'mfields_ghostbird_summary' );
- * </code>
+ * Child themes and plugins can use the 'ghostbird_summary'
+ * filter to modify this function's output.
  *
  * @param     string         Text to print before the summary.
  * @param     string         Text to print after the summary.
@@ -409,6 +401,13 @@ function ghostbird_summary( $before = '', $after = '', $print = true ) {
 	else if ( is_author() ) {
 		global $wp_query;
 		$summary = get_the_author_meta( 'description', $wp_query->get_queried_object_id() );
+		$summary = apply_filters( 'ghostbird_filter_text', $summary );
+	}
+	else if ( is_post_type_archive() ) {
+		$post_type  = $wp_query->get_queried_object();
+		if ( isset( $post_type->description ) && ! empty( $post_type->description ) ) {
+			$summary = apply_filters( 'ghostbird_filter_text', esc_html( $post_type->description ) );
+		}
 	}
 	$summary = apply_filters( 'ghostbird_summary', $summary );
 	if ( ! empty( $summary ) ) {
