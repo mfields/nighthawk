@@ -443,7 +443,7 @@ function ghostbird_summary_meta( $before = '', $after = '', $print = true ) {
 		$parent = false;
 		$id = get_the_ID();
 		$attachment = get_post( $id );
-		if ( isset( $attachment->post_parent ) ) {
+		if ( isset( $attachment->post_parent ) && 0 != $attachment->post_parent ) {
 			$parent = get_post( $attachment->post_parent );
 		}
 		if ( isset( $parent->ID ) && isset( $parent->post_title ) ) {
