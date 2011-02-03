@@ -423,14 +423,14 @@ function ghostbird_summary( $before = '', $after = '', $print = true ) {
 /**
  * Print meta information pertain to the current view.
  *
- * @param     string    Text to print before.
- * @param     string    Text to print after.
- * @return    void
+ * @param     string         Text to print before the summary meta.
+ * @param     string         Text to print after the summary meta.
+ * @return    void/string
  *
  * @todo      localize
  * @since     1.0
  */
-function ghostbird_intro_meta( $before = '', $after = '', $print = true ) {
+function ghostbird_summary_meta( $before = '', $after = '', $print = true ) {
 	$sentence = '';
 
 	global $wp_query;

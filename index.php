@@ -44,7 +44,7 @@ get_header();
 	ghostbird_title( '<h1>', '</h1>' );
 	ghostbird_byline( '<p id="byline">', '</p>' );
 	ghostbird_summary( '<div id="summary">', '</div>' );
-	ghostbird_intro_meta( '<div id="intro-meta">', '</div>' );
+	ghostbird_summary_meta( '<div id="intro-meta">', '</div>' );
 ?>
 
 </div>
