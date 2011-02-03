@@ -141,7 +141,7 @@ add_action( 'after_setup_theme', '_ghostbird_setup' );
 /**#@+
  * Public Functions
  *
- * Any function defined in this file may be used
+ * Any function defined in this this section may be used
  * freely in appropriate template files. Please see
  * each function's documentation for intended usage.
  *
@@ -324,7 +324,7 @@ function ghostbird_title( $before = '', $after = '', $print = true ) {
 /**
  * Byline.
  *
- * Display the author of an entry in singular views.
+ * Display the name of an entry's author in singular views.
  *
  * @param     string    Text to print before.
  * @param     string    Text to print after.
@@ -368,9 +368,9 @@ function ghostbird_byline( $before = '', $after = '' ) {
  * term has a value in its description field, this will be used 
  * as the summary.
  *
- * The second is for pages. Ghostbird enables
- * the exceprt field for pages which is intended to be used as a 
- * summary for the page.
+ * The second is for pages. Ghostbird enables the exceprt meta box
+ * for "page" post_type. If defined, the excerpt will be recognized
+ * as the summary.
  *
  * The third is for author archives. If the queried author has
  * filled out the "Biographical Info" portion of their profile
