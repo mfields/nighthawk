@@ -423,11 +423,11 @@ function ghostbird_summary( $before = '', $after = '', $print = true ) {
 /**
  * Print meta information pertain to the current view.
  *
- * @param     string         Text to print before the summary meta.
- * @param     string         Text to print after the summary meta.
+ * @param     string         Text to prepend to the summary meta.
+ * @param     string         Text to append to the summary meta.
+ * @param     bool           True to print, false to return a string. Defaults to true.
  * @return    void/string
  *
- * @todo      localize
  * @since     1.0
  */
 function ghostbird_summary_meta( $before = '', $after = '', $print = true ) {
@@ -469,45 +469,30 @@ function ghostbird_summary_meta( $before = '', $after = '', $print = true ) {
 
 			switch( $term->taxonomy ) {
 				case 'category' :
-					$feed_title = 'Get updates when a new entry is added to the ' . $term_name . ' category.';
-					$sentence = 'There are ' . $total . ' entries in this ' . $taxonomy_name . '.';
-					if ( 1 == $total ) {
-						$sentence = 'There is 1 entry in this ' . $taxonomy_name . '.';
-					}
+					$feed_title = sprintf( __( 'Get updates when a new entry is added to the %1$s category.', 'ghostbird' ), $term_name );
+					$sentence = sprintf( _n( 'There is %1$s entry in this %2$s.', 'There are %1$s entries in this %2$s.', $total, 'ghostbird' ), number_format_i18n( $total ), $taxonomy_name );
 					break;
 				case 'post_tag' :
-					$feed_title = 'Get updates when a new entry is tagged with ' . $term_name;
-					$sentence = $total . ' entries have been tagged with the term <em>&#8220;' . $term_name . '&#8221;</em>.';
-					if ( 1 == $total ) {
-						$sentence = '1 entry has been tagged with the term <em>&#8220;' . $term_name . '&#8221;</em>.';
-					}
+					$feed_title = sprintf( __( 'Get updates when a new entry is tagged with %1$s.', 'ghostbird' ), $term_name );
+					$sentence = sprintf( _n( '%1$s entry has been tagged with %2$s.', '%1$s entries have been tagged with %2$s.', $total, 'ghostbird' ), number_format_i18n( $total ), '<em>' . $term_name . '</em>' );
 					break;
 				case 'post_format' :
-					$feed_title = 'Get updates when a new ' . ghostbird_post_label() . ' is published.';
-					$sentence = 'This site contains ' . $total . ' ' . ghostbird_post_label( false ) . '.';
-					if ( 1 == $total ) {
-						$sentence = 'This site contains one ' . ghostbird_post_label() . '.';
-					}
+					$feed_title = sprintf( __( 'Get updates when a new %1$s is published.', 'ghostbird' ), ghostbird_post_label() );
+					$sentence = sprintf( _n( 'This site contains one %2$s.', 'This site contains %1$s %3$s.', $total, 'ghostbird' ), number_format_i18n( $total ), ghostbird_post_label(), ghostbird_post_label( false ) );
 					break;
 				default :
-					$feed_title = sprintf( esc_attr__( 'Subscribe to this %1$s', 'ghostbird' ), $taxonomy_name );
-					$sentence = $total . ' entries are associated with the term <em>&#8220;' . $term_name . '&#8221;</em>.';
-					if ( 1 == $total ) {
-						$sentence = '1 entry is associated with the term <em>&#8220;' . $term_name . '&#8221;</em>.';
-					}
+					$feed_title = sprintf( __( 'Subscribe to this %1$s', 'ghostbird' ), $taxonomy_name );
+					$sentence = sprintf( _n( 'One entry is associated with the term %2$s.', '%1$s entries are associated with the term %2$s.', $total, 'ghostbird' ), number_format_i18n( $total ), $term_name );
 					break;
 			}
 			$feed_url = esc_url( get_term_feed_link( $term->term_id, $term->taxonomy ) );
 		}
 	}
 	else if ( is_post_type_archive() ) {
-		$post_type = $wp_query->get_queried_object();
-		$sentence = 'There are ' . $total . ' ' . strtolower( $post_type->labels->name ) . '.';
-		if ( 1 == $total ) {
-			$sentence = 'There is 1 ' . strtolower( $post_type->labels->singular_name ) . '.';
-		}
-		$feed_url = esc_url( get_post_type_archive_feed_link( $post_type->name ) );
-		$feed_title = 'Get updates when new ' . strtolower( $post_type->labels->name ) . ' are published.';
+		$post_type  = $wp_query->get_queried_object();
+		$feed_title = sprintf( __( 'Get updates when new %1$s are published.', 'ghostbird' ), $post_type->labels->name );
+		$sentence   = sprintf( _n( 'There is one %2$s.', 'There are %1$s %3$s.', $total, 'ghostbird' ), number_format_i18n( $total ), $post_type->labels->singular_name, $post_type->labels->name );
+		$feed_url   = esc_url( get_post_type_archive_feed_link( $post_type->name ) );
 	}
 	if ( ! empty( $feed_url ) ) {
 		$sentence.= ' <span class="subscribe"><a href="' . $feed_url . '" title="' . $feed_title . '">' . __( 'Subscribe', 'ghostbird' ) . '</a></span>';
