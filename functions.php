@@ -459,22 +459,21 @@ function ghostbird_summary_meta( $before = '', $after = '', $print = true ) {
 	}
 	else if ( is_category() || is_tag() || is_tax() ) {
 		$term = $wp_query->get_queried_object();
-		if ( isset( $term->name ) && isset( $term->taxonomy ) && isset( $term->slug ) ) {
+		if ( isset( $term->term_id ) && isset( $term->name ) && isset( $term->taxonomy ) ) {
 			$taxonomy = get_taxonomy( $term->taxonomy );
+			$taxonomy_name = __( 'taxonomy', 'ghostbird' );
 			if ( isset( $taxonomy->labels->singular_name ) ) {
-				$taxonomy_name = strtolower( $taxonomy->labels->singular_name );
+				$taxonomy_name = $taxonomy->labels->singular_name;
 			}
-
-			$term_name = strtolower( $term->name );
 
 			switch( $term->taxonomy ) {
 				case 'category' :
-					$feed_title = sprintf( __( 'Get updates when a new entry is added to the %1$s category.', 'ghostbird' ), $term_name );
+					$feed_title = sprintf( __( 'Get updates when a new entry is added to the %1$s category.', 'ghostbird' ), $term->name );
 					$sentence = sprintf( _n( 'There is %1$s entry in this %2$s.', 'There are %1$s entries in this %2$s.', $total, 'ghostbird' ), number_format_i18n( $total ), $taxonomy_name );
 					break;
 				case 'post_tag' :
-					$feed_title = sprintf( __( 'Get updates when a new entry is tagged with %1$s.', 'ghostbird' ), $term_name );
-					$sentence = sprintf( _n( '%1$s entry has been tagged with %2$s.', '%1$s entries have been tagged with %2$s.', $total, 'ghostbird' ), number_format_i18n( $total ), '<em>' . $term_name . '</em>' );
+					$feed_title = sprintf( __( 'Get updates when a new entry is tagged with %1$s.', 'ghostbird' ), $term->name );
+					$sentence = sprintf( _n( '%1$s entry has been tagged with %2$s.', '%1$s entries have been tagged with %2$s.', $total, 'ghostbird' ), number_format_i18n( $total ), '<em>' . $term->name . '</em>' );
 					break;
 				case 'post_format' :
 					$feed_title = sprintf( __( 'Get updates when a new %1$s is published.', 'ghostbird' ), ghostbird_post_label() );
@@ -482,20 +481,22 @@ function ghostbird_summary_meta( $before = '', $after = '', $print = true ) {
 					break;
 				default :
 					$feed_title = sprintf( __( 'Subscribe to this %1$s', 'ghostbird' ), $taxonomy_name );
-					$sentence = sprintf( _n( 'One entry is associated with the term %2$s.', '%1$s entries are associated with the term %2$s.', $total, 'ghostbird' ), number_format_i18n( $total ), $term_name );
+					$sentence = sprintf( _n( 'One entry is associated with the term %2$s.', '%1$s entries are associated with the term %2$s.', $total, 'ghostbird' ), number_format_i18n( $total ), $term->name );
 					break;
 			}
-			$feed_url = esc_url( get_term_feed_link( $term->term_id, $term->taxonomy ) );
+			$feed_url = get_term_feed_link( $term->term_id, $term->taxonomy );
 		}
 	}
 	else if ( is_post_type_archive() ) {
 		$post_type  = $wp_query->get_queried_object();
-		$feed_title = sprintf( __( 'Get updates when new %1$s are published.', 'ghostbird' ), $post_type->labels->name );
-		$sentence   = sprintf( _n( 'There is one %2$s.', 'There are %1$s %3$s.', $total, 'ghostbird' ), number_format_i18n( $total ), $post_type->labels->singular_name, $post_type->labels->name );
-		$feed_url   = esc_url( get_post_type_archive_feed_link( $post_type->name ) );
+		if ( isset( $post_type->name ) && isset( $post_type->label ) && isset( $post_type->labels->singular_name ) ) {
+			$feed_title = sprintf( __( 'Get updates when new %1$s are published.', 'ghostbird' ), $post_type->label );
+			$sentence   = sprintf( _n( 'There is one %2$s.', 'There are %1$s %3$s.', $total, 'ghostbird' ), number_format_i18n( $total ), $post_type->labels->singular_name, $post_type->label );
+			$feed_url   = get_post_type_archive_feed_link( $post_type->name );
+		}
 	}
 	if ( ! empty( $feed_url ) ) {
-		$sentence.= ' <span class="subscribe"><a href="' . $feed_url . '" title="' . $feed_title . '">' . __( 'Subscribe', 'ghostbird' ) . '</a></span>';
+		$sentence.= ' <span class="subscribe"><a href="' . esc_url( $feed_url ) . '" title="' . esc_attr( $feed_title ) . '">' . esc_html__( 'Subscribe', 'ghostbird' ) . '</a></span>';
 	}
 	if ( ! empty( $sentence ) ) {
 		$sentence = "\n" . $before . $sentence . $after;
