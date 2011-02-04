@@ -1155,8 +1155,7 @@ function _ghostbird_featured_image_first_attachment( $html ) {
  */
 function _ghostbird_featured_image_avatar( $html ) {
 	if ( 'status' == get_post_format() ) {
-		global $post;
-		$html = get_avatar( $post->post_author, $size = '60' );
+		$html = get_avatar( get_the_author_meta( 'user_email' ), $size = '60' );
 	}
 	return $html;
 }
