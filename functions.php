@@ -63,8 +63,6 @@ function _ghostbird_setup() {
 		$content_width = 608;
 	}
 
-	$settings = ghostbird_get_settings();
-
 	load_theme_textdomain( 'ghostbird', get_template_directory() . '/languages' );
 	
 	add_theme_support( 'menus' );
@@ -108,22 +106,19 @@ function _ghostbird_setup() {
 	add_filter( 'embed_googlevideo',          '_ghostbird_oembed_dataparse', 10, 2 );
 	add_action( 'widget_title',               '_ghostbird_calendar_widget_title', 10, 3 );
 
-	/* Settings section. */
-	add_action( 'admin_menu', '_ghostbird_settings_page_link' );
-	add_action( 'admin_init', '_ghostbird_admin_init' );
+	/* Custom settings. */
+	add_action( 'custom_header_options', '_ghostbird_settings_custom_header_text_controls' );
+	add_action( 'admin_head-appearance_page_custom-header', '_ghostbird_process_custom_header_settings', 51 );
 
 	/* Custom actions. */
 	add_action( 'ghostbird_logo',             'ghostbird_logo', 10, 2 );
 	add_action( 'ghostbird_paged_navigation', 'ghostbird_paged_nav', 10, 2 );
 
 	/* Hooks controlable by settings panel. */
-	if ( ! empty( $settings['display_site_title'] ) ) {
+	if ( 0 != (int) get_theme_mod( 'ghostbird_display_site_title', 0 ) ) {
 		add_action( 'ghostbird_site_title', 'ghostbird_site_title', 10, 2 );
 	}
-	if ( ! empty( $settings['display_author_link'] ) ) {
-		add_filter( 'get_the_author_description', '_ghostbird_author_link', 9 );
-	}
-	if ( ! empty( $settings['display_tagline'] ) ) {
+	if ( 0 != (int) get_theme_mod( 'ghostbird_display_tagline', 0 ) ) {
 		add_action( 'ghostbird_tagline', 'ghostbird_tagline', 10, 2 );
 	}
 
@@ -1414,146 +1409,59 @@ function _ghostbird_syntaxhighlighter_theme( $themes ) {
 	return $themes;
 }
 
-/**#@-*/
-
-/**#@+
- * Settings.
- *
- * This file contains all function and hook definitions
- * responsible for alling a user to interact with Ghostbird
- * via user interface.
- */
-
 /**
- * Defaults settings.
+ * Custom Header Controls.
  *
- * This is where all settings for the Ghostbird theme are defined.
+ * Print a settings section enabling user to choose which
+ * individual text settings will appear in the theme. 
+ * These controls should appear at the bottom of the form
+ * located under Appearance -> Header in the administration
+ * panels. It will inherit a nonce from the core form. The
+ * values will be saved as "Theme Modifications" and the values
+ * are processed by _ghostbird_process_custom_header_settings().
  *
- * @return    array     A one dimensional array of default settings.
+ * This action is attached to the 'custom_header_options'
+ * hook in the _ghostbird_setup() function.
  *
- * @access    public
+ * @return    void
+ *
+ * @access    private
  * @since     1.0
  */
-function ghostbird_settings_default( $keys = false ) {
-	return array(
-		/* Boolean */
-		'display_site_title'      => 0,
-		'display_tagline'         => 1,
-		'display_author_link'     => 0,
-		);
+function _ghostbird_settings_custom_header_text_controls() {
+	print '<table class="form-table"><tbody><tr><th>' . __( 'Header Text', 'ghostbird' ) . '</th><td>';
+	_ghostbird_control_boolean( 'ghostbird_display_site_title', __( 'Display site title.', 'ghostbird' ), get_theme_mod( 'ghostbird_display_site_title', 0 ) );
+	_ghostbird_control_boolean( 'ghostbird_display_tagline',    __( 'Display tagline.', 'ghostbird' ), get_theme_mod( 'ghostbird_display_tagline', 0 ) );
+	print '</td></tr></tbody></table>';
 }
 
 /**
- * Clean settings.
+ * Process Custom Header Settings.
  *
- * Takes a one dimensional array and makes sure that
- * each key is a recognized ghostbird setting and that
- * it's value is of the appropriate type.
+ * This action is attached to the 'admin_head-appearance_page_custom-header'
+ * hook in the _ghostbird_setup() function.
  *
- * @param     array     Proposed settings.
- * @return    array     Filtered settings.
+ * @return    void
  *
- * @access    public
+ * @access    private
  * @since     1.0
  */
-function ghostbird_clean_settings( $dirty ) {
-	$clean = array();
-	$keys = array_keys( ghostbird_settings_default() );
-	foreach ( $keys as $key ) {
-		$clean[$key] = ( isset( $dirty[$key] ) && ! empty( $dirty[$key] ) ) ? 1 : 0;
+function _ghostbird_process_custom_header_settings() {
+	if ( isset( $_POST['save-header-options'] ) ) {
+		check_admin_referer( 'custom-header-options', '_wpnonce-custom-header-options' );
+		
+		$display_title = 0;
+		if ( isset( $_POST['ghostbird_display_site_title'] ) ) {
+			$display_title = 1;
+		}
+		set_theme_mod( 'ghostbird_display_site_title', $display_title );
+		
+		$display_tagline = 0;
+		if ( isset( $_POST['ghostbird_display_tagline'] ) ) {
+			$display_tagline = 1;
+		}
+		set_theme_mod( 'ghostbird_display_tagline', $display_tagline );
 	}
-	return $clean;
-}
-
-/**
- * Get settings.
- *
- * Return an array of all ghostbird settings.
- * This function will return valid results regardless
- * of whether the settings are stored in the WordPress
- * option table. Therefore, there is no need to store
- * settings upon theme activation. All settings will
- * be cleaned and ready to use.
- *
- * Please see ghostbird_settings_default() fo a list
- * of all available settings.
- *
- * @return    array     User defined settings.
- *
- * @access    public
- * @since     1.0
- */
-function ghostbird_get_settings() {
-	$defaults = ghostbird_settings_default();
-	$settings = (array) get_option( 'ghostbird' );
-	$settings = array_merge( $defaults, $settings );
-	return ghostbird_clean_settings( $settings );
-}
-
-/**
- * Create the admin menu link.
- *
- * @return    void
- *
- * @uses      _ghostbird_settings_page()
- * @access    private
- * @since     1.0
- */
-function _ghostbird_settings_page_link() {
-	add_theme_page( 'Ghostbird', 'Ghostbird', 'manage_options', 'ghostbird', '_ghostbird_settings_page' );
-}
-
-/**
- * Display the admin settings page.
- *
- * @return    void
- *
- * @access    private
- * @since     1.0
- */
-function _ghostbird_settings_page() {
-	print "\n" . '<div>';
-	print "\n" . '<h2>' . __( 'Ghostbird Theme Settings', 'ghostbird' ) . '</h2>';
-	print "\n" . '<form action="options.php" method="post">';
-
-	settings_fields( 'ghostbird' );
-	do_settings_sections( 'ghostbird' );
-
-	print "\n" . '<input name="Submit" type="submit" value="' . esc_attr__( 'Save Changes', 'ghostbird' ) . '" />';
-	print "\n" . '</form></div>';
-}
-
-/**
- * Configuration for the admin settings page.
- *
- * @return    void
- *
- * @access    private
- * @since     1.0
- */
-function _ghostbird_admin_init() {
-	register_setting( 'ghostbird', 'ghostbird', 'ghostbird_clean_settings' );
-	add_settings_section( 'ghostbird_main', 'Ghostbird Settings Section', create_function( '', 'return true;' ), 'ghostbird' );
-	add_settings_field( 'elements', __( 'Elements', 'ghostbird' ),       '_ghostbird_control_elements', 'ghostbird', 'ghostbird_main' );
-	global $ghostbird_settings;
-	$ghostbird_settings = ghostbird_get_settings();
-}
-
-/**
- * Elements.
- *
- * Prints all setting controls for elements. "Elements"
- * are certain structures that a user may want to hide.
- *
- * @return    void
- *
- * @access    private
- * @since     1.0
- */
-function _ghostbird_control_elements() {
-	_ghostbird_control_boolean( 'display_site_title',  __( 'Display site title.', 'ghostbird' ) );
-	_ghostbird_control_boolean( 'display_tagline',     __( 'Display tagline.', 'ghostbird' ) );
-	_ghostbird_control_boolean( 'display_author_link', __( 'Enable link to author archives after description.', 'ghostbird' ) );
 }
 
 /**
@@ -1562,19 +1470,17 @@ function _ghostbird_control_elements() {
  * Generates and prints a form element/label to
  * control a boolean setting.
  *
- * @param     string    The key of a recognized setting. See ghostbird_settings_default() for a list.
+ * @param     string    The key of a recognized setting.
  * @param     string    Localized, human-readable label for the setting.
+ * @param     bool      Current value of the setting.
  * @return    void
  *
  * @access    private
  * @since     1.0
  */
-function _ghostbird_control_boolean( $id, $label ) {
-	global $ghostbird_settings;
-	if ( isset( $ghostbird_settings[$id] ) ) {
-		print "\n\n" . '<input' . ( ! empty( $ghostbird_settings[$id] ) ? ' checked="checked"' : '' ) . ' type="checkbox" id="ghostbird-' . $id . '" name="ghostbird[' . $id . ']" value="1" /> ';
-		print "\n" . '<label for="ghostbird-' . $id . '">' . $label . '</label><br />';
-	}
+function _ghostbird_control_boolean( $id, $label, $value = 0 ) {	
+	print "\n\n" . '<input' . ( ! empty( $value ) ? ' checked="checked"' : '' ) . ' type="checkbox" id="' . esc_attr( $id ) . '" name="' . esc_attr( $id ) . '" value="1" /> ';
+	print "\n" . '<label for="' . esc_attr( $id ) . '">' . esc_html( $label ) . '</label><br />';
 }
 
 /**#@-*/
