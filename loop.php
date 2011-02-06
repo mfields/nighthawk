@@ -55,7 +55,7 @@ if ( ( is_archive() || is_home() ) && ( 'page' == get_post_type() || 'gallery' =
 else {
 	the_content( 'more' );
 }
-print "\n" . '</div><!--post-content-->';
+print "\n" . '</div><!--entry-content-->';
 
 wp_link_pages( array( 'before' => '<div class="page-link">' . __( 'Pages:', 'ghostbird' ), 'after' => '</div>' ) );	
 ?>

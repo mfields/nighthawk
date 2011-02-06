@@ -1363,7 +1363,6 @@ function _ghostbird_comment_reply_js() {
  * Wrapping all flash embeds in a div allows for easier
  * styling with CSS media queries.
  *
- * @todo      Add to UI.
  * @todo      Document parameters.
  *
  * @since     1.0
