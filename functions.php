@@ -597,6 +597,7 @@ function ghostbird_entry_meta_date() {
  *
  * This function should do nothing for custom post_types.
  *
+ * @todo      localize
  * @return    void
  *
  * @since     1.0
