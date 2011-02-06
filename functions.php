@@ -17,13 +17,10 @@
  * @todo Add meta to search archives intro box.
  * @todo Update and test style-editor.
  * @todo Lighter fonts in Widgets.
- * @todo Add Ghostbird settings page link to menu bar.
  * @todo Style all features of the Syntax Highlighter plugin.
  * @todo Add credit link in the footer.
- * @todo Add donation link in the settings page.
  * @todo Pretty-up the calendar widget.
  * @todo Make dialog colors match new theme colors.
- * @todo Rename .heading-action class everywhere.
  * 
  * FUTURE RELEASE
  * @todo Add header widget. Intended for search form?
@@ -244,7 +241,7 @@ function ghostbird_title( $before = '', $after = '', $print = true ) {
 		$o = apply_filters( 'ghostbird_title_timeline', __( 'Timeline', 'ghostbird' ) );
 		if ( is_paged() ) {
 			$o = apply_filters( 'ghostbird_title_timeline_paged', '<a href="' . esc_url( home_url() ) . '">' . $o . '</a>' );
-			$o.= ' <span class="heading-action">Page ' . (int) get_query_var( 'paged' ) . '<span>';
+			$o.= ' <span class="addendum">Page ' . (int) get_query_var( 'paged' ) . '<span>';
 		}
 	}
 	else if ( is_singular() ) {

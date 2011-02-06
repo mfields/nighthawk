@@ -27,7 +27,7 @@ if ( have_comments() ) {
 	
 	/* Comment Heading. */
 	$heading = sprintf( _n( '%1$s Comment', '%1$s Comments', get_comments_number(), 'ghostbird' ), number_format_i18n( get_comments_number() ) );
-	$link    = '<a class="heading-action" href="#respond">' . __( 'Leave a comment', 'ghostbird' ) . '</a>';
+	$link    = '<a class="addendum" href="#respond">' . __( 'Leave a comment', 'ghostbird' ) . '</a>';
 	print '<h2 id="comments">' . $heading . ' ' . $link . '</h2>';
 	
 	/* List the Comments. */
