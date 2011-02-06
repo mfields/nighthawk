@@ -96,7 +96,6 @@ function _ghostbird_setup() {
 	add_filter( 'wp_page_menu',               '_ghostbird_page_menu_wrap', 10, 2 );
 	add_filter( 'post_class',                 '_ghostbird_post_class_entry' );
 	add_filter( 'post_class',                 '_ghostbird_post_class_featured' );
-	add_filter( 'post_class',                 '_ghostbird_post_class_more' );
 	add_filter( 'post_thumbnail_html',        '_ghostbird_featured_image_first_attachment' );
 	add_filter( 'post_thumbnail_html',        '_ghostbird_featured_image_avatar' );
 	add_action( 'the_content',                '_ghostbird_related_images' );
@@ -1065,24 +1064,6 @@ function _ghostbird_page_menu_wrap( $menu, $args ) {
 function _ghostbird_post_class_entry( $classes ) {
 	if ( ! in_array( 'entry', $classes ) ) {
 		$classes[] = 'entry';
-	}
-	return $classes;
-}
-
-/**
- * "More" Post Class.
- *
- * Add a class of 'more' to posts having a "Read More" tag.
- *
- * @param     array     All classes for the post container.
- * @return    array     Modified classes for the post container.
- *
- * @since     1.0
- */
-function _ghostbird_post_class_more( $classes ) {
-	global $post;
-	if ( ( is_archive() || is_home() ) && false !== strpos( $post->post_content, '<!--more-->' ) && ! in_array( 'more', $classes ) ) {
-		$classes[] = 'more';
 	}
 	return $classes;
 }
