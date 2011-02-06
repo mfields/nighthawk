@@ -24,7 +24,6 @@
  * @todo Pretty-up the calendar widget.
  * @todo Make dialog colors match new theme colors.
  * @todo Rename .heading-action class everywhere.
- * @todo Left margin on blockquotes.
  * 
  * FUTURE RELEASE
  * @todo Add header widget. Intended for search form?
