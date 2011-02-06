@@ -1283,22 +1283,6 @@ function _ghostbird_author_link( $description ) {
 }
 
 /**
- * Comment Date.
- *
- * Return the date and time that the current global comment
- * was submitted. This string will be linked directly to the
- * comment it represents.
- *
- * @return    string         Linked comment date.
- *
- * @since     1.0
- */
-function _ghostbird_comment_date() {
-	global $comment;
-	return "\n" . '<a class="comment-date" href="' . get_comment_link( $comment->comment_ID ) . '"  title="' . esc_attr__( 'Direct link to this comment.', 'ghostbird' ) . '">' . sprintf( __( '%1$s at %2$s', 'ghostbird' ), get_comment_date(),  get_comment_time() ) . '</a>';
-}
-
-/**
  * Comment start.
  *
  * Prints most of a single comment.
@@ -1325,10 +1309,17 @@ function _ghostbird_comment_start( $comment, $args, $depth ) {
 			print "\n" . '<div class="comment-head">';
 			print "\n" . $avatar;
 			print "\n" . '<span class="comment-author">' . get_comment_author_link( $comment->comment_ID ) . '</span>';
-			print "\n" . '<span class="comment-meta">' . _ghostbird_comment_date();
+			print "\n" . '<span class="comment-meta">';
+
+			/* Comment date. */
+			print "\n" . '<a class="comment-date" href="' . get_comment_link( $comment->comment_ID ) . '"  title="' . esc_attr__( 'Direct link to this comment.', 'ghostbird' ) . '">' . sprintf( __( '%1$s at %2$s', 'ghostbird' ), get_comment_date(),  get_comment_time() ) . '</a>';
+
+			/* Edit comment link. */
 			if ( current_user_can( 'edit_comment', $comment->comment_ID ) ) {
 				print "\n" . '<span class="comment-edit"> <a href="' . get_edit_comment_link( $comment->comment_ID ) . '">' . __( 'Edit', 'ghostbird' ) . '</a></span>';
 			}
+
+			/* Reply to comment link. */
 			comment_reply_link( array_merge( $args, array(
 				'depth'     => $depth,
 				'max_depth' => $args['max_depth'],
