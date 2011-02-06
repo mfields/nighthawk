@@ -18,7 +18,7 @@
  * @todo Update and test style-editor.
  * @todo Lighter fonts in Widgets.
  * @todo Add Ghostbird settings page link to menu bar.
- * @todo Style all features of the Syntax Highler plugin.
+ * @todo Style all features of the Syntax Highlighter plugin.
  * @todo Add credit link in the footer.
  * @todo Add donation link in the settings page.
  * @todo Pretty-up the calendar widget.
@@ -128,10 +128,8 @@ function _ghostbird_setup() {
 	}
 
 	/* Ghostbird hooking into SyntaxHighlighter Evolved plugin. */
-	if ( ! empty( $settings['syntaxhighlighter_theme'] ) ) {
-		wp_register_style( 'syntaxhighlighter-theme-ghostbird', get_template_directory_uri() . '/style-syntax-highlighter.css', array( 'syntaxhighlighter-core' ), '1' );
-		add_filter( 'syntaxhighlighter_themes', '_ghostbird_syntaxhighlighter_theme' );
-	}
+	wp_register_style( 'syntaxhighlighter-theme-ghostbird', get_template_directory_uri() . '/style-syntax-highlighter.css', array( 'syntaxhighlighter-core' ), '1' );
+	add_filter( 'syntaxhighlighter_themes', '_ghostbird_syntaxhighlighter_theme' );
 }
 add_action( 'after_setup_theme', '_ghostbird_setup' );
 
@@ -1442,7 +1440,6 @@ function ghostbird_settings_default( $keys = false ) {
 		'display_site_title'      => 0,
 		'display_tagline'         => 1,
 		'display_author_link'     => 0,
-		'syntaxhighlighter_theme' => 1,
 		);
 }
 
@@ -1538,23 +1535,8 @@ function _ghostbird_admin_init() {
 	register_setting( 'ghostbird', 'ghostbird', 'ghostbird_clean_settings' );
 	add_settings_section( 'ghostbird_main', 'Ghostbird Settings Section', create_function( '', 'return true;' ), 'ghostbird' );
 	add_settings_field( 'elements', __( 'Elements', 'ghostbird' ),       '_ghostbird_control_elements', 'ghostbird', 'ghostbird_main' );
-	add_settings_field( 'plugins',  __( 'Plugin Support', 'ghostbird' ), '_ghostbird_control_plugins',  'ghostbird', 'ghostbird_main' );
 	global $ghostbird_settings;
 	$ghostbird_settings = ghostbird_get_settings();
-}
-
-/**
- * Plugin compatibility.
- *
- * Prints all setting controls for plugin compatibility.
- *
- * @return    void
- *
- * @access    private
- * @since     1.0
- */
-function _ghostbird_control_plugins() {
-	_ghostbird_control_boolean( 'syntaxhighlighter_theme',  __( 'Enable custom theme for the SyntaxHighlighter Evolved plugin.', 'ghostbird' ) );
 }
 
 /**
