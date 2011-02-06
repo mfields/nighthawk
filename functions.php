@@ -249,13 +249,13 @@ function ghostbird_title( $before = '', $after = '', $print = true ) {
 		}
 	}
 	else if ( is_singular() ) {
-		global $post;
+		$post_type = get_post_type();
 		$title = get_the_title();
-		$format = get_post_format();
-		if ( isset( $post->post_type ) && 'post' == $post->post_type && empty( $title ) ) {
+		if ( empty( $title ) && 'post' == $post_type ) {
 			$title = ghostbird_post_label();
 		}
-		$title = apply_filters( "ghostbird_title_singular_{$post->post_type}", $title );
+		$title = apply_filters( 'ghostbird_title_singular', $title );
+		$title = apply_filters( "ghostbird_title_singular_{$post_type}", $title );
 		$o = apply_filters( 'the_title', $title );
 	}
 	else if ( is_tax() || is_category() || is_tag() ) {
@@ -1173,27 +1173,30 @@ function _ghostbird_featured_image_avatar( $html ) {
  */
 function _ghostbird_related_images( $content ) {
 	if ( is_attachment() ) {
-		global $post;
-		$type = 'image';
+		$images = array();
 		$size = apply_filters( 'ghostbird_related_images_size', 'ghostbird_detail' );
 		$title = apply_filters( 'ghostbird_related_images_title_text',  __( 'Related Images', 'ghostbird' ) );
-		if ( isset( $post->post_mime_type ) && 0 === strpos( $post->post_mime_type, $type ) ) {
+		if ( 0 === strpos( get_post_mime_type(), 'image' ) ) {
 			$images = get_children( array(
-				'post_parent'    => $post->post_parent,
+				'post_parent'    => wp_get_post_parent_id( 0 ),
 				'post_status'    => 'inherit',
 				'post_type'      => 'attachment',
-				'post_mime_type' => $type,
-				'exclude'        => $post->ID
+				'post_mime_type' => 'image',
+				'exclude'        => get_the_ID()
 				) );
-			if ( ! empty( $images ) ) {
-				$content.= "\n" . '<h2>' . $title . '</h2>';
-				$content.= "\n" . '<ul id="related-images">';
-				foreach ( (array) $images as $image ) {
+		}
+		if ( ! empty( $images ) && ! empty( $title ) ) {
+			$content.= "\n" . '<h2>' . $title . '</h2>';
+		}
+		if ( ! empty( $images ) ) {
+			$content.= "\n" . '<ul id="related-images">';
+			foreach ( (array) $images as $image ) {
+				if ( isset( $image->ID ) ) {
 					$content.= "\n" . '<li>' . wp_get_attachment_link( $image->ID, $size, true, false ) . '</li>';
 				}
-				$content.= "\n" . '</ul>';
-				$content.= "\n" . '<div class="clear"></div>';
 			}
+			$content.= "\n" . '</ul>';
+			$content.= "\n" . '<div class="clear"></div>';
 		}
 	}
 	return $content;
