@@ -357,9 +357,6 @@ body {
 }
 .entry img {
 	background-color:#fff;
-	border-style:solid;
-	border-color:#ccc;
-	border-width:.1em;
 }
 .entry pre {
 	padding:5%;
@@ -386,6 +383,9 @@ body {
 }
 .featured-image img {
 	border:1px solid #ccc;
+	box-shadow:         0 0 0 !important;
+	-webkit-box-shadow: 0 0 0 !important;
+	-moz-box-shadow:    0 0 0 !important;
 }
 
 
@@ -807,6 +807,14 @@ input#submit,
 
 .aligncenter .wp-caption-text {
 	text-align:center
+}
+
+
+#gallery-1 img,
+#gallery-2 img,
+#gallery-3 img,
+#gallery-4 img {
+	border-width:0 !important;
 }
 
 
