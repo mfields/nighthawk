@@ -58,7 +58,7 @@ pre, fieldset, blockquote {
 blockquote {
 	position:relative;
 	padding-left:2em;
-	margin:1.75em 2em 1.75em 0;
+	margin:1.75em 2em 1.75em 22px;
 	min-height:34px;
 }
 blockquote:before {
@@ -67,9 +67,10 @@ blockquote:before {
 	top:10px;
 	left:-22px;
 }
-blockquote blockquote { margin-right:0; }
-.comment blockquote { margin-left:1em; }
-.comment blockquote blockquote { margin-left:0; }
+blockquote blockquote {
+	margin-left:0;
+	margin-right:0;
+	}
 
 blockquote p:first-child,
 blockquote blockquote:first-child {
