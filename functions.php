@@ -1034,6 +1034,9 @@ function _ghostbird_body_class( $classes ) {
  * necessary to ensure that it's output is encloded in a div with the
  * "id" attribute with a value of "menu" or "menu-bottom".
  *
+ * This filter is attached to the 'wp_page_menu' hook
+ * in the _ghostbird_setup() function.
+ *
  * @param     string    Unordered list html.
  * @param     array     Arguments inherited by wp_page_menu() from wp_nav_menu().
  * @return    string
