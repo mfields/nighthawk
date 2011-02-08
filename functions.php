@@ -1243,22 +1243,6 @@ function _ghostbird_excerpt_more_custom( $excerpt ) {
 }
 
 /**
- * Append a link to the author's archive view to their description.
- *
- * @param     string    Author description.
- * @return    string    Filtered author description.
- *
- * @since     1.0
- */
-function _ghostbird_author_link( $description ) {
-	if ( ! empty( $description ) && ! is_author() ) {
-		$link = "\n" . '<a href="' . get_author_posts_url( get_the_author_meta( 'ID' ) ) . '">' . sprintf( __( ' View all entries by %s.', 'ghostbird' ), get_the_author() ) . '</a>';
-		$description.= apply_filters( 'ghostbird_author_link', $link );
-	}
-	return $description;
-}
-
-/**
  * Comment start.
  *
  * Prints most of a single comment.
