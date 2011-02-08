@@ -1431,13 +1431,17 @@ function _ghostbird_settings_custom_header_text_controls() {
 function _ghostbird_process_custom_header_settings() {
 	if ( isset( $_POST['save-header-options'] ) ) {
 		check_admin_referer( 'custom-header-options', '_wpnonce-custom-header-options' );
-		
+
+		if ( ! current_user_can( 'edit_theme_options' ) ) {
+			return;
+		}
+
 		$display_title = 0;
 		if ( isset( $_POST['ghostbird_display_site_title'] ) ) {
 			$display_title = 1;
 		}
 		set_theme_mod( 'ghostbird_display_site_title', $display_title );
-		
+
 		$display_tagline = 0;
 		if ( isset( $_POST['ghostbird_display_tagline'] ) ) {
 			$display_tagline = 1;
