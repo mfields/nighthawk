@@ -436,6 +436,74 @@ h2.entry-title {
 }
 
 
+/* Search results. */
+.search p {
+	margin-top:0;
+}
+.search .entry {
+	border-width:0;
+	padding:0 0 1em;
+	margin:0;
+}
+.search h2.entry-title a {
+	/*font-weight:normal;*/
+}
+.search .entry-date {
+	font-weight:bold;
+}
+.search .entry-content p {
+	display:inline;
+	line-height:1.25em;
+}
+
+.search-form {
+	position:relative;
+	/*width:23em;*/
+	height:1.5em;
+	border:1px solid #e2caa0;
+	background:#e2caa0;
+	margin:.5em 0;
+}
+body.search .search-form {
+	/*margin:0 auto;*/
+}
+
+.search-form label.search-label,
+.search-form input.search-term,
+.search-form input.search-button {
+	position:absolute;
+	display:block;
+	top:0;
+	height:1.5em;
+	line-height:1.5em;
+	font-size:1em;
+	margin:0;
+	border-width:0;
+}
+.search-form label.search-label {
+	left:0;
+	z-index:2;
+	/*display:none;*/
+}
+.search-form input.search-term {
+	left:0;
+	z-index:1;
+	width:80%;
+	height:1.5em;
+	padding:0 .25em;
+	background:#fff;
+}
+.search-form input.search-term:focus {
+	outline:none;
+}
+.search-form input.search-button {
+	width:18.5%;
+	right:0;
+	padding:0;
+	cursor:pointer;
+	background:transparent;
+}
+
 /* Author Box */
 #author-box {
 	margin:1.5em 0;
@@ -721,8 +789,9 @@ input#submit,
 
 /* Content boxen. */
 .entry,
+.depth-1,
 #commentform,
-.depth-1 {
+#search-results {
 	margin:1.5em 0;
 	padding:1.5em;
 	overflow:hidden;
@@ -752,7 +821,6 @@ input#submit,
 	padding:0;
 	list-style-type:none;
 }
-
 
 /* Buttons. */
 .button,
@@ -921,7 +989,6 @@ blockquote,
 	-moz-border-radius-bottomright:     .5em;
 	-moz-border-radius-bottomleft:      .5em;
 }
-
 
 /* WordPress Calendar */
 table#wp-calendar {

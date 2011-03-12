@@ -7,7 +7,7 @@
  * @copyright    Copyright (c) 2011, Michael Fields
  * @license      http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since        1.0
- * 
+ *
  * BEFORE 1.0 RELEASE
  * @todo Style global tables.
  * @todo Test "big" tag across browsers - not sure about positioning here :)
@@ -21,7 +21,7 @@
  * @todo Add credit link in the footer.
  * @todo Pretty-up the calendar widget.
  * @todo Make dialog colors match new theme colors.
- * 
+ *
  * FUTURE RELEASE
  * @todo Add header widget. Intended for search form?
  * @todo Add detail images to gallery posts.
@@ -33,20 +33,20 @@
  */
 
 define( 'GHOSTBIRD_VERSION', '0.9.2' );
- 
+
 /**
  * Theme Setup
- * 
- * If you would like to customize the theme setup you 
+ *
+ * If you would like to customize the theme setup you
  * are encouraged to adopt the following process.
- * 
+ *
  * <ol>
  * <li>Create a child theme with a functions.php file.</li>
  * <li>Create a new function named mytheme_ghostbird_setup().</li>
  * <li>Hook this function into the 'after_setup_theme' action at or after 11.</li>
  * <li>call remove_filter(), remove_action() and/or remove_theme_support() as needed.</li>
  * </ol>
- * 
+ *
  * @return    void
  *
  * @access    private
@@ -60,7 +60,7 @@ function _ghostbird_setup() {
 	}
 
 	load_theme_textdomain( 'ghostbird', get_template_directory() . '/languages' );
-	
+
 	add_theme_support( 'menus' );
 	add_theme_support( 'post-formats', array( 'aside', 'gallery', 'status' ) );
 	add_theme_support( 'post-thumbnails' );
@@ -355,7 +355,7 @@ function ghostbird_byline( $before = '', $after = '' ) {
  * types:
  *
  * The first is for taxonomy term archives. If the queried
- * term has a value in its description field, this will be used 
+ * term has a value in its description field, this will be used
  * as the summary.
  *
  * The second is for pages. Ghostbird enables the exceprt meta box
@@ -835,11 +835,11 @@ function ghostbird_post_label( $singular = true ) {
  * meaning that they should not be used in any template file for
  * any reason. They are mainly callbacks for WordPress core functions,
  * actions and filters. These functions may or may not be presnt in
- * future releases of the ghostbird theme. If you feel that you
+ * future releases of the Ghostbird theme. If you feel that you
  * absolutely need to use one of them it is suggested that you
  * copy the full function into your child theme's functions.php file
  * and rename it. This will ensure that it always exists in your
- * installation regardless of developments of Ghostbird.
+ * installation regardless of how Ghostbird changes.
  *
  * Functions are roughly defined in the order that
  * they would be called during a template request.
@@ -1207,7 +1207,7 @@ function _ghostbird_related_images( $content ) {
  * In cases where a post does not have an excerpt defined
  * WordPress will append the string "[...]" to a shortened
  * version of the post_content field. Ghostbird will replace
- * this string with an ellipsis followed by a link to the 
+ * this string with an ellipsis followed by a link to the
  * full post.
  *
  * This filter is attached to the 'excerpt_more' hook
@@ -1218,7 +1218,12 @@ function _ghostbird_related_images( $content ) {
  * @since     1.0
  */
 function _ghostbird_excerpt_more_auto( $more ) {
-	return ' &hellip; ' . ghostbird_continue_reading_link();
+	if ( is_search() ) {
+		return ' &hellip;';
+	}
+	else {
+		return ' &hellip; ' . ghostbird_continue_reading_link();
+	}
 }
 
 /**
@@ -1236,7 +1241,7 @@ function _ghostbird_excerpt_more_auto( $more ) {
  * @since     1.0
  */
 function _ghostbird_excerpt_more_custom( $excerpt ) {
-	if ( has_excerpt() && ! is_attachment() && ! is_page() ) {
+	if ( has_excerpt() && ! is_search() && ! is_attachment() && ! is_page() ) {
 		$excerpt .= ghostbird_continue_reading_link();
 	}
 	return $excerpt;
@@ -1379,7 +1384,7 @@ function _ghostbird_syntaxhighlighter_theme( $themes ) {
  * Custom Header Controls.
  *
  * Print a settings section enabling user to choose which
- * individual text settings will appear in the theme. 
+ * individual text settings will appear in the theme.
  * These controls should appear at the bottom of the form
  * located under Appearance -> Header in the administration
  * panels. It will inherit a nonce from the core form. The
@@ -1448,9 +1453,33 @@ function _ghostbird_process_custom_header_settings() {
  * @access    private
  * @since     1.0
  */
-function _ghostbird_control_boolean( $id, $label, $value = 0 ) {	
+function _ghostbird_control_boolean( $id, $label, $value = 0 ) {
 	print "\n\n" . '<input' . ( ! empty( $value ) ? ' checked="checked"' : '' ) . ' type="checkbox" id="' . esc_attr( $id ) . '" name="' . esc_attr( $id ) . '" value="1" /> ';
 	print "\n" . '<label for="' . esc_attr( $id ) . '">' . esc_html( $label ) . '</label><br />';
 }
+
+/**
+ * Search Form.
+ *
+ * @param     string    Default WordPress search from.
+ * @return    string    Custom Search form.
+ *
+ * @access    private
+ * @since     1.0
+ */
+function _ghostbird_search_form( $form ) {
+	static $id = 0;
+	$id++;
+	$id_attr = 'search-form-' . $id;
+	
+	$form = "\n\n";
+	$form.= "\n" . '<form role="search" method="get" action="" class="search-form">';
+	$form.= "\n" . '<label for="' . esc_attr( $id ) . '">Search</label>';
+	$form.= "\n" . '<input class="search-term" id="' . esc_attr( $id ) . '" type="text" value="' . esc_attr( get_search_query( false ) ) . '" name="s" />';
+	$form.= "\n" . '<input class="search-button" type="submit" value="Search" />';
+	$form.= "\n" . '</form>';
+	return $form;
+}
+add_filter( 'get_search_form', '_ghostbird_search_form' );
 
 /**#@-*/
