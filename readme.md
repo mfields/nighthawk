@@ -6,8 +6,8 @@ A one-column theme for the [WordPress Publishing Platform](http://wordpress.org/
 Supported Plugins
 -----------------
 * [SyntaxHighlighter Evolved](http://www.viper007bond.com/wordpress-plugins/syntaxhighlighter/) by [Viper007Bond](http://www.viper007bond.com/)
-* [I Make Plugins](http://txfx.net/wordpress-plugins/i-make-plugins/) by [Mark Jaiquith](http://coveredwebservices.com/)
-* [Subscribe to Comments](http://txfx.net/wordpress-plugins/subscribe-to-comments/) by [Mark Jaiquith](http://coveredwebservices.com/)
+* [I Make Plugins](http://txfx.net/wordpress-plugins/i-make-plugins/) by [Mark Jaquith](http://coveredwebservices.com/)
+* [Subscribe to Comments](http://txfx.net/wordpress-plugins/subscribe-to-comments/) by [Mark Jaquith](http://coveredwebservices.com/)
 
 Supported Post Formats
 ----------------------
