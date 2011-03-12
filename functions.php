@@ -394,6 +394,7 @@ function ghostbird_summary( $before = '', $after = '', $print = true ) {
 		$summary = apply_filters( 'ghostbird_filter_text', $summary );
 	}
 	else if ( is_post_type_archive() ) {
+		global $wp_query;
 		$post_type  = $wp_query->get_queried_object();
 		if ( isset( $post_type->description ) && ! empty( $post_type->description ) ) {
 			$summary = apply_filters( 'ghostbird_filter_text', esc_html( $post_type->description ) );
