@@ -32,7 +32,7 @@
  *
  */
 
-define( 'GHOSTBIRD_VERSION', '0.9.3' );
+define( 'GHOSTBIRD_VERSION', '0.9.3.1' );
 
 /**
  * Theme Setup
