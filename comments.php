@@ -47,20 +47,9 @@ if ( have_comments() ) {
 	}
 }
 
-
-/* Maybe prepend discussion guidelines widget to comment textarea. */
-$comment_field = '<label for="comment">' . _x( 'Comment', 'noun' ) . '</label><textarea id="comment" name="comment" cols="45" rows="8" aria-required="true"></textarea>';
-$guidlines = _ghostbird_discussion_guidelines();
-if ( ! empty( $guidlines ) ) {
-	$comment_field = $guidlines . $comment_field;
-}
-$comment_field = '<div class="comment-form-comment">' . $comment_field . '</div>';
-
-
 /* Display Comment Form. */
 comment_form( array(
 	'title_reply'          =>  __( 'Share your thoughts', 'ghostbird' ),
-	'comment_field'        => $comment_field,
 	'comment_notes_before' => '',
 	'comment_notes_after'  => '',
 	) );

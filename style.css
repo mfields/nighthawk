@@ -655,19 +655,7 @@ body.search .search-form {
 	height:0;
 	width:0;
 }
-#discussion-guidelines {
-	width:75%;
-	margin:0 0 1em 17.5%;
-}
-#discussion-guidelines-toggle {
-	display:block;
-	margin:.5em 0;
-	font-weight:bold;
-	color:#3a5066;
-}
-#discussion-guidelines-widgets {
-	line-height:1.35em
-}
+
 #subscribe,
 input#submit,
 .logged-in-as,

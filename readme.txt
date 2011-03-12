@@ -18,9 +18,7 @@ Ghostbird is a one-column theme for the WordPress publishing platform.
 	- Top
 	- Bottom
 	
-* Custom widget areas
-	- Discussion Guidelines
-	- 3 all-purpose widgetize bottom areas.
+* 3 all-purpose widgetized areas are located at the bottom of every template.
 	
 * Native support for custom post post_types and taxonomies
 

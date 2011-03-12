@@ -910,47 +910,6 @@ function _ghostbird_widgets_init() {
 		'before_title'  => '<h3 class="widget-title">',
 		'after_title'   => '</h3>',
 	) );
-
-	/* Discussion Guidelines. */
-	register_sidebar( array(
-		'name'          => __( 'Discussion Guidelines', 'ghostbird' ),
-		'id'            => 'discussion-guidelines',
-		'description'   => __( 'Add a text widget to this area and instruct your visitors how they should comment on your entries. The content of this area will display above the textarea in the comment form.', 'ghostbird' ),
-		'before_widget' => '<div id="%1$s" class="widget-container %2$s">',
-		'after_widget'  => '</div>',
-		'before_title'  => '<h3 class="widget-title">',
-		'after_title'   => '</h3>',
-	) );
-}
-
-/**
- * Discussion Guidelines.
- *
- * The discussion guidelines section is delivered via a widgetized
- * area. If the 'discussion-guidelines' area is active its contents
- * will be prepended to the textarea created by comment_form() in
- * comments.php.
- *
- * @return    string    The contents of all widgets assigned to the discussion-guidelines area.
- *
- * @since     1.0
- */
-function _ghostbird_discussion_guidelines() {
-	$widget = '';
-	if ( is_active_sidebar( 'discussion-guidelines' ) ) {
-		ob_start();
-		dynamic_sidebar( 'discussion-guidelines' );
-		$widget = ob_get_clean();
-	}
-	if ( ! empty( $widget ) ) {
-		$toggle = apply_filters( 'ghostbird_discussion_guidelines_toggle_text', __( 'Read the Guidelines', 'ghostbird' ) );
-		return <<<EOF
-<div id="discussion-guidelines">
-	<span id="discussion-guidelines-toggle">{$toggle}</span>
-	<div id="discussion-guidelines-widgets">{$widget}</div>
-</div>
-EOF;
-	}
 }
 
 /**
@@ -1333,18 +1292,12 @@ function _ghostbird_comment_end( $comment, $args, $depth ) {
  * appropriate javascript files on single views where
  * commenting is enabled.
  *
- * If a user has actived the Discussion Guidelines widgetized
- * area, its javascript file will be added to the queue as well.
- *
  * @since     1.0
  */
 function _ghostbird_comment_reply_js() {
 	if ( is_singular() && comments_open() ) {
 		if ( get_option( 'thread_comments' ) ) {
 			wp_enqueue_script( 'comment-reply' );
-		}
-		if ( is_active_sidebar( 'discussion-guidelines' ) ) {
-			wp_enqueue_script( 'ghostbird-discussion', get_template_directory_uri() . '/discussion-guidelines.js', array(), GHOSTBIRD_VERSION, true );
 		}
 	}
 }
