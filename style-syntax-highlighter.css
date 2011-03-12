@@ -1,18 +1,12 @@
 /**
- * SyntaxHighlighter
- * http://alexgorbatchev.com/SyntaxHighlighter
+ * Ghostbird Theme for SyntaxHighlighter.
  *
- * SyntaxHighlighter is donationware. If you are using it, please donate.
- * http://alexgorbatchev.com/SyntaxHighlighter/donate.html
- *
- * @version
- * 3.0.83 (July 02 2010)
- * 
- * @copyright
- * Copyright (C) 2004-2010 Alex Gorbatchev.
- *
- * @license
- * Dual licensed under the MIT and GPL licenses.
+ * @package      Ghostbird
+ * @author       Michael Fields <michael@mfields.org>
+ * @copyright    Copyright (c) 2011, Michael Fields
+ * @license      http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @version      1.0
+ * @since        2011-03-12
  */
 .syntaxhighlighter a,
 .syntaxhighlighter div,
@@ -54,15 +48,17 @@
 }
 
 .syntaxhighlighter {
-	width: 94% !important;
-	padding:2% 0 0 0 !important;
-	/*margin: 1em 0 2.5em 0 !important;*/
-	position: relative !important;
+	width: 100% !important;
+	margin: 1em 0 2.5em 0 !important;
+	position: static !important;
 	overflow: auto !important;
 	font-size: .83em !important;
 	background-color:#fff !important;
-	border:1px solid #ccc !important;
-	-moz-border-radius:.5em !important;
+	border-top:1px solid #ccc !important;
+	border-left:1px solid #ccc !important;
+	box-shadow:         .2em .2em .3em rgba( 0, 0, 0, 0.3 );
+	-webkit-box-shadow: .2em .2em .3em rgba( 0, 0, 0, 0.3 );
+	-moz-box-shadow:    .2em .2em .3em rgba( 0, 0, 0, 0.3 );
 }
 .syntaxhighlighter.source {
   overflow: hidden !important;
@@ -77,18 +73,34 @@
   white-space: pre !important;
 }
 .syntaxhighlighter table {
-  width: 100% !important;
+	width: 100% !important;
+	
 }
 .syntaxhighlighter table caption {
-  text-align: left !important;
-  padding: .5em 0 0.5em 1em !important;
+	width:100% !important;
+	
+	/*padding: .5em 0 .5em 1em !important;*/
+	
+	font-family: Trebuchet,arial,sans-serif !important;
+	font-size:   1em !important;
+	text-align:  left !important;
+	
+	background-color: #000 !important;
+	color: #fff !important;
+	/*position:relative !important;
+	top:-1em !important;*/
+	margin-bottom:.5em !important;
+}
+.syntaxhighlighter table tbody {
+
 }
 .syntaxhighlighter table td.code {
   width: 100% !important;
 }
 .syntaxhighlighter table td.code .container {
-  position: relative !important;
+  /*position: relative !important;*/
 }
+/*
 .syntaxhighlighter table td.code .container textarea {
 	box-sizing: border-box !important;
 	position: absolute !important;
@@ -101,15 +113,19 @@
 	overflow: hidden !important;
 	white-space: pre !important;
 }
+*/
 .syntaxhighlighter table td.gutter .line {
-  text-align: right !important;
-  padding: 0 0.5em 0 1em !important;
+	text-align: right !important;
+	padding: 0 0.5em 0 1em !important;
 }
 .syntaxhighlighter table td.code .line {
-  padding: 0 1em !important;
+  /*padding: 0 1em !important;*/
 }
-.syntaxhighlighter.nogutter td.code .container textarea, .syntaxhighlighter.nogutter td.code .line {
-  padding-left:3% !important;
+.syntaxhighlighter.nogutter td.code .container {
+	padding:1em 0 !important;
+}
+.syntaxhighlighter.nogutter td.code .line {
+	padding:0 0 0 1em !important;
 }
 .syntaxhighlighter.show {
   display: block !important;
@@ -117,6 +133,7 @@
 .syntaxhighlighter.collapsed table {
   display: none !important;
 }
+/*
 .syntaxhighlighter.collapsed .toolbar {
   padding: 0.1em 0.8em 0em 0.8em !important;
   font-size: 1em !important;
@@ -145,7 +162,7 @@
   z-index: 10 !important;
 }
 .syntaxhighlighter .toolbar span.title {
-  display: inline !important;
+	display: inline !important;
 }
 .syntaxhighlighter .toolbar a {
   display: block !important;
@@ -156,6 +173,8 @@
 .syntaxhighlighter .toolbar a.expandSource {
   display: none !important;
 }
+*/
+
 .syntaxhighlighter.ie {
   font-size: .9em !important;
   padding: 1px 0 1px 0 !important;
@@ -249,9 +268,6 @@
 }
 
 .syntaxhighlighter .line.highlighted.number {
-  color: black !important;
-}
-.syntaxhighlighter table caption {
   color: black !important;
 }
 .syntaxhighlighter .gutter {
