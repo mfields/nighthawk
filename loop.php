@@ -29,16 +29,7 @@
 
 do_action( 'ghostbird_entry_start' );
 
-/*
- * Featured image.
- */
-$featured_image = get_the_post_thumbnail();
-if ( ! empty( $featured_image ) ) {
-	if ( ! is_singular() ) {
-		$featured_image = '<a href="' . get_permalink() . '">' . $featured_image . '</a>';
-	}
-	print "\n" . '<div class="featured-image">' . $featured_image . '</div>';
-}
+ghostbird_featured_image( '<div class="featured-image">', '</div>' );
 
 /*
  * Title only for multiple views.
@@ -53,7 +44,7 @@ if ( ( is_archive() || is_home() ) && ( 'page' == get_post_type() || 'gallery' =
 	the_excerpt();
 }
 else {
-	the_content( 'more' );
+	the_content( __( 'more', 'ghostbird' ) );
 }
 print "\n" . '</div><!--entry-content-->';
 

@@ -849,6 +849,37 @@ function ghostbird_post_label( $singular = true ) {
  */
 
 /**
+ * Featured Image.
+ *
+ * @param     string         Text to prepend to the image tag.
+ * @param     string         Text to append to the image tag.
+ * @param     bool           True to print, false to return a string. Defaults to true.
+ * @return    void/string
+ *
+ * @todo Allow to be hidden by postmeta.
+ *
+ * @since     1.0
+ */
+function ghostbird_featured_image( $before = '', $after = '', $print = true ) {
+	$image = '';
+	$featured_image = get_the_post_thumbnail();
+	if ( ! empty( $featured_image ) ) {
+		if ( ! is_singular() ) {
+			$image = '<a href="' . esc_url( get_permalink() ) . '">' . $featured_image . '</a>';
+		}
+	}
+	if ( ! empty( $image ) ) {
+		$image = $before . $image . $after;
+		if ( $print ) {
+			print $image;
+		}
+		else {
+			return $image;
+		}
+	}
+}
+
+/**
  * Calendar Widget Title
  *
  * For some reason, WordPress will print a non-breaking space
