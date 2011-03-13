@@ -34,7 +34,7 @@
 <?php wp_head(); ?>
 </head>
 
-<body <?php body_class(); ?>>
+<body <?php body_class(); ?> role="document">
 
 <div id="wrap">
 	
@@ -48,7 +48,8 @@
 		'container'      => 'div',
 		'container_id'   => 'menu-top',
 		'theme_location' => 'primary',
-		'depth'          => 1
+		'depth'          => 1,
+		'items_wrap'     => '<ul id="%1$s" class="%2$s" role="navigation">%3$s</ul>'
 		) ); ?>
 
-	<div id="page" role="document">
+	<div id="page" role="main">

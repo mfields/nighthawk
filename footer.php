@@ -56,7 +56,8 @@ if ( 0 < $count ) {
 	'container'      => 'div',
 	'container_id'   => 'menu-bottom',
 	'theme_location' => 'secondary',
-	'depth'          => 1
+	'depth'          => 1,
+	'items_wrap'     => '<ul id="%1$s" class="%2$s" role="navigation">%3$s</ul>'
 	) ); ?>
 
 <?php wp_footer(); ?>
