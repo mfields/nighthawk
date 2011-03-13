@@ -1175,9 +1175,10 @@ function _ghostbird_related_images( $content ) {
 		$images = array();
 		$size = apply_filters( 'ghostbird_related_images_size', 'ghostbird_detail' );
 		$title = apply_filters( 'ghostbird_related_images_title_text',  __( 'Related Images', 'ghostbird' ) );
-		if ( 0 === strpos( get_post_mime_type(), 'image' ) ) {
+		$parent_id = (int) wp_get_post_parent_id( 0 );
+		if ( 0 === strpos( get_post_mime_type(), 'image' ) && ! empty( $parent_id ) ) {
 			$images = get_children( array(
-				'post_parent'    => wp_get_post_parent_id( 0 ),
+				'post_parent'    => $parent_id,
 				'post_status'    => 'inherit',
 				'post_type'      => 'attachment',
 				'post_mime_type' => 'image',
@@ -1185,7 +1186,7 @@ function _ghostbird_related_images( $content ) {
 				) );
 		}
 		if ( ! empty( $images ) && ! empty( $title ) ) {
-			$content.= "\n" . '<h2>' . $title . '</h2>';
+			$content.= "\n" . '<h2>' . esc_html( $title ) . '</h2>';
 		}
 		if ( ! empty( $images ) ) {
 			$content.= "\n" . '<ul id="related-images">';
