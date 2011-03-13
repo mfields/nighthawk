@@ -241,7 +241,6 @@ function ghostbird_title( $before = '', $after = '', $print = true ) {
 		$o = apply_filters( 'ghostbird_title_timeline', __( 'Timeline', 'ghostbird' ) );
 		if ( is_paged() ) {
 			$o = apply_filters( 'ghostbird_title_timeline_paged', '<a href="' . esc_url( home_url() ) . '">' . $o . '</a>' );
-			$o.= ' <span class="addendum">Page ' . (int) get_query_var( 'paged' ) . '<span>';
 		}
 	}
 	else if ( is_singular() ) {
@@ -264,7 +263,7 @@ function ghostbird_title( $before = '', $after = '', $print = true ) {
 			$o = apply_filters( "ghostbird_title_taxonomy_{$term->taxonomy}", $term->name );
 			if ( is_paged() ) {
 				$url = get_term_link( $term, $term->taxonomy );
-				$o = apply_filters( 'ghostbird_title_timeline_paged', '<a href="' . esc_url( $url ) . '">' . $o . '</a>' );
+				$o = apply_filters( 'ghostbird_title_timeline_paged', '<a href="' . esc_url( $url ) . '">' . esc_html( $o ) . '</a>' );
 			}
 		}
 	}
@@ -297,7 +296,7 @@ function ghostbird_title( $before = '', $after = '', $print = true ) {
 		$post_type = $wp_query->get_queried_object();
 		if ( isset( $post_type->name ) && is_paged() ) {
 			$url = get_post_type_archive_link( $post_type->name );
-			$o = apply_filters( 'ghostbird_title_timeline_paged', '<a href="' . esc_url( $url ) . '">' . $o . '</a>' );
+			$o = '<a href="' . esc_url( $url ) . '">' . esc_html( $o ) . '</a>';
 		}
 	}
 
@@ -413,7 +412,7 @@ function ghostbird_summary( $before = '', $after = '', $print = true ) {
 /**
  * Summary Meta.
  *
- * Print meta information pertain to the current view.
+ * Print meta information pertaining to the current view.
  *
  * @param     string         Text to prepend to the summary meta.
  * @param     string         Text to append to the summary meta.
@@ -423,15 +422,30 @@ function ghostbird_summary( $before = '', $after = '', $print = true ) {
  * @since     1.0
  */
 function ghostbird_summary_meta( $before = '', $after = '', $print = true ) {
-	$sentence = '';
-
 	global $wp_query;
 
 	$total = 0;
 	if ( isset( $wp_query->found_posts ) ) {
 		$total = (int) $wp_query->found_posts;
 	}
-	if ( is_attachment() ) {
+
+	$sentence = '';
+	$feed_url = '';
+	if ( is_home() || is_post_type_archive() ) {
+		global $posts;
+		$post_type = $wp_query->get_queried_object();
+		if ( empty( $post_type ) ) {
+			$post_type = get_post_type_object( 'post' );
+		}
+		if ( isset( $post_type->name ) && isset( $post_type->label ) && isset( $post_type->labels->singular_name ) ) {
+			$feed_url   = get_post_type_archive_feed_link( $post_type->name );
+			$feed_title = sprintf( __( 'Get updates when new %1$s are published.', 'ghostbird' ), $post_type->label );
+			$sentence   = sprintf( _n( '', 'There are %1$s %2$s in this archive.', $total, 'ghostbird' ), number_format_i18n( $total ), $post_type->label );
+			$sentence   = apply_filters( 'ghostbird_summary_meta_post_type_archive', $sentence, $post_type );
+			$sentence   = apply_filters( "ghostbird_summary_meta_{$post_type->name}_archive", $sentence, $post_type );
+		}
+	}
+	else if ( is_attachment() ) {
 		$parent = false;
 		$id = get_the_ID();
 		$attachment = get_post( $id );
@@ -441,10 +455,13 @@ function ghostbird_summary_meta( $before = '', $after = '', $print = true ) {
 		if ( isset( $parent->ID ) && isset( $parent->post_title ) ) {
 			$parent_link = '<a href="' . get_permalink( $parent->ID ) . '">' . apply_filters( 'the_title', $parent->post_title ) . '</a>';
 			$sentence = sprintf( __( 'This file is attached to %1$s.', 'ghostbird' ), $parent_link );
+			$sentence = apply_filters( 'ghostbird_summary_file', $sentence );
 			if ( isset( $attachment->post_mime_type ) && 0 === strpos( $attachment->post_mime_type, 'image' ) ) {
 				$sentence = sprintf( __( 'This image is attached to %1$s.', 'ghostbird' ), $parent_link );
+				$sentence = apply_filters( 'ghostbird_summary_image_attached_to', $sentence );
 				if ( 'gallery' == get_post_format( $parent->ID ) ) {
 					$sentence = sprintf( __( 'This image is part of the gallery titled %1$s.', 'ghostbird' ), $parent_link );
+					$sentence = apply_filters( 'ghostbird_summary_image_in_gallery', $sentence );
 				}
 			}
 		}
@@ -479,19 +496,11 @@ function ghostbird_summary_meta( $before = '', $after = '', $print = true ) {
 			$feed_url = get_term_feed_link( $term->term_id, $term->taxonomy );
 		}
 	}
-	else if ( is_post_type_archive() ) {
-		$post_type  = $wp_query->get_queried_object();
-		if ( isset( $post_type->name ) && isset( $post_type->label ) && isset( $post_type->labels->singular_name ) ) {
-			$feed_title = sprintf( __( 'Get updates when new %1$s are published.', 'ghostbird' ), $post_type->label );
-			$sentence   = sprintf( _n( 'There is one %2$s.', 'There are %1$s %3$s.', $total, 'ghostbird' ), number_format_i18n( $total ), $post_type->labels->singular_name, $post_type->label );
-			$feed_url   = get_post_type_archive_feed_link( $post_type->name );
-		}
-	}
 	if ( ! empty( $feed_url ) ) {
 		$sentence.= ' <span class="subscribe"><a href="' . esc_url( $feed_url ) . '" title="' . esc_attr( $feed_title ) . '">' . esc_html__( 'Subscribe', 'ghostbird' ) . '</a></span>';
 	}
 	if ( ! empty( $sentence ) ) {
-		$sentence = "\n" . $before . $sentence . $after;
+		$sentence = "\n" . apply_filters( 'ghostbird_summary_meta', $before . $sentence . $after );
 		if ( $print ) {
 			print $sentence;
 		}
