@@ -873,8 +873,9 @@ function ghostbird_featured_image( $before = '', $after = '', $print = true ) {
 	$image = '';
 	$featured_image = get_the_post_thumbnail();
 	if ( ! empty( $featured_image ) ) {
+		$image = $featured_image;
 		if ( ! is_singular() ) {
-			$image = '<a href="' . esc_url( get_permalink() ) . '">' . $featured_image . '</a>';
+			$image = '<a href="' . esc_url( get_permalink() ) . '">' . $image . '</a>';
 		}
 	}
 	if ( ! empty( $image ) ) {
