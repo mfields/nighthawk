@@ -708,14 +708,14 @@ function ghostbird_author_bio( $before = '', $after = '', $print = true ) {
 		$class  = '';
 		$avatar = get_avatar( get_the_author_meta( 'user_email' ), apply_filters( 'ghostbird_author_size', 60 ) );
 		if ( ! empty( $avatar ) && 'status' != get_post_format() ) {
-			$class.= ' class="has-avatar"';
+			$class.= 'has-avatar';
 			$avatar = "\n" . '<div class="author-avatar">' . $avatar . '</div>';
 		}
 		else {
 			$avatar = '';
 		}
 		$author_bio.= "\n\n";
-		$author_bio.= "\n" . '<div id="author-box"' . $class . '>';
+		$author_bio.= "\n" . '<div id="author-box" class="contain ' . $class . '">';
 		$author_bio.= $avatar;
 		$author_bio.= "\n" . '<h2 class="author-name">' . sprintf( esc_attr__( 'About %s', 'ghostbird' ), get_the_author() ) . '</h2>';
 		$author_bio.= "\n" . '<div class="author-bio">' . get_the_author_meta( 'description' ) . '</div>';
