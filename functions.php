@@ -18,9 +18,7 @@
  * @todo Update and test style-editor.
  * @todo Lighter fonts in Widgets.
  * @todo Style all features of the Syntax Highlighter plugin.
- * @todo Add credit link in the footer.
  * @todo Pretty-up the calendar widget.
- * @todo Make dialog colors match new theme colors.
  *
  * FUTURE RELEASE
  * @todo Add header widget. Intended for search form?
