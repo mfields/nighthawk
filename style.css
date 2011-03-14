@@ -1031,3 +1031,17 @@ li.cws-imp-plugin {
 	padding:0;
 	list-style-type:none;
 }
+
+.contain:before,
+.contain:after {
+	content:"\0020";
+	display:block;
+	height:0;
+	visibility:hidden;
+}
+.contain:after {
+	clear:both;
+}
+.contain {
+	zoom:1;
+}
