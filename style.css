@@ -827,19 +827,6 @@ input#submit,
 	cursor:pointer;
 }
 
-
-/* Dialog Boxen. */
-.dialog {
-	margin:0 0 1.5em;
-	padding:.5em .75em;
-	border:.25em dotted #acd2e5;
-	background-color:#bfeaff;
-}
-.dialog.error    { background-color:#ffd9d9; border-color:#e5b8b8 }
-.dialog.notice   { background-color:#fffabf; border-color:#f2e76d }
-.dialog.success  { background-color:#bfffc5; border-color:#a3d9a7 }
-
-
 /* WordPress generated classes. */
 .clear {
 	clear:both;
