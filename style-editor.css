@@ -1,0 +1,237 @@
+html .mceContentBody {
+	font-family:Trebuchet,arial,sans-serif;
+	font-size:14px;
+	max-width:608px;
+}
+ 
+/* Font-size + margin for all headings */
+h1, h2, h3, h4, h5, h6 { margin:0; padding:0; line-height:1.2em; clear:both; }
+h1 { font-size:1.50em; margin-bottom:.67em; }
+h2 { font-size:1.38em; margin-bottom:.73em; }
+h3 { font-size:1.13em; margin-bottom:.89em; }
+h4 { font-size:1.06em; margin-bottom:.94em; }
+h5,
+h6 { font-size:1.00em; margin-bottom:.90em; }
+
+/* Margin for all blocks. */
+p, ul, ol, dl, pre, table, address, blockquote, fieldset, form {
+	font-size:1em;
+	margin:1.75em 0;
+	padding:0;
+	line-height:1.75em;
+}
+
+/* Lists */
+ul, ol {
+	padding-left:1.5em;
+}
+ul ul, ol ol, ul ol, ol ul {
+	margin:0;
+}
+dt, dd {
+	margin:0;
+	padding:0;
+}
+dd {
+	margin-bottom:1.5em;
+}
+
+/* Blocks that need padding */
+pre, fieldset, blockquote {
+	text-align:left;
+	padding:1em;
+	background-color:#fff;
+}
+blockquote {
+	position:relative;
+	padding-left:2em;
+	margin:1.75em 2em 1.75em 22px;
+	min-height:34px;
+}
+blockquote:before {
+	content:url( images/quote.png );
+	position:absolute;
+	top:10px;
+	left:-22px;
+}
+blockquote blockquote {
+	margin-left:0;
+	margin-right:0;
+	}
+
+blockquote p:first-child,
+blockquote blockquote:first-child {
+	margin-top:0;
+}
+
+blockquote p:last-child,
+blockquote blockquote:last-child {
+	margin-bottom:0;
+}
+
+big {
+	position:relative;
+	top:.1em;
+	font-size:2em;
+}
+small {
+	font-size:0.9em;
+	line-height:1.5em;
+}
+	
+/* Typography: Style + Color */
+pre, tt, code, samp, kbd, var {
+	font-family:Consolas, "Courier New", Courier, monospace;
+}
+abbr, acronym {
+	border-bottom:1px dashed #999;
+	cursor:help;
+}
+var {
+	color:#003560;
+	font-weight:bold;
+	font-style:normal;
+}
+h1, h2, h3, h4, h5, h6, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
+	font-weight:bold;
+	text-decoration:none;
+	color:#3a5066;
+}
+dt {
+	font-weight:bold;
+}
+ins {
+	text-decoration:none;
+	background-color:#fffabf;
+	background-color:#bfffc5; 
+}
+del, strike, s {
+	text-decoration:line-through;
+}
+pre {
+	border:.1em solid #ccc;
+}
+blockquote {
+	border:.1em solid #ccc;
+	font-style:italic;
+}
+a {
+	color:#5588bb;
+	text-decoration:none;
+}
+a img {
+	border-width:0;
+}
+a.edit-term img {
+	border-width:0;
+}
+a:focus {
+	color:#333;
+	background:#bfeaff;
+	text-decoration:underline;
+	outline:0;
+}
+a:focus img {
+	outline:.2em solid #bfeaff;
+}
+code {
+	border:.1em solid #d6e8f1;
+	background:#e2f5ff;
+	padding:0 .3em;
+	color:#60686c;
+}
+
+/* Colors */
+del, strike, s, .required {
+	color:#880000;
+}
+.required {
+	position:relative;
+	top:.125em;
+	font-weight:bold;
+	font-size:1.5em;
+}
+
+/* Forms */
+legend {
+	padding:.5em;
+}
+input,
+textarea {
+	padding:.5em;
+	border:.1em solid #ccc;
+}
+fieldset {
+	padding:.5em 1em;
+	border:.1em solid #ccc;
+}
+input[type="file"] {
+	padding:0;
+}
+input:focus,
+textarea:focus {
+	color:#60686c;
+	outline:.2em solid #cadbe3;
+	background:#e2f5ff;
+}
+
+
+table {
+	border-collapse:collapse;
+	border:.1em solid #555;
+}
+th, td {
+	text-align:left;
+	padding:.25em .5em;
+}
+td {
+	border:.1em solid #777;
+}
+
+
+/* Rounded corners. */
+button,
+.button {
+	padding:.5em;
+	border-width:0;
+	line-height:1;
+	text-align:center;
+	text-decoration:none;
+	font-size:1em;
+	font-weight:bold;
+	color:#fff;
+	cursor:pointer;
+	border-top-left-radius:          .5em;
+	border-top-right-radius:         .5em;
+	-webkit-border-top-left-radius:  .5em;
+	-webkit-border-top-right-radius: .5em;
+	-moz-border-radius-topleft:      .5em;
+	-moz-border-radius-topright:     .5em;
+	border-bottom-left-radius:          .5em;
+	border-bottom-right-radius:         .5em;
+	-webkit-border-bottom-left-radius:  .5em;
+	-webkit-border-bottom-right-radius: .5em;
+	-moz-border-radius-bottomright:     .5em;
+	-moz-border-radius-bottomleft:      .5em;
+}
+
+
+/* Blue Gradient */
+button,
+.button,
+th {
+	color:#fff;
+	background:#3c6081;
+	background-image: -webkit-gradient(
+		linear,
+		left top,
+		left bottom,
+		color-stop( 1, #3c6081 ),
+		color-stop( 0, #588dbe )
+		);
+	background-image: -moz-linear-gradient(
+		top,
+		#3c6081,
+		#588dbe
+		);
+}
