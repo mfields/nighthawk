@@ -11,6 +11,11 @@
  * @since        1.0
  */
 
+if ( ! have_posts() ) {
+	require_once( get_template_directory_uri() .'/404.php' );
+	exit;
+}
+
 get_header();
 
 ?>

@@ -34,6 +34,11 @@
  * @since        1.0
  */
 
+if ( ! have_posts() ) {
+	require_once( get_template_directory_uri() .'/404.php' );
+	exit;
+}
+
 get_header();
 
 ?>
@@ -52,10 +57,7 @@ get_header();
 
 <?php
 
-if ( ! have_posts() && ! is_search() ) {
-	print '<div class="entry">' . __( 'Sorry, no posts were found', 'ghostbird' ) . '</div>';
-}
-else {
+if ( have_posts() ) {
 	while ( have_posts() ) {
 		the_post();
 		get_template_part( 'loop' );

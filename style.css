@@ -1088,3 +1088,16 @@ th,
 		#588dbe
 		);
 }
+
+.error404 h2 {
+	margin-bottom:0;
+}
+.error404 #content .widget {
+	margin-bottom:2em;
+}
+.error404 #content .widget h2 {
+	margin-bottom:.5em;
+}
+.error404 #content .widget ul {
+	margin-top:0;
+}
