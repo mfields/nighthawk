@@ -2,7 +2,7 @@
 /**
  * Post Template.
  *
- * This template is loaded whenever single posts are being viewed.
+ * This template is loaded whenever a single post is being viewed.
  *
  * @package      Ghostbird
  * @author       Michael Fields <michael@mfields.org>
