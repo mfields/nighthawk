@@ -35,7 +35,7 @@
  */
 
 if ( ! have_posts() ) {
-	require_once( get_template_directory_uri() .'/404.php' );
+	get_template_part( '404' );
 	exit;
 }
 
