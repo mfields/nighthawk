@@ -78,18 +78,26 @@
 }
 .syntaxhighlighter table caption {
 	width:100% !important;
-	
-	/*padding: .5em 0 .5em 1em !important;*/
-	
 	font-family: Trebuchet,arial,sans-serif !important;
-	font-size:   1em !important;
-	text-align:  left !important;
-	
-	background-color: #000 !important;
-	color: #fff !important;
-	/*position:relative !important;
-	top:-1em !important;*/
+	font-size:1.2em !important;
+	font-weight:bold !important;
+	text-align:left !important;	
 	margin-bottom:.5em !important;
+	padding:.5em !important;
+	color: #fff !important;
+	background:#3c6081 !important;
+	background-image: -webkit-gradient(
+		linear,
+		left top,
+		left bottom,
+		color-stop( 1, #3c6081 ),
+		color-stop( 0, #588dbe )
+		) !important;
+	background-image: -moz-linear-gradient(
+		top,
+		#3c6081,
+		#588dbe
+		) !important;
 }
 .syntaxhighlighter table tbody {
 
