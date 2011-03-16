@@ -301,6 +301,7 @@ body {
 	color:#e9d6d6;
 	background-color:#111;
 	outline:0;
+	white-space:nowrap;
 	-webkit-transition:background-color, -webkit-box-shadow 0.2s linear;
 }
 
@@ -457,21 +458,43 @@ h2.entry-title {
 	line-height:1.25em;
 }
 
+
+/* Search form. */
 .search-form {
 	position:relative;
-	/*width:23em;*/
+	width:auto;
 	height:1.5em;
-	border:1px solid #e2caa0;
-	background:#e2caa0;
 	margin:.5em 0;
-}
-body.search .search-form {
-	/*margin:0 auto;*/
-}
+	border:.1em solid #cfb994;
 
+	border-top-right-radius:            .5em;
+	-webkit-border-top-right-radius:    .5em;
+	-moz-border-radius-topright:        .5em;
+	border-bottom-right-radius:         .5em;
+	-webkit-border-bottom-right-radius: .5em;
+	-moz-border-radius-bottomright:     .5em;
+	
+	-webkit-background-clip:content-box;
+
+	background:#3c6081;
+	background-image: -webkit-gradient(
+		linear,
+		left top,
+		left bottom,
+		color-stop( 1, #3c6081 ),
+		color-stop( 0, #588dbe )
+		);
+	background-image: -moz-linear-gradient(
+		top,
+		#3c6081,
+		#588dbe
+		);
+}
 .search-form label.search-label,
 .search-form input.search-term,
-.search-form input.search-button {
+#widgets .search-form input.search-term,
+.search-form input.search-button,
+#widgets .search-form input.search-button {
 	position:absolute;
 	display:block;
 	top:0;
@@ -484,12 +507,11 @@ body.search .search-form {
 .search-form label.search-label {
 	left:0;
 	z-index:2;
-	/*display:none;*/
 }
 .search-form input.search-term {
 	left:0;
+	right:5em;
 	z-index:1;
-	width:80%;
 	height:1.5em;
 	padding:0 .25em;
 	background:#fff;
@@ -497,13 +519,18 @@ body.search .search-form {
 .search-form input.search-term:focus {
 	outline:none;
 }
-.search-form input.search-button {
-	width:18.5%;
+.search-form input.search-button,
+#widgets .search-form input.search-button {
+	width:5em;
 	right:0;
 	padding:0;
 	cursor:pointer;
 	background:transparent;
+	text-align:center;
+	border-left:1px solid #cfb994;
+	color:#fff;
 }
+
 
 /* Author Box */
 #author-box {
@@ -813,8 +840,7 @@ input#submit,
 
 /* Buttons. */
 .button,
-input#submit,
-#searchsubmit {
+input#submit {
 	padding:.5em;
 	border-width:0;
 	line-height:1;
@@ -961,6 +987,7 @@ blockquote,
 	-moz-border-radius-bottomright:     .5em;
 	-moz-border-radius-bottomleft:      .5em;
 }
+
 
 /* WordPress Calendar */
 table#wp-calendar {
