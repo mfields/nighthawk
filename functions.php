@@ -9,15 +9,10 @@
  * @since        1.0
  *
  * BEFORE 1.0 RELEASE
- * @todo Style global tables.
- * @todo Test "big" tag across browsers - not sure about positioning here :)
  * @todo Completely test and rewrite all examples in docs or remove if feeling lazy ;)
  * @todo HTML validataion.
  * @todo CSS validataion FWIW.
- * @todo Add meta to search archives intro box.
- * @todo Update and test style-editor.
  * @todo Lighter fonts in Widgets.
- * @todo Style all features of the Syntax Highlighter plugin.
  * @todo Pretty-up the calendar widget.
  *
  * FUTURE RELEASE
