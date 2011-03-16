@@ -1,6 +1,6 @@
 <?php get_header(); ?>
 
-<div id="content">
+<div id="content" class="error404">
 
 	<div id="intro">
 		<h1><?php esc_html_e( 'Error 404', 'ghostbird' ); ?></h1>

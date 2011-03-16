@@ -1,5 +1,6 @@
 /*
 Theme Name:        Ghostbird
+Theme URI:         http://ghostbird.mfields.org/
 Description:       A one-column theme for WordPress.
 Author:            Michael Fields
 Author URI:        http://wordpress.mfields.org/
@@ -97,6 +98,10 @@ small {
 pre, tt, code, samp, kbd, var {
 	font-family:Consolas, "Courier New", Courier, monospace;
 }
+abbr, acronym {
+	border-bottom:1px dashed #999;
+	cursor:help;
+}
 var {
 	color:#003560;
 	font-weight:bold;
@@ -144,6 +149,12 @@ a:focus {
 a:focus img {
 	outline:.2em solid #bfeaff;
 }
+code {
+	border:.1em solid #d6e8f1;
+	background:#e2f5ff;
+	padding:0 .3em;
+	color:#60686c;
+}
 
 /* Colors */
 del, strike, s, .required {
@@ -174,8 +185,21 @@ input[type="file"] {
 }
 input:focus,
 textarea:focus {
-	background-color:#dae6ed;
-	outline:.2em solid #54778a;
+	color:#60686c;
+	outline:.2em solid #cadbe3;
+	background:#e2f5ff;
+}
+
+table {
+	border-collapse:collapse;
+	border:.1em solid #555;
+}
+th, td {
+	text-align:left;
+	padding:.25em .5em;
+}
+td {
+	border:.1em solid #777;
 }
 
 .addendum {
@@ -825,6 +849,7 @@ input#submit,
 }
 
 /* Buttons. */
+button,
 .button,
 input#submit {
 	padding:.5em;
@@ -835,7 +860,6 @@ input#submit {
 	font-size:1em;
 	font-weight:bold;
 	color:#fff;
-	background-color:#54778a;
 	cursor:pointer;
 }
 
@@ -934,6 +958,7 @@ blockquote,
 	-moz-box-shadow:    .2em .2em .3em rgba( 0, 0, 0, 0.3 );
 }
 
+
 /* Reset shadows for certain elements. */
 .entry img.wp-smiley {
 	border-width:0; 
@@ -944,6 +969,7 @@ blockquote,
 
 
 /* Rounded corners: Top. */
+button,
 #submit,
 #menu-top,
 #menu-top li a,
@@ -959,6 +985,7 @@ blockquote,
 
 
 /* Rounded corners: Bottom. */
+button,
 #intro,
 #submit,
 #widgets,
@@ -1032,9 +1059,14 @@ table#wp-calendar {
 
 
 /* I make plugins plugin. */
+#cws-imp-plugin-list {
+	margin:0;
+	padding:0;
+}
 a.cws-imp-plugin-title {
 	font-weight:bold;
-	margin-bottom:.5em;
+	margin-bottom:.73em;
+	font-size:1.38em;
 }
 p.cws-imp-plugin-description {
 	margin-top:0;
@@ -1059,19 +1091,12 @@ li.cws-imp-plugin {
 	zoom:1;
 }
 
-table {
-	border-collapse:collapse;
-	border:.1em solid #555;
-}
-th, td {
-	text-align:left;
-	padding:.25em .5em;
-}
-td {
-	border:.1em solid #777;
-}
 
+/* Blue Gradient */
+button,
+.button,
 th,
+input#submit,
 .search-form {
 	color:#fff;
 	background:#3c6081;
@@ -1089,15 +1114,16 @@ th,
 		);
 }
 
-.error404 h2 {
+
+#content.error404 h2 {
 	margin-bottom:0;
 }
-.error404 #content .widget {
+#content.error404 .widget {
 	margin-bottom:2em;
 }
-.error404 #content .widget h2 {
+#content.error404 .widget h2 {
 	margin-bottom:.5em;
 }
-.error404 #content .widget ul {
+#content.error404 .widget ul {
 	margin-top:0;
 }
