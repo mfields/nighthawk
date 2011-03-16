@@ -475,20 +475,6 @@ h2.entry-title {
 	-moz-border-radius-bottomright:     .5em;
 	
 	-webkit-background-clip:content-box;
-
-	background:#3c6081;
-	background-image: -webkit-gradient(
-		linear,
-		left top,
-		left bottom,
-		color-stop( 1, #3c6081 ),
-		color-stop( 0, #588dbe )
-		);
-	background-image: -moz-linear-gradient(
-		top,
-		#3c6081,
-		#588dbe
-		);
 }
 .search-form label.search-label,
 .search-form input.search-term,
@@ -1071,4 +1057,34 @@ li.cws-imp-plugin {
 }
 .contain {
 	zoom:1;
+}
+
+table {
+	border-collapse:collapse;
+	border:.1em solid #555;
+}
+th, td {
+	text-align:left;
+	padding:.25em .5em;
+}
+td {
+	border:.1em solid #777;
+}
+
+th,
+.search-form {
+	color:#fff;
+	background:#3c6081;
+	background-image: -webkit-gradient(
+		linear,
+		left top,
+		left bottom,
+		color-stop( 1, #3c6081 ),
+		color-stop( 0, #588dbe )
+		);
+	background-image: -moz-linear-gradient(
+		top,
+		#3c6081,
+		#588dbe
+		);
 }
