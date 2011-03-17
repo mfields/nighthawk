@@ -1463,8 +1463,8 @@ function _ghostbird_search_form( $form ) {
 	
 	$form = "\n\n";
 	$form.= "\n" . '<form role="search" method="get" action="" class="search-form">';
-	$form.= "\n" . '<label for="' . esc_attr( $id ) . '">Search</label>';
-	$form.= "\n" . '<input class="search-term" id="' . esc_attr( $id ) . '" type="text" value="' . esc_attr( get_search_query( false ) ) . '" name="s" />';
+	$form.= "\n" . '<label for="' . esc_attr( $id_attr ) . '">Search</label>';
+	$form.= "\n" . '<input class="search-term" id="' . esc_attr( $id_attr ) . '" type="text" value="' . esc_attr( get_search_query( false ) ) . '" name="s" />';
 	$form.= "\n" . '<input class="search-button" type="submit" value="Search" />';
 	$form.= "\n" . '</form>';
 	return $form;
