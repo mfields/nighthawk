@@ -1,3 +1,23 @@
+<?php
+/**
+ * 404 Template.
+ *
+ * This file will be loaded by WordPress for all 404
+ * views. It will also be displayed in instances where
+ * a query produces no results.
+ *
+ * This file closes all html tags that it opens.
+ *
+ * This file terminates script execution.
+ *
+ * @package      Ghostbird
+ * @author       Michael Fields <michael@mfields.org>
+ * @copyright    Copyright (c) 2011, Michael Fields
+ * @license      http://opensource.org/licenses/gpl-2.0.php GNU Public License
+ * @since        1.0
+ */
+?>
+
 <?php get_header(); ?>
 
 <div id="content" class="error404">
@@ -16,3 +36,4 @@
 </div>
 
 <?php get_footer(); ?>
+<?php exit; ?>

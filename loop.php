@@ -3,17 +3,7 @@
  * Loop template
  *
  * This file is responsible for generating all code in 
- * the WordPress loop. Please note that, while it is 
- * very similar to the loop found in TwentyTen, there
- * is a major difference that cannot be ignored. This
- * template does not actually call the loop. It must
- * be included inside a loop in another file. This is
- * by design and will allow for this file to be used
- * anywhere a formatted post object is needed. For 
- * example, this file could be used as-is inside an 
- * Ajax callback function which uses a custom. It can
- * also be included inside custom loops created with 
- * get_posts(), get_pages() or get_children().
+ * the WordPress loop.
  *
  * @package      Ghostbird
  * @author       Michael Fields <michael@mfields.org>
@@ -21,8 +11,11 @@
  * @license      http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since        1.0
  */
-?>
 
+if ( have_posts() ) {
+	while ( have_posts() ) {
+		the_post();
+?>
 
 <div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 <?php
@@ -52,10 +45,15 @@ wp_link_pages( array( 'before' => '<div class="page-link">' . __( 'Pages:', 'gho
 ?>
 
 <div class="entry-meta">
-<?php ghostbird_entry_meta_date(); ?>
-<?php ghostbird_entry_meta_taxonomy(); ?>
+	<?php ghostbird_entry_meta_date(); ?>
+	<?php ghostbird_entry_meta_taxonomy(); ?>
 </div><!--meta-->
 
 <?php do_action( 'ghostbird_entry_end' ); ?>
 
 </div><!--entry-->
+
+<?php
+	}
+}
+?>

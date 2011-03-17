@@ -13,7 +13,6 @@
 
 if ( ! have_posts() ) {
 	get_template_part( '404' );
-	exit;
 }
 
 get_header();
@@ -28,14 +27,8 @@ get_header();
 		<?php ghostbird_summary_meta( '<div id="intro-meta">', '</div>' ) ?>
 	</div>
 
-<?php
-if ( have_posts() ) {
-	while ( have_posts() ) {
-		the_post();
-		get_template_part( 'loop', 'taxonomy' );
-	}
-}
-?>
+<?php get_template_part( 'loop', 'taxonomy' ); ?>
+
 </div><!--content-->
 
 <div class="clear"></div>

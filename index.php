@@ -36,7 +36,6 @@
 
 if ( ! have_posts() ) {
 	get_template_part( '404' );
-	exit;
 }
 
 get_header();
@@ -45,28 +44,17 @@ get_header();
 
 <div id="content">
 
-<div id="intro"><?php
-	ghostbird_title( '<h1>', '</h1>' );
-	ghostbird_byline( '<p id="byline">', '</p>' );
-	ghostbird_summary( '<div id="summary">', '</div>' );
-	ghostbird_summary_meta( '<div id="intro-meta">', '</div>' );
-?>
-
+<div id="intro">
+	<?php ghostbird_title( '<h1>', '</h1>' ); ?>
+	<?php ghostbird_byline( '<p id="byline">', '</p>' ); ?>
+	<?php ghostbird_summary( '<div id="summary">', '</div>' ); ?>
+	<?php ghostbird_summary_meta( '<div id="intro-meta">', '</div>' ); ?>
 </div>
 
+<?php get_template_part( 'loop' ); ?>
 
-<?php
+<?php comments_template( '', true ); ?>
 
-if ( have_posts() ) {
-	while ( have_posts() ) {
-		the_post();
-		get_template_part( 'loop' );
-	}
-}
-
-comments_template( '', true );
-
-?>
 </div><!--content-->
 
 <div class="clear"></div>

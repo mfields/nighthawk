@@ -37,9 +37,6 @@ get_header();
 </div>
 
 <?php
-
-
-
 if ( have_posts() ) {
 	print "\n" . '<div id="search-results">';
 	while ( have_posts() ) {
