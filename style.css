@@ -377,7 +377,7 @@ body {
 }
 .entry p:first-child,
 .entry div:first-child,
-.entry form:first-child
+.entry form:first-child,
 .entry dl:first-child,
 .entry ol:first-child,
 .entry ul:first-child {
