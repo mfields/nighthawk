@@ -19,26 +19,47 @@
  * @since        1.0
  */
 
-if ( ! comments_open() || post_password_required() ) {
+/*
+ * Return early if ...
+ * Post is protected by a password.
+ */
+if ( post_password_required() ) {
+	if ( have_comments() )
+	print '<p class="nopassword">' . sprintf( __( 'This %1$s is password protected. Enter the password to view any comments.', 'ghostbird' ), ghostbird_post_label() ) . '</p>';
+	return;
+}
+
+/*
+ * Return early if ...
+ * there are no comments and comments are not allowed.
+ */
+if ( ! have_comments() && ! comments_open() ) {
 	return;
 }
 
 if ( have_comments() ) {
 	
-	/* Comment Heading. */
+	/* Comment heading. */
 	$heading = sprintf( _n( '%1$s Comment', '%1$s Comments', get_comments_number(), 'ghostbird' ), number_format_i18n( get_comments_number() ) );
-	$link    = '<a class="addendum" href="#respond">' . __( 'Leave a comment', 'ghostbird' ) . '</a>';
-	print '<h2 id="comments">' . $heading . ' ' . $link . '</h2>';
 	
-	/* List the Comments. */
+	/* Addendum */
+	$addendum = '<a class="addendum" href="#respond">' . __( 'Leave a comment', 'ghostbird' ) . '</a>';
+	if ( ! comments_open() ) {
+		$addendum = '<span class="addendum">' . __( 'Comments are closed', 'ghostbird' ) . '</span>';
+	}
+
+	/* Print heading. */
+	print '<h2 id="comments">' . $heading . ' ' . $addendum . '</h2>';
+
+	/* List the comments. */
 	print '<ol class="comment-list">';
 	wp_list_comments( array(
 		'callback'     => '_ghostbird_comment_start',
 		'end-callback' => '_ghostbird_comment_end'
 		) );
 	print '</ol>';
-	
-	/* Paged Navigation. */
+
+	/* Paged navigation. */
 	if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) {
 		print '<div class="navigation">';
 		print '<div class="nav-previous">'; previous_comments_link( __( '&laquo; Older Comments', 'ghostbird' ) ); print '</div>';
@@ -47,7 +68,7 @@ if ( have_comments() ) {
 	}
 }
 
-/* Display Comment Form. */
+/* Display comment form. */
 comment_form( array(
 	'title_reply'          =>  __( 'Share your thoughts', 'ghostbird' ),
 	'comment_notes_before' => '',
