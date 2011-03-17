@@ -949,7 +949,7 @@ button,
 .button,
 th,
 input#submit,
-.search-form {
+.simple-form {
 	color:#fff;
 	background:#3c6081;
 	background-image: -webkit-gradient(
@@ -1071,7 +1071,7 @@ li.cws-imp-plugin {
 }
 
 /* Search form. */
-.search-form {
+.simple-form {
 	position:relative;
 	width:auto;
 	height:2em;
@@ -1087,11 +1087,11 @@ li.cws-imp-plugin {
 	-webkit-background-clip:padding-box;
 	background-clip:padding-box;
 }
-.search-form label.search-label,
-.search-form input.search-term,
-#widgets .search-form input.search-term,
-.search-form input.search-button,
-#widgets .search-form input.search-button {
+.simple-form label.search-label,
+.simple-form input.search-term,
+#widgets .simple-form input.search-term,
+.simple-form input.search-button,
+#widgets .simple-form input.search-button {
 	position:absolute;
 	display:block;
 	top:0;
@@ -1101,11 +1101,11 @@ li.cws-imp-plugin {
 	margin:0;
 	border-width:0;
 }
-.search-form label.search-label {
+.simple-form label.search-label {
 	left:0;
 	z-index:2;
 }
-.search-form input.search-term {
+.simple-form input.search-term {
 	left:0;
 	right:5em;
 	z-index:1;
@@ -1113,11 +1113,11 @@ li.cws-imp-plugin {
 	padding:0 .5em;
 	background:#fff;
 }
-.search-form input.search-term:focus {
+.simple-form input.search-term:focus {
 	outline:none;
 }
-.search-form input.search-button,
-#widgets .search-form input.search-button {
+.simple-form input.search-button,
+#widgets .simple-form input.search-button {
 	width:5em;
 	right:0;
 	padding:0;
