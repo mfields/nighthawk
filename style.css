@@ -102,11 +102,6 @@ abbr, acronym {
 	border-bottom:1px dashed #999;
 	cursor:help;
 }
-var {
-	color:#003560;
-	font-weight:bold;
-	font-style:normal;
-}
 h1, h2, h3, h4, h5, h6, h1 a, h2 a, h3 a, h4 a, h5 a, h6 a {
 	font-weight:bold;
 	text-decoration:none;
@@ -149,11 +144,12 @@ a:focus {
 a:focus img {
 	outline:.2em solid #bfeaff;
 }
-code {
+code, var {
 	border:.1em solid #d6e8f1;
 	background:#e2f5ff;
 	padding:0 .3em;
 	color:#60686c;
+	font-style:normal;
 }
 
 /* Colors */
