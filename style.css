@@ -375,7 +375,12 @@ body {
 .entry:first-child {
 	padding-top:3em;
 }
-.entry p:first-child {
+.entry p:first-child,
+.entry div:first-child,
+.entry form:first-child
+.entry dl:first-child,
+.entry ol:first-child,
+.entry ul:first-child {
 	margin-top:0;
 }
 .entry img {
