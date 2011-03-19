@@ -61,24 +61,6 @@ if ( 0 < $count ) {
 	) ); ?>
 
 <?php wp_footer(); ?>
-<script>
-	// var form, forms, i;
-	// var forms = document.getElementsByTagName( 'form' );
-	// for ( i = 0; i < forms.length; i++ ) {
-		// form = forms[i];
-		// if ( 'simple-form' == form.className ) {
-			// inputs = form.getElementsByTagName( 'input' );
-			// for ( i = 0; i < inputs.length; i++ ) {
-				// input = inputs[i];
-				// if ( 'simple-form-term' == input.className ) {
-					// input.addEventListener( 'focus', function( e ) {
-						// console.log( input );
-					// } );
-				// }
-			// }
-		// }
-	// }
-	//console.log( forms );
-</script>
+
 </body>
 </html>
