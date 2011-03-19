@@ -12,8 +12,6 @@
  * @todo Completely test and rewrite all examples in docs or remove if feeling lazy ;)
  * @todo HTML validataion.
  * @todo CSS validataion FWIW.
- * @todo Lighter fonts in Widgets.
- * @todo Pretty-up the calendar widget.
  *
  * FUTURE RELEASE
  * @todo Add header widget. Intended for search form?
@@ -517,6 +515,14 @@ function ghostbird_continue_reading_link() {
 	return ' <a href="'. get_permalink() . '">' . __( 'Continue reading', 'ghostbird' ) . '</a>';
 }
 
+function ghostbird_entry_meta_classes() {
+	$classes = array( 'entry-meta' );
+	if ( post_password_required() ) {
+		$classes[] = 'hide';
+	}
+	return implode( ' ', $classes );
+}
+
 /**
  * Entry Meta Date
  *
@@ -541,6 +547,9 @@ function ghostbird_continue_reading_link() {
  * @since     1.0
  */
 function ghostbird_entry_meta_date() {
+	if ( post_password_required() ) {
+		return '';
+	}
 
 	print "\n" . '<p>';
 
@@ -594,6 +603,9 @@ function ghostbird_entry_meta_date() {
  * @since     1.0
  */
 function ghostbird_entry_meta_taxonomy() {
+	if ( post_password_required() ) {
+		return '';
+	}
 	$sentence   = '';
 	$label      = ghostbird_post_label();
 	$label_url  = get_post_format_link( get_post_format() );
@@ -863,6 +875,9 @@ function ghostbird_post_label( $singular = true ) {
  * @since     1.0
  */
 function ghostbird_featured_image( $before = '', $after = '', $print = true ) {
+	if ( post_password_required() ) {
+		return '';
+	}
 	$image = '';
 	$featured_image = get_the_post_thumbnail();
 	if ( ! empty( $featured_image ) ) {
@@ -1460,15 +1475,39 @@ function _ghostbird_search_form( $form ) {
 	static $id = 0;
 	$id++;
 	$id_attr = 'search-form-' . $id;
-	
+
 	$form = "\n\n";
-	$form.= "\n" . '<form role="search" method="get" action="" class="simple-form">';
-	$form.= "\n" . '<label for="' . esc_attr( $id_attr ) . '">Search</label>';
-	$form.= "\n" . '<input class="search-term" id="' . esc_attr( $id_attr ) . '" type="text" value="' . esc_attr( get_search_query( false ) ) . '" name="s" />';
-	$form.= "\n" . '<input class="search-button" type="submit" value="Search" />';
+	$form.= "\n" . '<form class="simple-form" role="search" method="get" action="">';
+	$form.= "\n" . '<label class="simple-form-label" for="' . esc_attr( $id_attr ) . '">Search</label>';
+	$form.= "\n" . '<input class="simple-form-term" id="' . esc_attr( $id_attr ) . '" type="text" value="' . esc_attr( get_search_query( false ) ) . '" name="s" />';
+	$form.= "\n" . '<input class="simple-form-button" type="submit" value="Search" />';
 	$form.= "\n" . '</form>';
 	return $form;
 }
 add_filter( 'get_search_form', '_ghostbird_search_form' );
 
+/**
+ * Password Form.
+ *
+ * @param     string    Default WordPress password from.
+ * @return    string    Custom password form.
+ *
+ * @access    private
+ * @since     1.0
+ */
+function _ghostbird_password_form( $form ) {
+	static $id = 0;
+	$id++;
+	$id_attr = 'password-form-' . $id;
+
+	$form = "\n\n";
+	$form.= "\n" . '<p>' . __( 'This post is password protected. To view it please enter your password below:', 'ghostbird' ) . '</p>';
+	$form.= "\n" . '<form class="simple-form" action="' . get_option( 'siteurl' ) . '/wp-pass.php" method="post">';
+	$form.= "\n" . '<label class="simple-form-label" for="' . esc_attr( $id_attr ) . '">' . __( 'Enter Password', 'ghostbird' ) . '</label>';
+	$form.= "\n" . '<input class="simple-form-term" name="post_password" id="' . esc_attr( $id_attr ) . '" type="password" size="20" />';
+	$form.= "\n" . '<input class="simple-form-button" type="submit" name="Submit" value="' . esc_attr__( 'Unlock', 'ghostbird' ) . '" />';
+	$form.= "\n" . '</form>';
+	return $form;
+}
+add_filter( 'the_password_form', '_ghostbird_password_form' );
 /**#@-*/

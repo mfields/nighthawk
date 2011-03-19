@@ -18,22 +18,22 @@ body {
 }
  
 /* Font-size + margin for all headings */
-h1, h2, h3, h4, h5, h6 { margin:0; padding:0; line-height:1.2em; clear:both; }
-h1 { font-size:1.50em; margin-bottom:.67em; }
-h2 { font-size:1.38em; margin-bottom:.73em; }
-h3 { font-size:1.13em; margin-bottom:.89em; }
-h4 { font-size:1.06em; margin-bottom:.94em; }
+h1, h2, h3, h4, h5, h6 { padding:0; line-height:1.2em; clear:both; }
+h1 { font-size:1.50em; margin:.83em 0; }
+h2 { font-size:1.38em; margin:1.05em 0; }
+h3 { font-size:1.13em; margin:1.15em 0; }
+h4 { font-size:1.06em; margin:1.35em 0; }
 h5,
-h6 { font-size:1.00em; margin-bottom:.90em; }
+h6 { font-size:1.00em; margin:1.5em 0; }
 
 /*h1, h2, h3, h4, h5, h6 { margin:0 0 3.75em 0; }*/
 
 /* Margin for all blocks. */
-p, ul, ol, dl, pre, table, address, blockquote, fieldset, form {
+p, ul, ol, dl, pre, table, address, blockquote, fieldset, form, .entry-meta {
 	font-size:1em;
-	margin:1.75em 0;
+	margin:1.5em 0;
 	padding:0;
-	line-height:1.75em;
+	line-height:1.5em;
 }
 
 /* Lists */
@@ -151,6 +151,20 @@ code, var {
 	color:#60686c;
 	font-style:normal;
 }
+kbd, tt {
+	border:.1em solid #ddd;
+	background:#eee;
+	padding:0 .3em;
+	color:#777;
+	font-style:normal;
+}
+pre code,
+pre kbd,
+pre tt {
+	border-width:0;
+	background:transparent;
+	padding:0;
+}
 
 /* Colors */
 del, strike, s, .required {
@@ -189,6 +203,7 @@ textarea:focus {
 table {
 	border-collapse:collapse;
 	border:.1em solid #555;
+	background-color:#fff;
 }
 th, td {
 	text-align:left;
@@ -321,7 +336,7 @@ body {
 	color:#e9d6d6;
 	background-color:#111;
 	outline:0;
-	white-space:nowrap;
+	/*white-space:nowrap;*/
 	-webkit-transition:background-color, -webkit-box-shadow 0.2s linear;
 }
 
@@ -348,7 +363,7 @@ body {
 }
 #intro h1 {
 	line-height:1;
-	margin-bottom:.25em;
+	margin:0 0 .25em;
 }
 #summary p:first-child,
 #summary p:only-child { margin-top:.25em; }
@@ -370,8 +385,17 @@ body {
 
 /* All posts. */
 .entry {
-	background:#fff;
+	margin:1.5em 0;
+	padding:0 1.5em;
+	overflow:hidden;
+	border:.1em solid #e2dcd2;
+	background-color:#fff;
 }
+h2.entry-title {
+	clear:none;
+	margin-bottom:.25em;
+}
+/*
 .entry:first-child {
 	padding-top:3em;
 }
@@ -382,7 +406,7 @@ body {
 .entry ol:first-child,
 .entry ul:first-child {
 	margin-top:0;
-}
+}*/
 .entry img {
 	background-color:#fff;
 }
@@ -403,17 +427,15 @@ body {
 /* Featured image. */
 .featured-image {
 	float:right;
-	margin:0 0 1em 1.5em;
+	border:.1em solid #ccc;
+	margin:1.5em 0 1em 1.5em;
 	padding:10px 12px 8px 10px;
-	border:1px solid #ccc;
 	background-color:#fff;
 	text-align:center;
 }
+
 .featured-image img {
-	border:1px solid #ccc;
-	box-shadow:         0 0 0 !important;
-	-webkit-box-shadow: 0 0 0 !important;
-	-moz-box-shadow:    0 0 0 !important;
+
 }
 
 
@@ -422,15 +444,10 @@ body {
 	float:left;
 	width:60px;
 	height:60px;
-	margin:0;
+	margin:1.5em 0 0 0;
 	padding:0;
 	border-width:0;
 }
-h2.entry-title {
-	clear:none;
-	margin-bottom:.25em;
-}
-.format-status p,
 .many .format-gallery p {
 	margin-top:0;
 }
@@ -445,7 +462,6 @@ h2.entry-title {
 .format-gallery p {
 	margin-bottom:0;
 }
-
 .embed {
 	width:100%;
 }
@@ -453,7 +469,6 @@ h2.entry-title {
 /* Meta. */
 .entry-meta {
 	clear:both;
-	margin:1.75em 0 0;
 }
 .entry-meta p {	
 	margin:0;
@@ -568,19 +583,20 @@ h2.entry-title {
 }
 
 
+/* Trackbacks. */
 .trackback {
-	margin:1.5em;
 	padding:.75em 1.5em;
-	border:.1em solid #e2caa0;
-	background-color:#fbeace;
+	border:.1em solid #e2dcd2;
+	color: #b6b5ad;
+	background-color:#fffef2;
 }
 .trackback a {
-	color: #958569;
+	color: #b6b5ad;
 }
 .trackback a:focus,
 .trackback a:hover,
 .trackback a:active {
-	color: #783232;
+	color: #7c7c76;
 }
 
 
@@ -756,7 +772,6 @@ input#submit,
 
 
 /* Content boxen. */
-.entry,
 .depth-1,
 #commentform,
 #search-results {
@@ -893,8 +908,7 @@ fieldset,
 blockquote,
 .gallery img,
 .entry img,
-.author-avatar,
-.featured-image {
+.author-avatar {
 	box-shadow:         .2em .2em .3em rgba( 0, 0, 0, 0.3 );
 	-webkit-box-shadow: .2em .2em .3em rgba( 0, 0, 0, 0.3 );
 	-moz-box-shadow:    .2em .2em .3em rgba( 0, 0, 0, 0.3 );
@@ -974,6 +988,7 @@ table#wp-calendar {
 	padding:0;
 	empty-cells:show;
 	font-size:1em;
+	border:.1em solid #888;
 	border-collapse:collapse;
 }
 #widgets.count-1 table#wp-calendar {
@@ -1021,7 +1036,9 @@ table#wp-calendar {
 #wp-calendar #prev {
 	text-align:left;
 }
-
+#wp-calendar tfoot td {
+	border-width:0;
+}
 
 /* I make plugins plugin. */
 #cws-imp-plugin-list {
@@ -1075,7 +1092,6 @@ li.cws-imp-plugin {
 	position:relative;
 	width:auto;
 	height:2em;
-	margin:.5em 0;
 	border:.1em solid #cfb994;
 	border-top-right-radius:            1em;
 	-webkit-border-top-right-radius:    1em;
@@ -1087,11 +1103,14 @@ li.cws-imp-plugin {
 	-webkit-background-clip:padding-box;
 	background-clip:padding-box;
 }
-.simple-form label.search-label,
-.simple-form input.search-term,
-#widgets .simple-form input.search-term,
-.simple-form input.search-button,
-#widgets .simple-form input.search-button {
+.entry .simple-form {
+	border-color:#ccc;
+}
+.simple-form label.simple-form-label,
+.simple-form input.simple-form-term,
+#widgets .simple-form input.simple-form-term,
+.simple-form input.simple-form-button,
+#widgets .simple-form input.simple-form-button {
 	position:absolute;
 	display:block;
 	top:0;
@@ -1101,11 +1120,14 @@ li.cws-imp-plugin {
 	margin:0;
 	border-width:0;
 }
-.simple-form label.search-label {
+.simple-form label.simple-form-label {
+	color:#bbb;
+	font-weight:bold;
+	padding-left:.5em;
 	left:0;
-	z-index:2;
+	z-index:0;
 }
-.simple-form input.search-term {
+.simple-form input.simple-form-term {
 	left:0;
 	right:5em;
 	z-index:1;
@@ -1113,11 +1135,11 @@ li.cws-imp-plugin {
 	padding:0 .5em;
 	background:#fff;
 }
-.simple-form input.search-term:focus {
+.simple-form input.simple-form-term:focus {
 	outline:none;
 }
-.simple-form input.search-button,
-#widgets .simple-form input.search-button {
+.simple-form input.simple-form-button,
+#widgets .simple-form input.simple-form-button {
 	width:5em;
 	right:0;
 	padding:0;

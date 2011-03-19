@@ -42,12 +42,16 @@ else {
 print "\n" . '</div><!--entry-content-->';
 
 wp_link_pages( array( 'before' => '<div class="page-link">' . __( 'Pages:', 'ghostbird' ), 'after' => '</div>' ) );	
+
+if ( 'aside' != get_post_format() ) {
 ?>
 
-<div class="entry-meta">
+<div class="<?php print esc_attr( ghostbird_entry_meta_classes() ); ?>">
 	<?php ghostbird_entry_meta_date(); ?>
 	<?php ghostbird_entry_meta_taxonomy(); ?>
 </div><!--meta-->
+
+<?php } ?>
 
 <?php do_action( 'ghostbird_entry_end' ); ?>
 
