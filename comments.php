@@ -25,7 +25,7 @@
  */
 if ( post_password_required() ) {
 	if ( have_comments() )
-	print '<p class="nopassword">' . sprintf( __( 'This %1$s is password protected. Enter the password to view any comments.', 'ghostbird' ), ghostbird_post_label() ) . '</p>';
+	print '<p class="nopassword">' . sprintf( __( 'This %1$s is password protected. Enter the password to view any comments.', 'ghostbird' ), ghostbird_post_label_singular() ) . '</p>';
 	return;
 }
 

@@ -242,7 +242,7 @@ function ghostbird_title( $before = '', $after = '', $print = true ) {
 		$post_type = get_post_type();
 		$title = get_the_title();
 		if ( empty( $title ) && 'post' == $post_type ) {
-			$title = ucfirst( ghostbird_post_label() );
+			$title = ucfirst( ghostbird_post_label_singular() );
 		}
 		$title = apply_filters( 'ghostbird_title_singular', $title );
 		$title = apply_filters( "ghostbird_title_singular_{$post_type}", $title );
@@ -253,7 +253,7 @@ function ghostbird_title( $before = '', $after = '', $print = true ) {
 		$term = $wp_query->get_queried_object();
 		if ( isset( $term->name ) && isset( $term->taxonomy ) && isset( $term->slug ) ) {
 			if ( 'post_format' == $term->taxonomy ) {
-				$term->name = ucfirst( ghostbird_post_label( false ) );
+				$term->name = ucfirst( ghostbird_post_label_plural( false ) );
 			}
 			$o = apply_filters( "ghostbird_title_taxonomy_{$term->taxonomy}", $term->name );
 			if ( is_paged() ) {
@@ -435,7 +435,7 @@ function ghostbird_summary_meta( $before = '', $after = '', $print = true ) {
 		if ( isset( $post_type->name ) && isset( $post_type->label ) && isset( $post_type->labels->singular_name ) ) {
 			$feed_url   = get_post_type_archive_feed_link( $post_type->name );
 			$feed_title = sprintf( __( 'Get updates when new %1$s are published.', 'ghostbird' ), $post_type->label );
-			$sentence   = sprintf( _n( '', 'There are %1$s %2$s in this archive.', $total, 'ghostbird' ), number_format_i18n( $total ), ghostbird_post_label( false ) );
+			$sentence   = sprintf( _n( '', 'There are %1$s %2$s in this archive.', $total, 'ghostbird' ), number_format_i18n( $total ), ghostbird_post_label_plural( false ) );
 			$sentence   = apply_filters( 'ghostbird_summary_meta_post_type_archive', $sentence, $post_type );
 			$sentence   = apply_filters( "ghostbird_summary_meta_{$post_type->name}_archive", $sentence, $post_type );
 		}
@@ -449,15 +449,12 @@ function ghostbird_summary_meta( $before = '', $after = '', $print = true ) {
 		}
 		if ( isset( $parent->ID ) && isset( $parent->post_title ) ) {
 			$parent_link = '<a href="' . get_permalink( $parent->ID ) . '">' . apply_filters( 'the_title', $parent->post_title ) . '</a>';
-			$sentence = sprintf( __( 'This file is attached to %1$s.', 'ghostbird' ), $parent_link );
+			$label = ghostbird_post_label_singular();
+			$sentence = sprintf( __( 'This %1$s is attached to %2$s.', 'ghostbird' ), $label, $parent_link );
 			$sentence = apply_filters( 'ghostbird_summary_file', $sentence );
-			if ( isset( $attachment->post_mime_type ) && 0 === strpos( $attachment->post_mime_type, 'image' ) ) {
-				$sentence = sprintf( __( 'This image is attached to %1$s.', 'ghostbird' ), $parent_link );
-				$sentence = apply_filters( 'ghostbird_summary_image_attached_to', $sentence );
-				if ( 'gallery' == get_post_format( $parent->ID ) ) {
-					$sentence = sprintf( __( 'This image is part of the gallery titled %1$s.', 'ghostbird' ), $parent_link );
-					$sentence = apply_filters( 'ghostbird_summary_image_in_gallery', $sentence );
-				}
+			if ( 'gallery' == get_post_format( $parent->ID ) ) {
+				$sentence = sprintf( __( 'This %1$s is part of the gallery titled %2$s.', 'ghostbird' ), $label, $parent_link );
+				$sentence = apply_filters( 'ghostbird_summary_image_in_gallery', $sentence );
 			}
 		}
 	}
@@ -480,8 +477,8 @@ function ghostbird_summary_meta( $before = '', $after = '', $print = true ) {
 					$sentence = sprintf( _n( '%1$s entry has been tagged with %2$s.', '%1$s entries have been tagged with %2$s.', $total, 'ghostbird' ), number_format_i18n( $total ), '<em>' . $term->name . '</em>' );
 					break;
 				case 'post_format' :
-					$feed_title = sprintf( __( 'Get updates when a new %1$s is published.', 'ghostbird' ), ghostbird_post_label() );
-					$sentence = sprintf( _n( 'This site contains one %2$s.', 'This site contains %1$s %3$s.', $total, 'ghostbird' ), number_format_i18n( $total ), ghostbird_post_label(), ghostbird_post_label( false ) );
+					$feed_title = sprintf( __( 'Get updates when a new %1$s is published.', 'ghostbird' ), ghostbird_post_label_singular() );
+					$sentence = sprintf( _n( 'This site contains one %2$s.', 'This site contains %1$s %3$s.', $total, 'ghostbird' ), number_format_i18n( $total ), ghostbird_post_label(), ghostbird_post_label_plural() );
 					break;
 				default :
 					$feed_title = sprintf( __( 'Subscribe to this %1$s', 'ghostbird' ), $taxonomy_name );
@@ -611,7 +608,7 @@ function ghostbird_entry_meta_taxonomy() {
 		return '';
 	}
 	$sentence   = '';
-	$label      = ghostbird_post_label();
+	$label      = ghostbird_post_label_singular();
 	$label_url  = get_post_format_link( get_post_format() );
 
 	$sentence = apply_filters( 'ghostbird_entry_meta_taxonomy', $sentence, $label, $label_url );
@@ -624,7 +621,7 @@ function ghostbird_entry_meta_taxonomy() {
 	$categories = get_the_category_list( ', ' );
 
 	if ( ! empty( $label ) && ! empty( $label_url ) ) {
-		$plural = ghostbird_post_label( false );
+		$plural = ghostbird_post_label_plural( false );
 		$title = '';
 		if ( ! empty( $plural ) ) {
 			$title = sprintf( esc_attr__( 'View all %1$s', 'ghostbird' ), strtolower( $plural ) );
@@ -768,12 +765,11 @@ function ghostbird_author_bio( $before = '', $after = '', $print = true ) {
  *
  * 'ghostbird_post_label_single' and 'ghostbird_post_label_plural'
  *
- * @param     bool      True for singular label, false for plural label.
- * @return    string    An appropriate label for the post.
+ * @return    array     Index "0" is the singular form while index "1" is the plural form.
  *
  * @since     1.0
  */
-function ghostbird_post_label( $singular = true ) {
+function ghostbird_post_label() {
 	$label       = '';
 	$post_type   = get_post_type();
 	$post_format = get_post_format();
@@ -781,46 +777,100 @@ function ghostbird_post_label( $singular = true ) {
 	if ( 'post' == $post_type ) {
 		switch ( $post_format ) {
 			case 'aside' :
-				$single = _x( 'aside', 'post format term', 'ghostbird' );
-				$plural = _x( 'asides', 'post format term', 'ghostbird' );
+				$single = _x( 'aside', 'post label', 'ghostbird' );
+				$plural = _x( 'asides', 'post label', 'ghostbird' );
 				break;
 			case 'audio' :
-				$single = _x( 'audio file', 'post format term', 'ghostbird' );
-				$plural = _x( 'audio files', 'post format term', 'ghostbird' );
+				$single = _x( 'audio file', 'post label', 'ghostbird' );
+				$plural = _x( 'audio files', 'post label', 'ghostbird' );
 				break;
 			case 'chat' :
-				$single = _x( 'chat transcript', 'post format term', 'ghostbird' );
-				$plural = _x( 'chat transcripts', 'post format term', 'ghostbird' );
+				$single = _x( 'chat transcript', 'post label', 'ghostbird' );
+				$plural = _x( 'chat transcripts', 'post label', 'ghostbird' );
 				break;
 			case 'gallery' :
-				$single = _x( 'gallery', 'post format term', 'ghostbird' );
-				$plural = _x( 'galleries', 'post format term', 'ghostbird' );
+				$single = _x( 'gallery', 'post label', 'ghostbird' );
+				$plural = _x( 'galleries', 'post label', 'ghostbird' );
 				break;
 			case 'image' :
-				$single = _x( 'image', 'post format term', 'ghostbird' );
-				$plural = _x( 'images', 'post format term', 'ghostbird' );
+				$single = _x( 'image', 'post label', 'ghostbird' );
+				$plural = _x( 'images', 'post label', 'ghostbird' );
 				break;
 			case 'link' :
-				$single = _x( 'link', 'post format term', 'ghostbird' );
-				$plural = _x( 'links', 'post format term', 'ghostbird' );
+				$single = _x( 'link', 'post label', 'ghostbird' );
+				$plural = _x( 'links', 'post label', 'ghostbird' );
 				break;
 			case 'quote' :
-				$single = _x( 'quote', 'post format term', 'ghostbird' );
-				$plural = _x( 'quotes', 'post format term', 'ghostbird' );
+				$single = _x( 'quote', 'post label', 'ghostbird' );
+				$plural = _x( 'quotes', 'post label', 'ghostbird' );
 				break;
 			case 'status' :
-				$single = _x( 'status update', 'post format term', 'ghostbird' );
-				$plural = _x( 'status updates', 'post format term', 'ghostbird' );
+				$single = _x( 'status update', 'post label', 'ghostbird' );
+				$plural = _x( 'status updates', 'post label', 'ghostbird' );
 				break;
 			case 'video' :
-				$single = _x( 'video', 'post format term', 'ghostbird' );
-				$plural = _x( 'videos', 'post format term', 'ghostbird' );
+				$single = _x( 'video', 'post label', 'ghostbird' );
+				$plural = _x( 'videos', 'post label', 'ghostbird' );
 				break;
 			case '' :
 			case 'standard' :
 			default :
-				$single = _x( 'post', 'post format term', 'ghostbird' );
-				$plural = _x( 'posts', 'post format term', 'ghostbird' );
+				$single = _x( 'post', 'post label', 'ghostbird' );
+				$plural = _x( 'posts', 'post label', 'ghostbird' );
+				break;
+		}
+	}
+	else if ( 'page' == $post_type ) {
+		$single = _x( 'page', 'post label', 'ghostbird' );
+		$plural = _x( 'pages', 'post label', 'ghostbird' );
+	}
+	else if ( 'attachment' == $post_type ) {
+		switch ( get_post_mime_type() ) {
+			case 'image/jpeg' :
+			case 'image/gif' :
+			case 'image/png' :
+			case 'image/bmp' :
+			case 'image/tiff' :
+				$single = _x( 'image', 'post label', 'ghostbird' );
+				$plural = _x( 'images', 'post label', 'ghostbird' );
+				break;
+			case 'image/x-icon' :
+				$single = _x( 'icon', 'post label', 'ghostbird' );
+				$plural = _x( 'icons', 'post label', 'ghostbird' );
+				break;
+			case 'application/zip' :
+				$single = _x( 'zip archive', 'post label', 'ghostbird' );
+				$plural = _x( 'zip archives', 'post label', 'ghostbird' );
+				break;
+			case 'application/vnd.oasis.opendocument.text' :
+			case 'application/msword' :
+				$single = _x( 'word processor document', 'post label', 'ghostbird' );
+				$plural = _x( 'word processor documents', 'post label', 'ghostbird' );
+				break;
+			case 'application/pdf' :
+				$single = _x( 'PDF', 'post label', 'ghostbird' );
+				$plural = _x( 'PDFs', 'post label', 'ghostbird' );
+				break;
+			case 'application/vnd.oasis.opendocument.spreadsheet' :
+			case 'application/vnd.ms-excel' :
+				$single = _x( 'spreadsheet', 'post label', 'ghostbird' );
+				$plural = _x( 'spreadsheets', 'post label', 'ghostbird' );
+				break;
+			case 'video/asf' :
+			case 'video/avi' :
+			case 'video/divx' :
+			case 'video/x-flv' :
+			case 'video/quicktime' :
+			case 'video/mpeg' :
+			case 'video/mp4' :
+			case 'video/ogg' :
+			case 'video/x-matroska' :
+				$single = _x( 'video', 'post label', 'ghostbird' );
+				$plural = _x( 'videos', 'post label', 'ghostbird' );
+				break;
+			default :
+				$single = _x( 'file', 'post label', 'ghostbird' );
+				$plural = _x( 'files', 'post label', 'ghostbird' );
 				break;
 		}
 	}
@@ -833,16 +883,26 @@ function ghostbird_post_label( $singular = true ) {
 			$plural = $post_type_object->labels->name;
 		}
 	}
-
-	$single =  apply_filters( 'ghostbird_post_label_single', $single, $post_type, $post_format );
-	$plural =  apply_filters( 'ghostbird_post_label_plural', $plural, $post_type, $post_format );
-
-	$label = $single;
-	if ( ! $singular ) {
-		$label = $plural;
+	return array (
+		apply_filters( 'ghostbird_post_label_single', $single, $post_type, $post_format ),
+		apply_filters( 'ghostbird_post_label_plural', $plural, $post_type, $post_format )
+	);
+}
+function ghostbird_post_label_singular() {
+	$label  = '';
+	$labels = ghostbird_post_label();
+	if ( isset( $labels[0] ) ) {
+		$label = $labels[0];
 	}
-
-	return apply_filters( 'ghostbird_post_label', $label, $post_type, $post_format );
+	return $label;
+}
+function ghostbird_post_label_plural() {
+	$label  = '';
+	$labels = ghostbird_post_label();
+	if ( isset( $labels[1] ) ) {
+		$label = $labels[1];
+	}
+	return $label;
 }
 /**#@-*/
 
@@ -1231,7 +1291,7 @@ function _ghostbird_related_images( $content ) {
  */
 function _ghostbird_excerpt_search( $excerpt ) {
 	if ( is_search() ) {
-		$excerpt = '<span class="entry-date">' . esc_html( get_the_time( 'M j, Y' ) ) . '</span>' . ' &#8211; ' . $excerpt . ' <a tabindex="-1" class="permalink" href="' . esc_url( get_permalink() ) . '">' . sprintf( esc_html__( 'View this %1$s', 'ghostbird' ), ghostbird_post_label() ) . '</a>';
+		$excerpt = '<span class="entry-date">' . esc_html( get_the_time( 'M j, Y' ) ) . '</span>' . ' &#8211; ' . $excerpt . ' <a tabindex="-1" class="permalink" href="' . esc_url( get_permalink() ) . '">' . sprintf( esc_html__( 'View this %1$s', 'ghostbird' ), ghostbird_post_label_singular() ) . '</a>';
 	}
 	return $excerpt;
 }
