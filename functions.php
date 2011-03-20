@@ -49,13 +49,13 @@ function _ghostbird_setup() {
 
 	global $content_width;
 	if ( ! isset( $content_width ) ) {
-		$content_width = 608;
+		$content_width = 615;
 	}
 
 	load_theme_textdomain( 'ghostbird', get_template_directory() . '/languages' );
 
 	add_theme_support( 'menus' );
-	add_theme_support( 'post-formats', array( 'aside', 'gallery', 'status' ) );
+	add_theme_support( 'post-formats', array( 'aside', 'gallery', 'status', 'video' ) );
 	add_theme_support( 'post-thumbnails' );
 	add_theme_support( 'automatic-feed-links' );
 	add_custom_background();
@@ -69,40 +69,42 @@ function _ghostbird_setup() {
 	set_post_thumbnail_size( 150, 150, false );
 	add_image_size( 'ghostbird_detail', 70, 70, true );
 
-	/* Custom navigation menus. */
+	/* Navigation menus. */
 	register_nav_menus( array( 'primary' => 'Primary', 'secondary' => 'Secondary' ) );
 
-	/* Hooking WordPress into WordPress */
+	/* WordPress Hooking into WordPress */
 	add_filter( 'get_the_author_description', 'wptexturize' );
 	add_filter( 'get_the_author_description', 'convert_chars' );
 	add_filter( 'get_the_author_description', 'wpautop' );
 
 	/* Ghostbird hooking into WordPress. */
-	add_action( 'widgets_init',               '_ghostbird_widgets_init' );
-	add_action( 'wp_loaded',                  '_ghostbird_custom_image_header' );
-	add_action( 'wp_print_scripts',           '_ghostbird_comment_reply_js' );
 	add_action( 'body_class',                 '_ghostbird_body_class' );
-	add_filter( 'wp_page_menu',               '_ghostbird_page_menu_wrap', 10, 2 );
+	add_filter( 'embed_oembed_html',          '_ghostbird_oembed_dataparse', 10, 4 );
+	add_filter( 'embed_googlevideo',          '_ghostbird_oembed_dataparse', 10, 2 );
+	add_filter( 'excerpt_more',               '_ghostbird_excerpt_more_auto' );
+	add_filter( 'get_search_form',            '_ghostbird_search_form' );
+	add_filter( 'get_the_excerpt',            '_ghostbird_excerpt_more_custom' );
+	add_filter( 'get_the_excerpt',            '_ghostbird_excerpt_search' );
 	add_filter( 'post_class',                 '_ghostbird_post_class_entry' );
 	add_filter( 'post_class',                 '_ghostbird_post_class_featured' );
 	add_filter( 'post_thumbnail_html',        '_ghostbird_featured_image_first_attachment' );
 	add_filter( 'post_thumbnail_html',        '_ghostbird_featured_image_avatar' );
 	add_action( 'the_content',                '_ghostbird_related_images' );
-	add_filter( 'excerpt_more',               '_ghostbird_excerpt_more_auto' );
-	add_filter( 'get_the_excerpt',            '_ghostbird_excerpt_more_custom' );
-	add_filter( 'embed_oembed_html',          '_ghostbird_oembed_dataparse', 10, 4 );
-	add_filter( 'embed_googlevideo',          '_ghostbird_oembed_dataparse', 10, 2 );
+	add_filter( 'the_content',                '_ghostbird_content_aside', 9 );
+	add_filter( 'the_password_form',          '_ghostbird_password_form' );
 	add_action( 'widget_title',               '_ghostbird_calendar_widget_title', 10, 3 );
-
-	/* Custom settings. */
-	add_action( 'custom_header_options', '_ghostbird_settings_custom_header_text_controls' );
-	add_action( 'admin_head-appearance_page_custom-header', '_ghostbird_process_custom_header_settings', 51 );
+	add_action( 'widgets_init',               '_ghostbird_widgets_init' );
+	add_action( 'wp_loaded',                  '_ghostbird_custom_image_header' );
+	add_filter( 'wp_page_menu',               '_ghostbird_page_menu_wrap', 10, 2 );
+	add_action( 'wp_print_scripts',           '_ghostbird_comment_reply_js' );
 
 	/* Custom actions. */
 	add_action( 'ghostbird_logo',             'ghostbird_logo', 10, 2 );
 	add_action( 'ghostbird_paged_navigation', 'ghostbird_paged_nav', 10, 2 );
 
-	/* Hooks controlable by settings panel. */
+	/* Theme modifications. */
+	add_action( 'custom_header_options', '_ghostbird_settings_custom_header_text_controls' );
+	add_action( 'admin_head-appearance_page_custom-header', '_ghostbird_process_custom_header_settings', 51 );
 	if ( 0 != (int) get_theme_mod( 'ghostbird_display_site_title', 0 ) ) {
 		add_action( 'ghostbird_site_title', 'ghostbird_site_title', 10, 2 );
 	}
@@ -752,7 +754,7 @@ function ghostbird_author_bio( $before = '', $after = '', $print = true ) {
  *
  * For "posts" having a post format, a string representing the format will be used.
  * If no format has been defined (assumung "standard" post format) This function
- * will use the term "entry".
+ * will use the term "post".
  *
  * Even though Ghostbird does not support all available post_formats
  * any blog may have posts associated with unsupported formats.
@@ -817,8 +819,8 @@ function ghostbird_post_label( $singular = true ) {
 			case '' :
 			case 'standard' :
 			default :
-				$single = _x( 'Entry', 'post format term', 'ghostbird' );
-				$plural = _x( 'Entries', 'post format term', 'ghostbird' );
+				$single = _x( 'Post', 'post format term', 'ghostbird' );
+				$plural = _x( 'Posts', 'post format term', 'ghostbird' );
 				break;
 		}
 	}
@@ -842,7 +844,6 @@ function ghostbird_post_label( $singular = true ) {
 
 	return apply_filters( 'ghostbird_post_label', $label, $post_type, $post_format );
 }
-
 /**#@-*/
 
 /**#@+
@@ -1214,6 +1215,28 @@ function _ghostbird_related_images( $content ) {
 }
 
 /**
+ * Excerpt Search.
+ *
+ * Append a permalink to the excerpt in search results.
+ * The link text is generated by ghostbird_post_label()
+ * which will give context to post being displayed.
+ *
+ * This filter is attached to the 'get_the_excerpt' hook
+ * in the _ghostbird_setup() function.
+ *
+ * @param     string         The excerpt.
+ * @return    string         The excerpt followed by a single space and a permalink.
+ *
+ * @since     1.0
+ */
+function _ghostbird_excerpt_search( $excerpt ) {
+	if ( is_search() ) {
+		$excerpt = '<span class="entry-date">' . esc_html( get_the_time( 'M j, Y' ) ) . '</span>' . ' &#8211; ' . $excerpt . ' <a tabindex="-1" class="permalink" href="' . esc_url( get_permalink() ) . '">' . sprintf( esc_html__( 'View this %1$s', 'ghostbird' ), ghostbird_post_label() ) . '</a>';
+	}
+	return $excerpt;
+}
+
+/**
  * Excerpt More (auto).
  *
  * In cases where a post does not have an excerpt defined
@@ -1479,14 +1502,13 @@ function _ghostbird_search_form( $form ) {
 	$id_attr = 'search-form-' . $id;
 
 	$form = "\n\n";
-	$form.= "\n" . '<form class="simple-form" role="search" method="get" action="">';
-	$form.= "\n" . '<label class="simple-form-label" for="' . esc_attr( $id_attr ) . '">Search</label>';
-	$form.= "\n" . '<input class="simple-form-term" id="' . esc_attr( $id_attr ) . '" type="text" value="' . esc_attr( get_search_query( false ) ) . '" name="s" />';
-	$form.= "\n" . '<input class="simple-form-button" type="submit" value="Search" />';
+	$form.= "\n" . '<form class="bullet" role="search" method="get" action="' . get_option( 'siteurl' ) . '">';
+	$form.= "\n" . '<label class="bullet-label" for="' . esc_attr( $id_attr ) . '">Search</label>';
+	$form.= "\n" . '<input class="bullet-term" id="' . esc_attr( $id_attr ) . '" type="text" value="' . esc_attr( get_search_query( false ) ) . '" name="s" />';
+	$form.= "\n" . '<input class="bullet-button" type="submit" value="Search" />';
 	$form.= "\n" . '</form>';
 	return $form;
 }
-add_filter( 'get_search_form', '_ghostbird_search_form' );
 
 /**
  * Password Form.
@@ -1503,13 +1525,32 @@ function _ghostbird_password_form( $form ) {
 	$id_attr = 'password-form-' . $id;
 
 	$form = "\n\n";
-	$form.= "\n" . '<p>' . __( 'This post is password protected. To view it please enter your password below:', 'ghostbird' ) . '</p>';
-	$form.= "\n" . '<form class="simple-form" action="' . get_option( 'siteurl' ) . '/wp-pass.php" method="post">';
-	$form.= "\n" . '<label class="simple-form-label" for="' . esc_attr( $id_attr ) . '">' . __( 'Enter Password', 'ghostbird' ) . '</label>';
-	$form.= "\n" . '<input class="simple-form-term" name="post_password" id="' . esc_attr( $id_attr ) . '" type="password" size="20" />';
-	$form.= "\n" . '<input class="simple-form-button" type="submit" name="Submit" value="' . esc_attr__( 'Unlock', 'ghostbird' ) . '" />';
-	$form.= "\n" . '</form>';
+	$form.= '<p>' . __( 'This post is password protected. To view it please enter your password below:', 'ghostbird' ) . '</p>';
+	$form.= '<form class="bullet" action="' . get_option( 'siteurl' ) . '/wp-pass.php" method="post">';
+	$form.= '<label class="bullet-label" for="' . esc_attr( $id_attr ) . '">' . __( 'Enter Password', 'ghostbird' ) . '</label>';
+	$form.= '<input class="bullet-term" name="post_password" id="' . esc_attr( $id_attr ) . '" type="password" size="20" />';
+	$form.= '<input class="bullet-button" type="submit" name="Submit" value="' . esc_attr__( 'Unlock', 'ghostbird' ) . '" />';
+	$form.= '</form>';
 	return $form;
 }
-add_filter( 'the_password_form', '_ghostbird_password_form' );
+
+/**
+ * Aside Content.
+ *
+ * Posts formatted as an "aside" will have the title
+ * prepended to the content on all multiple views.
+ *
+ * @param     string    Post content.
+ * @return    string    Custom post content.
+ *
+ * @access    private
+ * @since     1.0
+ */
+function _ghostbird_content_aside( $content ) {
+	if ( ! is_single() && 'aside' == get_post_format() && '' != get_the_title() ) {
+		$content = "\n" . '<a href="' . esc_url( get_permalink() )  . '">' . get_the_title() . '</a> ' . $content;
+	}
+	return $content;
+}
+
 /**#@-*/

@@ -47,12 +47,8 @@ if ( have_posts() ) {
 		do_action( 'ghostbird_entry_start' );
 		the_title( "\n" . '<h2 class="entry-title"><a href="' . esc_url( $permalink ) . '">', '</a></h2>' );
 		print "\n" . '<div class="entry-content">';
-		print "\n" . '<p class="entry-date">' . esc_html( get_the_time( 'M j, Y' ) ) . '</p> &#8212; ';
 		the_excerpt();
 		print "\n" . '</div><!--entry-content-->';
-		print "\n" . '<p>';
-		print "\n" . ' <a tabindex="-1" class="permalink" href="' . esc_url( $permalink ) . '">' . sprintf( esc_html__( 'View this %1$s', 'ghostbird' ), ghostbird_post_label() ) . '</a>';
-		print "\n" . '</p>';
 		do_action( 'ghostbird_entry_end' );
 		print "\n" . '</div><!--entry-->';
 	}

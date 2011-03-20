@@ -37,7 +37,6 @@
 <body <?php body_class(); ?>>
 
 <div id="wrap">
-	
 	<div id="header">
 		<?php do_action( 'ghostbird_logo',       '<div id="logo">',       '</div>' ); ?>
 		<?php do_action( 'ghostbird_site_title', '<div id="site-title">', '</div>' ); ?>

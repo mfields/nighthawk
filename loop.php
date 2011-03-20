@@ -18,42 +18,47 @@ if ( have_posts() ) {
 ?>
 
 <div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
+
 <?php
 
-do_action( 'ghostbird_entry_start' );
+	do_action( 'ghostbird_entry_start' );
 
-ghostbird_featured_image( '<div class="featured-image">', '</div>' );
+	switch ( get_post_format() ) {
+		case 'aside' :
+			print "\n" . '<div class="entry-content">';
+			the_content( __( 'more', 'ghostbird' ) );
+			print "\n" . '</div><!--entry-content-->';
+			break;
+		default :
+			ghostbird_featured_image( '<div class="featured-image">', '</div>' );
+			/*
+			 * Title only for multiple views.
+			 * Will be displayed in single views via ghostbird_title() in an H1 element.
+			 */
+			if ( ! is_singular() ) {
+				the_title( "\n" . '<h2 class="entry-title"><a href="' . get_permalink() . '">', '</a></h2>' );
+			}
 
-/*
- * Title only for multiple views.
- * Will be displayed in single views via ghostbird_title() in an H1 element.
- */
-if ( ! is_singular() ) {
-	the_title( "\n" . '<h2 class="entry-title"><a href="' . get_permalink() . '">', '</a></h2>' );
-}
+			print "\n" . '<div class="entry-content">';
+			if ( ( is_archive() || is_home() ) && ( 'page' == get_post_type() || 'gallery' == get_post_format() ) ) {
+				the_excerpt();
+			}
+			else {
+				the_content( __( 'more', 'ghostbird' ) );
+			}
+			print "\n" . '</div><!--entry-content-->';
 
-print "\n" . '<div class="entry-content">';
-if ( ( is_archive() || is_home() ) && ( 'page' == get_post_type() || 'gallery' == get_post_format() ) ) {
-	the_excerpt();
-}
-else {
-	the_content( __( 'more', 'ghostbird' ) );
-}
-print "\n" . '</div><!--entry-content-->';
+			wp_link_pages( array( 'before' => '<div class="page-link">' . __( 'Pages:', 'ghostbird' ), 'after' => '</div>' ) );	
 
-wp_link_pages( array( 'before' => '<div class="page-link">' . __( 'Pages:', 'ghostbird' ), 'after' => '</div>' ) );	
+			print '<div class="' . esc_attr( ghostbird_entry_meta_classes() ) . '">';
+			ghostbird_entry_meta_date();
+			ghostbird_entry_meta_taxonomy();
+			print '</div><!--meta-->';
+			break;
+	}
 
-if ( 'aside' != get_post_format() ) {
+	do_action( 'ghostbird_entry_end' );
 ?>
-
-<div class="<?php print esc_attr( ghostbird_entry_meta_classes() ); ?>">
-	<?php ghostbird_entry_meta_date(); ?>
-	<?php ghostbird_entry_meta_taxonomy(); ?>
-</div><!--meta-->
-
-<?php } ?>
-
-<?php do_action( 'ghostbird_entry_end' ); ?>
 
 </div><!--entry-->
 
