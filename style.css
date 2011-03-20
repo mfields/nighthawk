@@ -498,6 +498,11 @@ h2.entry-title {
 	font-weight:bold;
 	color:#9b9a93;
 }
+.many .format-link a.post-title:hover,
+.many .format-link a.post-title:active,
+.many .format-link a.post-title:focus {
+	color:#3a5066;
+}
 .many .format-link .entry-content p {
 	margin:.5em 0;
 }
