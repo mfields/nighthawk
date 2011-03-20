@@ -93,7 +93,7 @@ blockquote blockquote:last-child {
 }
 
 	
-/* Typography: font, color + interaction. */
+/* Typography - font, color + interaction. */
 a {
 	color:#5588bb;
 	text-decoration:none;
@@ -465,6 +465,7 @@ h2.entry-title {
 	border-color:#ccc;
 }
 
+
 /* Featured image. */
 .entry .featured-image {
 	float:right;
@@ -484,6 +485,21 @@ h2.entry-title {
 /* Gallery posts. */
 .many .format-gallery p {
 	margin-top:0;
+}
+
+
+/* Link posts. */
+.many .format-link {
+	border:.1em solid #e2dcd2;
+	color:#9b9a93;
+	background-color:#fffef2;
+}
+.many .format-link a.post-title {
+	font-weight:bold;
+	color:#9b9a93;
+}
+.many .format-link .entry-content p {
+	margin:.5em 0;
 }
 
 
@@ -668,17 +684,17 @@ h2.entry-title {
 .trackback {
 	padding:.75em 1.5em;
 	border:.1em solid #e2dcd2;
-	color: #b6b5ad;
+	color:#b6b5ad;
 	background-color:#fffef2;
 	margin:.5em 0;
 }
 .trackback a {
-	color: #b6b5ad;
+	color:#b6b5ad;
 }
 .trackback a:focus,
 .trackback a:hover,
 .trackback a:active {
-	color: #7c7c76;
+	color:#7c7c76;
 }
 
 
@@ -764,7 +780,7 @@ input#submit,
 	color:#e9d6d6;
 	background-color:#600;
 	background-color:#111;
-	-webkit-transition: background-color, -webkit-box-shadow 0.2s linear;
+	-webkit-transition:background-color, -webkit-box-shadow 0.2s linear;
 }
 #page-footer a span {
 	position:relative;
@@ -1053,7 +1069,7 @@ pre,
 }
 
 
-/* Rounded corners: Top. */
+/* Rounded corners - Top. */
 button,
 #submit,
 #menu-top,
@@ -1095,14 +1111,14 @@ th,
 .bullet {
 	color:#fff;
 	background:#3c6081;
-	background-image: -webkit-gradient(
+	background-image:-webkit-gradient(
 		linear,
 		left top,
 		left bottom,
 		color-stop( 1, #3c6081 ),
 		color-stop( 0, #588dbe )
 		);
-	background-image: -moz-linear-gradient(
+	background-image:-moz-linear-gradient(
 		top,
 		#588dbe,
 		#3c6081

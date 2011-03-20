@@ -55,7 +55,7 @@ function _ghostbird_setup() {
 	load_theme_textdomain( 'ghostbird', get_template_directory() . '/languages' );
 
 	add_theme_support( 'menus' );
-	add_theme_support( 'post-formats', array( 'aside', 'gallery', 'status', 'video' ) );
+	add_theme_support( 'post-formats', array( 'aside', 'gallery', 'link', 'status', 'video' ) );
 	add_theme_support( 'post-thumbnails' );
 	add_theme_support( 'automatic-feed-links' );
 	add_custom_background();
@@ -90,7 +90,7 @@ function _ghostbird_setup() {
 	add_filter( 'post_thumbnail_html',        '_ghostbird_featured_image_first_attachment' );
 	add_filter( 'post_thumbnail_html',        '_ghostbird_featured_image_avatar' );
 	add_action( 'the_content',                '_ghostbird_related_images' );
-	add_filter( 'the_content',                '_ghostbird_content_aside', 9 );
+	add_filter( 'the_content',                '_ghostbird_content_prepend_title', 9 );
 	add_filter( 'the_password_form',          '_ghostbird_password_form' );
 	add_action( 'widget_title',               '_ghostbird_calendar_widget_title', 10, 3 );
 	add_action( 'widgets_init',               '_ghostbird_widgets_init' );
@@ -1535,10 +1535,11 @@ function _ghostbird_password_form( $form ) {
 }
 
 /**
- * Aside Content.
+ * Prepend title to content.
  *
- * Posts formatted as an "aside" will have the title
- * prepended to the content on all multiple views.
+ * Posts formatted as an "aside" and "link" will have
+ * the title prepended to the content on all multiple
+ * views.
  *
  * @param     string    Post content.
  * @return    string    Custom post content.
@@ -1546,9 +1547,15 @@ function _ghostbird_password_form( $form ) {
  * @access    private
  * @since     1.0
  */
-function _ghostbird_content_aside( $content ) {
-	if ( ! is_single() && 'aside' == get_post_format() && '' != get_the_title() ) {
-		$content = "\n" . '<a href="' . esc_url( get_permalink() )  . '">' . get_the_title() . '</a> ' . $content;
+function _ghostbird_content_prepend_title( $content ) {
+	if ( is_single() ) {
+		return $content;
+	}
+	if ( '' == get_the_title() ) {
+		return $content;
+	}
+	if ( in_array( get_post_format(), array( 'aside', 'link' ) ) ) {
+		$content = "\n" . '<a class="post-title" href="' . esc_url( get_permalink() )  . '">' . get_the_title() . '</a> &raquo; ' . $content;
 	}
 	return $content;
 }

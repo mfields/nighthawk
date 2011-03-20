@@ -25,6 +25,7 @@ if ( have_posts() ) {
 
 	switch ( get_post_format() ) {
 		case 'aside' :
+		case 'link' :
 			print "\n" . '<div class="entry-content">';
 			the_content( __( 'more', 'ghostbird' ) );
 			print "\n" . '</div><!--entry-content-->';
