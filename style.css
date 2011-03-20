@@ -18,13 +18,13 @@ body {
 }
  
 /* Font-size + margin for all headings */
-h1, h2, h3, h4, h5, h6 { padding:0; line-height:1.2em; clear:both; }
-h1 { font-size:1.50em; margin:.83em 0; }
+h1, h2, h3, h4, h5, h6 { margin:0; padding:0; line-height:1.2em; clear:both; }
+h1 { font-size:1.50em; margin-bottom:.67em; }
 h2 { font-size:1.38em; margin:1.05em 0; }
-h3 { font-size:1.13em; margin:1.15em 0; }
-h4 { font-size:1.06em; margin:1.35em 0; }
+h3 { font-size:1.13em; margin-bottom:.89em; }
+h4 { font-size:1.06em; margin-bottom:.94em; }
 h5,
-h6 { font-size:1.00em; margin:1.5em 0; }
+h6 { font-size:1.00em; margin-bottom:.90em; }
 
 /*h1, h2, h3, h4, h5, h6 { margin:0 0 3.75em 0; }*/
 
@@ -151,16 +151,7 @@ code, var {
 	color:#60686c;
 	font-style:normal;
 }
-kbd, tt {
-	border:.1em solid #ddd;
-	background:#eee;
-	padding:0 .3em;
-	color:#777;
-	font-style:normal;
-}
-pre code,
-pre kbd,
-pre tt {
+pre code {
 	border-width:0;
 	background:transparent;
 	padding:0;
@@ -203,7 +194,6 @@ textarea:focus {
 table {
 	border-collapse:collapse;
 	border:.1em solid #555;
-	background-color:#fff;
 }
 th, td {
 	text-align:left;
@@ -336,7 +326,7 @@ body {
 	color:#e9d6d6;
 	background-color:#111;
 	outline:0;
-	/*white-space:nowrap;*/
+	white-space:nowrap;
 	-webkit-transition:background-color, -webkit-box-shadow 0.2s linear;
 }
 
@@ -363,7 +353,7 @@ body {
 }
 #intro h1 {
 	line-height:1;
-	margin:0 0 .25em;
+	margin-bottom:.25em;
 }
 #summary p:first-child,
 #summary p:only-child { margin-top:.25em; }
@@ -497,7 +487,11 @@ h2.entry-title {
 	display:inline;
 	line-height:1.25em;
 }
-
+.search-results .format-status .entry-title,
+.search-results .format-status .entry-content,
+.search-results .format-status .entry-meta {
+	margin-left:0;
+}
 
 /* Author Box */
 #author-box {
@@ -583,7 +577,6 @@ h2.entry-title {
 }
 
 
-/* Trackbacks. */
 .trackback {
 	padding:.75em 1.5em;
 	border:.1em solid #e2dcd2;
@@ -988,7 +981,6 @@ table#wp-calendar {
 	padding:0;
 	empty-cells:show;
 	font-size:1em;
-	border:.1em solid #888;
 	border-collapse:collapse;
 }
 #widgets.count-1 table#wp-calendar {
@@ -1036,9 +1028,7 @@ table#wp-calendar {
 #wp-calendar #prev {
 	text-align:left;
 }
-#wp-calendar tfoot td {
-	border-width:0;
-}
+
 
 /* I make plugins plugin. */
 #cws-imp-plugin-list {
@@ -1091,6 +1081,7 @@ li.cws-imp-plugin {
 .simple-form {
 	position:relative;
 	width:auto;
+	padding-right:6em;
 	height:2em;
 	border:.1em solid #cfb994;
 	border-top-right-radius:            1em;
@@ -1128,11 +1119,12 @@ li.cws-imp-plugin {
 	z-index:0;
 }
 .simple-form input.simple-form-term {
-	left:0;
-	right:5em;
-	z-index:1;
-	height:2em;
+	position:relative;
+	z-index:2;
 	padding:0 .5em;
+	display:block;
+	width:100%;
+	margin-right:5em;
 	background:#fff;
 }
 .simple-form input.simple-form-term:focus {

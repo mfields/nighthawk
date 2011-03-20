@@ -12,6 +12,8 @@
  * @todo Completely test and rewrite all examples in docs or remove if feeling lazy ;)
  * @todo HTML validataion.
  * @todo CSS validataion FWIW.
+ * @todo Lighter fonts in Widgets.
+ * @todo Pretty-up the calendar widget.
  *
  * FUTURE RELEASE
  * @todo Add header widget. Intended for search form?
@@ -1489,8 +1491,8 @@ add_filter( 'get_search_form', '_ghostbird_search_form' );
 /**
  * Password Form.
  *
- * @param     string    Default WordPress password from.
- * @return    string    Custom password form.
+ * @param     string    Default WordPress search from.
+ * @return    string    Custom Search form.
  *
  * @access    private
  * @since     1.0
