@@ -98,7 +98,7 @@ function _ghostbird_setup() {
 	add_filter( 'wp_page_menu',               '_ghostbird_page_menu_wrap', 10, 2 );
 	add_action( 'wp_print_scripts',           '_ghostbird_comment_reply_js' );
 
-	/* Custom actions. */
+	/* Custom hooks. */
 	add_action( 'ghostbird_logo',             'ghostbird_logo', 10, 2 );
 	add_action( 'ghostbird_paged_navigation', 'ghostbird_paged_nav', 10, 2 );
 
@@ -242,7 +242,7 @@ function ghostbird_title( $before = '', $after = '', $print = true ) {
 		$post_type = get_post_type();
 		$title = get_the_title();
 		if ( empty( $title ) && 'post' == $post_type ) {
-			$title = ghostbird_post_label();
+			$title = ucfirst( ghostbird_post_label() );
 		}
 		$title = apply_filters( 'ghostbird_title_singular', $title );
 		$title = apply_filters( "ghostbird_title_singular_{$post_type}", $title );
@@ -253,7 +253,7 @@ function ghostbird_title( $before = '', $after = '', $print = true ) {
 		$term = $wp_query->get_queried_object();
 		if ( isset( $term->name ) && isset( $term->taxonomy ) && isset( $term->slug ) ) {
 			if ( 'post_format' == $term->taxonomy ) {
-				$term->name = ghostbird_post_label( false );
+				$term->name = ucfirst( ghostbird_post_label( false ) );
 			}
 			$o = apply_filters( "ghostbird_title_taxonomy_{$term->taxonomy}", $term->name );
 			if ( is_paged() ) {
@@ -435,7 +435,7 @@ function ghostbird_summary_meta( $before = '', $after = '', $print = true ) {
 		if ( isset( $post_type->name ) && isset( $post_type->label ) && isset( $post_type->labels->singular_name ) ) {
 			$feed_url   = get_post_type_archive_feed_link( $post_type->name );
 			$feed_title = sprintf( __( 'Get updates when new %1$s are published.', 'ghostbird' ), $post_type->label );
-			$sentence   = sprintf( _n( '', 'There are %1$s %2$s in this archive.', $total, 'ghostbird' ), number_format_i18n( $total ), $post_type->label );
+			$sentence   = sprintf( _n( '', 'There are %1$s %2$s in this archive.', $total, 'ghostbird' ), number_format_i18n( $total ), ghostbird_post_label( false ) );
 			$sentence   = apply_filters( 'ghostbird_summary_meta_post_type_archive', $sentence, $post_type );
 			$sentence   = apply_filters( "ghostbird_summary_meta_{$post_type->name}_archive", $sentence, $post_type );
 		}
@@ -781,46 +781,46 @@ function ghostbird_post_label( $singular = true ) {
 	if ( 'post' == $post_type ) {
 		switch ( $post_format ) {
 			case 'aside' :
-				$single = _x( 'Aside', 'post format term', 'ghostbird' );
-				$plural = _x( 'Asides', 'post format term', 'ghostbird' );
+				$single = _x( 'aside', 'post format term', 'ghostbird' );
+				$plural = _x( 'asides', 'post format term', 'ghostbird' );
 				break;
 			case 'audio' :
-				$single = _x( 'Audio File', 'post format term', 'ghostbird' );
-				$plural = _x( 'Audio Files', 'post format term', 'ghostbird' );
+				$single = _x( 'audio file', 'post format term', 'ghostbird' );
+				$plural = _x( 'audio files', 'post format term', 'ghostbird' );
 				break;
 			case 'chat' :
-				$single = _x( 'Chat Transcript', 'post format term', 'ghostbird' );
-				$plural = _x( 'Chat Transcripts', 'post format term', 'ghostbird' );
+				$single = _x( 'chat transcript', 'post format term', 'ghostbird' );
+				$plural = _x( 'chat transcripts', 'post format term', 'ghostbird' );
 				break;
 			case 'gallery' :
-				$single = _x( 'Gallery', 'post format term', 'ghostbird' );
-				$plural = _x( 'Galleries', 'post format term', 'ghostbird' );
+				$single = _x( 'gallery', 'post format term', 'ghostbird' );
+				$plural = _x( 'galleries', 'post format term', 'ghostbird' );
 				break;
 			case 'image' :
-				$single = _x( 'Image', 'post format term', 'ghostbird' );
-				$plural = _x( 'Images', 'post format term', 'ghostbird' );
+				$single = _x( 'image', 'post format term', 'ghostbird' );
+				$plural = _x( 'images', 'post format term', 'ghostbird' );
 				break;
 			case 'link' :
-				$single = _x( 'Link', 'post format term', 'ghostbird' );
-				$plural = _x( 'Links', 'post format term', 'ghostbird' );
+				$single = _x( 'link', 'post format term', 'ghostbird' );
+				$plural = _x( 'links', 'post format term', 'ghostbird' );
 				break;
 			case 'quote' :
-				$single = _x( 'Quote', 'post format term', 'ghostbird' );
-				$plural = _x( 'Quotes', 'post format term', 'ghostbird' );
+				$single = _x( 'quote', 'post format term', 'ghostbird' );
+				$plural = _x( 'quotes', 'post format term', 'ghostbird' );
 				break;
 			case 'status' :
-				$single = _x( 'Status Update', 'post format term', 'ghostbird' );
-				$plural = _x( 'Status Updates', 'post format term', 'ghostbird' );
+				$single = _x( 'status update', 'post format term', 'ghostbird' );
+				$plural = _x( 'status updates', 'post format term', 'ghostbird' );
 				break;
 			case 'video' :
-				$single = _x( 'Video', 'post format term', 'ghostbird' );
-				$plural = _x( 'Videos', 'post format term', 'ghostbird' );
+				$single = _x( 'video', 'post format term', 'ghostbird' );
+				$plural = _x( 'videos', 'post format term', 'ghostbird' );
 				break;
 			case '' :
 			case 'standard' :
 			default :
-				$single = _x( 'Post', 'post format term', 'ghostbird' );
-				$plural = _x( 'Posts', 'post format term', 'ghostbird' );
+				$single = _x( 'post', 'post format term', 'ghostbird' );
+				$plural = _x( 'posts', 'post format term', 'ghostbird' );
 				break;
 		}
 	}
