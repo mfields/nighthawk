@@ -2,8 +2,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Ghostbird 1.0\n"
 "Report-Msgid-Bugs-To: \n"
-"POT-Creation-Date: 2011-03-20 22:25-0800\n"
-"PO-Revision-Date: 2011-03-20 22:25-0800\n"
+"POT-Creation-Date: 2011-03-20 23:46-0800\n"
+"PO-Revision-Date: 2011-03-20 23:46-0800\n"
 "Last-Translator: Michael Fields <michael@mfields.org>\n"
 "Language-Team: Michael Fields <michael@mfields.org>\n"
 "MIME-Version: 1.0\n"
@@ -48,420 +48,428 @@ msgstr ""
 msgid "Share your thoughts"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:228
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:229
 msgid "Pages"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:234
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:235
 msgid "Timeline"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:262
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:263
 msgid "Search Results"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:268
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:269
 #, php-format
 msgid "All entries by %1$s"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:272
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:275
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:278
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:273
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:276
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:279
 #, php-format
 msgid "Entries from %1$s"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:360
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:361
 #, php-format
 msgid "By %1$s"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:461
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:462
 #, php-format
 msgid "Get updated whenever new %1$s are published."
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:462
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:463
 #, php-format
 msgid "Only one %2$s found in this archive."
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:477
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:478
 #, php-format
 msgid "This %1$s is attached to %2$s."
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:480
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:481
 #, php-format
 msgid "This %1$s is part of the gallery titled %2$s."
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:489
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:490
 msgid "taxonomy"
-msgstr ""
-
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:496
-#, php-format
-msgid "Get updated whenever a new entry is added to the %1$s category."
 msgstr ""
 
 #: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:497
 #, php-format
-msgid "There is %1$s entry in this %2$s."
+msgid "Get updated whenever a new entry is added to the %1$s category."
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:500
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:498
 #, php-format
-msgid "Get updated whenever a new entry is tagged with %1$s."
+msgid "There is %1$s entry in this %2$s."
 msgstr ""
 
 #: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:501
 #, php-format
-msgid "%1$s entry has been tagged with %2$s."
+msgid "Get updated whenever a new entry is tagged with %1$s."
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:504
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:502
 #, php-format
-msgid "Get updated whenever a new %1$s is published."
+msgid "%1$s entry has been tagged with %2$s."
 msgstr ""
 
 #: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:505
 #, php-format
-msgid "This site contains one %2$s."
+msgid "Get updated whenever a new %1$s is published."
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:508
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:506
 #, php-format
-msgid "Subscribe to this %1$s"
+msgid "This site contains one %2$s."
 msgstr ""
 
 #: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:509
 #, php-format
+msgid "Subscribe to this %1$s"
+msgstr ""
+
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:510
+#, php-format
 msgid "One entry is associated with the term %2$s."
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:516
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:517
 msgid "Subscribe"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:540
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:541
 msgid "Continue reading"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:586
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:543
+msgid "View this gallery"
+msgstr ""
+
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:591
 #, php-format
 msgid "Permanent link to this %1$s"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:587
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:592
 #, php-format
 msgid "%1$s \\a\\t %2$s"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:594
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:599
 #, php-format
 msgid "Posted on %1$s"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:599
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:604
 msgid "Comment"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:606
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:1447
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:1467
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:611
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:1452
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:1472
 msgid "Edit"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:653
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:658
 #, php-format
 msgid "View all %1$s"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:660
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:665
 #, php-format
 msgid "This %1$s is filed under %2$s and tagged %3$s."
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:663
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:668
 #, php-format
 msgid "This %1$s is filed under %2$s."
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:666
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:671
 #, php-format
 msgid "This %1$s is tagged %2$s."
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:671
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:676
 #, php-format
 msgid "Filed under %1$s and tagged %2$s."
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:674
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:679
 #, php-format
 msgid "Filed under %1$s."
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:677
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:682
 #, php-format
 msgid "Tagged %1$s."
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:699
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:704
 msgid "&laquo;"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:700
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:1691
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:705
 msgid "&raquo;"
-msgstr ""
-
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:703
-#, php-format
-msgid "Next %1$s"
-msgstr ""
-
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:704
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:712
-#, php-format
-msgid "%1$s Back"
 msgstr ""
 
 #: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:708
 #, php-format
+msgid "Next %1$s"
+msgstr ""
+
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:709
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:717
+#, php-format
+msgid "%1$s Back"
+msgstr ""
+
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:713
+#, php-format
 msgid "More %1$s"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:753
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:758
 #, php-format
 msgid "About %s"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:913
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:918
 msgid "aside"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:914
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:919
 msgid "asides"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:917
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:922
 msgid "audio file"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:918
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:923
 msgid "audio files"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:921
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:926
 msgid "chat transcript"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:922
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:927
 msgid "chat transcripts"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:925
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:930
 msgid "gallery"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:926
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:931
 msgid "galleries"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:929
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:967
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:934
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:972
 msgid "image"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:930
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:968
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:935
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:973
 msgid "images"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:933
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:1693
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:938
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:1722
 msgid "link"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:934
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:939
 msgid "links"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:937
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:942
 msgid "quote"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:938
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:943
 msgid "quotes"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:941
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:946
 msgid "status update"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:942
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:947
 msgid "status updates"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:945
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:1001
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:950
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:1006
 msgid "video"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:946
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:1002
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:951
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:1007
 msgid "videos"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:951
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:956
 msgid "post"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:952
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:957
 msgid "posts"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:957
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:962
 msgid "page"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:958
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:963
 msgid "pages"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:971
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:976
 msgid "icon"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:972
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:977
 msgid "icons"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:975
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:980
 msgid "zip archive"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:976
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:981
 msgid "zip archives"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:980
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:985
 msgid "word processor document"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:981
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:986
 msgid "word processor documents"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:984
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:989
 msgid "PDF"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:985
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:990
 msgid "PDFs"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:989
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:994
 msgid "spreadsheet"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:990
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:995
 msgid "spreadsheets"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:1005
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:1010
 msgid "file"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:1006
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:1011
 msgid "files"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:1058
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:1063
 msgid "Bottom 1"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:1060
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:1065
 msgid "The first footer widget area"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:1069
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:1074
 msgid "Bottom 2"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:1071
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:1076
 msgid "The second footer widget area"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:1080
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:1085
 msgid "Bottom 3"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:1082
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:1087
 msgid "The third footer widget area"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:1317
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:1322
 msgid "Related Images"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:1362
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:1367
 #, php-format
 msgid "View this %1$s"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:1433
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:1438
 msgid "Your comment is awaiting moderation."
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:1443
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:1448
 msgid "Direct link to this comment."
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:1443
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:1448
 #, php-format
 msgid "%1$s at %2$s"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:1560
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:1565
 msgid "Header Text"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:1561
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:1566
 msgid "Display site title."
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:1562
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:1567
 msgid "Display tagline."
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:1656
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:1661
 msgid "This post is password protected. To view it please enter your password below:"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:1658
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:1663
 msgid "Enter Password"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:1660
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:1665
 msgid "Unlock"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:1690
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:1692
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:1722
 #, php-format
 msgid "Permalink to this %1$s"
 msgstr ""
 
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/functions.php:1694
+msgid "&#8210;"
+msgstr ""
+
 #: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/loop.php:30
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/loop.php:48
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/single.php:42
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/loop.php:36
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/loop.php:54
 msgid "Continue Reading"
 msgstr ""
 
-#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/loop.php:52
+#: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/loop.php:58
 #: C:\xampplite\htdocs\3.1\wp-content\themes\ghostbird/single.php:45
 msgid "Pages:"
 msgstr ""

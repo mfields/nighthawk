@@ -30,6 +30,12 @@ if ( have_posts() ) {
 			the_content( __( 'Continue Reading', 'ghostbird' ) );
 			print "\n" . '</div><!--entry-content-->';
 			break;
+		case 'status' :
+			ghostbird_featured_image( '<div class="featured-image">', '</div>' );
+			print "\n" . '<div class="entry-content">';
+			the_content( __( 'Continue Reading', 'ghostbird' ) );
+			print "\n" . '</div><!--entry-content-->';
+			break;
 		default :
 			ghostbird_featured_image( '<div class="featured-image">', '</div>' );
 			/*

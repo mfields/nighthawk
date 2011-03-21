@@ -478,6 +478,17 @@ h2.entry-title {
 .entry .bullet {
 	border-color:#ccc;
 }
+.entry .auto-link:hover,
+.entry .auto-link:active,
+.entry .auto-link:focus {
+	text-decoration:none;
+}
+.entry .auto-link:before {
+	content: '\005b';
+}
+.entry .auto-link:after {
+	content: '\005d';
+}
 
 
 /* Featured image. */
@@ -499,12 +510,6 @@ h2.entry-title {
 /* Aside posts. */
 .many .format-aside .post-title {
 	font-weight:bold;
-}
-
-
-/* Gallery posts. */
-.many .format-gallery p {
-	margin-top:0;
 }
 
 
@@ -533,7 +538,7 @@ h2.entry-title {
 	float:left;
 	width:60px;
 	height:60px;
-	margin:1.5em 0 0 0;
+	margin:1.5em 0;
 	padding:0;
 	border-width:0;
 }
@@ -553,9 +558,6 @@ h2.entry-title {
 }
 .entry-meta p {	
 	margin:0;
-}
-.entry-meta .datetime {
-	color:#888;
 }
 
 

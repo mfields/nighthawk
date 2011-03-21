@@ -39,7 +39,7 @@ while ( have_posts() ) {
 	<?php ghostbird_featured_image( '<div class="featured-image">', '</div>' ); ?>
 
 	<div class="entry-content">
-	<?php the_content( __( 'Continue Reading', 'ghostbird' ) ); ?>
+	<?php the_content(); ?>
 	</div><!--entry-content-->
 
 	<?php wp_link_pages( array( 'before' => '<div class="page-link">' . __( 'Pages:', 'ghostbird' ), 'after' => '</div>' ) ); ?>

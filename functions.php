@@ -89,6 +89,7 @@ function _ghostbird_setup() {
 	add_filter( 'post_thumbnail_html',        '_ghostbird_featured_image_avatar' );
 	add_action( 'the_content',                '_ghostbird_related_images' );
 	add_filter( 'the_content',                '_ghostbird_content_prepend_title', 9 );
+	add_filter( 'the_content',                '_ghostbird_content_append_link', 9 );
 	add_filter( 'the_password_form',          '_ghostbird_password_form' );
 	add_action( 'widget_title',               '_ghostbird_calendar_widget_title', 10, 3 );
 	add_action( 'widgets_init',               '_ghostbird_widgets_init' );
@@ -537,7 +538,11 @@ function ghostbird_summary_meta( $before = '', $after = '', $print = true ) {
  * @since     1.0
  */
 function ghostbird_continue_reading_link() {
-	return ' <a href="'. esc_url( get_permalink() ) . '">' . esc_html__( 'Continue reading', 'ghostbird' ) . '</a>';
+	$text = __( 'Continue reading', 'ghostbird' );
+	if ( 'gallery' == get_post_format() ) {
+		$text = __( 'View this gallery', 'ghostbird' );
+	}
+	return ' <a href="'. esc_url( get_permalink() ) . '">' . esc_html( $text ) . '</a>';
 }
 
 function ghostbird_entry_meta_classes() {
@@ -1405,7 +1410,7 @@ function _ghostbird_excerpt_more_auto( $more ) {
  */
 function _ghostbird_excerpt_more_custom( $excerpt ) {
 	if ( has_excerpt() && ! is_search() && ! is_attachment() && ! is_page() ) {
-		$excerpt .= ghostbird_continue_reading_link();
+		$excerpt .= "\n" . ghostbird_continue_reading_link();
 	}
 	return $excerpt;
 }
@@ -1670,10 +1675,6 @@ function _ghostbird_password_form( $form ) {
  * views. The title will be linked to the post's single
  * view and will have a class attribute of "entry-title".
  *
- * In cases where there is not title, a link will be
- * appended to the post content. This link will have
- * a class attribute of "auto-link".
- *
  * @param     string    Post content.
  * @return    string    Custom post content.
  *
@@ -1685,16 +1686,40 @@ function _ghostbird_content_prepend_title( $content ) {
 		return $content;
 	}
 
-	if ( in_array( get_post_format(), array( 'aside', 'link' ) ) ) {
+	$post_format = get_post_format();
+	if ( in_array( $post_format, array( 'aside', 'link', 'status' ) ) ) {
 		$title      = get_the_title();
 		$title_attr = sprintf( __( 'Permalink to this %1$s', 'ghostbird' ), ghostbird_post_label_singular() );
-		$right      = __( '&raquo;', 'ghostbird' );
-		if ( empty( $title ) ) {
-			$content .= ' ' . esc_html( $right ) . ' <a class="auto-link" title="' . esc_attr( $title_attr ) . '" href="' . esc_url( get_permalink() )  . '">' . esc_html__( 'link', 'ghostbird' ) . '</a>';
+		if ( ! empty( $title ) ) {
+			$content = '<a class="post-title" title="' . esc_attr( $title_attr ) . '" href="' . esc_url( get_permalink() )  . '">' . get_the_title() . '</a> ' . esc_html__( '&#8210;', 'ghostbird' ) . ' ' . $content;
 		}
-		else {
-			$content = '<a class="post-title" title="' . esc_attr( $title_attr ) . '" href="' . esc_url( get_permalink() )  . '">' . get_the_title() . '</a> ' . esc_html( $right ) . ' ' . $content;
-		}
+	}
+	return $content;
+}
+/**
+ * Append link to content.
+ *
+ * In cases where a post does not have a title,
+ * a link will be appended to the post content.
+ * This link will have a class attribute of "auto-link".
+ *
+ * @param     string    Post content.
+ * @return    string    Custom post content.
+ *
+ * @access    private
+ * @since     1.0
+ */
+function _ghostbird_content_append_link( $content ) {
+	if ( is_single() ) {
+		return $content;
+	}
+	$link = 'class="more-link"';
+	if ( false !== strpos( $content, $link ) ) {
+		return $content;
+	}
+	$title = get_the_title();
+	if ( empty( $title ) ) {
+		$content .= ' <a class="auto-link" title="' . sprintf( esc_attr__( 'Permalink to this %1$s', 'ghostbird' ), ghostbird_post_label_singular() ) . '" href="' . esc_url( get_permalink() )  . '">' . esc_html__( 'link', 'ghostbird' ) . '</a>';
 	}
 	return $content;
 }
