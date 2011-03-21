@@ -12,8 +12,6 @@
  * @todo Completely test and rewrite all examples in docs or remove if feeling lazy ;)
  * @todo HTML validataion.
  * @todo CSS validataion FWIW.
- * @todo Lighter fonts in Widgets.
- * @todo Pretty-up the calendar widget.
  *
  * FUTURE RELEASE
  * @todo Add header widget. Intended for search form?
@@ -253,7 +251,7 @@ function ghostbird_title( $before = '', $after = '', $print = true ) {
 		$term = $wp_query->get_queried_object();
 		if ( isset( $term->name ) && isset( $term->taxonomy ) && isset( $term->slug ) ) {
 			if ( 'post_format' == $term->taxonomy ) {
-				$term->name = ucfirst( ghostbird_post_label_plural( false ) );
+				$term->name = ucfirst( ghostbird_post_label_plural() );
 			}
 			$o = apply_filters( "ghostbird_title_taxonomy_{$term->taxonomy}", $term->name );
 			if ( is_paged() ) {
@@ -435,7 +433,7 @@ function ghostbird_summary_meta( $before = '', $after = '', $print = true ) {
 		if ( isset( $post_type->name ) && isset( $post_type->label ) && isset( $post_type->labels->singular_name ) ) {
 			$feed_url   = get_post_type_archive_feed_link( $post_type->name );
 			$feed_title = sprintf( __( 'Get updates when new %1$s are published.', 'ghostbird' ), $post_type->label );
-			$sentence   = sprintf( _n( '', 'There are %1$s %2$s in this archive.', $total, 'ghostbird' ), number_format_i18n( $total ), ghostbird_post_label_plural( false ) );
+			$sentence   = sprintf( _n( '', 'There are %1$s %2$s in this archive.', $total, 'ghostbird' ), number_format_i18n( $total ), ghostbird_post_label_plural() );
 			$sentence   = apply_filters( 'ghostbird_summary_meta_post_type_archive', $sentence, $post_type );
 			$sentence   = apply_filters( "ghostbird_summary_meta_{$post_type->name}_archive", $sentence, $post_type );
 		}
@@ -478,7 +476,7 @@ function ghostbird_summary_meta( $before = '', $after = '', $print = true ) {
 					break;
 				case 'post_format' :
 					$feed_title = sprintf( __( 'Get updates when a new %1$s is published.', 'ghostbird' ), ghostbird_post_label_singular() );
-					$sentence = sprintf( _n( 'This site contains one %2$s.', 'This site contains %1$s %3$s.', $total, 'ghostbird' ), number_format_i18n( $total ), ghostbird_post_label(), ghostbird_post_label_plural() );
+					$sentence = sprintf( _n( 'This site contains one %2$s.', 'This site contains %1$s %3$s.', $total, 'ghostbird' ), number_format_i18n( $total ), ghostbird_post_label_singular(), ghostbird_post_label_plural() );
 					break;
 				default :
 					$feed_title = sprintf( __( 'Subscribe to this %1$s', 'ghostbird' ), $taxonomy_name );
@@ -621,7 +619,7 @@ function ghostbird_entry_meta_taxonomy() {
 	$categories = get_the_category_list( ', ' );
 
 	if ( ! empty( $label ) && ! empty( $label_url ) ) {
-		$plural = ghostbird_post_label_plural( false );
+		$plural = ghostbird_post_label_plural();
 		$title = '';
 		if ( ! empty( $plural ) ) {
 			$title = sprintf( esc_attr__( 'View all %1$s', 'ghostbird' ), strtolower( $plural ) );
@@ -739,6 +737,112 @@ function ghostbird_author_bio( $before = '', $after = '', $print = true ) {
 }
 
 /**
+ * Featured Image.
+ *
+ * @param     string         Text to prepend to the image tag.
+ * @param     string         Text to append to the image tag.
+ * @param     bool           True to print, false to return a string. Defaults to true.
+ * @return    void/string
+ *
+ * @todo Allow to be hidden by postmeta.
+ *
+ * @since     1.0
+ */
+function ghostbird_featured_image( $before = '', $after = '', $print = true ) {
+	if ( post_password_required() ) {
+		return '';
+	}
+	$image = '';
+	$featured_image = get_the_post_thumbnail();
+	if ( ! empty( $featured_image ) ) {
+		$image = $featured_image;
+		if ( ! is_singular() ) {
+			$image = '<a href="' . esc_url( get_permalink() ) . '">' . $image . '</a>';
+		}
+	}
+	if ( ! empty( $image ) ) {
+		$image = $before . $image . $after;
+		if ( $print ) {
+			print $image;
+		}
+		else {
+			return $image;
+		}
+	}
+}
+
+/**
+ * Post label - singular.
+ *
+ * Returns a noun representing the type or format of the global
+ * post object. This function is used internally by the
+ * ghostbird_entry_meta_taxonomy() function to create a sentence much
+ * like the following: "This Status Update is filed under News."
+ * where "Status Update" is the post label and "News" is the category.
+ *
+ * @see       _ghostbird_post_label() for full documentation.
+ *
+ * @return    string
+ *
+ * @since     1.0
+ */
+function ghostbird_post_label_singular() {
+	$label  = '';
+	$labels = _ghostbird_post_label();
+	if ( isset( $labels[0] ) ) {
+		$label = $labels[0];
+	}
+	return $label;
+}
+
+/**
+ * Post label - plural.
+ *
+ * Returns a noun representing the type or format of the global
+ * post object. This function is used internally by the
+ * ghostbird_summary_meta() function to create a title attribute
+ * for the "Subscribe" link that reads something like:
+ * "This image is part of the gallery titled Taco Pictures."
+ * where "image" is the post label and "Taco Pictures" is the
+ * title of the parent post.
+ *
+ * @see       _ghostbird_post_label() for full documentation.
+ *
+ * @return    string
+ *
+ * @since     1.0
+ */
+function ghostbird_post_label_plural() {
+	$label  = '';
+	$labels = _ghostbird_post_label();
+	if ( isset( $labels[1] ) ) {
+		$label = $labels[1];
+	}
+	return $label;
+}
+
+/**#@-*/
+
+/**#@+
+ * Private Functions.
+ *
+ * The functions defined below are deemed to be private
+ * meaning that they should not be used in any template file for
+ * any reason. They are mainly callbacks for WordPress core functions,
+ * actions and filters. These functions may or may not be presnt in
+ * future releases of the Ghostbird theme. If you feel that you
+ * absolutely need to use one of them it is suggested that you
+ * copy the full function into your child theme's functions.php file
+ * and rename it. This will ensure that it always exists in your
+ * installation regardless of how Ghostbird changes.
+ *
+ * Functions are roughly defined in the order that
+ * they would be called during a template request.
+ *
+ * @access    private
+ */
+
+/**
  * Post Label.
  *
  * Returns a noun representing the type or format of the global
@@ -769,7 +873,7 @@ function ghostbird_author_bio( $before = '', $after = '', $print = true ) {
  *
  * @since     1.0
  */
-function ghostbird_post_label() {
+function _ghostbird_post_label() {
 	$label       = '';
 	$post_type   = get_post_type();
 	$post_format = get_post_format();
@@ -887,77 +991,6 @@ function ghostbird_post_label() {
 		apply_filters( 'ghostbird_post_label_single', $single, $post_type, $post_format ),
 		apply_filters( 'ghostbird_post_label_plural', $plural, $post_type, $post_format )
 	);
-}
-function ghostbird_post_label_singular() {
-	$label  = '';
-	$labels = ghostbird_post_label();
-	if ( isset( $labels[0] ) ) {
-		$label = $labels[0];
-	}
-	return $label;
-}
-function ghostbird_post_label_plural() {
-	$label  = '';
-	$labels = ghostbird_post_label();
-	if ( isset( $labels[1] ) ) {
-		$label = $labels[1];
-	}
-	return $label;
-}
-/**#@-*/
-
-/**#@+
- * Private Functions.
- *
- * The functions defined below are deemed to be private
- * meaning that they should not be used in any template file for
- * any reason. They are mainly callbacks for WordPress core functions,
- * actions and filters. These functions may or may not be presnt in
- * future releases of the Ghostbird theme. If you feel that you
- * absolutely need to use one of them it is suggested that you
- * copy the full function into your child theme's functions.php file
- * and rename it. This will ensure that it always exists in your
- * installation regardless of how Ghostbird changes.
- *
- * Functions are roughly defined in the order that
- * they would be called during a template request.
- *
- * @access    private
- */
-
-/**
- * Featured Image.
- *
- * @param     string         Text to prepend to the image tag.
- * @param     string         Text to append to the image tag.
- * @param     bool           True to print, false to return a string. Defaults to true.
- * @return    void/string
- *
- * @todo Allow to be hidden by postmeta.
- *
- * @since     1.0
- */
-function ghostbird_featured_image( $before = '', $after = '', $print = true ) {
-	if ( post_password_required() ) {
-		return '';
-	}
-	$image = '';
-	$featured_image = get_the_post_thumbnail();
-	if ( ! empty( $featured_image ) ) {
-		$image = $featured_image;
-		if ( ! is_singular() ) {
-			$image = '<a href="' . esc_url( get_permalink() ) . '">' . $image . '</a>';
-		}
-	}
-	if ( ! empty( $image ) ) {
-		$image = $before . $image . $after;
-		if ( $print ) {
-			print $image;
-		}
-		else {
-			return $image;
-		}
-	}
 }
 
 /**
@@ -1278,7 +1311,7 @@ function _ghostbird_related_images( $content ) {
  * Excerpt Search.
  *
  * Append a permalink to the excerpt in search results.
- * The link text is generated by ghostbird_post_label()
+ * The link text is generated by ghostbird_post_label_singular()
  * which will give context to post being displayed.
  *
  * This filter is attached to the 'get_the_excerpt' hook
