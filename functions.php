@@ -152,9 +152,9 @@ add_action( 'after_setup_theme', '_ghostbird_setup' );
 function ghostbird_logo( $before = '', $after = '' ) {
 	$url = get_header_image();
 	if ( ! empty( $url ) ) {
-		$img = '<img src="' . $url . '" width="' . HEADER_IMAGE_WIDTH . '" height="' . HEADER_IMAGE_HEIGHT . '" alt="' . esc_attr( get_bloginfo( 'blogname' ) ) . '">';
+		$img = '<img src="' . esc_url( $url ) . '" width="' . esc_attr( HEADER_IMAGE_WIDTH ) . '" height="' . esc_attr( HEADER_IMAGE_HEIGHT ) . '" alt="' . esc_attr( get_bloginfo( 'blogname' ) ) . '">';
 		if ( ! is_front_page() || is_paged() ) {
-			$img = '<a href="' . home_url() . '">' . $img . '</a>';
+			$img = '<a href="' . esc_attr( home_url() ) . '">' . $img . '</a>';
 		}
 		print "\n" . $before . $img . $after;
 	}
@@ -180,7 +180,7 @@ function ghostbird_site_title( $before = '', $after = '' ) {
 	$text = get_bloginfo( 'blogname' );
 	if ( ! empty( $text ) ) {
 		if ( ! is_front_page() || is_paged() ) {
-			$text = '<a href="' . home_url() . '">' . $text . '</a>';
+			$text = '<a href="' . esc_url( home_url() ) . '">' . esc_html( $text ) . '</a>';
 		}
 		print "\n" . $before . $text . $after;
 	}
@@ -203,7 +203,7 @@ function ghostbird_site_title( $before = '', $after = '' ) {
 function ghostbird_tagline( $before = '', $after = '' ) {
 	$text = get_bloginfo( 'description' );
 	if ( ! empty( $text ) ) {
-		print "\n" . $before . $text . $after;
+		print "\n" . $before . esc_html( $text ) . $after;
 	}
 }
 
@@ -222,18 +222,18 @@ function ghostbird_tagline( $before = '', $after = '' ) {
 function ghostbird_title( $before = '', $after = '', $print = true ) {
 	$o = '';
 	$url = '';
+	$title = '';
 	$post_type_qv = get_query_var( 'post_type' );
 	if ( 'page' == $post_type_qv ) {
-		$o = __( 'Pages', 'ghostbird' );
+		$title = __( 'Pages', 'ghostbird' );
 		if ( is_paged() ) {
 			$url = add_query_arg( 'post_type', 'page', trailingslashit( home_url() ) );
-			$o = apply_filters( 'ghostbird_title_timeline_paged', '<a href="' . esc_url( $url ) . '">' . $o . '</a>' );
 		}
 	}
 	else if ( is_home() ) {
-		$o = apply_filters( 'ghostbird_title_timeline', __( 'Timeline', 'ghostbird' ) );
+		$title = apply_filters( 'ghostbird_title_timeline', __( 'Timeline', 'ghostbird' ) );
 		if ( is_paged() ) {
-			$o = apply_filters( 'ghostbird_title_timeline_paged', '<a href="' . esc_url( home_url() ) . '">' . $o . '</a>' );
+			$url = home_url();
 		}
 	}
 	else if ( is_singular() ) {
@@ -244,7 +244,6 @@ function ghostbird_title( $before = '', $after = '', $print = true ) {
 		}
 		$title = apply_filters( 'ghostbird_title_singular', $title );
 		$title = apply_filters( "ghostbird_title_singular_{$post_type}", $title );
-		$o = apply_filters( 'the_title', $title );
 	}
 	else if ( is_tax() || is_category() || is_tag() ) {
 		global $wp_query;
@@ -253,47 +252,70 @@ function ghostbird_title( $before = '', $after = '', $print = true ) {
 			if ( 'post_format' == $term->taxonomy ) {
 				$term->name = ucfirst( ghostbird_post_label_plural() );
 			}
-			$o = apply_filters( "ghostbird_title_taxonomy_{$term->taxonomy}", $term->name );
+			$title = apply_filters( "ghostbird_title_taxonomy_{$term->taxonomy}", $term->name );
 			if ( is_paged() ) {
 				$url = get_term_link( $term, $term->taxonomy );
-				$o = apply_filters( 'ghostbird_title_timeline_paged', '<a href="' . esc_url( $url ) . '">' . esc_html( $o ) . '</a>' );
 			}
 		}
 	}
 	else if ( is_search() ) {
-		$o = apply_filters( 'ghostbird_title_search', __( 'Search Results', 'ghostbird' ) );
+		$title = apply_filters( 'ghostbird_title_search', __( 'Search Results', 'ghostbird' ) );
 	}
 	else if ( is_author() ) {
 		global $wp_query;
 		$author = $wp_query->get_queried_object();
 		if ( isset( $author->display_name ) ) {
-			$o = sprintf( __( 'All entries by %1$s', 'ghostbird' ), $author->display_name );
-			$o = apply_filters( 'ghostbird_title_author', $o, $author );
+			$title = sprintf( __( 'All entries by %1$s', 'ghostbird' ), $author->display_name );
 		}
 	}
 	else if ( is_day() ) {
-		$o = sprintf( __( 'Entries from %1$s', 'ghostbird' ), get_the_date() );
-		$o = apply_filters( 'ghostbird_title_day', $o );
+		$title = sprintf( __( 'Entries from %1$s', 'ghostbird' ), get_the_date() );
 	}
 	else if ( is_month() ) {
-		$o = sprintf( __( 'Entries from %1$s', 'ghostbird' ), get_the_date( 'F, Y' ) );
-		$o = apply_filters( 'ghostbird_title_month_year', $o );
+		$title = sprintf( __( 'Entries from %1$s', 'ghostbird' ), get_the_date( 'F, Y' ) );
 	}
 	else if ( is_year() ) {
-		$o = sprintf( __( 'Entries from %1$s', 'ghostbird' ), get_the_date( 'Y' ) );
-		$o = apply_filters( 'ghostbird_title_year', $o );
+		$title = sprintf( __( 'Entries from %1$s', 'ghostbird' ), get_the_date( 'Y' ) );
 	}
 	else if ( is_post_type_archive() ) {
-		$o = post_type_archive_title( '', false );
+		$title = post_type_archive_title( '', false );
 		global $wp_query;
 		$post_type = $wp_query->get_queried_object();
 		if ( isset( $post_type->name ) && is_paged() ) {
 			$url = get_post_type_archive_link( $post_type->name );
-			$o = '<a href="' . esc_url( $url ) . '">' . esc_html( $o ) . '</a>';
 		}
 	}
 
-	$o = "\n" . $before . apply_filters( 'ghostbird-title-text', $o, $url ) . $after;
+	if ( ! empty( $title ) ) {
+		$allowed = array(
+			'abbr'    => array(),
+			'b'       => array(),
+			'em'      => array(),
+			'i'       => array(),
+			'q'       => array(),
+			'span'    => array(),
+			'strong'  => array(),
+			'var'     => array(),
+			);
+		$o = '';
+		if ( ! empty( $url ) ) {
+			$o = '<a href="' . esc_url( $url ) . '">' . wp_kses( $title, $allowed ) . '</a>';
+		}
+		else {
+			$allowed['a'] = array(
+				'class' => array (),
+				'href'  => array (),
+				'id'    => array (),
+				'title' => array (),
+				'rel'   => array (),
+				'rev'   => array (),
+				'name'  => array ()
+				);
+			$o = wp_kses( $title, $allowed );
+		}
+	}
+
+	$o = $before . $o . $after;
 
 	if ( $print ) {
 		print $o;
@@ -319,13 +341,17 @@ function ghostbird_byline( $before = '', $after = '' ) {
 	$author_name = '';
 	if ( is_singular() && ! is_attachment() ) {
 		$author_name = get_the_author();
-		/* get_the_author() only works inside the loop. Need to do manual labor if ghostbird_byline() is used outside the loop. */
+		/*
+		 * get_the_author() only works inside the loop.
+		 * Need to do manual labor if ghostbird_byline()
+		 * is used outside the loop.
+		 */
 		if ( empty( $author_name ) ) {
 			global $posts;
 			if ( isset( $posts[0]->post_author ) ) {
 				$author = get_userdata( $posts[0]->post_author );
 				if ( isset( $author->display_name ) ) {
-					$author_name = esc_html( $author->display_name );
+					$author_name = $author->display_name;
 				}
 			}
 		}
@@ -335,7 +361,7 @@ function ghostbird_byline( $before = '', $after = '' ) {
 	}
 	$byline = apply_filters( 'ghostbird-byline', $byline, $author_name );
 	if ( ! empty( $byline ) ) {
-		print "\n" . $before . $byline . $after;
+		print "\n" . $before . esc_html( $byline ) . $after;
 	}
 }
 
@@ -432,7 +458,7 @@ function ghostbird_summary_meta( $before = '', $after = '', $print = true ) {
 		}
 		if ( isset( $post_type->name ) && isset( $post_type->label ) && isset( $post_type->labels->singular_name ) ) {
 			$feed_url   = get_post_type_archive_feed_link( $post_type->name );
-			$feed_title = sprintf( __( 'Get updates when new %1$s are published.', 'ghostbird' ), $post_type->label );
+			$feed_title = sprintf( __( 'Get updated whenever new %1$s are published.', 'ghostbird' ), $post_type->label );
 			$sentence   = sprintf( _n( '', 'There are %1$s %2$s in this archive.', $total, 'ghostbird' ), number_format_i18n( $total ), ghostbird_post_label_plural() );
 			$sentence   = apply_filters( 'ghostbird_summary_meta_post_type_archive', $sentence, $post_type );
 			$sentence   = apply_filters( "ghostbird_summary_meta_{$post_type->name}_archive", $sentence, $post_type );
@@ -467,15 +493,15 @@ function ghostbird_summary_meta( $before = '', $after = '', $print = true ) {
 
 			switch( $term->taxonomy ) {
 				case 'category' :
-					$feed_title = sprintf( __( 'Get updates when a new entry is added to the %1$s category.', 'ghostbird' ), $term->name );
+					$feed_title = sprintf( __( 'Get updated whenever a new entry is added to the %1$s category.', 'ghostbird' ), $term->name );
 					$sentence = sprintf( _n( 'There is %1$s entry in this %2$s.', 'There are %1$s entries in this %2$s.', $total, 'ghostbird' ), number_format_i18n( $total ), $taxonomy_name );
 					break;
 				case 'post_tag' :
-					$feed_title = sprintf( __( 'Get updates when a new entry is tagged with %1$s.', 'ghostbird' ), $term->name );
+					$feed_title = sprintf( __( 'Get updated whenever a new entry is tagged with %1$s.', 'ghostbird' ), $term->name );
 					$sentence = sprintf( _n( '%1$s entry has been tagged with %2$s.', '%1$s entries have been tagged with %2$s.', $total, 'ghostbird' ), number_format_i18n( $total ), '<em>' . $term->name . '</em>' );
 					break;
 				case 'post_format' :
-					$feed_title = sprintf( __( 'Get updates when a new %1$s is published.', 'ghostbird' ), ghostbird_post_label_singular() );
+					$feed_title = sprintf( __( 'Get updated whenever a new %1$s is published.', 'ghostbird' ), ghostbird_post_label_singular() );
 					$sentence = sprintf( _n( 'This site contains one %2$s.', 'This site contains %1$s %3$s.', $total, 'ghostbird' ), number_format_i18n( $total ), ghostbird_post_label_singular(), ghostbird_post_label_plural() );
 					break;
 				default :
@@ -490,7 +516,7 @@ function ghostbird_summary_meta( $before = '', $after = '', $print = true ) {
 		$sentence.= ' <span class="subscribe"><a href="' . esc_url( $feed_url ) . '" title="' . esc_attr( $feed_title ) . '">' . esc_html__( 'Subscribe', 'ghostbird' ) . '</a></span>';
 	}
 	if ( ! empty( $sentence ) ) {
-		$sentence = "\n" . apply_filters( 'ghostbird_summary_meta', $before . $sentence . $after );
+		$sentence = "\n" . $before . $sentence . $after;
 		if ( $print ) {
 			print $sentence;
 		}
@@ -511,7 +537,7 @@ function ghostbird_summary_meta( $before = '', $after = '', $print = true ) {
  * @since     1.0
  */
 function ghostbird_continue_reading_link() {
-	return ' <a href="'. get_permalink() . '">' . __( 'Continue reading', 'ghostbird' ) . '</a>';
+	return ' <a href="'. esc_url( get_permalink() ) . '">' . esc_html__( 'Continue reading', 'ghostbird' ) . '</a>';
 }
 
 function ghostbird_entry_meta_classes() {
@@ -557,11 +583,12 @@ function ghostbird_entry_meta_date() {
 	if ( empty( $format ) ) {
 		$format = 'post';
 	}
-	$title_attr  = sprintf( esc_attr__( 'Permanent link to this %1$s', 'ghostbird' ), $format );
+	$title_attr  = sprintf( __( 'Permanent link to this %1$s', 'ghostbird' ), $format );
 	$date_format = sprintf( __( '%1$s \a\t %2$s', 'ghostbird' ), get_option( 'date_format' ), get_option( 'time_format' ) );
-	$datestamp = '<a class="datetime" href="' . get_permalink() . '" title="' . $title_attr . '">' . get_the_time( $date_format ) . '</a>';
+	$date        = get_the_time( $date_format );
+	$datestamp = '<a class="datetime" href="' . esc_url( get_permalink() ) . '" title="' . esc_attr( $title_attr ) . '">' . esc_html( $date ) . '</a>';
 	if ( is_single() ) {
-		$datestamp =  '<span class="datetime" title="' . $title_attr . '">' . get_the_time( $date_format ) . '</span>';
+		$datestamp =  '<span class="datetime" title="' . esc_attr( $title_attr ) . '">' . esc_html( $date ) . '</span>';
 	}
 
 	printf( __( 'Posted on %1$s', 'ghostbird' ), $datestamp );
@@ -569,14 +596,14 @@ function ghostbird_entry_meta_date() {
 	/* Comments */
 	if ( ! is_singular() && ( ( comments_open() && ! post_password_required() ) || 0 < get_comments_number() ) ) {
 		print ' ';
-		$comment = _x( 'Comment', 'verb', 'ghostbird' );
+		$comment = esc_html( _x( 'Comment', 'verb', 'ghostbird' ) );
 		print '<span class="comment-link">';
 		comments_popup_link( $comment, $comment, $comment, '', '' );
 		print '</span>';
 	}
 
 	/* Edit link */
-	edit_post_link( __( 'Edit', 'ghostbird' ), ' <span class="post-edit">', '</span>' );
+	edit_post_link( esc_html__( 'Edit', 'ghostbird' ), ' <span class="post-edit">', '</span>' );
 
 	print '</p>';
 }
@@ -610,6 +637,7 @@ function ghostbird_entry_meta_taxonomy() {
 	$label_url  = get_post_format_link( get_post_format() );
 
 	$sentence = apply_filters( 'ghostbird_entry_meta_taxonomy', $sentence, $label, $label_url );
+
 	if ( ! empty( $sentence ) ) {
 		print $sentence;
 		return;
@@ -622,32 +650,31 @@ function ghostbird_entry_meta_taxonomy() {
 		$plural = ghostbird_post_label_plural();
 		$title = '';
 		if ( ! empty( $plural ) ) {
-			$title = sprintf( esc_attr__( 'View all %1$s', 'ghostbird' ), strtolower( $plural ) );
-			$title = ' title="' . $title . '"';
+			$title = ' title="' . sprintf( esc_attr__( 'View all %1$s', 'ghostbird' ), strtolower( $plural ) ) . '"';
 		}
 		$label = '<a href="' . esc_url( $label_url ) . '"' . $title . '>' . esc_html( $label ) . '</a>';
 	}
 
 	if ( ! empty( $label ) ) {
 		if( ! empty( $categories ) && ! empty( $post_tags ) ) {
-			$sentence = 'This ' . $label . ' is filed under ' . $categories . ' and tagged ' . $post_tags . '.';
+			$sentence = sprintf( __( 'This %1$s is filed under %2$s and tagged %3$s.' ), $label, $categories, $post_tags );
 		}
 		else if ( ! empty( $categories ) ) {
-			$sentence = 'This ' . $label . ' is filed under ' . $categories . '.';
+			$sentence = sprintf( __( 'This %1$s is filed under %2$s.' ), $label, $categories );
 		}
 		else if ( ! empty( $post_tags ) ) {
-			$sentence = 'This ' . $label . ' is tagged ' . $post_tags . '.';
+			$sentence = sprintf( __( 'This %1$s is tagged %2$s.' ), $label, $post_tags );
 		}
 	}
 	else {
 		if ( ! empty( $categories ) && ! empty( $post_tags ) ) {
-			$sentence = 'Filed under ' . $categories . ' and tagged ' . $post_tags . '.';
+			$sentence = sprintf( __( 'Filed under %1$s and tagged %2$s.' ), $categories, $post_tags );
 		}
 		else if ( ! empty( $categories ) ) {
-			$sentence = 'Filed under ' . $categories . '.';
+			$sentence = sprintf( __( 'Filed under %1$s.' ), $categories );
 		}
 		else if ( ! empty( $post_tags ) ) {
-			$sentence = 'Tagged ' . $post_tags . '.';
+			$sentence = sprintf( __( 'Tagged %1$s.' ), $post_tags );
 		}
 	}
 
@@ -669,18 +696,20 @@ function ghostbird_entry_meta_taxonomy() {
  */
 function ghostbird_paged_nav( $before = '', $after = '' ) {
 	$clear = '<div class="clear"></div>';
+	$left  = '<span>' . esc_html__( '&laquo;', 'ghostbird' ) . '</span>';
+	$right = '<span>' . esc_html__( '&raquo;', 'ghostbird' ) . '</span>';
 	if ( is_singular() ) {
 		print $before;
-		previous_post_link( '<div class="older-posts">%link</div>', __( 'Next <span>&raquo;</span>', 'ghostbird' ) );
-		next_post_link( '<div class="newer-posts">%link</div>', __( '<span>&laquo;</span> Back', 'ghostbird' ) );
+		previous_post_link( '<div class="older-posts">%link</div>', sprintf( __( 'Next %1$s', 'ghostbird' ), $right ) );
+		next_post_link( '<div class="newer-posts">%link</div>', sprintf( __( '%1$s Back', 'ghostbird' ), $left ) );
 		print $clear . $after;
 	}
 	else {
-		$next = get_next_posts_link( __( 'More <span>&raquo;</span>', 'ghostbird' ) );
+		$next = get_next_posts_link( sprintf( __( 'More %1$s', 'ghostbird' ), $right ) );
 		if ( ! empty( $next ) ) {
 			$next =  '<div class="more-posts">' . $next . '</div>';
 		}
-		$prev = get_previous_posts_link( __( '<span>&laquo;</span> Back', 'ghostbird' ) );
+		$prev = get_previous_posts_link( sprintf( __( '%1$s Back', 'ghostbird' ), $left ) );
 		if ( ! empty( $prev ) ) {
 			$prev = '<div class="back-posts">' . $prev . '</div>';
 		}
@@ -1149,7 +1178,13 @@ function _ghostbird_body_class( $classes ) {
  * @since     1.0
  */
 function _ghostbird_page_menu_wrap( $menu, $args ) {
-	if ( isset( $args['container'] ) && isset( $args['container_id'] ) && 'div' == $args['container'] && ( 'menu-top' == $args['container_id'] || 'menu-bottom' == $args['container_id'] ) ) {
+	if ( ! isset( $args['container'] ) ) {
+		return $menu;
+	}
+	if ( ! isset( $args['container_id'] ) ) {
+		return $menu;
+	}
+	if ( 'div' == $args['container'] && in_array( $args['container_id'], array( 'menu-bottom', 'menu-top' ) ) ) {
 		return "<{$args['container']} id='{$args['container_id']}'>{$menu}</{$args['container']}>";
 	}
 	return $menu;
@@ -1169,7 +1204,7 @@ function _ghostbird_post_class_entry( $classes ) {
 	if ( ! in_array( 'entry', $classes ) ) {
 		$classes[] = 'entry';
 	}
-	return $classes;
+	return array_unique( $classes );
 }
 
 /**
@@ -1187,7 +1222,7 @@ function _ghostbird_post_class_featured( $classes ) {
 	if ( ! empty( $featured_image ) ) {
 		$classes[] = 'has-featured-image';
 	}
-	return $classes;
+	return array_unique( $classes );
 }
 
 /**
@@ -1395,7 +1430,7 @@ function _ghostbird_comment_start( $comment, $args, $depth ) {
 	if ( '' == $comment->comment_type ) {
 		print "\n\n\n\n" . '<li id="comment-'; comment_ID(); print '" '; comment_class(); print '>';
 		if ( 0 === (int) $comment->comment_approved ) {
-			print __( 'Your comment is awaiting moderation.', 'ghostbird' );
+			print esc_html__( 'Your comment is awaiting moderation.', 'ghostbird' );
 		}
 		else {
 			$avatar = get_avatar( $comment, 45 );
@@ -1405,11 +1440,11 @@ function _ghostbird_comment_start( $comment, $args, $depth ) {
 			print "\n" . '<span class="comment-meta">';
 
 			/* Comment date. */
-			print "\n" . '<a class="comment-date" href="' . get_comment_link( $comment->comment_ID ) . '"  title="' . esc_attr__( 'Direct link to this comment.', 'ghostbird' ) . '">' . sprintf( __( '%1$s at %2$s', 'ghostbird' ), get_comment_date(),  get_comment_time() ) . '</a>';
+			print "\n" . '<a class="comment-date" href="' . get_comment_link( $comment->comment_ID ) . '"  title="' . esc_attr__( 'Direct link to this comment.', 'ghostbird' ) . '">' . sprintf( esc_html__( '%1$s at %2$s', 'ghostbird' ), get_comment_date(),  get_comment_time() ) . '</a>';
 
 			/* Edit comment link. */
 			if ( current_user_can( 'edit_comment', $comment->comment_ID ) ) {
-				print "\n" . '<span class="comment-edit"> <a href="' . get_edit_comment_link( $comment->comment_ID ) . '">' . __( 'Edit', 'ghostbird' ) . '</a></span>';
+				print "\n" . '<span class="comment-edit"> <a href="' . esc_url( get_edit_comment_link( $comment->comment_ID ) ) . '">' . esc_html__( 'Edit', 'ghostbird' ) . '</a></span>';
 			}
 
 			/* Reply to comment link. */
@@ -1429,7 +1464,7 @@ function _ghostbird_comment_start( $comment, $args, $depth ) {
 		print '<li class="trackback">';
 		comment_author_link();
 		if ( current_user_can( 'edit_comment', $comment->comment_ID ) ) {
-			print "\n" . '<span class="comment-edit"> <a href="' . get_edit_comment_link( $comment->comment_ID ) . '">' . __( 'Edit', 'ghostbird' ) . '</a></span>';
+			print "\n" . '<span class="comment-edit"> <a href="' . esc_url( get_edit_comment_link( $comment->comment_ID ) ) . '">' . esc_html__( 'Edit', 'ghostbird' ) . '</a></span>';
 		}
 	}
 }
@@ -1522,9 +1557,9 @@ function _ghostbird_syntaxhighlighter_theme( $themes ) {
  * @since     1.0
  */
 function _ghostbird_settings_custom_header_text_controls() {
-	print '<table class="form-table"><tbody><tr><th>' . __( 'Header Text', 'ghostbird' ) . '</th><td>';
-	_ghostbird_control_boolean( 'ghostbird_display_site_title', __( 'Display site title.', 'ghostbird' ), get_theme_mod( 'ghostbird_display_site_title', 0 ) );
-	_ghostbird_control_boolean( 'ghostbird_display_tagline',    __( 'Display tagline.', 'ghostbird' ), get_theme_mod( 'ghostbird_display_tagline', 0 ) );
+	print '<table class="form-table"><tbody><tr><th>' . esc_html__( 'Header Text', 'ghostbird' ) . '</th><td>';
+	_ghostbird_control_boolean( 'ghostbird_display_site_title', esc_html__( 'Display site title.', 'ghostbird' ), get_theme_mod( 'ghostbird_display_site_title', 0 ) );
+	_ghostbird_control_boolean( 'ghostbird_display_tagline', esc_html__( 'Display tagline.', 'ghostbird' ), get_theme_mod( 'ghostbird_display_tagline', 0 ) );
 	print '</td></tr></tbody></table>';
 }
 
@@ -1618,8 +1653,8 @@ function _ghostbird_password_form( $form ) {
 	$id_attr = 'password-form-' . $id;
 
 	$form = "\n\n";
-	$form.= '<p>' . __( 'This post is password protected. To view it please enter your password below:', 'ghostbird' ) . '</p>';
-	$form.= '<form class="bullet" action="' . get_option( 'siteurl' ) . '/wp-pass.php" method="post">';
+	$form.= '<p>' . esc_html__( 'This post is password protected. To view it please enter your password below:', 'ghostbird' ) . '</p>';
+	$form.= '<form class="bullet" action="' . esc_url( get_option( 'siteurl' ) . '/wp-pass.php' ) . '" method="post">';
 	$form.= '<label class="bullet-label" for="' . esc_attr( $id_attr ) . '">' . __( 'Enter Password', 'ghostbird' ) . '</label>';
 	$form.= '<input class="bullet-term" name="post_password" id="' . esc_attr( $id_attr ) . '" type="password" size="20" />';
 	$form.= '<input class="bullet-button" type="submit" name="Submit" value="' . esc_attr__( 'Unlock', 'ghostbird' ) . '" />';
@@ -1653,11 +1688,12 @@ function _ghostbird_content_prepend_title( $content ) {
 	if ( in_array( get_post_format(), array( 'aside', 'link' ) ) ) {
 		$title      = get_the_title();
 		$title_attr = sprintf( __( 'Permalink to this %1$s' ), ghostbird_post_label_singular() );
+		$right      = __( '&raquo;', 'ghostbird' );
 		if ( empty( $title ) ) {
-			$content .= ' ' . __( '&raquo;', 'ghostbird' ) . ' <a class="auto-link" title="' . esc_attr( $title_attr ) . '" href="' . esc_url( get_permalink() )  . '">' . esc_html__( 'link', 'ghostbird' ) . '</a>';
+			$content .= ' ' . esc_html( $right ) . ' <a class="auto-link" title="' . esc_attr( $title_attr ) . '" href="' . esc_url( get_permalink() )  . '">' . esc_html__( 'link', 'ghostbird' ) . '</a>';
 		}
 		else {
-			$content = '<a class="post-title" title="' . esc_attr( $title_attr ) . '" href="' . esc_url( get_permalink() )  . '">' . get_the_title() . '</a> &raquo; ' . $content;
+			$content = '<a class="post-title" title="' . esc_attr( $title_attr ) . '" href="' . esc_url( get_permalink() )  . '">' . get_the_title() . '</a> ' . esc_html( $right ) . ' ' . $content;
 		}
 	}
 	return $content;
