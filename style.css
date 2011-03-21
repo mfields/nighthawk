@@ -25,13 +25,13 @@ body {
 
 
 /* Font-size + margin for all headings */
-h1, h2, h3, h4, h5, h6 { margin:0; padding:0; line-height:1.2em; clear:both; }
-h1 { font-size:1.50em; margin-bottom:.67em; }
+h1, h2, h3, h4, h5, h6 { padding:0; line-height:1.2em; clear:both; }
+h1 { font-size:1.50em; margin:.83em 0; }
 h2 { font-size:1.38em; margin:1.05em 0; }
-h3 { font-size:1.13em; margin-bottom:.89em; }
-h4 { font-size:1.06em; margin-bottom:.94em; }
+h3 { font-size:1.13em; margin:1.15em 0; }
+h4 { font-size:1.06em; margin:1.35em 0; }
 h5,
-h6 { font-size:1.00em; margin-bottom:.90em; }
+h6 { font-size:1.00em; margin:1.5em 0; }
 
 
 /* Margin for all content blocks. */
@@ -421,7 +421,7 @@ td {
 #intro {
 	margin:0 0 1.5em;
 	padding:1em 1.5em 1em;
-	overflow:auto;
+	overflow:hidden;
 	border-width:0 .1em .1em;
 	border-style:solid;
 	border-color:#e2caa0;
@@ -430,7 +430,7 @@ td {
 }
 #intro h1 {
 	line-height:1;
-	margin-bottom:.25em;
+	margin:0 0 .25em;
 }
 #summary p:first-child,
 #summary p:only-child { margin-top:.25em; }
