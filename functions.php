@@ -1599,7 +1599,12 @@ function _ghostbird_password_form( $form ) {
  *
  * Posts formatted as an "aside" and "link" will have
  * the title prepended to the content on all multiple
- * views.
+ * views. The title will be linked to the post's single
+ * view and will have a class attribute of "entry-title".
+ *
+ * In cases where there is not title, a link will be
+ * appended to the post content. This link will have
+ * a class attribute of "auto-link".
  *
  * @param     string    Post content.
  * @return    string    Custom post content.
