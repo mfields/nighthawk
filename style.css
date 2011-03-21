@@ -110,8 +110,9 @@ a img {
 a.edit-term img {
 	border-width:0;
 }
+a:hover,
+a:active,
 a:focus {
-	color:#333;
 	text-decoration:underline;
 	outline:0;
 }
@@ -400,6 +401,11 @@ td {
 	outline:0;
 	-webkit-transition:background-color, -webkit-box-shadow 0.2s linear;
 }
+#menu-top li a:hover,
+#menu-top li a:active {
+	text-decoration:none;
+}
+
 
 #page {
 	padding:0 1.5em 1.5em;
@@ -515,7 +521,7 @@ h2.entry-title {
 .many .format-link a.post-title:hover,
 .many .format-link a.post-title:active,
 .many .format-link a.post-title:focus {
-	color:#3a5066;
+	text-decoration:underline;
 }
 .many .format-link .entry-content p {
 	margin:.5em 0;
