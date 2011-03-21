@@ -8,11 +8,6 @@
  * @license      http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since        1.0
  *
- * BEFORE 1.0 RELEASE
- * @todo Completely test and rewrite all examples in docs or remove if feeling lazy ;)
- * @todo HTML validataion.
- * @todo CSS validataion FWIW.
- *
  * FUTURE RELEASE
  * @todo Add header widget. Intended for search form?
  * @todo Add detail images to gallery posts.
@@ -23,7 +18,7 @@
  *
  */
 
-define( 'GHOSTBIRD_VERSION', '0.9.3.1' );
+define( 'GHOSTBIRD_VERSION', '1.0' );
 
 /**
  * Theme Setup
@@ -1685,7 +1680,9 @@ function _ghostbird_content_prepend_title( $content ) {
 	if ( is_single() ) {
 		return $content;
 	}
-
+	if ( post_password_required() ) {
+		return $content;
+	}
 	$post_format = get_post_format();
 	if ( in_array( $post_format, array( 'aside', 'link', 'status' ) ) ) {
 		$title      = get_the_title();
