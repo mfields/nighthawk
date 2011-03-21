@@ -1616,10 +1616,10 @@ function _ghostbird_content_prepend_title( $content ) {
 		$title      = get_the_title();
 		$title_attr = sprintf( __( 'Permalink to this %1$s' ), ghostbird_post_label_singular() );
 		if ( empty( $title ) ) {
-			$content = "\n" . $content . ' ' . __( '&raquo;', 'ghostbird' ) . ' <a class="auto-link" title="' . esc_attr( $title_attr ) . '" href="' . esc_url( get_permalink() )  . '">' . esc_html__( 'link', 'ghostbird' ) . '</a>';
+			$content .= ' ' . __( '&raquo;', 'ghostbird' ) . ' <a class="auto-link" title="' . esc_attr( $title_attr ) . '" href="' . esc_url( get_permalink() )  . '">' . esc_html__( 'link', 'ghostbird' ) . '</a>';
 		}
 		else {
-			$content = "\n" . '<a class="post-title" title="' . esc_attr( $title_attr ) . '" href="' . esc_url( get_permalink() )  . '">' . get_the_title() . '</a> &raquo; ' . $content;
+			$content = '<a class="post-title" title="' . esc_attr( $title_attr ) . '" href="' . esc_url( get_permalink() )  . '">' . get_the_title() . '</a> &raquo; ' . $content;
 		}
 	}
 	return $content;
