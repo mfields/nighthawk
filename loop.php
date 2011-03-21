@@ -27,7 +27,7 @@ if ( have_posts() ) {
 		case 'aside' :
 		case 'link' :
 			print "\n" . '<div class="entry-content">';
-			the_content( __( 'more', 'ghostbird' ) );
+			the_content( __( 'Continue Reading', 'ghostbird' ) );
 			print "\n" . '</div><!--entry-content-->';
 			break;
 		default :
@@ -45,7 +45,7 @@ if ( have_posts() ) {
 				the_excerpt();
 			}
 			else {
-				the_content( __( 'more', 'ghostbird' ) );
+				the_content( __( 'Continue Reading', 'ghostbird' ) );
 			}
 			print "\n" . '</div><!--entry-content-->';
 
