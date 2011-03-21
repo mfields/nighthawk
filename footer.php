@@ -61,6 +61,18 @@ if ( 0 < $count ) {
 	) ); ?>
 
 <?php wp_footer(); ?>
-
+<!--[if IE 8]>
+<script>
+var imgs, i, w;
+var imgs = document.getElementsByTagName( 'img' );
+for( i = 0; i < imgs.length; i++ ) {
+	w = imgs[i].getAttribute( 'width' );
+	if ( 615 < w ) {
+		imgs[i].removeAttribute( 'width' );
+		imgs[i].removeAttribute( 'height' );
+	}
+}
+</script>
+<![endif]-->
 </body>
 </html>
