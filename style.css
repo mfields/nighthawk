@@ -35,13 +35,19 @@ h6 { font-size:1.00em; margin-bottom:.90em; }
 
 
 /* Margin for all content blocks. */
-address, article, aside, blockquote, dl, fieldset, form, ol, p, pre, table, ul, .entry-meta, .embed {
+address, article, aside, blockquote, dl, fieldset, form, ol, p, pre, table, ul,
+.entry-content div, .entry-meta, .embed {
 	font-size:1em;
 	margin:1.5em 0;
 	padding:0;
 	line-height:1.5em;
 }
-
+#gallery-1, #gallery-2, #gallery-3, #gallery-4, #gallery-5 { /* !important used to override inline css. */
+	font-size:1em !important;
+	margin:1.5em 0 !important;
+	padding:0 !important;
+	line-height:1.5em !important;
+}
 
 /* Lists */
 ul, ol {
@@ -452,6 +458,8 @@ h2.entry-title {
 }
 .entry img {
 	background-color:#fff;
+	max-width:615px;
+	height:auto;
 }
 .entry pre {
 	padding:5%;
@@ -479,6 +487,12 @@ h2.entry-title {
 	box-shadow:         none;
 	-webkit-box-shadow: none;
 	-moz-box-shadow:    none;
+}
+
+
+/* Aside posts. */
+.many .format-aside .post-title {
+	font-weight:bold;
 }
 
 
@@ -967,18 +981,22 @@ input#submit {
 
 
 /* WordPress generated classes. */
-.alignnone {
+.alignnone,
+div.alignnone {
 	margin:0 1em 0 0;
 }
-.alignleft {
+.alignleft,
+div.alignleft {
 	float:left;
 	margin:0 1em 1em 0;
 }
-.alignright {
+.alignright,
+div.alignright {
 	float:right;
 	margin:0 0 1em 1em;
 }
-.aligncenter {
+.aligncenter,
+div.aligncenter {
 	display:block;
 	margin:1em auto;
 }
@@ -991,6 +1009,9 @@ input#submit {
 }
 .embed {
 	width:100%;
+}
+.page-link {
+	clear:both;
 }
 .sticky {}
 .wp-caption-text {}
