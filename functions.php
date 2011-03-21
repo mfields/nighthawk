@@ -459,7 +459,7 @@ function ghostbird_summary_meta( $before = '', $after = '', $print = true ) {
 		if ( isset( $post_type->name ) && isset( $post_type->label ) && isset( $post_type->labels->singular_name ) ) {
 			$feed_url   = get_post_type_archive_feed_link( $post_type->name );
 			$feed_title = sprintf( __( 'Get updated whenever new %1$s are published.', 'ghostbird' ), $post_type->label );
-			$sentence   = sprintf( _n( '', 'There are %1$s %2$s in this archive.', $total, 'ghostbird' ), number_format_i18n( $total ), ghostbird_post_label_plural() );
+			$sentence   = sprintf( _n( 'Only one %2$s found in this archive.', 'There are %1$s %2$s in this archive.', $total, 'ghostbird' ), number_format_i18n( $total ), ghostbird_post_label_plural(), ghostbird_post_label_singular() );
 			$sentence   = apply_filters( 'ghostbird_summary_meta_post_type_archive', $sentence, $post_type );
 			$sentence   = apply_filters( "ghostbird_summary_meta_{$post_type->name}_archive", $sentence, $post_type );
 		}
@@ -657,24 +657,24 @@ function ghostbird_entry_meta_taxonomy() {
 
 	if ( ! empty( $label ) ) {
 		if( ! empty( $categories ) && ! empty( $post_tags ) ) {
-			$sentence = sprintf( __( 'This %1$s is filed under %2$s and tagged %3$s.' ), $label, $categories, $post_tags );
+			$sentence = sprintf( __( 'This %1$s is filed under %2$s and tagged %3$s.', 'ghostbird' ), $label, $categories, $post_tags );
 		}
 		else if ( ! empty( $categories ) ) {
-			$sentence = sprintf( __( 'This %1$s is filed under %2$s.' ), $label, $categories );
+			$sentence = sprintf( __( 'This %1$s is filed under %2$s.', 'ghostbird' ), $label, $categories );
 		}
 		else if ( ! empty( $post_tags ) ) {
-			$sentence = sprintf( __( 'This %1$s is tagged %2$s.' ), $label, $post_tags );
+			$sentence = sprintf( __( 'This %1$s is tagged %2$s.', 'ghostbird' ), $label, $post_tags );
 		}
 	}
 	else {
 		if ( ! empty( $categories ) && ! empty( $post_tags ) ) {
-			$sentence = sprintf( __( 'Filed under %1$s and tagged %2$s.' ), $categories, $post_tags );
+			$sentence = sprintf( __( 'Filed under %1$s and tagged %2$s.', 'ghostbird' ), $categories, $post_tags );
 		}
 		else if ( ! empty( $categories ) ) {
-			$sentence = sprintf( __( 'Filed under %1$s.' ), $categories );
+			$sentence = sprintf( __( 'Filed under %1$s.', 'ghostbird' ), $categories );
 		}
 		else if ( ! empty( $post_tags ) ) {
-			$sentence = sprintf( __( 'Tagged %1$s.' ), $post_tags );
+			$sentence = sprintf( __( 'Tagged %1$s.', 'ghostbird' ), $post_tags );
 		}
 	}
 
@@ -1687,7 +1687,7 @@ function _ghostbird_content_prepend_title( $content ) {
 
 	if ( in_array( get_post_format(), array( 'aside', 'link' ) ) ) {
 		$title      = get_the_title();
-		$title_attr = sprintf( __( 'Permalink to this %1$s' ), ghostbird_post_label_singular() );
+		$title_attr = sprintf( __( 'Permalink to this %1$s', 'ghostbird' ), ghostbird_post_label_singular() );
 		$right      = __( '&raquo;', 'ghostbird' );
 		if ( empty( $title ) ) {
 			$content .= ' ' . esc_html( $right ) . ' <a class="auto-link" title="' . esc_attr( $title_attr ) . '" href="' . esc_url( get_permalink() )  . '">' . esc_html__( 'link', 'ghostbird' ) . '</a>';
