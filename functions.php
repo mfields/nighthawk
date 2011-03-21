@@ -1611,11 +1611,16 @@ function _ghostbird_content_prepend_title( $content ) {
 	if ( is_single() ) {
 		return $content;
 	}
-	if ( '' == get_the_title() ) {
-		return $content;
-	}
+
 	if ( in_array( get_post_format(), array( 'aside', 'link' ) ) ) {
-		$content = "\n" . '<a class="post-title" href="' . esc_url( get_permalink() )  . '">' . get_the_title() . '</a> &raquo; ' . $content;
+		$title      = get_the_title();
+		$title_attr = sprintf( __( 'Permalink to this %1$s' ), ghostbird_post_label_singular() );
+		if ( empty( $title ) ) {
+			$content = "\n" . $content . ' ' . __( '&raquo;', 'ghostbird' ) . ' <a class="auto-link" title="' . esc_attr( $title_attr ) . '" href="' . esc_url( get_permalink() )  . '">' . esc_html__( 'link', 'ghostbird' ) . '</a>';
+		}
+		else {
+			$content = "\n" . '<a class="post-title" title="' . esc_attr( $title_attr ) . '" href="' . esc_url( get_permalink() )  . '">' . get_the_title() . '</a> &raquo; ' . $content;
+		}
 	}
 	return $content;
 }
