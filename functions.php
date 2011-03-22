@@ -293,7 +293,6 @@ function ghostbird_title( $before = '', $after = '', $print = true ) {
 			'strong'  => array(),
 			'var'     => array(),
 			);
-		$o = '';
 		if ( ! empty( $url ) ) {
 			$o = '<a href="' . esc_url( $url ) . '">' . wp_kses( $title, $allowed ) . '</a>';
 		}
