@@ -4,7 +4,7 @@ Theme URI:         http://ghostbird.mfields.org/
 Description:       A one-column theme for WordPress.
 Author:            Michael Fields
 Author URI:        http://wordpress.mfields.org/
-Version:           1.0
+Version:           1.0.1DEV
 License:           GNU General Public License v2.0 or later
 License URI:       http://www.gnu.org/licenses/gpl-2.0.html
 Tags:              one-column, flexible-width, custom-header, custom-background, custom-menu, editor-style, translation-ready
@@ -407,15 +407,14 @@ td {
 #menu-top.notice {
 	padding:.5em;
 }
-#menu-top p.dialog {
+.dialog {
 	display:block;
 	margin:.5em;
 	padding:.5em;
-	font-weight:bold;
-	color:#e9d6d6;
-	background-color:#111;
+	color:#333;
+	background-color:#ffe58c;
 	outline:0;
-	border:.2em solid #777;
+	border:.2em solid #000;
 }
 
 #page {
@@ -949,9 +948,15 @@ table#wp-calendar {
 
 
 /* Bottom Menu. */
-#menu-bottom ul {
+#menu-bottom {
 	max-width:56em;
 	margin:1em auto 3em;
+}
+#menu-bottom.notice {
+	max-width:50em;
+}
+#menu-bottom ul {
+	margin:0;
 	padding:0;
 	clear:both;
 	text-align:center;
@@ -960,13 +965,13 @@ table#wp-calendar {
 	display:inline;
 	padding:.5em;
 }
-#menu-bottom a {
+#menu-bottom li a {
 	color:#b9d8f2;
 	font-weight:bold;
 }
-#menu-bottom a:focus,
-#menu-bottom a:hover,
-#menu-bottom a:active {
+#menu-bottom li a:focus,
+#menu-bottom li a:hover,
+#menu-bottom li a:active {
 	color:#fff;
 }
 
@@ -1119,9 +1124,9 @@ button,
 #submit,
 #menu-top,
 #menu-top li a,
-#menu-top p.dialog,
 #page-footer a,
-.button {
+.button,
+.dialog {
 	border-top-left-radius:          .5em;
 	border-top-right-radius:         .5em;
 	-webkit-border-top-left-radius:  .5em;
@@ -1139,8 +1144,8 @@ button,
 #page-footer,
 #page-footer a,
 #menu-top li a,
-#menu-top p.dialog,
-.button {
+.button,
+.dialog {
 	border-bottom-left-radius:          .5em;
 	border-bottom-right-radius:         .5em;
 	-webkit-border-bottom-left-radius:  .5em;

@@ -22,6 +22,7 @@
  * @copyright    Copyright (c) 2011, Michael Fields
  * @license      http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since        1.0
+ * @alter        1.0.1
  */
 ?>
 
@@ -57,7 +58,8 @@ if ( 0 < $count ) {
 	'container_id'   => 'menu-bottom',
 	'theme_location' => 'secondary',
 	'depth'          => 1,
-	'items_wrap'     => '<ul id="%1$s" class="%2$s" role="navigation">%3$s</ul>'
+	'items_wrap'     => '<ul id="%1$s" class="%2$s" role="navigation">%3$s</ul>',
+	'fallback_cb'    => '_ghostbird_menu_dialog',
 	) ); ?>
 
 <?php wp_footer(); ?>
