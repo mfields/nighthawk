@@ -1720,4 +1720,30 @@ function _ghostbird_content_append_link( $content ) {
 	return $content;
 }
 
+function _ghostbird_menu_dialog( $args ) {
+	$defaults = array(
+		'container'    => 'div',
+		'container_id' => ''
+		);
+
+	$args = wp_parse_args( $args, $defaults );
+
+	if ( ! in_array( trim( strtolower( $args['container'] ) ), array( 'div', 'section', 'nav', 'li' ) ) ) {
+		$args['container'] = $defaults['container'];
+	}
+
+	$id = '';
+	if ( ! empty( $args['container_id'] ) ) {
+		$id = ' id="' . esc_attr( $args['container_id'] ) . '"';
+	}
+
+	$class = '';
+	$message = '';
+	if ( current_user_can( 'edit_theme_options' ) ) {
+		$class = ' class="notice"';
+		$message = '<p class="dialog">' . sprintf( esc_html__( 'You have not defined a navigation menu for the "primary" theme location.%1$sYou can visit the %2$s to manage your menus.', 'ghostbird' ), '<br>', '<a href="' . esc_url( admin_url( '/nav-menus.php' ) ) . '">' . esc_html__( 'menus page' ) . '</a>' ) . '</p>';
+	}
+
+	print '<' . $args['container'] . $id . $class . '>' . $message . '</' . $args['container'] . '>';
+}
 /**#@-*/

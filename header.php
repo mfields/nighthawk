@@ -47,7 +47,8 @@
 		'container'      => 'div',
 		'container_id'   => 'menu-top',
 		'theme_location' => 'primary',
-		'depth'          => 1
+		'depth'          => 1,
+		'fallback_cb'    => '_ghostbird_menu_dialog',
 		) ); ?>
 
 	<div id="page" role="document">

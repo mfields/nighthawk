@@ -331,7 +331,7 @@ td {
 	color:#fff;
 	text-align:left;
 	background:#600 url( images/horizontal-stripes.png );
-	min-height:50px; /* Needed for stiches.png. */
+	min-height:50px; /* Needed for horizontal-stripes.png. */
 }
 #menu-top:before {
 	content:'';
@@ -392,7 +392,6 @@ td {
 }
 #menu-top li a {
 	padding:.35em .6em;
-	font-weight:bold;
 	text-align:center;
 	cursor:pointer;
 	font-weight:bold;
@@ -405,7 +404,19 @@ td {
 #menu-top li a:active {
 	text-decoration:none;
 }
-
+#menu-top.notice {
+	padding:.5em;
+}
+#menu-top p.dialog {
+	display:block;
+	margin:.5em;
+	padding:.5em;
+	font-weight:bold;
+	color:#e9d6d6;
+	background-color:#111;
+	outline:0;
+	border:.2em solid #777;
+}
 
 #page {
 	padding:0 1.5em 1.5em;
@@ -1108,6 +1119,7 @@ button,
 #submit,
 #menu-top,
 #menu-top li a,
+#menu-top p.dialog,
 #page-footer a,
 .button {
 	border-top-left-radius:          .5em;
@@ -1127,6 +1139,7 @@ button,
 #page-footer,
 #page-footer a,
 #menu-top li a,
+#menu-top p.dialog,
 .button {
 	border-bottom-left-radius:          .5em;
 	border-bottom-right-radius:         .5em;
