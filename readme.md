@@ -46,6 +46,7 @@ Changelog
 ---------
 
 __1.0.1__
+
 * Removed _ghostbird_page_menu_wrap() - no longer needed.
 * WordPress nav menus no longer fallback to wp_list_pages().
 * Deleted unneeded variables + css rules where appropriate.
