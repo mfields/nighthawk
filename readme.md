@@ -1,24 +1,20 @@
 Ghostbird
 ==========================
 
-A one-column theme for the [WordPress Publishing Platform](http://wordpress.org/) designed by [Michael Fields](http://wordpress.mfields.org).
+A one-column theme for the [WordPress Publishing Platform](http://wordpress.org/) designed by [Michael Fields](http://wordpress.mfields.org). More doumentation and news can be found on the [official website](http://ghostbird.mfields.org).
 
-Supported Plugins
------------------
-* [SyntaxHighlighter Evolved](http://www.viper007bond.com/wordpress-plugins/syntaxhighlighter/) by [Viper007Bond](http://www.viper007bond.com/)
-* [I Make Plugins](http://txfx.net/wordpress-plugins/i-make-plugins/) by [Mark Jaquith](http://coveredwebservices.com/)
-* [Subscribe to Comments](http://txfx.net/wordpress-plugins/subscribe-to-comments/) by [Mark Jaquith](http://coveredwebservices.com/)
+Minimum Version
+---------------
+Ghostbird requires WordPress version 3.1 or later.
 
 Supported Post Formats
 ----------------------
 * Aside
 * Gallery
+* Link
 * Standard
 * Status
-
-Minimum Version
----------------
-Ghostbird requires WordPress version 3.1 or later.
+* Video
 
 2 Custom Menu Areas
 -------------------
@@ -38,3 +34,23 @@ Widgetized Areas
 Custom Post Types and Taxonomies
 --------------------------------
 Ghostbird has native support for custom post post_types and taxonomies including single and archive views. This is very basic support, but care has been taken to ensure that all templates display an appropriate title and description (if available).
+
+Supported Plugins
+-----------------
+
+* [SyntaxHighlighter Evolved](http://www.viper007bond.com/wordpress-plugins/syntaxhighlighter/) by [Viper007Bond](http://www.viper007bond.com/)
+* [I Make Plugins](http://txfx.net/wordpress-plugins/i-make-plugins/) by [Mark Jaquith](http://coveredwebservices.com/)
+* [Subscribe to Comments](http://txfx.net/wordpress-plugins/subscribe-to-comments/) by [Mark Jaquith](http://coveredwebservices.com/)
+
+Changelog
+---------
+
+__1.0.1__
+* Removed _ghostbird_page_menu_wrap() - no longer needed.
+* WordPress nav menus no longer fallback to wp_list_pages().
+* Deleted unneeded variables + css rules where appropriate.
+* Removed unnecessary scrollbars in syntaxhighlighter stylesheet.
+
+__1.0__
+
+* First!
