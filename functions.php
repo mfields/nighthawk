@@ -595,9 +595,14 @@ function ghostbird_entry_meta_date() {
 	/* Comments */
 	if ( ! is_singular() && ( ( comments_open() && ! post_password_required() ) || 0 < get_comments_number() ) ) {
 		print ' ';
-		$comment = esc_html( _x( 'Comment', 'verb', 'ghostbird' ) );
 		print '<span class="comment-link">';
-		comments_popup_link( $comment, $comment, $comment, '', '' );
+		comments_popup_link(
+			esc_html( _x( 'Comment', 'verb', 'ghostbird' ) ), /* Zero comments */
+			esc_html( __( '1 Comment', 'ghostbird' ) ),       /* One Comment */
+			esc_html( __( '% Comments', 'ghostbird' ) ),      /* More than one comment */
+			'',                                               /* CSS class */
+			esc_html( __( '% Comments', 'ghostbird' ) )       /* Comments Disabled */
+			);
 		print '</span>';
 	}
 
