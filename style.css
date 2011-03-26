@@ -607,9 +607,9 @@ h2.entry-title {
 	margin-top:0;
 }
 .search-results h2.entry-title {
-	margin:0 0 .25em;
+	margin-top: 1.5em;
 	font-weight:normal;
-	font-size:1em;
+	font-size:1.2em;
 }
 .search-results h2.entry-title a {
 	text-decoration:underline;
@@ -649,6 +649,7 @@ h2.entry-title {
 }
 #author-box .author-name {
 	font-size:1.3em;
+	margin-top:0;
 	margin-bottom:.1em;
 	clear:none;
 }
@@ -720,6 +721,13 @@ h2.entry-title {
 .comment-content p:last-child,
 .comment-content p:only-child {
 	margin-bottom:0;
+}
+.depth-1 {
+	margin:1.5em 0;
+	padding:1.5em;
+	overflow:hidden;
+	border:.1em solid #e2dcd2;
+	background-color:#fff;
 }
 
 
@@ -983,9 +991,7 @@ table#wp-calendar {
 
 /* Content boxen. */
 .content,
-.depth-1,
-#commentform,
-#search-results {
+#commentform {
 	margin:1.5em 0;
 	padding:0 1.5em;
 	overflow:hidden;

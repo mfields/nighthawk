@@ -38,7 +38,7 @@ get_header();
 
 <?php
 if ( have_posts() ) {
-	print "\n" . '<div id="search-results">';
+	print "\n" . '<div id="search-results" class="content">';
 	while ( have_posts() ) {
 		the_post();
 		$permalink = get_permalink();
