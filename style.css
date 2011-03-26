@@ -258,6 +258,12 @@ form.bullet input.bullet-button {
 	text-align:center;
 	color:#fff;
 }
+form.bullet.subscribe-without-commenting {
+	padding-right:8em;
+}
+form.bullet.subscribe-without-commenting input.bullet-button {
+	width:7em;
+}
 
 
 /* Tables */
@@ -794,8 +800,7 @@ h2.entry-title {
 
 #subscribe,
 input#submit,
-.logged-in-as,
-.subscribe-to-comments {
+.logged-in-as {
 	margin-left:17.5%;
 }
 
@@ -977,11 +982,12 @@ table#wp-calendar {
 
 
 /* Content boxen. */
+.content,
 .depth-1,
 #commentform,
 #search-results {
 	margin:1.5em 0;
-	padding:1.5em;
+	padding:0 1.5em;
 	overflow:hidden;
 	border:.1em solid #e2dcd2;
 	background-color:#fff;

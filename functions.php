@@ -93,8 +93,8 @@ function _ghostbird_setup() {
 	add_action( 'wp_print_scripts',           '_ghostbird_comment_reply_js' );
 
 	/* Custom hooks. */
-	add_action( 'ghostbird_logo',             'ghostbird_logo', 10, 2 );
-	add_action( 'ghostbird_paged_navigation', 'ghostbird_paged_nav', 10, 2 );
+	add_action( 'ghostbird_logo',               'ghostbird_logo', 10, 2 );
+	add_action( 'ghostbird_paged_navigation',   'ghostbird_paged_nav', 10, 2 );
 
 	/* Theme modifications. */
 	add_action( 'custom_header_options', '_ghostbird_settings_custom_header_text_controls' );
@@ -847,6 +847,85 @@ function ghostbird_post_label_plural() {
 		$label = $labels[1];
 	}
 	return $label;
+}
+
+/**
+ * Subscribe to comments checkbox.
+ *
+ * @return    string
+ *
+ * @access    public
+ * @since     1.0
+ */
+function ghostbird_subscribe_to_comments_checkbox() {
+	$checkbox = '';
+	if ( ! function_exists( 'show_subscription_checkbox' ) ) {
+		return $checkbox;
+	}
+	
+	ob_start();
+	show_subscription_checkbox();
+	$checkbox = ob_get_clean();
+	 
+	return $checkbox;
+}
+/**
+ * Subscribe to comments manual form.
+ *
+ * @return    string
+ *
+ * @access    public
+ * @since     1.0
+ */
+function ghostbird_subscribe_to_comments_manual_form( $before = '', $after = '', $print = true, $args = array() ) {
+	$args = wp_parse_args( $args, array(
+		'heading'   => __( 'Subscribe without commenting', 'ghostbird' ),
+		'paragraph' => sprintf( __( 'Please enter your email address and click subscribe to receive an email whenever a new comment is made about this %1$s.', 'ghostbird' ), ghostbird_post_label_singular() ),
+		) );
+	$form = '';
+	global $id, $sg_subscribe, $user_email;
+
+	if ( ! function_exists( 'sg_subscribe_start' ) ) {
+		return $form;
+	}
+	if ( ! is_object( $sg_subscribe ) ) {
+		return $form;
+	}
+	if ( ! method_exists( $sg_subscribe, 'show_errors' ) ) {
+		return $form;
+	}
+	if ( ! method_exists( $sg_subscribe, 'current_viewer_subscription_status' ) ) {
+		return $form;
+	}
+
+	sg_subscribe_start();
+
+	$sg_subscribe->show_errors( 'solo_subscribe', '<div class="solo-subscribe-errors">', '</div>', __( 'Error: ', 'ghostbird' ), '<br />' );
+
+	if ( ! $sg_subscribe->current_viewer_subscription_status() ) {
+		get_currentuserinfo();
+		$form.= '<h3>' . esc_html( $args['heading'] ) . '</h3>';
+		$form.= '<p>' . esc_html( $args['paragraph'] ) . '</p>';
+		$form.= '<form class="bullet subscribe-without-commenting" action="" method="post">';
+		$form.= '<input type="hidden" name="solo-comment-subscribe" value="solo-comment-subscribe" />';
+		$form.= '<input type="hidden" name="postid" value="' . esc_attr( $id ) . '" />';
+		$form.= '<input type="hidden" name="ref" value="' . esc_attr( wp_get_referer() ) . '" />';
+		$form.= '<label class="bullet-label" for="solo-subscribe-email">' . esc_html__( 'E-Mail', 'ghostbird' ) . '</label>';
+		$form.= '<input class="bullet-term" type="text" name="email" id="solo-subscribe-email" size="22" value="' . esc_attr( $user_email ) . '" />';
+		$form.= '<input class="bullet-button" type="submit" name="submit" value="' . esc_attr__( 'Subscribe', 'ghostbird' ) . '" />';
+		$form.= '</form>';
+	}
+
+	if ( ! empty( $form ) ) {
+		$form = $before . $form . $after;
+	}
+
+	if ( $print ) {
+		print $form;
+	}
+	else {
+		return $form;
+	}
 }
 
 /**#@-*/

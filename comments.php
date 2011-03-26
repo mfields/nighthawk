@@ -72,5 +72,7 @@ if ( have_comments() ) {
 comment_form( array(
 	'title_reply'          =>  __( 'Share your thoughts', 'ghostbird' ),
 	'comment_notes_before' => '',
-	'comment_notes_after'  => '',
+	'comment_notes_after'  => ghostbird_subscribe_to_comments_checkbox(),
 	) );
+
+ghostbird_subscribe_to_comments_manual_form( '<div class="content">', '</div>' );
