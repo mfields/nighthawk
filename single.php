@@ -21,17 +21,18 @@ get_header();
 
 <div id="content">
 
-<div id="intro">
-	<?php ghostbird_title( '<h1>', '</h1>' ); ?>
-	<?php ghostbird_byline( '<p id="byline">', '</p>' ); ?>
-	<?php ghostbird_summary( '<div id="summary">', '</div>' ); ?>
-	<?php ghostbird_summary_meta( '<div id="intro-meta">', '</div>' ); ?>
-</div>
-
 <?php
 while ( have_posts() ) {
 	the_post();
 ?>
+
+	<div id="intro">
+		<?php ghostbird_title( '<h1>', '</h1>' ); ?>
+		<?php ghostbird_byline( '<p id="byline">', '</p>' ); ?>
+		<?php ghostbird_summary( '<div id="summary">', '</div>' ); ?>
+		<?php ghostbird_summary_meta( '<div id="intro-meta">', '</div>' ); ?>
+	</div>
+
 	<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
 	<?php do_action( 'ghostbird_entry_start' ); ?>
