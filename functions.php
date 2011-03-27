@@ -646,7 +646,7 @@ function ghostbird_entry_meta_taxonomy() {
 	$label      = ghostbird_post_label_singular();
 	$label_url  = get_post_format_link( get_post_format() );
 
-	if ( 'post' != get_post_format() ) {
+	if ( 'post' != get_post_type() ) {
 		return;
 	}
 
