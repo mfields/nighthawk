@@ -27,7 +27,7 @@ while ( have_posts() ) {
 ?>
 
 	<div id="intro">
-		<?php ghostbird_title( '<h1>', '</h1>' ); ?>
+		<?php the_title( '<h1>', '</h1>' ); ?>
 		<?php
 			$author_name = get_the_author();
 			if ( ! empty( $author_name ) ) {
