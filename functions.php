@@ -984,6 +984,7 @@ function ghostbird_subscribe_to_comments_manual_form( $before = '', $after = '',
  *
  * @return    array     Index "0" is the singular form while index "1" is the plural form.
  *
+ * @access    private
  * @since     1.1
  */
 function _ghostbird_label() {
@@ -1039,6 +1040,7 @@ function _ghostbird_label() {
 /**
  * Label for posts.
  *
+ * @access    private
  * @since     1.1
  */
 function _ghostbird_label_post( $post_format = null ) {
@@ -1072,6 +1074,7 @@ function _ghostbird_label_post( $post_format = null ) {
 /**
  * Label for attachments.
  *
+ * @access    private
  * @since     1.1
  */
 function _ghostbird_label_attachment() {
@@ -1117,6 +1120,7 @@ function _ghostbird_label_attachment() {
 /**
  * Label for custom post type objects.
  *
+ * @access    private
  * @since     1.1
  */
 function _ghostbird_label_custom_post_type( $post_type = null ) {
@@ -1154,6 +1158,7 @@ function _ghostbird_label_custom_post_type( $post_type = null ) {
  * @param     n/a            n/a
  * @return    string         Calendar widget title.
  *
+ * @access    private
  * @since     1.0
  */
 function _ghostbird_calendar_widget_title( $title = '', $instance = '', $id_base = '' ) {
@@ -1168,6 +1173,7 @@ function _ghostbird_calendar_widget_title( $title = '', $instance = '', $id_base
  *
  * @return    void
  *
+ * @access    private
  * @since     1.0
  */
 function _ghostbird_widgets_init() {
@@ -1211,6 +1217,7 @@ function _ghostbird_widgets_init() {
  *
  * @return    void
  *
+ * @access    private
  * @since     1.0
  */
 function _ghostbird_custom_image_header() {
@@ -1227,6 +1234,7 @@ function _ghostbird_custom_image_header() {
  *
  * @return    void
  *
+ * @access    private
  * @since     1.0
  */
 function _ghostbird_custom_image_header_live() {
@@ -1238,6 +1246,7 @@ function _ghostbird_custom_image_header_live() {
  *
  * @return    void
  *
+ * @access    private
  * @since     1.0
  */
 function _ghostbird_custom_image_header_admin() {
@@ -1268,6 +1277,7 @@ EOF;
  * @param     array     Classes for the body tag.
  * @return    array     Modified classes for the body tag.
  *
+ * @access    private
  * @since     1.0
  */
 function _ghostbird_body_class( $classes ) {
@@ -1288,6 +1298,7 @@ function _ghostbird_body_class( $classes ) {
  * @param     array     All classes for the post container.
  * @return    array     All classes for the post container + entry.
  *
+ * @access    private
  * @since     1.0
  */
 function _ghostbird_post_class_entry( $classes ) {
@@ -1305,6 +1316,7 @@ function _ghostbird_post_class_entry( $classes ) {
  * @param     array     All classes for the post container.
  * @return    array     Modified classes for the post container.
  *
+ * @access    private
  * @since     1.0
  */
 function _ghostbird_post_class_featured( $classes ) {
@@ -1327,6 +1339,7 @@ function _ghostbird_post_class_featured( $classes ) {
  * @param     string    Thumbnail html or empty string.
  * @return    string    HTML img tag to the first attached for posts with the gallery format in all archives, value of $html otherwise.
  *
+ * @access    private
  * @since     1.0
  */
 function _ghostbird_featured_image_first_attachment( $html ) {
@@ -1355,6 +1368,7 @@ function _ghostbird_featured_image_first_attachment( $html ) {
  * @param     string    Thumbnail html or empty string.
  * @return    string    HTML img tag to the first attached for posts with the "status" format, value of $html otherwise.
  *
+ * @access    private
  * @since     1.0
  */
 function _ghostbird_featured_image_avatar( $html ) {
@@ -1398,6 +1412,8 @@ function _ghostbird_featured_image_avatar( $html ) {
  * @todo      Update docs. This is now a filter for the_content.
  *
  * @return    void
+ *
+ * @access    private
  * @since     1.0
  */
 function _ghostbird_related_images( $content ) {
@@ -1445,6 +1461,7 @@ function _ghostbird_related_images( $content ) {
  * @param     string         The excerpt.
  * @return    string         The excerpt followed by a single space and a permalink.
  *
+ * @access    private
  * @since     1.0
  */
 function _ghostbird_excerpt_search( $excerpt ) {
@@ -1468,6 +1485,7 @@ function _ghostbird_excerpt_search( $excerpt ) {
  *
  * @return    string         An ellipsis followed by a link to the single post.
  *
+ * @access    private
  * @since     1.0
  */
 function _ghostbird_excerpt_more_auto( $more ) {
@@ -1491,6 +1509,7 @@ function _ghostbird_excerpt_more_auto( $more ) {
  *
  * @return    string         Excerpt with a link to the post's single view.
  *
+ * @access    private
  * @since     1.0
  */
 function _ghostbird_excerpt_more_custom( $excerpt ) {
@@ -1511,6 +1530,7 @@ function _ghostbird_excerpt_more_custom( $excerpt ) {
  * @param     int            Position of the current comment in relation to the root comment of this tree. Starts at zero.
  * @param     void
  *
+ * @access    private
  * @since     1.0
  */
 function _ghostbird_comment_start( $comment, $args, $depth ) {
@@ -1570,6 +1590,7 @@ function _ghostbird_comment_start( $comment, $args, $depth ) {
  * @param     int            Position of the current comment in relation to the root comment of this tree. Starts at zero.
  * @param     void
  *
+ * @access    private
  * @since     1.0
  */
 function _ghostbird_comment_end( $comment, $args, $depth ) {
@@ -1586,6 +1607,7 @@ function _ghostbird_comment_end( $comment, $args, $depth ) {
  * appropriate javascript files on single views where
  * commenting is enabled.
  *
+ * @access    private
  * @since     1.0
  */
 function _ghostbird_comment_reply_js() {
@@ -1604,6 +1626,7 @@ function _ghostbird_comment_reply_js() {
  *
  * @todo      Document parameters.
  *
+ * @access    private
  * @since     1.0
  */
 function _ghostbird_oembed_dataparse( $cache, $url, $attr = '', $post_ID = '' ) {
@@ -1620,6 +1643,7 @@ function _ghostbird_oembed_dataparse( $cache, $url, $attr = '', $post_ID = '' ) 
  * @param     array     All themes registered with the SyntaxHighlighter Evolved plugin.
  * @return    array     Same list with custom theme appended.
  *
+ * @access    private
  * @since     1.0
  */
 function _ghostbird_syntaxhighlighter_theme( $themes ) {
