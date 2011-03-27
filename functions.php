@@ -986,9 +986,14 @@ function ghostbird_subscribe_to_comments_manual_form( $before = '', $after = '',
  * @since     1.0
  */
 function _ghostbird_post_label() {
-	$label       = '';
-	$post_type   = get_post_type();
-	$post_format = get_post_format();
+	static $cache  = array();
+	$ID            = get_the_ID();
+	$post_type     = get_post_type();
+	$post_format   = get_post_format();
+
+	/* These are default values. In case all tests fail. */
+	$single = _x( 'entry', 'post label', 'ghostbird' );
+	$plural = _x( 'entries', 'post label', 'ghostbird' );
 
 	if ( 'post' == $post_type ) {
 		switch ( $post_format ) {
