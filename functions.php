@@ -579,11 +579,7 @@ function ghostbird_entry_meta_date() {
 	print "\n" . '<p>';
 
 	/* Date + Permalink */
-	$format = get_post_format();
-	if ( empty( $format ) ) {
-		$format = 'post';
-	}
-	$title_attr  = sprintf( __( 'Permanent link to this %1$s', 'ghostbird' ), $format );
+	$title_attr  = sprintf( __( 'Permanent link to this %1$s', 'ghostbird' ), ghostbird_post_label_singular() );
 	$date_format = sprintf( __( '%1$s \a\t %2$s', 'ghostbird' ), get_option( 'date_format' ), get_option( 'time_format' ) );
 	$date        = get_the_time( $date_format );
 	$datestamp = '<a class="datetime" href="' . esc_url( get_permalink() ) . '" title="' . esc_attr( $title_attr ) . '">' . esc_html( $date ) . '</a>';
@@ -637,14 +633,17 @@ function ghostbird_entry_meta_taxonomy() {
 	if ( post_password_required() ) {
 		return '';
 	}
-	$sentence   = '';
+
+	$sentence = apply_filters( 'ghostbird_entry_meta_taxonomy', '' );
+	if ( ! empty( $sentence ) ) {
+		print $sentence;
+		return;
+	}
+
 	$label      = ghostbird_post_label_singular();
 	$label_url  = get_post_format_link( get_post_format() );
 
-	$sentence = apply_filters( 'ghostbird_entry_meta_taxonomy', $sentence, $label, $label_url );
-
-	if ( ! empty( $sentence ) ) {
-		print $sentence;
+	if ( 'post' != get_post_format() ) {
 		return;
 	}
 
@@ -814,7 +813,7 @@ function ghostbird_featured_image( $before = '', $after = '', $print = true ) {
  * like the following: "This Status Update is filed under News."
  * where "Status Update" is the post label and "News" is the category.
  *
- * @see       _ghostbird_post_label() for full documentation.
+ * @see       _ghostbird_label() for full documentation.
  *
  * @return    string
  *
@@ -822,7 +821,7 @@ function ghostbird_featured_image( $before = '', $after = '', $print = true ) {
  */
 function ghostbird_post_label_singular() {
 	$label  = '';
-	$labels = _ghostbird_post_label();
+	$labels = _ghostbird_label();
 	if ( isset( $labels[0] ) ) {
 		$label = $labels[0];
 	}
@@ -840,7 +839,7 @@ function ghostbird_post_label_singular() {
  * where "image" is the post label and "Taco Pictures" is the
  * title of the parent post.
  *
- * @see       _ghostbird_post_label() for full documentation.
+ * @see       _ghostbird_label() for full documentation.
  *
  * @return    string
  *
@@ -848,7 +847,7 @@ function ghostbird_post_label_singular() {
  */
 function ghostbird_post_label_plural() {
 	$label  = '';
-	$labels = _ghostbird_post_label();
+	$labels = _ghostbird_label();
 	if ( isset( $labels[1] ) ) {
 		$label = $labels[1];
 	}
@@ -964,16 +963,12 @@ function ghostbird_subscribe_to_comments_manual_form( $before = '', $after = '',
  * like the following: "This Status Update is filed under News."
  * where "Status Update" is the post label and "News" is the category.
  *
- * A "post label" can be one of two things: Post Format or Custom Post Type Label.
+ * A "post label" can be one of three things:'
+ * post format, custom post_type label or the mime type of an attachment.
  *
  * For "posts" having a post format, a string representing the format will be used.
  * If no format has been defined (assumung "standard" post format) This function
  * will use the term "post".
- *
- * Even though Ghostbird does not support all available post_formats
- * any blog may have posts associated with unsupported formats.
- * This function should return a valid result for every post format
- * regardless of whether it supports it.
  *
  * For all other post_types, Ghostbird will use the values defined in
  * the post_type's "labels" array for singular and plural values.
@@ -986,129 +981,144 @@ function ghostbird_subscribe_to_comments_manual_form( $before = '', $after = '',
  *
  * @since     1.0
  */
-function _ghostbird_post_label() {
-	static $cache  = array();
-	$ID            = get_the_ID();
-	$post_type     = get_post_type();
-	$post_format   = get_post_format();
+function _ghostbird_label() {
 
-	/* These are default values. In case all tests fail. */
-	$single = _x( 'entry', 'post label', 'ghostbird' );
-	$plural = _x( 'entries', 'post label', 'ghostbird' );
+	static $cache = array();
 
-	if ( 'post' == $post_type ) {
-		switch ( $post_format ) {
-			case 'aside' :
-				$single = _x( 'aside', 'post label', 'ghostbird' );
-				$plural = _x( 'asides', 'post label', 'ghostbird' );
-				break;
-			case 'audio' :
-				$single = _x( 'audio file', 'post label', 'ghostbird' );
-				$plural = _x( 'audio files', 'post label', 'ghostbird' );
-				break;
-			case 'chat' :
-				$single = _x( 'chat transcript', 'post label', 'ghostbird' );
-				$plural = _x( 'chat transcripts', 'post label', 'ghostbird' );
-				break;
-			case 'gallery' :
-				$single = _x( 'gallery', 'post label', 'ghostbird' );
-				$plural = _x( 'galleries', 'post label', 'ghostbird' );
-				break;
-			case 'image' :
-				$single = _x( 'image', 'post label', 'ghostbird' );
-				$plural = _x( 'images', 'post label', 'ghostbird' );
-				break;
-			case 'link' :
-				$single = _x( 'link', 'post label', 'ghostbird' );
-				$plural = _x( 'links', 'post label', 'ghostbird' );
-				break;
-			case 'quote' :
-				$single = _x( 'quote', 'post label', 'ghostbird' );
-				$plural = _x( 'quotes', 'post label', 'ghostbird' );
-				break;
-			case 'status' :
-				$single = _x( 'status update', 'post label', 'ghostbird' );
-				$plural = _x( 'status updates', 'post label', 'ghostbird' );
-				break;
-			case 'video' :
-				$single = _x( 'video', 'post label', 'ghostbird' );
-				$plural = _x( 'videos', 'post label', 'ghostbird' );
-				break;
-			case '' :
-			case 'standard' :
-			default :
-				$single = _x( 'post', 'post label', 'ghostbird' );
-				$plural = _x( 'posts', 'post label', 'ghostbird' );
-				break;
+	$cache_id = 0;
+
+	if ( is_tax( 'post_format' ) ) {
+		global $wp_query;
+		$term = get_term( $wp_query->get_queried_object(), 'post_format' );
+		if ( isset( $term->slug ) ) {
+			$cache_id = str_replace( 'post-format-', '', $term->slug );
 		}
 	}
-	else if ( 'page' == $post_type ) {
-		$single = _x( 'page', 'post label', 'ghostbird' );
-		$plural = _x( 'pages', 'post label', 'ghostbird' );
-	}
-	else if ( 'attachment' == $post_type ) {
-		switch ( get_post_mime_type() ) {
-			case 'image/jpeg' :
-			case 'image/gif' :
-			case 'image/png' :
-			case 'image/bmp' :
-			case 'image/tiff' :
-				$single = _x( 'image', 'post label', 'ghostbird' );
-				$plural = _x( 'images', 'post label', 'ghostbird' );
-				break;
-			case 'image/x-icon' :
-				$single = _x( 'icon', 'post label', 'ghostbird' );
-				$plural = _x( 'icons', 'post label', 'ghostbird' );
-				break;
-			case 'application/zip' :
-				$single = _x( 'zip archive', 'post label', 'ghostbird' );
-				$plural = _x( 'zip archives', 'post label', 'ghostbird' );
-				break;
-			case 'application/vnd.oasis.opendocument.text' :
-			case 'application/msword' :
-				$single = _x( 'word processor document', 'post label', 'ghostbird' );
-				$plural = _x( 'word processor documents', 'post label', 'ghostbird' );
-				break;
-			case 'application/pdf' :
-				$single = _x( 'PDF', 'post label', 'ghostbird' );
-				$plural = _x( 'PDFs', 'post label', 'ghostbird' );
-				break;
-			case 'application/vnd.oasis.opendocument.spreadsheet' :
-			case 'application/vnd.ms-excel' :
-				$single = _x( 'spreadsheet', 'post label', 'ghostbird' );
-				$plural = _x( 'spreadsheets', 'post label', 'ghostbird' );
-				break;
-			case 'video/asf' :
-			case 'video/avi' :
-			case 'video/divx' :
-			case 'video/x-flv' :
-			case 'video/quicktime' :
-			case 'video/mpeg' :
-			case 'video/mp4' :
-			case 'video/ogg' :
-			case 'video/x-matroska' :
-				$single = _x( 'video', 'post label', 'ghostbird' );
-				$plural = _x( 'videos', 'post label', 'ghostbird' );
-				break;
-			default :
-				$single = _x( 'file', 'post label', 'ghostbird' );
-				$plural = _x( 'files', 'post label', 'ghostbird' );
-				break;
+	else if ( is_post_type_archive() ) {
+		global $wp_query;
+		$obj = $wp_query->get_queried_object();
+		if ( isset( $obj->post_type ) ) {
+			$cache_id = $obj->post_type;
 		}
 	}
 	else {
-		$post_type_object = get_post_type_object( $post_type );
-		if ( isset( $post_type_object->labels->singular_name ) && ! empty( $post_type_object->labels->singular_name ) ) {
-			$single = $post_type_object->labels->singular_name;
-		}
-		if ( isset( $post_type_object->labels->name ) && ! empty( $post_type_object->labels->name ) ) {
-			$plural = $post_type_object->labels->name;
-		}
+		$cache_id = get_the_ID();
 	}
-	return array (
-		apply_filters( 'ghostbird_post_label_single', $single, $post_type, $post_format ),
-		apply_filters( 'ghostbird_post_label_plural', $plural, $post_type, $post_format )
-	);
+
+	if ( isset( $cache[$cache_id] ) ) {
+		return $cache[$cache_id];
+	}
+
+	$output = apply_filters( 'ghostbird_post_label_default', _nx_noop( 'entry', 'entries', 'post label' ) );
+
+	$post_type = get_post_type();
+
+	if ( 'post' == $post_type || is_tax( 'post_format' ) ) {
+		$output = _ghostbird_label_post();
+	}
+	else if ( 'page' == $post_type ) {
+		$output = apply_filters( 'ghostbird_post_label_page', _nx_noop( 'page', 'pages', 'post label' ) );
+	}
+	else if ( 'attachment' == $post_type ) {
+		$output = _ghostbird_label_attachment();
+	}
+	else {
+		$output = _ghostbird_label_custom_post_type( $post_type );
+	}
+
+	$cache[$cache_id] = $output;
+
+	return $cache[$cache_id];
+}
+
+function _ghostbird_label_post( $post_format = null ) {
+
+	$output = apply_filters( 'ghostbird_post_label_default', _nx_noop( 'post', 'posts', 'post label' ) );
+
+	$post_format_strings = array(
+		''        => $output,
+		'aside'   => _nx_noop( 'aside',           'asides',           'post label' ),
+		'audio'   => _nx_noop( 'audio file',      'audio files',      'post label' ),
+		'chat'    => _nx_noop( 'chat transcript', 'chat transcripts', 'post label' ),
+		'gallery' => _nx_noop( 'gallery',         'galleries',        'post label' ),
+		'image'   => _nx_noop( 'image',           'images',           'post label' ),
+		'link'    => _nx_noop( 'link',            'links',            'post label' ),
+		'quote'   => _nx_noop( 'quote',           'quotes',           'post label' ),
+		'status'  => _nx_noop( 'status update',   'status updates',   'post label' ),
+		'video'   => _nx_noop( 'video',           'videos',           'post label' )
+		);
+
+	if ( empty( $post_format ) ) {
+		$post_format = get_post_format();
+	}
+
+	if ( isset( $post_format_strings[$post_format] ) ) {
+		$output = $post_format_strings[$post_format];
+	}
+
+	return apply_filters( 'ghostbird_post_label_archive_post_format', $output, $post_format );
+}
+
+function _ghostbird_label_attachment() {
+	$mime = 'file';
+	$mime_strings = array(
+		'file'        => _nx_noop( 'file',        'files',        'post label' ),
+		'image'       => _nx_noop( 'image',       'images',       'post label' ),
+		'icon'        => _nx_noop( 'icon',        'icons',        'post label' ),
+		'zip'         => _nx_noop( 'zip archive', 'zip archives', 'post label' ),
+		'doc'         => _nx_noop( 'document',    'documents',    'post label' ),
+		'pdf'         => _nx_noop( 'PDF',         'PDFs',         'post label' ),
+		'spreadsheet' => _nx_noop( 'spreadsheet', 'spreadsheets', 'post label' ),
+		'video'       => _nx_noop( 'video',       'videos',       'post label' ),
+		);
+
+	$post_mime_type = get_post_mime_type();
+
+	if ( in_array( $post_mime_type, array( 'image/jpeg', 'image/gif', 'image/png', 'image/bmp', 'image/tiff' ) ) ) {
+		$mime = 'image';
+	}
+	else if ( 'image/x-icon' == $post_mime_type ) {
+		$mime = 'icon';
+	}
+	else if ( 'application/zip' == $post_mime_type ) {
+		$mime = 'zip';
+	}
+	else if ( in_array( $post_mime_type, array( 'application/msword', 'application/vnd.oasis.opendocument.text' ) ) ) {
+		$mime = 'doc';
+	}
+	else if ( 'application/pdf' == $post_mime_type ) {
+		$mime = 'pdf';
+	}
+	else if ( in_array( $post_mime_type, array( 'application/vnd.ms-excel', 'application/vnd.oasis.opendocument.spreadsheet' ) ) ) {
+		$mime = 'spreadsheet';
+	}
+	else if ( in_array( $post_mime_type, array( 'video/asf', 'video/avi', 'video/divx', 'video/x-flv', 'video/quicktime', 'video/mpeg', 'video/mp4', 'video/ogg', 'video/x-matroska' ) ) ) {
+		$mime = 'video';
+	}
+
+	return apply_filters( 'ghostbird_post_label_attachment', $mime_strings[$mime], $post_mime_type );
+}
+
+function _ghostbird_label_custom_post_type( $post_type = null ) {
+
+	$output = _nx_noop( 'entry', 'entries', 'post label' );
+
+	if ( empty( $post_type ) ) {
+		$post_type = get_post_type();
+	}
+
+	$post_type_object = get_post_type_object( $post_type );
+
+	if ( isset( $post_type_object->labels->singular_name ) && ! empty( $post_type_object->labels->singular_name ) ) {
+		$output[0]        = $post_type_object->labels->singular_name;
+		$output['single'] = $post_type_object->labels->singular_name;
+	}
+	if ( isset( $post_type_object->labels->name ) && ! empty( $post_type_object->labels->name ) ) {
+		$output[1]        = $post_type_object->labels->name;
+		$output['plural'] = $post_type_object->labels->name;
+	}
+
+	return $output;
 }
 
 /**
