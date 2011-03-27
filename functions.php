@@ -7,7 +7,7 @@
  * @copyright    Copyright (c) 2011, Michael Fields
  * @license      http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since        1.0
- * @alter        1.0.1
+ * @alter        1.1
  *
  * FUTURE RELEASE
  * @todo Add header widget. Intended for search form?
@@ -16,7 +16,6 @@
  * @todo Add support for taxonomy images plugin.
  * @todo Add support for wp_pagenavi plugin.
  * @todo Add custom template for Long Description plugin.
- *
  */
 
 define( 'GHOSTBIRD_VERSION', '1.0.1DEV' );
@@ -38,6 +37,7 @@ define( 'GHOSTBIRD_VERSION', '1.0.1DEV' );
  *
  * @access    private
  * @since     1.0
+ * @alter     1.1
  */
 function _ghostbird_setup() {
 
@@ -571,6 +571,7 @@ function ghostbird_entry_meta_classes() {
  * @return    void
  *
  * @since     1.0
+ * @alter     1.1
  */
 function ghostbird_entry_meta_date() {
 	if ( post_password_required() ) {
@@ -629,6 +630,7 @@ function ghostbird_entry_meta_date() {
  * @return    void
  *
  * @since     1.0
+ * @alter     1.1
  */
 function ghostbird_entry_meta_taxonomy() {
 	if ( post_password_required() ) {
@@ -819,6 +821,7 @@ function ghostbird_featured_image( $before = '', $after = '', $print = true ) {
  * @return    string
  *
  * @since     1.0
+ * @alter     1.1
  */
 function ghostbird_post_label_singular() {
 	$label  = '';
@@ -845,6 +848,7 @@ function ghostbird_post_label_singular() {
  * @return    string
  *
  * @since     1.0
+ * @alter     1.1
  */
 function ghostbird_post_label_plural() {
 	$label  = '';
@@ -861,7 +865,7 @@ function ghostbird_post_label_plural() {
  * @return    string
  *
  * @access    public
- * @since     1.0
+ * @since     1.1
  */
 function ghostbird_subscribe_to_comments_checkbox() {
 	$checkbox = '';
@@ -881,7 +885,7 @@ function ghostbird_subscribe_to_comments_checkbox() {
  * @return    string
  *
  * @access    public
- * @since     1.0
+ * @since     1.1
  */
 function ghostbird_subscribe_to_comments_manual_form( $before = '', $after = '', $print = true, $args = array() ) {
 	$args = wp_parse_args( $args, array(
@@ -980,7 +984,7 @@ function ghostbird_subscribe_to_comments_manual_form( $before = '', $after = '',
  *
  * @return    array     Index "0" is the singular form while index "1" is the plural form.
  *
- * @since     1.0
+ * @since     1.1
  */
 function _ghostbird_label() {
 
@@ -1032,6 +1036,11 @@ function _ghostbird_label() {
 	return $cache[$cache_id];
 }
 
+/**
+ * Label for posts.
+ *
+ * @since     1.1
+ */
 function _ghostbird_label_post( $post_format = null ) {
 
 	$output = apply_filters( 'ghostbird_post_label_default', _nx_noop( 'post', 'posts', 'post label' ) );
@@ -1060,6 +1069,11 @@ function _ghostbird_label_post( $post_format = null ) {
 	return apply_filters( 'ghostbird_post_label_archive_post_format', $output, $post_format );
 }
 
+/**
+ * Label for attachments.
+ *
+ * @since     1.1
+ */
 function _ghostbird_label_attachment() {
 	$mime = 'file';
 	$mime_strings = array(
@@ -1100,6 +1114,11 @@ function _ghostbird_label_attachment() {
 	return apply_filters( 'ghostbird_post_label_attachment', $mime_strings[$mime], $post_mime_type );
 }
 
+/**
+ * Label for custom post type objects.
+ *
+ * @since     1.1
+ */
 function _ghostbird_label_custom_post_type( $post_type = null ) {
 
 	$output = _nx_noop( 'entry', 'entries', 'post label' );
@@ -1840,7 +1859,7 @@ function _ghostbird_content_append_link_edit( $content ) {
  * @return    string    Dialog for those who can edit theme options - empty sting to all others.
  *
  * @access    private
- * @since     1.0.1
+ * @since     1.1
  */
 function _ghostbird_menu_dialog( $args ) {
 	$defaults = array(
@@ -1877,6 +1896,13 @@ function _ghostbird_menu_dialog( $args ) {
 
 	print '<' . $args['container'] . $id . $class . '>' . $message . '</' . $args['container'] . '>';
 }
+
+/**
+ * Edit post link filter.
+ *
+ * @access    private
+ * @since     1.1
+ */
 function _ghostbird_edit_post_link( $html, $ID ) {
 	return '<a class="post-edit-link" href="' . esc_url( get_edit_post_link( $ID ) ) . '" title="' . sprintf( esc_attr__( 'Edit this %1$s', 'ghostbird' ), ghostbird_post_label_singular() ) . '">' . esc_html( wp_strip_all_tags( $html ) ) . '</a>';
 }

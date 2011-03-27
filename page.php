@@ -1,14 +1,14 @@
 <?php
 /**
- * Post Template.
+ * Page Template.
  *
- * This template is loaded whenever a single post is being viewed.
+ * This template is loaded whenever a single page is being viewed.
  *
  * @package      Ghostbird
  * @author       Michael Fields <michael@mfields.org>
  * @copyright    Copyright (c) 2011, Michael Fields
  * @license      http://opensource.org/licenses/gpl-2.0.php GNU Public License
- * @since        1.0
+ * @since        1.1
  */
 
 if ( ! have_posts() ) {

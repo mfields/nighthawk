@@ -22,7 +22,7 @@
  * @copyright    Copyright (c) 2011, Michael Fields
  * @license      http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since        1.0
- * @alter        1.0.1
+ * @alter        1.1
  */
 ?><!DOCTYPE HTML>
 <html <?php language_attributes(); ?>>
