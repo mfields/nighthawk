@@ -28,7 +28,12 @@ while ( have_posts() ) {
 
 	<div id="intro">
 		<?php ghostbird_title( '<h1>', '</h1>' ); ?>
-		<?php ghostbird_byline( '<p id="byline">', '</p>' ); ?>
+		<?php
+			$author_name = get_the_author();
+			if ( ! empty( $author_name ) ) {
+				print '<p id="byline">' . sprintf( esc_html__( 'By %1$s', 'ghostbird' ), $author_name ) . '</p>';
+			}
+		?>
 		<?php ghostbird_summary( '<div id="summary">', '</div>' ); ?>
 		<?php ghostbird_summary_meta( '<div id="intro-meta">', '</div>' ); ?>
 	</div>
