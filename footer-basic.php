@@ -25,6 +25,7 @@
 </div><!-- wrap -->
 
 <?php wp_footer(); ?>
+
 <!--[if IE 8]>
 <script>
 var imgs, i, w;
@@ -38,5 +39,6 @@ for( i = 0; i < imgs.length; i++ ) {
 }
 </script>
 <![endif]-->
+
 </body>
 </html>
