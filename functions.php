@@ -73,6 +73,7 @@ function _ghostbird_setup() {
 
 	/* Ghostbird hooking into WordPress. */
 	add_action( 'body_class',                 '_ghostbird_body_class' );
+	add_filter( 'edit_post_link',             '_ghostbird_edit_post_link', 9, 2 );
 	add_filter( 'embed_oembed_html',          '_ghostbird_oembed_dataparse', 10, 4 );
 	add_filter( 'embed_googlevideo',          '_ghostbird_oembed_dataparse', 10, 2 );
 	add_filter( 'excerpt_more',               '_ghostbird_excerpt_more_auto' );
@@ -1831,5 +1832,8 @@ function _ghostbird_menu_dialog( $args ) {
 	}
 
 	print '<' . $args['container'] . $id . $class . '>' . $message . '</' . $args['container'] . '>';
+}
+function _ghostbird_edit_post_link( $html, $ID ) {
+	return '<a class="post-edit-link" href="' . esc_url( get_edit_post_link( $ID ) ) . '" title="' . sprintf( esc_attr__( 'Edit this %1$s', 'ghostbird' ), ghostbird_post_label_singular() ) . '">' . esc_html( wp_strip_all_tags( $html ) ) . '</a>';
 }
 /**#@-*/
