@@ -18,7 +18,7 @@
  * @todo Add custom template for Long Description plugin.
  */
 
-define( 'GHOSTBIRD_VERSION', '1.0.1DEV' );
+define( 'GHOSTBIRD_VERSION', '1.1DEV' );
 
 /**
  * Theme Setup
