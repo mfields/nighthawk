@@ -427,6 +427,7 @@ td {
 	padding:0 1.5em 1.5em;
 	color:#666;
 	background:#fffef2 url( images/halftone-dark-small.png );
+	border-top:.1em solid #222;
 }
 #content {
 	color:#444;
