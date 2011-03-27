@@ -87,6 +87,7 @@ function _ghostbird_setup() {
 	add_action( 'the_content',                '_ghostbird_related_images' );
 	add_filter( 'the_content',                '_ghostbird_content_prepend_title', 9 );
 	add_filter( 'the_content',                '_ghostbird_content_append_link', 9 );
+	add_filter( 'the_content',                '_ghostbird_content_append_link_edit', 9 );
 	add_filter( 'the_password_form',          '_ghostbird_password_form' );
 	add_action( 'widget_title',               '_ghostbird_calendar_widget_title', 10, 3 );
 	add_action( 'widgets_init',               '_ghostbird_widgets_init' );
@@ -1763,8 +1764,9 @@ function _ghostbird_content_prepend_title( $content ) {
 	}
 	return $content;
 }
+
 /**
- * Append link to content.
+ * Append permalink to content.
  *
  * In cases where a post does not have a title,
  * a link will be appended to the post content.
@@ -1787,6 +1789,38 @@ function _ghostbird_content_append_link( $content ) {
 	$title = get_the_title();
 	if ( empty( $title ) ) {
 		$content .= ' <a class="auto-link" title="' . sprintf( esc_attr__( 'Permalink to this %1$s', 'ghostbird' ), ghostbird_post_label_singular() ) . '" href="' . esc_url( get_permalink() )  . '">' . esc_html__( 'link', 'ghostbird' ) . '</a>';
+	}
+	return $content;
+}
+
+/**
+ * Append edit link to content.
+ *
+ * Certain post formats (aside, link and status)
+ * do not display meta information at the bottom
+ * of the entry box. While this makes them more
+ * compact, it also removes the helpful edit link.
+ * This function will add the link inside the_content
+ * before wpautop() fires and after the [link] link
+ * is appended.
+ *
+ * @param     string    Post content.
+ * @return    string    Custom post content.
+ *
+ * @access    private
+ * @since     1.1
+ */
+function _ghostbird_content_append_link_edit( $content ) {
+	if ( is_single() ) {
+		return $content;
+	}
+	$url = get_edit_post_link();
+	if ( empty( $url ) ) {
+		return $content;
+	}
+	$format = get_post_format();
+	if ( in_array( $format, array( 'aside', 'link', 'status' ) ) ) {
+		$content .= ' <a class="post-edit-link auto-link" href="' . esc_url( $url ) . '" title="' . sprintf( esc_attr__( 'Edit this %1$s', 'ghostbird' ), ghostbird_post_label_singular() ) . '">' . esc_html__( 'edit', 'ghostbird' ) . '</a>';
 	}
 	return $content;
 }
