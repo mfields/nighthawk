@@ -28,7 +28,7 @@ get_header();
 <div id="content">
 
 <div id="intro">
-	<?php ghostbird_title( '<h1>', '</h1>' ); ?>
+	<h1><?php _e( 'Timeline', 'ghostbird' ) ?></h1>
 </div>
 
 <?php get_template_part( 'loop' ); ?>
