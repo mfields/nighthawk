@@ -2,6 +2,8 @@
 /**
  * Post Format Template
  *
+ * Displays all post format archive pages.
+ *
  * This file closes all html tags that it opens.
  *
  * @package      Ghostbird
