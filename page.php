@@ -50,11 +50,6 @@ while ( have_posts() ) {
 
 	<?php wp_link_pages( array( 'before' => '<div class="page-link">' . __( 'Pages:', 'ghostbird' ), 'after' => '</div>' ) ); ?>
 
-	<div class="entry-meta">
-	<?php ghostbird_entry_meta_date(); ?>
-	<?php ghostbird_entry_meta_taxonomy(); ?>
-	</div><!--meta-->
-
 	<?php do_action( 'ghostbird_entry_end' ); ?>
 
 	</div><!--entry-->
