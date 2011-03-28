@@ -21,7 +21,7 @@
 	
 	<?php while ( have_posts() ) { the_post(); ?>
 		
-		<div id="<?php print esc_attr( ghostbird_post_label_singular() . '-' . get_the_ID() ); ?> <?php post_class(); ?>>
+		<div id="<?php print esc_attr( ghostbird_post_label_singular() . '-' . get_the_ID() ); ?>" <?php post_class(); ?>>
 		
 		<?php do_action( 'ghostbird_entry_start' ); ?>
 		
