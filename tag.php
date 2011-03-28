@@ -9,13 +9,14 @@
  * @copyright    Copyright (c) 2011, Michael Fields
  * @license      http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since        1.0
+ * @alter        1.1
  */
 
 if ( ! have_posts() ) {
-	get_template_part( '404' );
+	get_template_part( '404', 'tag' );
 }
 
-get_header();
+get_header( 'tag' );
 
 ?>
 
@@ -36,4 +37,4 @@ get_header();
 
 <div class="clear"></div>
 
-<?php get_footer(); ?>
+<?php get_footer( 'archive-tag' ); ?>

@@ -19,10 +19,10 @@
  */
 
 if ( ! have_posts() ) {
-	get_template_part( '404' );
+	get_template_part( '404', 'home' );
 }
 
-get_header();
+get_header( 'home' );
 
 ?>
 
@@ -32,7 +32,7 @@ get_header();
 	<h1><?php _e( 'Timeline', 'ghostbird' ) ?></h1>
 </div>
 
-<?php get_template_part( 'loop' ); ?>
+<?php get_template_part( 'loop', 'home' ); ?>
 
 <?php comments_template( '', true ); ?>
 
@@ -40,4 +40,4 @@ get_header();
 
 <div class="clear"></div>
 
-<?php get_footer(); ?>
+<?php get_footer( 'home' ); ?>

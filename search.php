@@ -9,9 +9,10 @@
  * @copyright    Copyright (c) 2011, Michael Fields
  * @license      http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since        1.0
+ * @alter        1.1
  */
 
-get_header();
+get_header( 'search' );
 
 ?>
 
@@ -60,4 +61,4 @@ if ( have_posts() ) {
 
 <div class="clear"></div>
 
-<?php get_footer(); ?>
+<?php get_footer( 'search' ); ?>

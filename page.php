@@ -12,10 +12,10 @@
  */
 
 if ( ! have_posts() ) {
-	get_template_part( '404' );
+	get_template_part( '404', 'page' );
 }
 
-get_header();
+get_header( 'page' );
 
 ?>
 
@@ -66,4 +66,4 @@ while ( have_posts() ) {
 
 <div class="clear"></div>
 
-<?php get_footer(); ?>
+<?php get_footer( 'page' ); ?>

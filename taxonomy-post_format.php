@@ -14,10 +14,10 @@
  */
 
 if ( ! have_posts() ) {
-	get_template_part( '404' );
+	get_template_part( '404', 'post_format' );
 }
 
-get_header();
+get_header( 'post_format' );
 
 ?>
 
@@ -28,10 +28,10 @@ get_header();
 		<?php ghostbird_summary_meta( '<div id="intro-meta">', '</div>' ) ?>
 	</div>
 
-<?php get_template_part( 'loop', 'taxonomy' ); ?>
+<?php get_template_part( 'loop', 'post_format' ); ?>
 
 </div><!--content-->
 
 <div class="clear"></div>
 
-<?php get_footer(); ?>
+<?php get_footer( 'post_format' ); ?>
