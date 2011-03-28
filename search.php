@@ -37,25 +37,7 @@ get_header( 'search' );
 
 </div>
 
-<?php
-if ( have_posts() ) {
-	print "\n" . '<div id="search-results" class="content">';
-	while ( have_posts() ) {
-		the_post();
-		$permalink = get_permalink();
-
-		print "\n\n\n" . '<div id="post-' . get_the_ID() . '" '; post_class(); print '>';
-		do_action( 'ghostbird_entry_start' );
-		the_title( "\n" . '<h2 class="entry-title"><a href="' . esc_url( $permalink ) . '">', '</a></h2>' );
-		print "\n" . '<div class="entry-content">';
-		the_excerpt();
-		print "\n" . '</div><!--entry-content-->';
-		do_action( 'ghostbird_entry_end' );
-		print "\n" . '</div><!--entry-->';
-	}
-	print "\n" . '</div>';
-}
-?>
+<?php get_template_part( 'loop', 'search' ); ?>
 
 </div><!--content-->
 
