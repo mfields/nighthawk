@@ -430,12 +430,15 @@ function ghostbird_summary( $before = '', $after = '', $print = true ) {
  *
  * Print meta information pertaining to the current view.
  *
+ * v1.1 - Support for categories has been removed.
+ *
  * @param     string         Text to prepend to the summary meta.
  * @param     string         Text to append to the summary meta.
  * @param     bool           True to print, false to return a string. Defaults to true.
  * @return    void/string
  *
  * @since     1.0
+ * @alter     1.1
  */
 function ghostbird_summary_meta( $before = '', $after = '', $print = true ) {
 	global $wp_query;
@@ -479,7 +482,7 @@ function ghostbird_summary_meta( $before = '', $after = '', $print = true ) {
 			}
 		}
 	}
-	else if ( is_category() || is_tag() || is_tax() ) {
+	else if ( is_tag() || is_tax() ) {
 		$term = $wp_query->get_queried_object();
 		if ( isset( $term->term_id ) && isset( $term->name ) && isset( $term->taxonomy ) ) {
 			$taxonomy = get_taxonomy( $term->taxonomy );
@@ -489,10 +492,6 @@ function ghostbird_summary_meta( $before = '', $after = '', $print = true ) {
 			}
 
 			switch( $term->taxonomy ) {
-				case 'category' :
-					$feed_title = sprintf( __( 'Get updated whenever a new entry is added to the %1$s category.', 'ghostbird' ), $term->name );
-					$sentence = sprintf( _n( 'There is %1$s entry in this %2$s.', 'There are %1$s entries in this %2$s.', $total, 'ghostbird' ), number_format_i18n( $total ), $taxonomy_name );
-					break;
 				case 'post_tag' :
 					$feed_title = sprintf( __( 'Get updated whenever a new entry is tagged with %1$s.', 'ghostbird' ), $term->name );
 					$sentence = sprintf( _n( '%1$s entry has been tagged with %2$s.', '%1$s entries have been tagged with %2$s.', $total, 'ghostbird' ), number_format_i18n( $total ), '<em>' . $term->name . '</em>' );
@@ -879,6 +878,7 @@ function ghostbird_subscribe_to_comments_checkbox() {
 	 
 	return $checkbox;
 }
+
 /**
  * Subscribe to comments manual form.
  *
