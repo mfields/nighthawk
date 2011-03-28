@@ -431,6 +431,7 @@ function ghostbird_summary( $before = '', $after = '', $print = true ) {
  * Print meta information pertaining to the current view.
  *
  * v1.1 - Support for categories has been removed.
+ * v1.1 - Support for tags has been removed.
  *
  * @param     string         Text to prepend to the summary meta.
  * @param     string         Text to append to the summary meta.
@@ -482,7 +483,7 @@ function ghostbird_summary_meta( $before = '', $after = '', $print = true ) {
 			}
 		}
 	}
-	else if ( is_tag() || is_tax() ) {
+	else if ( is_tax() ) {
 		$term = $wp_query->get_queried_object();
 		if ( isset( $term->term_id ) && isset( $term->name ) && isset( $term->taxonomy ) ) {
 			$taxonomy = get_taxonomy( $term->taxonomy );
@@ -492,10 +493,6 @@ function ghostbird_summary_meta( $before = '', $after = '', $print = true ) {
 			}
 
 			switch( $term->taxonomy ) {
-				case 'post_tag' :
-					$feed_title = sprintf( __( 'Get updated whenever a new entry is tagged with %1$s.', 'ghostbird' ), $term->name );
-					$sentence = sprintf( _n( '%1$s entry has been tagged with %2$s.', '%1$s entries have been tagged with %2$s.', $total, 'ghostbird' ), number_format_i18n( $total ), '<em>' . $term->name . '</em>' );
-					break;
 				case 'post_format' :
 					$feed_title = sprintf( __( 'Get updated whenever a new %1$s is published.', 'ghostbird' ), ghostbird_post_label_singular() );
 					$sentence = sprintf( _n( 'This site contains one %2$s.', 'This site contains %1$s %3$s.', $total, 'ghostbird' ), number_format_i18n( $total ), ghostbird_post_label_singular(), ghostbird_post_label_plural() );
