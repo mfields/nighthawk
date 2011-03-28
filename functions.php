@@ -211,6 +211,8 @@ function ghostbird_tagline( $before = '', $after = '' ) {
  *
  * Generate a title for each view.
  *
+ * v1.1 - Search support removed.
+ *
  * @param     string    Text to include before the title.
  * @param     string    Text to include after the title.
  * @param     bool      Should this function print? Defaults to true.
@@ -256,9 +258,6 @@ function ghostbird_title( $before = '', $after = '', $print = true ) {
 				$url = get_term_link( $term, $term->taxonomy );
 			}
 		}
-	}
-	else if ( is_search() ) {
-		$title = apply_filters( 'ghostbird_title_search', __( 'Search Results', 'ghostbird' ) );
 	}
 	else if ( is_author() ) {
 		global $wp_query;
