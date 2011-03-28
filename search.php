@@ -11,30 +11,20 @@
  * @since        1.0
  * @alter        1.1
  */
-
-get_header( 'search' );
-
 ?>
+
+<?php get_header( 'search' ); ?>
 
 <div id="content">
 
-<div id="intro"><?php
-	ghostbird_title( '<h1>', '</h1>' );
-	ghostbird_byline( '<p id="byline">', '</p>' );
-	ghostbird_summary( '<div id="summary">', '</div>' );
+<div id="intro">
+	<h1><?php _e( 'Search Results', 'ghostbird' ) ?></h1>
 
-	get_search_form();
+	<?php get_search_form(); ?>
 
-	$count = 0;
-	if ( isset( $wp_query->found_posts ) ) {
-		$count = (int) $wp_query->found_posts;
-	}
-
-	print "\n" . '<div id="intro-meta">';
-	print esc_html( sprintf( _n( '%1$s result was found for "%2$s".', '%1$s results were found for "%2$s".', $count, 'ghostbird' ), number_format_i18n( $count ), get_search_query() ) );
-	print "\n" . '</div>';
-?>
-
+	<div id="intro-meta">
+	<?php esc_html_e( sprintf( _n( '%1$s result was found for "%2$s".', '%1$s results were found for "%2$s".', (int) $wp_query->found_posts, 'ghostbird' ), number_format_i18n( (int) $wp_query->found_posts ), get_search_query() ) ); ?>
+	</div>
 </div>
 
 <?php get_template_part( 'loop', 'search' ); ?>
