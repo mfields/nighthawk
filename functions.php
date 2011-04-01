@@ -1218,11 +1218,21 @@ function _ghostbird_widgets_init() {
  * @since     1.0
  */
 function _ghostbird_custom_image_header() {
-	define( 'HEADER_TEXTCOLOR', 'b9d8f2' );
-	define( 'HEADER_IMAGE', get_template_directory_uri() . '/images/ghostbird.png' );
-	define( 'HEADER_IMAGE_WIDTH', 240 );
-	define( 'HEADER_IMAGE_HEIGHT', 60 );
-	define( 'NO_HEADER_TEXT', true );
+	if ( ! defined( 'HEADER_TEXTCOLOR' ) ) {
+		define( 'HEADER_TEXTCOLOR', 'b9d8f2' );
+	}
+	if ( ! defined( 'HEADER_IMAGE' ) ) {
+		define( 'HEADER_IMAGE', get_template_directory_uri() . '/images/ghostbird.png' );
+	}
+	if ( ! defined( 'HEADER_IMAGE_WIDTH' ) ) {
+		define( 'HEADER_IMAGE_WIDTH', 240 );
+	}
+	if ( ! defined( 'HEADER_IMAGE_HEIGHT' ) ) {
+		define( 'HEADER_IMAGE_HEIGHT', 60 );
+	}
+	if ( ! defined( 'NO_HEADER_TEXT' ) ) {
+		define( 'NO_HEADER_TEXT', true );
+	}
 	add_custom_image_header( '_ghostbird_custom_image_header_live', '_ghostbird_custom_image_header_admin' );
 }
 
