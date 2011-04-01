@@ -49,7 +49,7 @@ function _ghostbird_setup() {
 	load_theme_textdomain( 'ghostbird', get_template_directory() . '/languages' );
 
 	add_theme_support( 'menus' );
-	add_theme_support( 'post-formats', array( 'aside', 'gallery', 'link', 'status', 'video' ) );
+	add_theme_support( 'post-formats', array( 'aside', 'gallery', 'link', 'status', 'quote', 'video' ) );
 	add_theme_support( 'post-thumbnails' );
 	add_theme_support( 'automatic-feed-links' );
 	add_custom_background();
