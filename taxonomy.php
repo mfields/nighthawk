@@ -13,10 +13,10 @@
  */
 
 if ( ! have_posts() ) {
-	get_template_part( '404', 'taxonomy' );
+	get_template_part( '404', $taxonomy );
 }
 
-get_header( 'taxonomy' );
+get_header( $taxonomy );
 
 ?>
 
@@ -24,14 +24,14 @@ get_header( 'taxonomy' );
 
 	<div id="intro">
 		<h1><?php single_term_title() ?></h1>
-		<div id="summary"><?php term_description(); ?></div>
+		<div id="summary"><?php print term_description(); ?></div>
 		<?php ghostbird_summary_meta( '<div id="intro-meta">', '</div>' ) ?>
 	</div>
 
-<?php get_template_part( 'loop', 'taxonomy' ); ?>
+<?php get_template_part( 'loop', $taxonomy ); ?>
 
 </div><!--content-->
 
 <div class="clear"></div>
 
-<?php get_footer( 'taxonomy' ); ?>
+<?php get_footer( $taxonomy ); ?>
