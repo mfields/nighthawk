@@ -56,6 +56,7 @@ if ( 0 < $count ) {
 <?php wp_nav_menu( array(
 	'container'      => 'div',
 	'container_id'   => 'menu-bottom',
+	'menu_class'     => 'menu',
 	'theme_location' => 'secondary',
 	'depth'          => 1,
 	'items_wrap'     => '<ul id="%1$s" class="%2$s" role="navigation">%3$s</ul>',

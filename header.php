@@ -47,6 +47,7 @@
 	<?php wp_nav_menu( array(
 		'container'      => 'div',
 		'container_id'   => 'menu-top',
+		'menu_class'     => 'menu',
 		'theme_location' => 'primary',
 		'depth'          => 1,
 		'fallback_cb'    => '_ghostbird_menu_dialog',
