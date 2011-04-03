@@ -1,9 +1,10 @@
 <?php
 /**
- * Posts Loop
+ * Post Archive Loop
  *
- * Responisible for generating The Loop
- * for posts having the "post" post_type.
+ * Responsible for generating The Loop
+ * for posts having the "post" post_type
+ * in archive views.
  *
  * @package      Ghostbird
  * @author       Michael Fields <michael@mfields.org>
@@ -17,13 +18,6 @@ if ( have_posts() ) {
 		the_post();
 ?>
 
-<div id="intro">
-	<?php the_title( '<h1>', '</h1>' ); ?>
-	<p id="byline"><?php printf( esc_html__( 'By %1$s', 'ghostbird' ), get_the_author() ); ?></p>
-	<?php ghostbird_summary( '<div id="summary">', '</div>' ); ?>
-	<?php ghostbird_summary_meta( '<div id="intro-meta">', '</div>' ); ?>
-</div>
-
 <div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
 <?php
@@ -34,7 +28,7 @@ if ( have_posts() ) {
 		case 'aside' :
 		case 'link' :
 			print "\n" . '<div class="entry-content">';
-			the_content( __( 'Continue Reading', 'ghostbird' ) );
+			the_content();
 			print "\n" . '</div><!--entry-content-->';
 			break;
 		case 'gallery' :
@@ -50,18 +44,13 @@ if ( have_posts() ) {
 		case 'status' :
 			ghostbird_featured_image( '<div class="featured-image">', '</div>' );
 			print "\n" . '<div class="entry-content">';
-			the_content( __( 'Continue Reading', 'ghostbird' ) );
+			the_content();
 			print "\n" . '</div><!--entry-content-->';
 			break;
 		default :
 			ghostbird_featured_image( '<div class="featured-image">', '</div>' );
-			/*
-			 * Title only for multiple views.
-			 * Will be displayed in single views via ghostbird_title() in an H1 element.
-			 */
-			if ( ! is_singular() ) {
-				the_title( "\n" . '<h2 class="entry-title"><a href="' . get_permalink() . '">', '</a></h2>' );
-			}
+
+			the_title( "\n" . '<h2 class="entry-title"><a href="' . get_permalink() . '">', '</a></h2>' );
 
 			print "\n" . '<div class="entry-content">';
 			the_content( __( 'Continue Reading', 'ghostbird' ) );
