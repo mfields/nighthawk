@@ -724,17 +724,21 @@ function ghostbird_paged_nav( $before = '', $after = '' ) {
 
 /**
  * Author Bio.
- * @deprecated
  *
- * Print the author bio if one exists.
+ * This function is deprecated since version 1.1.
+ * The contents have been moved to a new template
+ * part named biography.php.
  *
- * @param     string         Text to prepend to the author bio.
- * @param     string         Text to append to the author bio.
- * @param     bool           True to print, false to return a string. Defaults to true.
- * @return    void/string
+ * Please use the following code instead to include
+ * biography.php in your single templates:
+ *
+ * <code>
+ * get_template_part( 'biography' );
+ * </code>
  *
  * @since     1.0
  * @alter     1.1
+ * @deprecated
  */
 function ghostbird_author_bio( $before = 'deprecated', $after = 'deprecated', $print = 'deprecated' ) {
 	get_template_part( 'biography' );
