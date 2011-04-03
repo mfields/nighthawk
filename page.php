@@ -23,7 +23,7 @@ get_header( 'page' );
 
 <?php get_template_part( 'loop', 'page' ); ?>
 
-<?php ghostbird_author_bio(); ?>
+<?php get_template_part( 'biography', 'page' ); ?>
 
 <?php comments_template( '', true ); ?>
 

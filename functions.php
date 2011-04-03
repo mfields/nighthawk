@@ -724,48 +724,20 @@ function ghostbird_paged_nav( $before = '', $after = '' ) {
 
 /**
  * Author Bio.
+ * @deprecated
  *
  * Print the author bio if one exists.
- *
- * Author's avatar will not be printed on status posts.
  *
  * @param     string         Text to prepend to the author bio.
  * @param     string         Text to append to the author bio.
  * @param     bool           True to print, false to return a string. Defaults to true.
  * @return    void/string
  *
- * @todo Allow to be hidden by postmeta.
- *
  * @since     1.0
+ * @alter     1.1
  */
-function ghostbird_author_bio( $before = '', $after = '', $print = true ) {
-	$author_bio = '';
-	if ( get_the_author_meta( 'description' ) ) {
-		$class  = '';
-		$avatar = get_avatar( get_the_author_meta( 'user_email' ), apply_filters( 'ghostbird_author_size', 60 ) );
-		if ( ! empty( $avatar ) && 'status' != get_post_format() ) {
-			$class.= 'has-avatar';
-			$avatar = "\n" . '<div class="author-avatar">' . $avatar . '</div>';
-		}
-		else {
-			$avatar = '';
-		}
-		$author_bio.= "\n\n";
-		$author_bio.= "\n" . '<div id="author-box" class="contain ' . $class . '">';
-		$author_bio.= $avatar;
-		$author_bio.= "\n" . '<h2 class="author-name">' . sprintf( esc_attr__( 'About %s', 'ghostbird' ), get_the_author() ) . '</h2>';
-		$author_bio.= "\n" . '<div class="author-bio">' . get_the_author_meta( 'description' ) . '</div>';
-		$author_bio.= "\n" . '</div><!--author-box-->';
-	}
-	if ( ! empty( $author_bio ) ) {
-		$author_bio = $before . $author_bio . $after;
-		if ( $print ) {
-			print $author_bio;
-		}
-		else {
-			return $author_bio;
-		}
-	}
+function ghostbird_author_bio( $before = 'deprecated', $after = 'deprecated', $print = 'deprecated' ) {
+	get_template_part( 'biography' );
 }
 
 /**
