@@ -388,20 +388,20 @@ function ghostbird_byline( $before = '', $after = '' ) {
  * Child themes and plugins can use the 'ghostbird_summary'
  * filter to modify this function's output.
  *
+ * v1.1 - Support for pages has been removed.
+ *
  * @param     string         Text to print before the summary.
  * @param     string         Text to print after the summary.
  * @param     bool           True to print the summary, false to return it as a string.
  * @return    void/string
  *
  * @since     1.0
+ * @alter     1.1
  */
 function ghostbird_summary( $before = '', $after = '', $print = true ) {
 	$summary = '';
 	if ( is_category() || is_tag() || is_tax() ) {
 		$summary = term_description();
-	}
-	else if ( is_page() && has_excerpt() ) {
-		$summary = apply_filters( 'the_excerpt', get_the_excerpt() );
 	}
 	else if ( is_author() ) {
 		global $wp_query;
