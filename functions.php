@@ -1500,7 +1500,7 @@ function _ghostbird_excerpt_more_auto( $more ) {
  * @since     1.0
  */
 function _ghostbird_excerpt_more_custom( $excerpt ) {
-	if ( has_excerpt() && ! is_search() && ! is_attachment() && ! is_page() ) {
+	if ( has_excerpt() && ! is_search() && ! is_attachment() && ! is_singular() ) {
 		$excerpt .= "\n" . ghostbird_continue_reading_link();
 	}
 	return $excerpt;
