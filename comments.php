@@ -53,10 +53,10 @@ if ( have_comments() ) {
 
 	/* List the comments. */
 	print '<ol class="comment-list">';
-	wp_list_comments( array(
+	wp_list_comments( apply_filters( 'ghostbird_list_comments_args', array(
 		'callback'     => '_ghostbird_comment_start',
 		'end-callback' => '_ghostbird_comment_end'
-		) );
+		) ) );
 	print '</ol>';
 
 	/* Paged navigation. */
@@ -69,10 +69,10 @@ if ( have_comments() ) {
 }
 
 /* Display comment form. */
-comment_form( array(
+comment_form( apply_filters( 'ghostbird_comment_form_args', array(
 	'title_reply'          =>  __( 'Share your thoughts', 'ghostbird' ),
 	'comment_notes_before' => '',
 	'comment_notes_after'  => ghostbird_subscribe_to_comments_checkbox(),
-	) );
+	) ) );
 
 ghostbird_subscribe_to_comments_manual_form( '<div class="content">', '</div>' );
