@@ -53,15 +53,17 @@ if ( 0 < $count ) {
 
 </div><!-- wrap -->
 
-<?php wp_nav_menu( array(
-	'container'      => 'div',
-	'container_id'   => 'menu-bottom',
-	'menu_class'     => 'menu',
-	'theme_location' => 'secondary',
-	'depth'          => 1,
-	'items_wrap'     => '<ul id="%1$s" class="%2$s" role="navigation">%3$s</ul>',
-	'fallback_cb'    => '_ghostbird_menu_dialog',
-	) ); ?>
+<?php
+	wp_nav_menu( apply_filters( 'ghostbird_menu_args_secondary', array(
+		'container'      => 'div',
+		'container_id'   => 'menu-bottom',
+		'menu_class'     => 'menu',
+		'theme_location' => 'secondary',
+		'depth'          => 1,
+		'items_wrap'     => '<ul id="%1$s" class="%2$s" role="navigation">%3$s</ul>',
+		'fallback_cb'    => '_ghostbird_menu_dialog',
+		) ) );
+?>
 
 <?php wp_footer(); ?>
 <!--[if IE 8]>

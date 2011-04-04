@@ -44,13 +44,16 @@
 		<?php do_action( 'ghostbird_tagline',    '<div id="tagline">',    '</div>' ); ?>
 	</div>
 	
-	<?php wp_nav_menu( array(
+<?php
+	wp_nav_menu( apply_filters( 'ghostbird_menu_args_primary', array(
 		'container'      => 'div',
 		'container_id'   => 'menu-top',
 		'menu_class'     => 'menu',
 		'theme_location' => 'primary',
 		'depth'          => 1,
+		'items_wrap'     => '<ul id="%1$s" class="%2$s" role="navigation">%3$s</ul>',
 		'fallback_cb'    => '_ghostbird_menu_dialog',
-		) ); ?>
+		) ) );
+?>
 
 	<div id="page" role="document">
