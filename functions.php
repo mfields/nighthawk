@@ -93,6 +93,9 @@ function _ghostbird_setup() {
 	add_action( 'wp_loaded',                  '_ghostbird_custom_image_header' );
 	add_action( 'wp_print_scripts',           '_ghostbird_comment_reply_js' );
 
+	/* Ajax Callbacks */
+	add_action( 'wp_ajax_ghostbird_hide_message_nav_menu', '_ghostbird_ajax_hide_message_nav_menu' );
+
 	/* Custom hooks. */
 	add_action( 'ghostbird_logo',               'ghostbird_logo', 10, 2 );
 	add_action( 'ghostbird_paged_navigation',   'ghostbird_paged_nav', 10, 2 );
@@ -1866,6 +1869,11 @@ function _ghostbird_content_append_link_edit( $content ) {
  * Visitors and authenticated users with insufficient
  * capabilities will be shown nothing.
  *
+ * User has the option of hiding the menu in the event that
+ * they do not wish to see the message anymore.
+ *
+ * @todo      Enable Ajax functionality for menu hiding.
+ *
  * @param     array     Arguments originally passed to wp_nav_menu.
  * @return    string    Dialog for those who can edit theme options - empty sting to all others.
  *
@@ -1890,22 +1898,86 @@ function _ghostbird_menu_dialog( $args ) {
 		$id = ' id="' . esc_attr( $args['container_id'] ) . '"';
 	}
 
-	$class = '';
+	if ( ! isset( $args['theme_location'] ) ) {
+		return;
+	}
+
+	if ( 1 == get_theme_mod( 'hide_message_for_menu_' . $args['theme_location'], 0 ) ) {
+		print '<' . $args['container'] . $id . '></' . $args['container'] . '>';
+		return;
+	}
+
 	$message = '';
+
+	/* Only create a message for users who can edit nav menus. */
 	if ( current_user_can( 'edit_theme_options' ) ) {
 		$class = ' class="notice"';
 
 		global $_wp_registered_nav_menus;
 
+		/* Default message. */
 		$first = esc_html__( 'You have not defined a navigation menu for this theme location.' );
+
+		/* Attempt to retrieve the actual name of the current theme location. */
 		if ( ! empty( $args['theme_location'] ) && isset( $_wp_registered_nav_menus[$args['theme_location']] ) ) {
 			$first = sprintf( esc_html__( 'You have not defined a navigation menu for the theme location named "%1$s".', 'ghostbird' ), $_wp_registered_nav_menus[$args['theme_location']] );
 		}
-		$message = '<p class="dialog">' . $first;
-		$message.= '<br>' . sprintf( esc_html__( 'Please visit the %1$s to manage your menus.', 'ghostbird' ), '<a href="' . esc_url( admin_url( '/nav-menus.php' ) ) . '">' . esc_html__( 'menus page' ) . '</a>' ) . '</p>';
+
+		$message = '<p class="dialog">';
+
+		/* Provide a link to the appropriate administration panel. */
+		$message.= $first . '<br>' . sprintf( esc_html__( 'Please visit the %1$s to manage your menus.', 'ghostbird' ), '<a href="' . esc_url( admin_url( '/nav-menus.php' ) ) . '">' . esc_html__( 'menus page' ) . '</a>' );
+
+		/* Build a link to hide the message. */
+		$message.= '<a href="' . esc_url( admin_url( '/admin-ajax.php?action=ghostbird_hide_message_nav_menu&_wpnonce=' . wp_create_nonce( 'ghostbird_hide_menu_' . $args['theme_location'] ) . '&menu=' . $args['theme_location'] ) ) . '">' . esc_html__( 'Hide this message', 'ghostbird' ) . '</a>';
+
+		$message.= '</p>';
 	}
 
 	print '<' . $args['container'] . $id . $class . '>' . $message . '</' . $args['container'] . '>';
+}
+
+/**
+ * Hide nav menu messages.
+ *
+ * This function will fire on a request to admin-ajax.php
+ * where action is passed as "ghostbird_hide_message_nav_menu".
+ * Although Ajax is not currently used this seemed like the
+ * most appropriate place to hook into WordPress.
+ *
+ * @todo      Enable Ajax functionality for menu hiding.
+ *
+ * @access    private
+ * @since     1.1
+ */
+function _ghostbird_ajax_hide_message_nav_menu() {
+
+	$clean = array();
+
+	/* Menu needs to be set. */
+	if ( ! isset( $_GET['menu'] ) ) {
+		wp_safe_redirect( wp_get_referer() );
+	}
+
+	/* Menu needs to exist. */
+	$locations = (array) get_nav_menu_locations();
+	if ( ! array_key_exists( $_GET['menu'], $locations ) ) {
+		wp_safe_redirect( wp_get_referer() );
+	}
+
+	$clean['menu'] = $_GET['menu'];
+
+	/* Nonce check. */
+	if ( false === check_ajax_referer( 'ghostbird_hide_menu_' . $clean['menu'], false, false ) ) {
+		wp_safe_redirect( wp_get_referer() );
+	}
+
+	/* User needs to have the correct capability. */
+	if ( current_user_can( 'edit_theme_options' ) ) {
+		set_theme_mod( 'hide_message_for_menu_' . $clean['menu'], 1 );
+	}
+
+	wp_safe_redirect( wp_get_referer() );
 }
 
 /**
