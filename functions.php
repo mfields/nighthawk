@@ -726,28 +726,6 @@ function ghostbird_paged_nav( $before = '', $after = '' ) {
 }
 
 /**
- * Author Bio.
- *
- * This function is deprecated since version 1.1.
- * The contents have been moved to a new template
- * part named biography.php.
- *
- * Please use the following code instead to include
- * biography.php in your single templates:
- *
- * <code>
- * get_template_part( 'biography' );
- * </code>
- *
- * @since     1.0
- * @alter     1.1
- * @deprecated
- */
-function ghostbird_author_bio( $before = 'deprecated', $after = 'deprecated', $print = 'deprecated' ) {
-	get_template_part( 'biography' );
-}
-
-/**
  * Featured Image.
  *
  * @param     string         Text to prepend to the image tag.
@@ -1990,3 +1968,13 @@ function _ghostbird_edit_post_link( $html, $ID ) {
 	return '<a class="post-edit-link" href="' . esc_url( get_edit_post_link( $ID ) ) . '" title="' . sprintf( esc_attr__( 'Edit this %1$s', 'ghostbird' ), ghostbird_post_label_singular() ) . '">' . esc_html( wp_strip_all_tags( $html ) ) . '</a>';
 }
 /**#@-*/
+
+/**
+ * Author Bio.
+ *
+ * @since          1.0
+ * @deprecated     1.1
+ */
+function ghostbird_author_bio( $before = 'deprecated', $after = 'deprecated', $print = 'deprecated' ) {
+	get_template_part( 'biography' );
+}
