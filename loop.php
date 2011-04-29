@@ -31,7 +31,7 @@ if ( have_posts() ) {
 
 	/* Title. */
 	if ( post_type_supports( $ghostbird_post_type, 'title' ) ) {
-		the_title( "\n" . '<h1>', '</h1>' );
+		the_title( "\n" . '<h2 class="entry-title">', '</h2>' );
 	}
 
 	/* Content. */

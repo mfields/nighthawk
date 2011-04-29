@@ -43,7 +43,9 @@
 		<?php do_action( 'ghostbird_site_title', '<div id="site-title">', '</div>' ); ?>
 		<?php do_action( 'ghostbird_tagline',    '<div id="tagline">',    '</div>' ); ?>
 	</div>
-	
+
+	<div id="page" role="document">
+
 <?php
 	wp_nav_menu( apply_filters( 'ghostbird_menu_args_primary', array(
 		'container'      => 'div',
@@ -55,5 +57,3 @@
 		'fallback_cb'    => '_ghostbird_menu_dialog',
 		) ) );
 ?>
-
-	<div id="page" role="document">

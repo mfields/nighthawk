@@ -9,6 +9,9 @@
  * @since        1.0
  * @alter        1.1
  *
+ * 2.0
+ * Move ghostbird_paged_nav() into appropriate templates.
+ *
  * FUTURE RELEASE
  * @todo Add header widget. Intended for search form?
  * @todo Add detail images to gallery posts.
@@ -711,11 +714,11 @@ function ghostbird_paged_nav( $before = '', $after = '' ) {
 		print $clear . $after;
 	}
 	else {
-		$next = get_next_posts_link( sprintf( __( 'More %1$s', 'ghostbird' ), $right ) );
+		$next = get_next_posts_link( __( 'More', 'ghostbird' ) );
 		if ( ! empty( $next ) ) {
 			$next =  '<div class="more-posts">' . $next . '</div>';
 		}
-		$prev = get_previous_posts_link( sprintf( __( '%1$s Back', 'ghostbird' ), $left ) );
+		$prev = get_previous_posts_link( __( 'Back', 'ghostbird' ) );
 		if ( ! empty( $prev ) ) {
 			$prev = '<div class="back-posts">' . $prev . '</div>';
 		}
@@ -1885,11 +1888,12 @@ function _ghostbird_menu_dialog( $args ) {
 		return;
 	}
 
+	$class = '';
 	$message = '';
 
 	/* Only create a message for users who can edit nav menus. */
 	if ( current_user_can( 'edit_theme_options' ) ) {
-		$class = ' class="notice"';
+		$class = ' class="no-menu"';
 
 		global $_wp_registered_nav_menus;
 
@@ -1901,7 +1905,7 @@ function _ghostbird_menu_dialog( $args ) {
 			$first = sprintf( esc_html__( 'You have not defined a navigation menu for the theme location named "%1$s".', 'ghostbird' ), $_wp_registered_nav_menus[$args['theme_location']] );
 		}
 
-		$message = '<p class="dialog">';
+		$message = '<p class="dialog notice">';
 
 		/* Provide a link to the appropriate administration panel. */
 		$message.= $first . '<br>' . sprintf( esc_html__( 'Please visit the %1$s to manage your menus.', 'ghostbird' ), '<a href="' . esc_url( admin_url( '/nav-menus.php' ) ) . '">' . esc_html__( 'menus page' ) . '</a>' );

@@ -28,10 +28,6 @@ get_header( 'post' );
 
 <div id="content">
 
-<div id="intro">
-	<h1><?php _e( 'Timeline', 'ghostbird' ) ?></h1>
-</div>
-
 <?php get_template_part( 'loop', 'post' ); ?>
 
 <?php comments_template( '', true ); ?>
