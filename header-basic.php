@@ -4,7 +4,7 @@
  *
  * Just like header.php only without the nav menu.
  * 
- * @package      Ghostbird
+ * @package      Nighthawk
  * @author       Michael Fields <michael@mfields.org>
  * @copyright    Copyright (c) 2011, Michael Fields
  * @license      http://opensource.org/licenses/gpl-2.0.php GNU Public License
@@ -25,9 +25,9 @@
 
 <div id="wrap">
 	<div id="header">
-		<?php do_action( 'ghostbird_logo',       '<div id="logo">',       '</div>' ); ?>
-		<?php do_action( 'ghostbird_site_title', '<div id="site-title">', '</div>' ); ?>
-		<?php do_action( 'ghostbird_tagline',    '<div id="tagline">',    '</div>' ); ?>
+		<?php do_action( 'nighthawk_logo',       '<div id="logo">',       '</div>' ); ?>
+		<?php do_action( 'nighthawk_site_title', '<div id="site-title">', '</div>' ); ?>
+		<?php do_action( 'nighthawk_tagline',    '<div id="tagline">',    '</div>' ); ?>
 	</div>
 	
 	<div id="menu-top"></div>

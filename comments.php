@@ -12,7 +12,7 @@
  * child theme, copy this file into the child theme's
  * directory and make your changes there.
  *
- * @package      Ghostbird
+ * @package      Nighthawk
  * @author       Michael Fields <michael@mfields.org>
  * @copyright    Copyright (c) 2011, Michael Fields
  * @license      http://opensource.org/licenses/gpl-2.0.php GNU Public License
@@ -26,7 +26,7 @@
  */
 if ( post_password_required() ) {
 	if ( have_comments() )
-	print '<p class="nopassword">' . sprintf( __( 'This %1$s is password protected. Enter the password to view any comments.', 'ghostbird' ), ghostbird_post_label_singular() ) . '</p>';
+	print '<p class="nopassword">' . sprintf( __( 'This %1$s is password protected. Enter the password to view any comments.', 'nighthawk' ), nighthawk_post_label_singular() ) . '</p>';
 	return;
 }
 
@@ -41,12 +41,12 @@ if ( ! have_comments() && ! comments_open() ) {
 if ( have_comments() ) {
 	
 	/* Comment heading. */
-	$heading = sprintf( _n( '%1$s Comment', '%1$s Comments', get_comments_number(), 'ghostbird' ), number_format_i18n( get_comments_number() ) );
+	$heading = sprintf( _n( '%1$s Comment', '%1$s Comments', get_comments_number(), 'nighthawk' ), number_format_i18n( get_comments_number() ) );
 	
 	/* Addendum */
-	$addendum = '<a class="addendum" href="#respond">' . __( 'Leave a comment', 'ghostbird' ) . '</a>';
+	$addendum = '<a class="addendum" href="#respond">' . __( 'Leave a comment', 'nighthawk' ) . '</a>';
 	if ( ! comments_open() ) {
-		$addendum = '<span class="addendum">' . __( 'Comments are closed', 'ghostbird' ) . '</span>';
+		$addendum = '<span class="addendum">' . __( 'Comments are closed', 'nighthawk' ) . '</span>';
 	}
 
 	/* Print heading. */
@@ -54,26 +54,26 @@ if ( have_comments() ) {
 
 	/* List the comments. */
 	print '<ol class="comment-list">';
-	wp_list_comments( apply_filters( 'ghostbird_list_comments_args', array(
-		'callback'     => '_ghostbird_comment_start',
-		'end-callback' => '_ghostbird_comment_end'
+	wp_list_comments( apply_filters( 'nighthawk_list_comments_args', array(
+		'callback'     => '_nighthawk_comment_start',
+		'end-callback' => '_nighthawk_comment_end'
 		) ) );
 	print '</ol>';
 
 	/* Paged navigation. */
 	if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) {
 		print '<div class="navigation">';
-		print '<div class="nav-previous">'; previous_comments_link( __( '&laquo; Older Comments', 'ghostbird' ) ); print '</div>';
-		print '<div class="nav-next">'; next_comments_link( __( 'Newer Comments &raquo;', 'ghostbird' ) ); print '</div>';
+		print '<div class="nav-previous">'; previous_comments_link( __( '&laquo; Older Comments', 'nighthawk' ) ); print '</div>';
+		print '<div class="nav-next">'; next_comments_link( __( 'Newer Comments &raquo;', 'nighthawk' ) ); print '</div>';
 		print '</div>';
 	}
 }
 
 /* Display comment form. */
-comment_form( apply_filters( 'ghostbird_comment_form_args', array(
-	'title_reply'          =>  __( 'Share your thoughts', 'ghostbird' ),
+comment_form( apply_filters( 'nighthawk_comment_form_args', array(
+	'title_reply'          =>  __( 'Share your thoughts', 'nighthawk' ),
 	'comment_notes_before' => '',
-	'comment_notes_after'  => ghostbird_subscribe_to_comments_checkbox(),
+	'comment_notes_after'  => nighthawk_subscribe_to_comments_checkbox(),
 	) ) );
 
-ghostbird_subscribe_to_comments_manual_form( '<div class="content">', '</div>' );
+nighthawk_subscribe_to_comments_manual_form( '<div class="content">', '</div>' );

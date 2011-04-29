@@ -6,7 +6,7 @@
  * for posts having the "post" post_type
  * in archive views.
  *
- * @package      Ghostbird
+ * @package      Nighthawk
  * @author       Michael Fields <michael@mfields.org>
  * @copyright    Copyright (c) 2011, Michael Fields
  * @license      http://opensource.org/licenses/gpl-2.0.php GNU Public License
@@ -22,7 +22,7 @@ if ( have_posts() ) {
 
 <?php
 
-	do_action( 'ghostbird_entry_start' );
+	do_action( 'nighthawk_entry_start' );
 
 	switch ( get_post_format() ) {
 		case 'aside' :
@@ -32,40 +32,40 @@ if ( have_posts() ) {
 			print "\n" . '</div><!--entry-content-->';
 			break;
 		case 'gallery' :
-			ghostbird_featured_image( '<div class="featured-image">', '</div>' );
+			nighthawk_featured_image( '<div class="featured-image">', '</div>' );
 			print "\n" . '<div class="entry-content">';
 			the_excerpt();
 			print "\n" . '</div><!--entry-content-->';
-			print '<div class="' . esc_attr( ghostbird_entry_meta_classes() ) . '">';
-			ghostbird_entry_meta_date();
-			ghostbird_entry_meta_taxonomy();
+			print '<div class="' . esc_attr( nighthawk_entry_meta_classes() ) . '">';
+			nighthawk_entry_meta_date();
+			nighthawk_entry_meta_taxonomy();
 			print '</div><!--meta-->';
 			break;
 		case 'status' :
-			ghostbird_featured_image( '<div class="featured-image">', '</div>' );
+			nighthawk_featured_image( '<div class="featured-image">', '</div>' );
 			print "\n" . '<div class="entry-content">';
 			the_content();
 			print "\n" . '</div><!--entry-content-->';
 			break;
 		default :
-			ghostbird_featured_image( '<div class="featured-image">', '</div>' );
+			nighthawk_featured_image( '<div class="featured-image">', '</div>' );
 
 			the_title( "\n" . '<h2 class="entry-title"><a href="' . get_permalink() . '">', '</a></h2>' );
 
 			print "\n" . '<div class="entry-content">';
-			the_content( __( 'Continue Reading', 'ghostbird' ) );
+			the_content( __( 'Continue Reading', 'nighthawk' ) );
 			print "\n" . '</div><!--entry-content-->';
 
-			wp_link_pages( array( 'before' => '<div class="page-link">' . __( 'Pages:', 'ghostbird' ), 'after' => '</div>' ) );
+			wp_link_pages( array( 'before' => '<div class="page-link">' . __( 'Pages:', 'nighthawk' ), 'after' => '</div>' ) );
 
-			print '<div class="' . esc_attr( ghostbird_entry_meta_classes() ) . '">';
-			ghostbird_entry_meta_date();
-			ghostbird_entry_meta_taxonomy();
+			print '<div class="' . esc_attr( nighthawk_entry_meta_classes() ) . '">';
+			nighthawk_entry_meta_date();
+			nighthawk_entry_meta_taxonomy();
 			print '</div><!--meta-->';
 			break;
 	}
 
-	do_action( 'ghostbird_entry_end' );
+	do_action( 'nighthawk_entry_end' );
 ?>
 
 </div><!--entry-->

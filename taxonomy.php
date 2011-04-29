@@ -4,7 +4,7 @@
  *
  * This file closes all html tags that it opens.
  *
- * @package      Ghostbird
+ * @package      Nighthawk
  * @author       Michael Fields <michael@mfields.org>
  * @copyright    Copyright (c) 2011, Michael Fields
  * @license      http://opensource.org/licenses/gpl-2.0.php GNU Public License
@@ -25,7 +25,7 @@ get_header( $taxonomy );
 	<div id="intro">
 		<h1><?php single_term_title() ?></h1>
 		<div id="summary"><?php print term_description(); ?></div>
-		<?php ghostbird_summary_meta( '<div id="intro-meta">', '</div>' ) ?>
+		<?php nighthawk_summary_meta( '<div id="intro-meta">', '</div>' ) ?>
 	</div>
 
 <?php get_template_part( 'loop', $taxonomy ); ?>

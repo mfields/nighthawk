@@ -28,7 +28,7 @@
  * <li>footer-post-status.php</li>
  * </ul>
  *
- * @package      Ghostbird
+ * @package      Nighthawk
  * @author       Michael Fields <michael@mfields.org>
  * @copyright    Copyright (c) 2011, Michael Fields
  * @license      http://opensource.org/licenses/gpl-2.0.php GNU Public License
@@ -42,23 +42,23 @@ if ( ! have_posts() ) {
 }
 
 /* Define context. */
-$ghostbird_context = 'single-post';
-$ghostbird_post_format = get_post_format();
-if ( ! empty( $ghostbird_post_format ) ) {
-	$ghostbird_context.= '-' . $ghostbird_post_format;
+$nighthawk_context = 'single-post';
+$nighthawk_post_format = get_post_format();
+if ( ! empty( $nighthawk_post_format ) ) {
+	$nighthawk_context.= '-' . $nighthawk_post_format;
 }
 ?>
 
-<?php get_header( $ghostbird_context ); ?>
+<?php get_header( $nighthawk_context ); ?>
 
 <div id="content" class="contain">
 
-<?php get_template_part( 'loop', $ghostbird_context ); ?>
+<?php get_template_part( 'loop', $nighthawk_context ); ?>
 
-<?php get_template_part( 'biography', $ghostbird_context ); ?>
+<?php get_template_part( 'biography', $nighthawk_context ); ?>
 
 <?php comments_template( '', true ); ?>
 
 </div><!--content-->
 
-<?php get_footer( $ghostbird_context ); ?>
+<?php get_footer( $nighthawk_context ); ?>

@@ -10,7 +10,7 @@
  *
  * This file terminates script execution.
  *
- * @package      Ghostbird
+ * @package      Nighthawk
  * @author       Michael Fields <michael@mfields.org>
  * @copyright    Copyright (c) 2011, Michael Fields
  * @license      http://opensource.org/licenses/gpl-2.0.php GNU Public License
@@ -24,8 +24,8 @@
 <div id="content" class="error404">
 
 	<div id="intro">
-		<h1><?php esc_html_e( 'Error 404', 'ghostbird' ); ?></h1>
-		<div id="summary"><p><?php esc_html_e( 'Sorry, but the page you are looking for could not be found. It may have been moved or even deleted. Please try a search or use one of the links below.', 'ghostbird' ); ?></p></div>
+		<h1><?php esc_html_e( 'Error 404', 'nighthawk' ); ?></h1>
+		<div id="summary"><p><?php esc_html_e( 'Sorry, but the page you are looking for could not be found. It may have been moved or even deleted. Please try a search or use one of the links below.', 'nighthawk' ); ?></p></div>
 		<?php get_search_form(); ?>
 	</div>
 

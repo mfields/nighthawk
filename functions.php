@@ -2,26 +2,16 @@
 /**
  * Functions
  *
- * @package      Ghostbird
+ * @package      Nighthawk
  * @author       Michael Fields <michael@mfields.org>
  * @copyright    Copyright (c) 2011, Michael Fields
  * @license      http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since        1.0
  * @alter        1.1
  *
- * 2.0
- * Move ghostbird_paged_nav() into appropriate templates.
- *
- * FUTURE RELEASE
- * @todo Add header widget. Intended for search form?
- * @todo Add detail images to gallery posts.
- * @todo "and" for taxonomy lists.
- * @todo Add support for taxonomy images plugin.
- * @todo Add support for wp_pagenavi plugin.
- * @todo Add custom template for Long Description plugin.
  */
 
-define( 'GHOSTBIRD_VERSION', '1.1DEV' );
+define( 'NIGHTHAWK_VERSION', '1.1DEV' );
 
 /**
  * Theme Setup
@@ -31,7 +21,7 @@ define( 'GHOSTBIRD_VERSION', '1.1DEV' );
  *
  * <ol>
  * <li>Create a child theme with a functions.php file.</li>
- * <li>Create a new function named mytheme_ghostbird_setup().</li>
+ * <li>Create a new function named mytheme_nighthawk_setup().</li>
  * <li>Hook this function into the 'after_setup_theme' action at or after 11.</li>
  * <li>call remove_filter(), remove_action() and/or remove_theme_support() as needed.</li>
  * </ol>
@@ -42,14 +32,14 @@ define( 'GHOSTBIRD_VERSION', '1.1DEV' );
  * @since     1.0
  * @alter     1.1
  */
-function _ghostbird_setup() {
+function _nighthawk_setup() {
 
 	global $content_width;
 	if ( ! isset( $content_width ) ) {
 		$content_width = 615;
 	}
 
-	load_theme_textdomain( 'ghostbird', get_template_directory() . '/languages' );
+	load_theme_textdomain( 'nighthawk', get_template_directory() . '/languages' );
 
 	add_theme_support( 'menus' );
 	add_theme_support( 'post-formats', array( 'aside', 'gallery', 'link', 'status', 'quote', 'video' ) );
@@ -64,7 +54,7 @@ function _ghostbird_setup() {
 
 	/* Image sizes. */
 	set_post_thumbnail_size( 150, 150, false );
-	add_image_size( 'ghostbird_detail', 70, 70, true );
+	add_image_size( 'nighthawk_detail', 70, 70, true );
 
 	/* Navigation menus. */
 	register_nav_menus( array( 'primary' => 'Primary', 'secondary' => 'Secondary' ) );
@@ -74,52 +64,52 @@ function _ghostbird_setup() {
 	add_filter( 'get_the_author_description', 'convert_chars' );
 	add_filter( 'get_the_author_description', 'wpautop' );
 
-	/* Ghostbird hooking into WordPress. */
-	add_action( 'body_class',                 '_ghostbird_body_class' );
-	add_filter( 'edit_post_link',             '_ghostbird_edit_post_link', 9, 2 );
-	add_filter( 'embed_oembed_html',          '_ghostbird_oembed_dataparse', 10, 4 );
-	add_filter( 'embed_googlevideo',          '_ghostbird_oembed_dataparse', 10, 2 );
-	add_filter( 'excerpt_more',               '_ghostbird_excerpt_more_auto' );
-	add_filter( 'get_search_form',            '_ghostbird_search_form' );
-	add_filter( 'get_the_excerpt',            '_ghostbird_excerpt_more_custom' );
-	add_filter( 'post_class',                 '_ghostbird_post_class_entry' );
-	add_filter( 'post_class',                 '_ghostbird_post_class_featured' );
-	add_filter( 'post_thumbnail_html',        '_ghostbird_featured_image_first_attachment' );
-	add_filter( 'post_thumbnail_html',        '_ghostbird_featured_image_avatar' );
-	add_action( 'the_content',                '_ghostbird_related_images' );
-	add_filter( 'the_content',                '_ghostbird_content_prepend_title', 9 );
-	add_filter( 'the_content',                '_ghostbird_content_append_link', 9 );
-	add_filter( 'the_content',                '_ghostbird_content_append_link_edit', 9 );
-	add_filter( 'the_password_form',          '_ghostbird_password_form' );
-	add_action( 'widget_title',               '_ghostbird_calendar_widget_title', 10, 3 );
-	add_action( 'widgets_init',               '_ghostbird_widgets_init' );
-	add_action( 'wp_loaded',                  '_ghostbird_custom_image_header' );
-	add_action( 'wp_print_scripts',           '_ghostbird_comment_reply_js' );
+	/* Nighthawk hooking into WordPress. */
+	add_action( 'body_class',                 '_nighthawk_body_class' );
+	add_filter( 'edit_post_link',             '_nighthawk_edit_post_link', 9, 2 );
+	add_filter( 'embed_oembed_html',          '_nighthawk_oembed_dataparse', 10, 4 );
+	add_filter( 'embed_googlevideo',          '_nighthawk_oembed_dataparse', 10, 2 );
+	add_filter( 'excerpt_more',               '_nighthawk_excerpt_more_auto' );
+	add_filter( 'get_search_form',            '_nighthawk_search_form' );
+	add_filter( 'get_the_excerpt',            '_nighthawk_excerpt_more_custom' );
+	add_filter( 'post_class',                 '_nighthawk_post_class_entry' );
+	add_filter( 'post_class',                 '_nighthawk_post_class_featured' );
+	add_filter( 'post_thumbnail_html',        '_nighthawk_featured_image_first_attachment' );
+	add_filter( 'post_thumbnail_html',        '_nighthawk_featured_image_avatar' );
+	add_action( 'the_content',                '_nighthawk_related_images' );
+	add_filter( 'the_content',                '_nighthawk_content_prepend_title', 9 );
+	add_filter( 'the_content',                '_nighthawk_content_append_link', 9 );
+	add_filter( 'the_content',                '_nighthawk_content_append_link_edit', 9 );
+	add_filter( 'the_password_form',          '_nighthawk_password_form' );
+	add_action( 'widget_title',               '_nighthawk_calendar_widget_title', 10, 3 );
+	add_action( 'widgets_init',               '_nighthawk_widgets_init' );
+	add_action( 'wp_loaded',                  '_nighthawk_custom_image_header' );
+	add_action( 'wp_print_scripts',           '_nighthawk_comment_reply_js' );
 
 	/* Ajax Callbacks */
-	add_action( 'wp_ajax_ghostbird_hide_message_nav_menu', '_ghostbird_ajax_hide_message_nav_menu' );
+	add_action( 'wp_ajax_nighthawk_hide_message_nav_menu', '_nighthawk_ajax_hide_message_nav_menu' );
 
 	/* Custom hooks. */
-	add_action( 'ghostbird_logo',               'ghostbird_logo', 10, 2 );
-	add_action( 'ghostbird_paged_navigation',   'ghostbird_paged_nav', 10, 2 );
-	add_action( 'ghostbird_loop_search_start',  '_ghostbird_excerpt_search_toggle_wpautop' );
-	add_action( 'ghostbird_loop_search_end',    '_ghostbird_excerpt_search_toggle_wpautop' );
+	add_action( 'nighthawk_logo',               'nighthawk_logo', 10, 2 );
+	add_action( 'nighthawk_paged_navigation',   'nighthawk_paged_nav', 10, 2 );
+	add_action( 'nighthawk_loop_search_start',  '_nighthawk_excerpt_search_toggle_wpautop' );
+	add_action( 'nighthawk_loop_search_end',    '_nighthawk_excerpt_search_toggle_wpautop' );
 
 	/* Theme modifications. */
-	add_action( 'custom_header_options', '_ghostbird_settings_custom_header_text_controls' );
-	add_action( 'admin_head-appearance_page_custom-header', '_ghostbird_process_custom_header_settings', 51 );
-	if ( 0 != (int) get_theme_mod( 'ghostbird_display_site_title', 0 ) ) {
-		add_action( 'ghostbird_site_title', 'ghostbird_site_title', 10, 2 );
+	add_action( 'custom_header_options', '_nighthawk_settings_custom_header_text_controls' );
+	add_action( 'admin_head-appearance_page_custom-header', '_nighthawk_process_custom_header_settings', 51 );
+	if ( 0 != (int) get_theme_mod( 'nighthawk_display_site_title', 0 ) ) {
+		add_action( 'nighthawk_site_title', 'nighthawk_site_title', 10, 2 );
 	}
-	if ( 0 != (int) get_theme_mod( 'ghostbird_display_tagline', 0 ) ) {
-		add_action( 'ghostbird_tagline', 'ghostbird_tagline', 10, 2 );
+	if ( 0 != (int) get_theme_mod( 'nighthawk_display_tagline', 0 ) ) {
+		add_action( 'nighthawk_tagline', 'nighthawk_tagline', 10, 2 );
 	}
 
-	/* Ghostbird hooking into SyntaxHighlighter Evolved plugin. */
-	wp_register_style( 'syntaxhighlighter-theme-ghostbird', get_template_directory_uri() . '/style-syntax-highlighter.css', array( 'syntaxhighlighter-core' ), '1' );
-	add_filter( 'syntaxhighlighter_themes', '_ghostbird_syntaxhighlighter_theme' );
+	/* Nighthawk hooking into SyntaxHighlighter Evolved plugin. */
+	wp_register_style( 'syntaxhighlighter-theme-nighthawk', get_template_directory_uri() . '/style-syntax-highlighter.css', array( 'syntaxhighlighter-core' ), '1' );
+	add_filter( 'syntaxhighlighter_themes', '_nighthawk_syntaxhighlighter_theme' );
 }
-add_action( 'after_setup_theme', '_ghostbird_setup' );
+add_action( 'after_setup_theme', '_nighthawk_setup' );
 
 /**#@+
  * Public Functions
@@ -154,7 +144,7 @@ add_action( 'after_setup_theme', '_ghostbird_setup' );
  *
  * @since     1.0
  */
-function ghostbird_logo( $before = '', $after = '' ) {
+function nighthawk_logo( $before = '', $after = '' ) {
 	$url = get_header_image();
 	if ( ! empty( $url ) ) {
 		$img = '<img src="' . esc_url( $url ) . '" width="' . esc_attr( HEADER_IMAGE_WIDTH ) . '" height="' . esc_attr( HEADER_IMAGE_HEIGHT ) . '" alt="' . esc_attr( get_bloginfo( 'blogname' ) ) . '">';
@@ -181,7 +171,7 @@ function ghostbird_logo( $before = '', $after = '' ) {
  *
  * @since     1.0
  */
-function ghostbird_site_title( $before = '', $after = '' ) {
+function nighthawk_site_title( $before = '', $after = '' ) {
 	$text = get_bloginfo( 'blogname' );
 	if ( ! empty( $text ) ) {
 		if ( ! is_front_page() || is_paged() ) {
@@ -205,7 +195,7 @@ function ghostbird_site_title( $before = '', $after = '' ) {
  *
  * @since     1.0
  */
-function ghostbird_tagline( $before = '', $after = '' ) {
+function nighthawk_tagline( $before = '', $after = '' ) {
 	$text = get_bloginfo( 'description' );
 	if ( ! empty( $text ) ) {
 		print "\n" . $before . esc_html( $text ) . $after;
@@ -226,19 +216,19 @@ function ghostbird_tagline( $before = '', $after = '' ) {
  *
  * @since     1.0
  */
-function ghostbird_title( $before = '', $after = '', $print = true ) {
+function nighthawk_title( $before = '', $after = '', $print = true ) {
 	$o = '';
 	$url = '';
 	$title = '';
 	$post_type_qv = get_query_var( 'post_type' );
 	if ( 'page' == $post_type_qv ) {
-		$title = __( 'Pages', 'ghostbird' );
+		$title = __( 'Pages', 'nighthawk' );
 		if ( is_paged() ) {
 			$url = add_query_arg( 'post_type', 'page', trailingslashit( home_url() ) );
 		}
 	}
 	else if ( is_home() ) {
-		$title = apply_filters( 'ghostbird_title_timeline', __( 'Timeline', 'ghostbird' ) );
+		$title = apply_filters( 'nighthawk_title_timeline', __( 'Timeline', 'nighthawk' ) );
 		if ( is_paged() ) {
 			$url = home_url();
 		}
@@ -247,19 +237,19 @@ function ghostbird_title( $before = '', $after = '', $print = true ) {
 		$post_type = get_post_type();
 		$title = get_the_title();
 		if ( empty( $title ) && 'post' == $post_type ) {
-			$title = ucfirst( ghostbird_post_label_singular() );
+			$title = ucfirst( nighthawk_post_label_singular() );
 		}
-		$title = apply_filters( 'ghostbird_title_singular', $title );
-		$title = apply_filters( "ghostbird_title_singular_{$post_type}", $title );
+		$title = apply_filters( 'nighthawk_title_singular', $title );
+		$title = apply_filters( "nighthawk_title_singular_{$post_type}", $title );
 	}
 	else if ( is_tax() || is_category() || is_tag() ) {
 		global $wp_query;
 		$term = $wp_query->get_queried_object();
 		if ( isset( $term->name ) && isset( $term->taxonomy ) && isset( $term->slug ) ) {
 			if ( 'post_format' == $term->taxonomy ) {
-				$term->name = ucfirst( ghostbird_post_label_plural() );
+				$term->name = ucfirst( nighthawk_post_label_plural() );
 			}
-			$title = apply_filters( "ghostbird_title_taxonomy_{$term->taxonomy}", $term->name );
+			$title = apply_filters( "nighthawk_title_taxonomy_{$term->taxonomy}", $term->name );
 			if ( is_paged() ) {
 				$url = get_term_link( $term, $term->taxonomy );
 			}
@@ -269,17 +259,17 @@ function ghostbird_title( $before = '', $after = '', $print = true ) {
 		global $wp_query;
 		$author = $wp_query->get_queried_object();
 		if ( isset( $author->display_name ) ) {
-			$title = sprintf( __( 'All entries by %1$s', 'ghostbird' ), $author->display_name );
+			$title = sprintf( __( 'All entries by %1$s', 'nighthawk' ), $author->display_name );
 		}
 	}
 	else if ( is_day() ) {
-		$title = sprintf( __( 'Entries from %1$s', 'ghostbird' ), get_the_date() );
+		$title = sprintf( __( 'Entries from %1$s', 'nighthawk' ), get_the_date() );
 	}
 	else if ( is_month() ) {
-		$title = sprintf( __( 'Entries from %1$s', 'ghostbird' ), get_the_date( 'F, Y' ) );
+		$title = sprintf( __( 'Entries from %1$s', 'nighthawk' ), get_the_date( 'F, Y' ) );
 	}
 	else if ( is_year() ) {
-		$title = sprintf( __( 'Entries from %1$s', 'ghostbird' ), get_the_date( 'Y' ) );
+		$title = sprintf( __( 'Entries from %1$s', 'nighthawk' ), get_the_date( 'Y' ) );
 	}
 	else if ( is_post_type_archive() ) {
 		$title = post_type_archive_title( '', false );
@@ -339,14 +329,14 @@ function ghostbird_title( $before = '', $after = '', $print = true ) {
  *
  * @since     1.0
  */
-function ghostbird_byline( $before = '', $after = '' ) {
+function nighthawk_byline( $before = '', $after = '' ) {
 	$byline = '';
 	$author_name = '';
 	if ( is_singular() && ! is_attachment() ) {
 		$author_name = get_the_author();
 		/*
 		 * get_the_author() only works inside the loop.
-		 * Need to do manual labor if ghostbird_byline()
+		 * Need to do manual labor if nighthawk_byline()
 		 * is used outside the loop.
 		 */
 		if ( empty( $author_name ) ) {
@@ -360,9 +350,9 @@ function ghostbird_byline( $before = '', $after = '' ) {
 		}
 	}
 	if ( ! empty( $author_name ) ) {
-		$byline = sprintf( __( 'By %1$s', 'ghostbird' ), $author_name );
+		$byline = sprintf( __( 'By %1$s', 'nighthawk' ), $author_name );
 	}
-	$byline = apply_filters( 'ghostbird-byline', $byline, $author_name );
+	$byline = apply_filters( 'nighthawk-byline', $byline, $author_name );
 	if ( ! empty( $byline ) ) {
 		print "\n" . $before . esc_html( $byline ) . $after;
 	}
@@ -379,7 +369,7 @@ function ghostbird_byline( $before = '', $after = '' ) {
  * term has a value in its description field, this will be used
  * as the summary.
  *
- * The second is for pages. Ghostbird enables the exceprt meta box
+ * The second is for pages. Nighthawk enables the exceprt meta box
  * for "page" post_type. If defined, the excerpt will be recognized
  * as the summary.
  *
@@ -391,7 +381,7 @@ function ghostbird_byline( $before = '', $after = '' ) {
  * has been registered with a 'description' property, the value
  * of this property will be used as the summary.
  *
- * Child themes and plugins can use the 'ghostbird_summary'
+ * Child themes and plugins can use the 'nighthawk_summary'
  * filter to modify this function's output.
  *
  * v1.1 - Support for pages has been removed.
@@ -404,7 +394,7 @@ function ghostbird_byline( $before = '', $after = '' ) {
  * @since     1.0
  * @alter     1.1
  */
-function ghostbird_summary( $before = '', $after = '', $print = true ) {
+function nighthawk_summary( $before = '', $after = '', $print = true ) {
 	$summary = '';
 	if ( is_category() || is_tag() || is_tax() ) {
 		$summary = term_description();
@@ -412,16 +402,16 @@ function ghostbird_summary( $before = '', $after = '', $print = true ) {
 	else if ( is_author() ) {
 		global $wp_query;
 		$summary = get_the_author_meta( 'description', $wp_query->get_queried_object_id() );
-		$summary = apply_filters( 'ghostbird_filter_text', $summary );
+		$summary = apply_filters( 'nighthawk_filter_text', $summary );
 	}
 	else if ( is_post_type_archive() ) {
 		global $wp_query;
 		$post_type  = $wp_query->get_queried_object();
 		if ( isset( $post_type->description ) && ! empty( $post_type->description ) ) {
-			$summary = apply_filters( 'ghostbird_filter_text', esc_html( $post_type->description ) );
+			$summary = apply_filters( 'nighthawk_filter_text', esc_html( $post_type->description ) );
 		}
 	}
-	$summary = apply_filters( 'ghostbird_summary', $summary );
+	$summary = apply_filters( 'nighthawk_summary', $summary );
 	if ( ! empty( $summary ) ) {
 		$summary = "\n" . $before . $summary . $after;
 		if ( ! $print ) {
@@ -447,7 +437,7 @@ function ghostbird_summary( $before = '', $after = '', $print = true ) {
  * @since     1.0
  * @alter     1.1
  */
-function ghostbird_summary_meta( $before = '', $after = '', $print = true ) {
+function nighthawk_summary_meta( $before = '', $after = '', $print = true ) {
 	global $wp_query;
 
 	$total = 0;
@@ -465,10 +455,10 @@ function ghostbird_summary_meta( $before = '', $after = '', $print = true ) {
 		}
 		if ( isset( $post_type->name ) && isset( $post_type->label ) && isset( $post_type->labels->singular_name ) ) {
 			$feed_url   = get_post_type_archive_feed_link( $post_type->name );
-			$feed_title = sprintf( __( 'Get updated whenever new %1$s are published.', 'ghostbird' ), $post_type->label );
-			$sentence   = sprintf( _n( 'Only one %2$s found in this archive.', 'There are %1$s %2$s in this archive.', $total, 'ghostbird' ), number_format_i18n( $total ), ghostbird_post_label_plural(), ghostbird_post_label_singular() );
-			$sentence   = apply_filters( 'ghostbird_summary_meta_post_type_archive', $sentence, $post_type );
-			$sentence   = apply_filters( "ghostbird_summary_meta_{$post_type->name}_archive", $sentence, $post_type );
+			$feed_title = sprintf( __( 'Get updated whenever new %1$s are published.', 'nighthawk' ), $post_type->label );
+			$sentence   = sprintf( _n( 'Only one %2$s found in this archive.', 'There are %1$s %2$s in this archive.', $total, 'nighthawk' ), number_format_i18n( $total ), nighthawk_post_label_plural(), nighthawk_post_label_singular() );
+			$sentence   = apply_filters( 'nighthawk_summary_meta_post_type_archive', $sentence, $post_type );
+			$sentence   = apply_filters( "nighthawk_summary_meta_{$post_type->name}_archive", $sentence, $post_type );
 		}
 	}
 	else if ( is_attachment() ) {
@@ -480,12 +470,12 @@ function ghostbird_summary_meta( $before = '', $after = '', $print = true ) {
 		}
 		if ( isset( $parent->ID ) && isset( $parent->post_title ) ) {
 			$parent_link = '<a href="' . get_permalink( $parent->ID ) . '">' . apply_filters( 'the_title', $parent->post_title ) . '</a>';
-			$label = ghostbird_post_label_singular();
-			$sentence = sprintf( __( 'This %1$s is attached to %2$s.', 'ghostbird' ), $label, $parent_link );
-			$sentence = apply_filters( 'ghostbird_summary_file', $sentence );
+			$label = nighthawk_post_label_singular();
+			$sentence = sprintf( __( 'This %1$s is attached to %2$s.', 'nighthawk' ), $label, $parent_link );
+			$sentence = apply_filters( 'nighthawk_summary_file', $sentence );
 			if ( 'gallery' == get_post_format( $parent->ID ) ) {
-				$sentence = sprintf( __( 'This %1$s is part of the gallery titled %2$s.', 'ghostbird' ), $label, $parent_link );
-				$sentence = apply_filters( 'ghostbird_summary_image_in_gallery', $sentence );
+				$sentence = sprintf( __( 'This %1$s is part of the gallery titled %2$s.', 'nighthawk' ), $label, $parent_link );
+				$sentence = apply_filters( 'nighthawk_summary_image_in_gallery', $sentence );
 			}
 		}
 	}
@@ -493,26 +483,26 @@ function ghostbird_summary_meta( $before = '', $after = '', $print = true ) {
 		$term = $wp_query->get_queried_object();
 		if ( isset( $term->term_id ) && isset( $term->name ) && isset( $term->taxonomy ) ) {
 			$taxonomy = get_taxonomy( $term->taxonomy );
-			$taxonomy_name = __( 'taxonomy', 'ghostbird' );
+			$taxonomy_name = __( 'taxonomy', 'nighthawk' );
 			if ( isset( $taxonomy->labels->singular_name ) ) {
 				$taxonomy_name = $taxonomy->labels->singular_name;
 			}
 
 			switch( $term->taxonomy ) {
 				case 'post_format' :
-					$feed_title = sprintf( __( 'Get updated whenever a new %1$s is published.', 'ghostbird' ), ghostbird_post_label_singular() );
-					$sentence = sprintf( _n( 'This site contains one %2$s.', 'This site contains %1$s %3$s.', $total, 'ghostbird' ), number_format_i18n( $total ), ghostbird_post_label_singular(), ghostbird_post_label_plural() );
+					$feed_title = sprintf( __( 'Get updated whenever a new %1$s is published.', 'nighthawk' ), nighthawk_post_label_singular() );
+					$sentence = sprintf( _n( 'This site contains one %2$s.', 'This site contains %1$s %3$s.', $total, 'nighthawk' ), number_format_i18n( $total ), nighthawk_post_label_singular(), nighthawk_post_label_plural() );
 					break;
 				default :
-					$feed_title = sprintf( __( 'Subscribe to this %1$s', 'ghostbird' ), $taxonomy_name );
-					$sentence = sprintf( _n( 'One entry is associated with the term %2$s.', '%1$s entries are associated with the term %2$s.', $total, 'ghostbird' ), number_format_i18n( $total ), $term->name );
+					$feed_title = sprintf( __( 'Subscribe to this %1$s', 'nighthawk' ), $taxonomy_name );
+					$sentence = sprintf( _n( 'One entry is associated with the term %2$s.', '%1$s entries are associated with the term %2$s.', $total, 'nighthawk' ), number_format_i18n( $total ), $term->name );
 					break;
 			}
 			$feed_url = get_term_feed_link( $term->term_id, $term->taxonomy );
 		}
 	}
 	if ( ! empty( $feed_url ) ) {
-		$sentence.= ' <span class="subscribe"><a href="' . esc_url( $feed_url ) . '" title="' . esc_attr( $feed_title ) . '">' . esc_html__( 'Subscribe', 'ghostbird' ) . '</a></span>';
+		$sentence.= ' <span class="subscribe"><a href="' . esc_url( $feed_url ) . '" title="' . esc_attr( $feed_title ) . '">' . esc_html__( 'Subscribe', 'nighthawk' ) . '</a></span>';
 	}
 	if ( ! empty( $sentence ) ) {
 		$sentence = "\n" . $before . $sentence . $after;
@@ -535,15 +525,15 @@ function ghostbird_summary_meta( $before = '', $after = '', $print = true ) {
  *
  * @since     1.0
  */
-function ghostbird_continue_reading_link() {
-	$text = __( 'Continue reading', 'ghostbird' );
+function nighthawk_continue_reading_link() {
+	$text = __( 'Continue reading', 'nighthawk' );
 	if ( 'gallery' == get_post_format() ) {
-		$text = __( 'View this gallery', 'ghostbird' );
+		$text = __( 'View this gallery', 'nighthawk' );
 	}
 	return ' <a href="'. esc_url( get_permalink() ) . '">' . esc_html( $text ) . '</a>';
 }
 
-function ghostbird_entry_meta_classes() {
+function nighthawk_entry_meta_classes() {
 	$classes = array( 'entry-meta' );
 	if ( post_password_required() ) {
 		$classes[] = 'hide';
@@ -575,7 +565,7 @@ function ghostbird_entry_meta_classes() {
  * @since     1.0
  * @alter     1.1
  */
-function ghostbird_entry_meta_date() {
+function nighthawk_entry_meta_date() {
 	if ( post_password_required() ) {
 		return '';
 	}
@@ -583,32 +573,32 @@ function ghostbird_entry_meta_date() {
 	print "\n" . '<p>';
 
 	/* Date + Permalink */
-	$title_attr  = sprintf( __( 'Permanent link to this %1$s', 'ghostbird' ), ghostbird_post_label_singular() );
-	$date_format = sprintf( __( '%1$s \a\t %2$s', 'ghostbird' ), get_option( 'date_format' ), get_option( 'time_format' ) );
+	$title_attr  = sprintf( __( 'Permanent link to this %1$s', 'nighthawk' ), nighthawk_post_label_singular() );
+	$date_format = sprintf( __( '%1$s \a\t %2$s', 'nighthawk' ), get_option( 'date_format' ), get_option( 'time_format' ) );
 	$date        = get_the_time( $date_format );
 	$datestamp = '<a class="datetime" href="' . esc_url( get_permalink() ) . '" title="' . esc_attr( $title_attr ) . '">' . esc_html( $date ) . '</a>';
 	if ( is_single() ) {
 		$datestamp =  '<span class="datetime" title="' . esc_attr( $title_attr ) . '">' . esc_html( $date ) . '</span>';
 	}
 
-	printf( __( 'Posted on %1$s', 'ghostbird' ), $datestamp );
+	printf( __( 'Posted on %1$s', 'nighthawk' ), $datestamp );
 
 	/* Comments */
 	if ( ! is_singular() && ( ( comments_open() && ! post_password_required() ) || 0 < get_comments_number() ) ) {
 		print ' ';
 		print '<span class="comment-link">';
 		comments_popup_link(
-			esc_html( _x( 'Comment', 'verb', 'ghostbird' ) ), /* Zero comments */
-			esc_html( __( '1 Comment', 'ghostbird' ) ),       /* One Comment */
-			esc_html( __( '% Comments', 'ghostbird' ) ),      /* More than one comment */
+			esc_html( _x( 'Comment', 'verb', 'nighthawk' ) ), /* Zero comments */
+			esc_html( __( '1 Comment', 'nighthawk' ) ),       /* One Comment */
+			esc_html( __( '% Comments', 'nighthawk' ) ),      /* More than one comment */
 			'',                                               /* CSS class */
-			esc_html( __( '% Comments', 'ghostbird' ) )       /* Comments Disabled */
+			esc_html( __( '% Comments', 'nighthawk' ) )       /* Comments Disabled */
 			);
 		print '</span>';
 	}
 
 	/* Edit link */
-	edit_post_link( esc_html__( 'Edit', 'ghostbird' ), ' <span class="post-edit">', '</span>' );
+	edit_post_link( esc_html__( 'Edit', 'nighthawk' ), ' <span class="post-edit">', '</span>' );
 
 	print '</p>';
 }
@@ -634,18 +624,18 @@ function ghostbird_entry_meta_date() {
  * @since     1.0
  * @alter     1.1
  */
-function ghostbird_entry_meta_taxonomy() {
+function nighthawk_entry_meta_taxonomy() {
 	if ( post_password_required() ) {
 		return '';
 	}
 
-	$sentence = apply_filters( 'ghostbird_entry_meta_taxonomy', '' );
+	$sentence = apply_filters( 'nighthawk_entry_meta_taxonomy', '' );
 	if ( ! empty( $sentence ) ) {
 		print $sentence;
 		return;
 	}
 
-	$label      = ghostbird_post_label_singular();
+	$label      = nighthawk_post_label_singular();
 	$label_url  = get_post_format_link( get_post_format() );
 
 	if ( 'post' != get_post_type() ) {
@@ -656,34 +646,34 @@ function ghostbird_entry_meta_taxonomy() {
 	$categories = get_the_category_list( ', ' );
 
 	if ( ! empty( $label ) && ! empty( $label_url ) ) {
-		$plural = ghostbird_post_label_plural();
+		$plural = nighthawk_post_label_plural();
 		$title = '';
 		if ( ! empty( $plural ) ) {
-			$title = ' title="' . sprintf( esc_attr__( 'View all %1$s', 'ghostbird' ), strtolower( $plural ) ) . '"';
+			$title = ' title="' . sprintf( esc_attr__( 'View all %1$s', 'nighthawk' ), strtolower( $plural ) ) . '"';
 		}
 		$label = '<a href="' . esc_url( $label_url ) . '"' . $title . '>' . esc_html( $label ) . '</a>';
 	}
 
 	if ( ! empty( $label ) ) {
 		if( ! empty( $categories ) && ! empty( $post_tags ) ) {
-			$sentence = sprintf( __( 'This %1$s is filed under %2$s and tagged %3$s.', 'ghostbird' ), $label, $categories, $post_tags );
+			$sentence = sprintf( __( 'This %1$s is filed under %2$s and tagged %3$s.', 'nighthawk' ), $label, $categories, $post_tags );
 		}
 		else if ( ! empty( $categories ) ) {
-			$sentence = sprintf( __( 'This %1$s is filed under %2$s.', 'ghostbird' ), $label, $categories );
+			$sentence = sprintf( __( 'This %1$s is filed under %2$s.', 'nighthawk' ), $label, $categories );
 		}
 		else if ( ! empty( $post_tags ) ) {
-			$sentence = sprintf( __( 'This %1$s is tagged %2$s.', 'ghostbird' ), $label, $post_tags );
+			$sentence = sprintf( __( 'This %1$s is tagged %2$s.', 'nighthawk' ), $label, $post_tags );
 		}
 	}
 	else {
 		if ( ! empty( $categories ) && ! empty( $post_tags ) ) {
-			$sentence = sprintf( __( 'Filed under %1$s and tagged %2$s.', 'ghostbird' ), $categories, $post_tags );
+			$sentence = sprintf( __( 'Filed under %1$s and tagged %2$s.', 'nighthawk' ), $categories, $post_tags );
 		}
 		else if ( ! empty( $categories ) ) {
-			$sentence = sprintf( __( 'Filed under %1$s.', 'ghostbird' ), $categories );
+			$sentence = sprintf( __( 'Filed under %1$s.', 'nighthawk' ), $categories );
 		}
 		else if ( ! empty( $post_tags ) ) {
-			$sentence = sprintf( __( 'Tagged %1$s.', 'ghostbird' ), $post_tags );
+			$sentence = sprintf( __( 'Tagged %1$s.', 'nighthawk' ), $post_tags );
 		}
 	}
 
@@ -703,22 +693,22 @@ function ghostbird_entry_meta_taxonomy() {
  *
  * @todo      Add support for wp_pagenavi plugin.
  */
-function ghostbird_paged_nav( $before = '', $after = '' ) {
+function nighthawk_paged_nav( $before = '', $after = '' ) {
 	$clear = '<div class="clear"></div>';
-	$left  = '<span>' . esc_html__( '&laquo;', 'ghostbird' ) . '</span>';
-	$right = '<span>' . esc_html__( '&raquo;', 'ghostbird' ) . '</span>';
+	$left  = '<span>' . esc_html__( '&laquo;', 'nighthawk' ) . '</span>';
+	$right = '<span>' . esc_html__( '&raquo;', 'nighthawk' ) . '</span>';
 	if ( is_singular() ) {
 		print $before;
-		previous_post_link( '<div class="older-posts">%link</div>', sprintf( __( 'Next %1$s', 'ghostbird' ), $right ) );
-		next_post_link( '<div class="newer-posts">%link</div>', sprintf( __( '%1$s Back', 'ghostbird' ), $left ) );
+		previous_post_link( '<div class="older-posts">%link</div>', sprintf( __( 'Next %1$s', 'nighthawk' ), $right ) );
+		next_post_link( '<div class="newer-posts">%link</div>', sprintf( __( '%1$s Back', 'nighthawk' ), $left ) );
 		print $clear . $after;
 	}
 	else {
-		$next = get_next_posts_link( __( 'More', 'ghostbird' ) );
+		$next = get_next_posts_link( __( 'More', 'nighthawk' ) );
 		if ( ! empty( $next ) ) {
 			$next =  '<div class="more-posts">' . $next . '</div>';
 		}
-		$prev = get_previous_posts_link( __( 'Back', 'ghostbird' ) );
+		$prev = get_previous_posts_link( __( 'Back', 'nighthawk' ) );
 		if ( ! empty( $prev ) ) {
 			$prev = '<div class="back-posts">' . $prev . '</div>';
 		}
@@ -740,7 +730,7 @@ function ghostbird_paged_nav( $before = '', $after = '' ) {
  *
  * @since     1.0
  */
-function ghostbird_featured_image( $before = '', $after = '', $print = true ) {
+function nighthawk_featured_image( $before = '', $after = '', $print = true ) {
 	if ( post_password_required() ) {
 		return '';
 	}
@@ -768,20 +758,20 @@ function ghostbird_featured_image( $before = '', $after = '', $print = true ) {
  *
  * Returns a noun representing the type or format of the global
  * post object. This function is used internally by the
- * ghostbird_entry_meta_taxonomy() function to create a sentence much
+ * nighthawk_entry_meta_taxonomy() function to create a sentence much
  * like the following: "This Status Update is filed under News."
  * where "Status Update" is the post label and "News" is the category.
  *
- * @see       _ghostbird_label() for full documentation.
+ * @see       _nighthawk_label() for full documentation.
  *
  * @return    string
  *
  * @since     1.0
  * @alter     1.1
  */
-function ghostbird_post_label_singular() {
+function nighthawk_post_label_singular() {
 	$label  = '';
-	$labels = _ghostbird_label();
+	$labels = _nighthawk_label();
 	if ( isset( $labels[0] ) ) {
 		$label = $labels[0];
 	}
@@ -793,22 +783,22 @@ function ghostbird_post_label_singular() {
  *
  * Returns a noun representing the type or format of the global
  * post object. This function is used internally by the
- * ghostbird_summary_meta() function to create a title attribute
+ * nighthawk_summary_meta() function to create a title attribute
  * for the "Subscribe" link that reads something like:
  * "This image is part of the gallery titled Taco Pictures."
  * where "image" is the post label and "Taco Pictures" is the
  * title of the parent post.
  *
- * @see       _ghostbird_label() for full documentation.
+ * @see       _nighthawk_label() for full documentation.
  *
  * @return    string
  *
  * @since     1.0
  * @alter     1.1
  */
-function ghostbird_post_label_plural() {
+function nighthawk_post_label_plural() {
 	$label  = '';
-	$labels = _ghostbird_label();
+	$labels = _nighthawk_label();
 	if ( isset( $labels[1] ) ) {
 		$label = $labels[1];
 	}
@@ -823,7 +813,7 @@ function ghostbird_post_label_plural() {
  * @access    public
  * @since     1.1
  */
-function ghostbird_subscribe_to_comments_checkbox() {
+function nighthawk_subscribe_to_comments_checkbox() {
 	$checkbox = '';
 	if ( ! function_exists( 'show_subscription_checkbox' ) ) {
 		return $checkbox;
@@ -844,10 +834,10 @@ function ghostbird_subscribe_to_comments_checkbox() {
  * @access    public
  * @since     1.1
  */
-function ghostbird_subscribe_to_comments_manual_form( $before = '', $after = '', $print = true, $args = array() ) {
+function nighthawk_subscribe_to_comments_manual_form( $before = '', $after = '', $print = true, $args = array() ) {
 	$args = wp_parse_args( $args, array(
-		'heading'   => __( 'Subscribe without commenting', 'ghostbird' ),
-		'paragraph' => sprintf( __( 'Please enter your email address and click subscribe to receive an email whenever a new comment is made about this %1$s.', 'ghostbird' ), ghostbird_post_label_singular() ),
+		'heading'   => __( 'Subscribe without commenting', 'nighthawk' ),
+		'paragraph' => sprintf( __( 'Please enter your email address and click subscribe to receive an email whenever a new comment is made about this %1$s.', 'nighthawk' ), nighthawk_post_label_singular() ),
 		) );
 	$form = '';
 	global $id, $sg_subscribe, $user_email;
@@ -867,7 +857,7 @@ function ghostbird_subscribe_to_comments_manual_form( $before = '', $after = '',
 
 	sg_subscribe_start();
 
-	$sg_subscribe->show_errors( 'solo_subscribe', '<div class="solo-subscribe-errors">', '</div>', __( 'Error: ', 'ghostbird' ), '<br />' );
+	$sg_subscribe->show_errors( 'solo_subscribe', '<div class="solo-subscribe-errors">', '</div>', __( 'Error: ', 'nighthawk' ), '<br />' );
 
 	if ( ! $sg_subscribe->current_viewer_subscription_status() ) {
 		get_currentuserinfo();
@@ -877,9 +867,9 @@ function ghostbird_subscribe_to_comments_manual_form( $before = '', $after = '',
 		$form.= '<input type="hidden" name="solo-comment-subscribe" value="solo-comment-subscribe" />';
 		$form.= '<input type="hidden" name="postid" value="' . esc_attr( $id ) . '" />';
 		$form.= '<input type="hidden" name="ref" value="' . esc_attr( wp_get_referer() ) . '" />';
-		$form.= '<label class="bullet-label" for="solo-subscribe-email">' . esc_html__( 'E-Mail', 'ghostbird' ) . '</label>';
+		$form.= '<label class="bullet-label" for="solo-subscribe-email">' . esc_html__( 'E-Mail', 'nighthawk' ) . '</label>';
 		$form.= '<input class="bullet-term" type="text" name="email" id="solo-subscribe-email" size="22" value="' . esc_attr( $user_email ) . '" />';
-		$form.= '<input class="bullet-button" type="submit" name="submit" value="' . esc_attr__( 'Subscribe', 'ghostbird' ) . '" />';
+		$form.= '<input class="bullet-button" type="submit" name="submit" value="' . esc_attr__( 'Subscribe', 'nighthawk' ) . '" />';
 		$form.= '</form>';
 	}
 
@@ -904,11 +894,11 @@ function ghostbird_subscribe_to_comments_manual_form( $before = '', $after = '',
  * meaning that they should not be used in any template file for
  * any reason. They are mainly callbacks for WordPress core functions,
  * actions and filters. These functions may or may not be presnt in
- * future releases of the Ghostbird theme. If you feel that you
+ * future releases of the Nighthawk theme. If you feel that you
  * absolutely need to use one of them it is suggested that you
  * copy the full function into your child theme's functions.php file
  * and rename it. This will ensure that it always exists in your
- * installation regardless of how Ghostbird changes.
+ * installation regardless of how Nighthawk changes.
  *
  * Functions are roughly defined in the order that
  * they would be called during a template request.
@@ -921,7 +911,7 @@ function ghostbird_subscribe_to_comments_manual_form( $before = '', $after = '',
  *
  * Returns a noun representing the type or format of the global
  * post object. This function is used internally by the
- * ghostbird_entry_meta_taxonomy() function to create a sentence much
+ * nighthawk_entry_meta_taxonomy() function to create a sentence much
  * like the following: "This Status Update is filed under News."
  * where "Status Update" is the post label and "News" is the category.
  *
@@ -932,19 +922,19 @@ function ghostbird_subscribe_to_comments_manual_form( $before = '', $after = '',
  * If no format has been defined (assumung "standard" post format) This function
  * will use the term "post".
  *
- * For all other post_types, Ghostbird will use the values defined in
+ * For all other post_types, Nighthawk will use the values defined in
  * the post_type's "labels" array for singular and plural values.
  *
  * The output of this function may be extended by using the built-in filters:
  *
- * 'ghostbird_post_label_single' and 'ghostbird_post_label_plural'
+ * 'nighthawk_post_label_single' and 'nighthawk_post_label_plural'
  *
  * @return    array     Index "0" is the singular form while index "1" is the plural form.
  *
  * @access    private
  * @since     1.1
  */
-function _ghostbird_label() {
+function _nighthawk_label() {
 
 	static $cache = array();
 
@@ -972,21 +962,21 @@ function _ghostbird_label() {
 		return $cache[$cache_id];
 	}
 
-	$output = apply_filters( 'ghostbird_post_label_default', _nx_noop( 'entry', 'entries', 'post label' ) );
+	$output = apply_filters( 'nighthawk_post_label_default', _nx_noop( 'entry', 'entries', 'post label' ) );
 
 	$post_type = get_post_type();
 
 	if ( 'post' == $post_type || is_tax( 'post_format' ) ) {
-		$output = _ghostbird_label_post();
+		$output = _nighthawk_label_post();
 	}
 	else if ( 'page' == $post_type ) {
-		$output = apply_filters( 'ghostbird_post_label_page', _nx_noop( 'page', 'pages', 'post label' ) );
+		$output = apply_filters( 'nighthawk_post_label_page', _nx_noop( 'page', 'pages', 'post label' ) );
 	}
 	else if ( 'attachment' == $post_type ) {
-		$output = _ghostbird_label_attachment();
+		$output = _nighthawk_label_attachment();
 	}
 	else {
-		$output = _ghostbird_label_custom_post_type( $post_type );
+		$output = _nighthawk_label_custom_post_type( $post_type );
 	}
 
 	$cache[$cache_id] = $output;
@@ -1000,9 +990,9 @@ function _ghostbird_label() {
  * @access    private
  * @since     1.1
  */
-function _ghostbird_label_post( $post_format = null ) {
+function _nighthawk_label_post( $post_format = null ) {
 
-	$output = apply_filters( 'ghostbird_post_label_default', _nx_noop( 'post', 'posts', 'post label' ) );
+	$output = apply_filters( 'nighthawk_post_label_default', _nx_noop( 'post', 'posts', 'post label' ) );
 
 	$post_format_strings = array(
 		''        => $output,
@@ -1025,7 +1015,7 @@ function _ghostbird_label_post( $post_format = null ) {
 		$output = $post_format_strings[$post_format];
 	}
 
-	return apply_filters( 'ghostbird_post_label_archive_post_format', $output, $post_format );
+	return apply_filters( 'nighthawk_post_label_archive_post_format', $output, $post_format );
 }
 
 /**
@@ -1034,7 +1024,7 @@ function _ghostbird_label_post( $post_format = null ) {
  * @access    private
  * @since     1.1
  */
-function _ghostbird_label_attachment() {
+function _nighthawk_label_attachment() {
 	$mime = 'file';
 	$mime_strings = array(
 		'file'        => _nx_noop( 'file',        'files',        'post label' ),
@@ -1071,7 +1061,7 @@ function _ghostbird_label_attachment() {
 		$mime = 'video';
 	}
 
-	return apply_filters( 'ghostbird_post_label_attachment', $mime_strings[$mime], $post_mime_type );
+	return apply_filters( 'nighthawk_post_label_attachment', $mime_strings[$mime], $post_mime_type );
 }
 
 /**
@@ -1080,7 +1070,7 @@ function _ghostbird_label_attachment() {
  * @access    private
  * @since     1.1
  */
-function _ghostbird_label_custom_post_type( $post_type = null ) {
+function _nighthawk_label_custom_post_type( $post_type = null ) {
 
 	$output = _nx_noop( 'entry', 'entries', 'post label' );
 
@@ -1118,7 +1108,7 @@ function _ghostbird_label_custom_post_type( $post_type = null ) {
  * @access    private
  * @since     1.0
  */
-function _ghostbird_calendar_widget_title( $title = '', $instance = '', $id_base = '' ) {
+function _nighthawk_calendar_widget_title( $title = '', $instance = '', $id_base = '' ) {
 	if ( 'calendar' == $id_base && '&nbsp;' == $title ) {
 		$title = '';
 	}
@@ -1133,13 +1123,13 @@ function _ghostbird_calendar_widget_title( $title = '', $instance = '', $id_base
  * @access    private
  * @since     1.0
  */
-function _ghostbird_widgets_init() {
+function _nighthawk_widgets_init() {
 
 	/* Area 1 - Left column below content. */
 	register_sidebar( array(
-		'name'          => __( 'Bottom 1', 'ghostbird' ),
+		'name'          => __( 'Bottom 1', 'nighthawk' ),
 		'id'            => 'first-footer-widget-area',
-		'description'   => __( 'The first footer widget area', 'ghostbird' ),
+		'description'   => __( 'The first footer widget area', 'nighthawk' ),
 		'before_widget' => '<div id="%1$s" class="widget-container %2$s">',
 		'after_widget'  => '</div>',
 		'before_title'  => '<h3 class="widget-title">',
@@ -1148,9 +1138,9 @@ function _ghostbird_widgets_init() {
 
 	/* Area 2 - Middle column below content. */
 	register_sidebar( array(
-		'name'          => __( 'Bottom 2', 'ghostbird' ),
+		'name'          => __( 'Bottom 2', 'nighthawk' ),
 		'id'            => 'second-footer-widget-area',
-		'description'   => __( 'The second footer widget area', 'ghostbird' ),
+		'description'   => __( 'The second footer widget area', 'nighthawk' ),
 		'before_widget' => '<div id="%1$s" class="widget-container %2$s">',
 		'after_widget'  => '</div>',
 		'before_title'  => '<h3 class="widget-title">',
@@ -1159,9 +1149,9 @@ function _ghostbird_widgets_init() {
 
 	/* Area 3, Right column bottom of content . */
 	register_sidebar( array(
-		'name'          => __( 'Bottom 3', 'ghostbird' ),
+		'name'          => __( 'Bottom 3', 'nighthawk' ),
 		'id'            => 'third-footer-widget-area',
-		'description'   => __( 'The third footer widget area', 'ghostbird' ),
+		'description'   => __( 'The third footer widget area', 'nighthawk' ),
 		'before_widget' => '<div id="%1$s" class="widget-container %2$s">',
 		'after_widget'  => '</div>',
 		'before_title'  => '<h3 class="widget-title">',
@@ -1177,12 +1167,12 @@ function _ghostbird_widgets_init() {
  * @access    private
  * @since     1.0
  */
-function _ghostbird_custom_image_header() {
+function _nighthawk_custom_image_header() {
 	if ( ! defined( 'HEADER_TEXTCOLOR' ) ) {
 		define( 'HEADER_TEXTCOLOR', 'b9d8f2' );
 	}
 	if ( ! defined( 'HEADER_IMAGE' ) ) {
-		define( 'HEADER_IMAGE', get_template_directory_uri() . '/images/ghostbird.png' );
+		define( 'HEADER_IMAGE', get_template_directory_uri() . '/images/nighthawk.png' );
 	}
 	if ( ! defined( 'HEADER_IMAGE_WIDTH' ) ) {
 		define( 'HEADER_IMAGE_WIDTH', 240 );
@@ -1193,7 +1183,7 @@ function _ghostbird_custom_image_header() {
 	if ( ! defined( 'NO_HEADER_TEXT' ) ) {
 		define( 'NO_HEADER_TEXT', true );
 	}
-	add_custom_image_header( '_ghostbird_custom_image_header_live', '_ghostbird_custom_image_header_admin' );
+	add_custom_image_header( '_nighthawk_custom_image_header_live', '_nighthawk_custom_image_header_admin' );
 }
 
 /**
@@ -1204,7 +1194,7 @@ function _ghostbird_custom_image_header() {
  * @access    private
  * @since     1.0
  */
-function _ghostbird_custom_image_header_live() {
+function _nighthawk_custom_image_header_live() {
 	print '<style>#site-name,#site-name a,#tagline{color:#' . HEADER_TEXTCOLOR . '}</style>';
 }
 
@@ -1216,7 +1206,7 @@ function _ghostbird_custom_image_header_live() {
  * @access    private
  * @since     1.0
  */
-function _ghostbird_custom_image_header_admin() {
+function _nighthawk_custom_image_header_admin() {
 	$background_color = get_theme_mod( 'background_color', '375876' );
 	print <<< EOF
 <style type="text/css">
@@ -1247,7 +1237,7 @@ EOF;
  * @access    private
  * @since     1.0
  */
-function _ghostbird_body_class( $classes ) {
+function _nighthawk_body_class( $classes ) {
 	if ( in_array( 'blog', $classes ) || in_array( 'archive', $classes ) ) {
 		$classes[] = 'many';
 	}
@@ -1268,7 +1258,7 @@ function _ghostbird_body_class( $classes ) {
  * @access    private
  * @since     1.0
  */
-function _ghostbird_post_class_entry( $classes ) {
+function _nighthawk_post_class_entry( $classes ) {
 	if ( ! in_array( 'entry', $classes ) ) {
 		$classes[] = 'entry';
 	}
@@ -1286,7 +1276,7 @@ function _ghostbird_post_class_entry( $classes ) {
  * @access    private
  * @since     1.0
  */
-function _ghostbird_post_class_featured( $classes ) {
+function _nighthawk_post_class_featured( $classes ) {
 	$featured_image = get_the_post_thumbnail();
 	if ( ! empty( $featured_image ) ) {
 		$classes[] = 'has-featured-image';
@@ -1309,7 +1299,7 @@ function _ghostbird_post_class_featured( $classes ) {
  * @access    private
  * @since     1.0
  */
-function _ghostbird_featured_image_first_attachment( $html ) {
+function _nighthawk_featured_image_first_attachment( $html ) {
 	if ( 'gallery' == get_post_format() && ! is_single() && empty( $html ) ) {
 		$images = get_children( array(
 			'post_parent'    => get_the_ID(),
@@ -1338,7 +1328,7 @@ function _ghostbird_featured_image_first_attachment( $html ) {
  * @access    private
  * @since     1.0
  */
-function _ghostbird_featured_image_avatar( $html ) {
+function _nighthawk_featured_image_avatar( $html ) {
 	if ( 'status' == get_post_format() ) {
 		$html = get_avatar( get_the_author_meta( 'user_email' ), $size = '60' );
 	}
@@ -1354,7 +1344,7 @@ function _ghostbird_featured_image_avatar( $html ) {
  * by using the following code:
  *
  * <code>
- * <?php remove_action( 'ghostbird_entry_end', 'ghostbird_related_images' ); ?>
+ * <?php remove_action( 'nighthawk_entry_end', 'nighthawk_related_images' ); ?>
  * </code>
  *
  * Code similar to the following can be used to change the title text.
@@ -1363,7 +1353,7 @@ function _ghostbird_featured_image_avatar( $html ) {
  * function mytheme_related_images_title_text() {
  *     return 'MY CUSTOM TEXT';
  * }
- * add_filter( 'ghostbird_related_images_title_text', 'mytheme_related_images_title_text' );
+ * add_filter( 'nighthawk_related_images_title_text', 'mytheme_related_images_title_text' );
  * </code>
  *
  * Likewise, the size of the image can be changed with the following code.
@@ -1373,7 +1363,7 @@ function _ghostbird_featured_image_avatar( $html ) {
  * function mytheme_related_images_size() {
  *     return 'thumbnail';
  * }
- * add_filter( 'ghostbird_related_images_size', 'mytheme_related_images_size' );
+ * add_filter( 'nighthawk_related_images_size', 'mytheme_related_images_size' );
  * </code>
  *
  * @todo      Update docs. This is now a filter for the_content.
@@ -1383,11 +1373,11 @@ function _ghostbird_featured_image_avatar( $html ) {
  * @access    private
  * @since     1.0
  */
-function _ghostbird_related_images( $content ) {
+function _nighthawk_related_images( $content ) {
 	if ( is_attachment() ) {
 		$images = array();
-		$size = apply_filters( 'ghostbird_related_images_size', 'ghostbird_detail' );
-		$title = apply_filters( 'ghostbird_related_images_title_text',  __( 'Related Images', 'ghostbird' ) );
+		$size = apply_filters( 'nighthawk_related_images_size', 'nighthawk_detail' );
+		$title = apply_filters( 'nighthawk_related_images_title_text',  __( 'Related Images', 'nighthawk' ) );
 		$parent_id = (int) wp_get_post_parent_id( 0 );
 		if ( 0 === strpos( get_post_mime_type(), 'image' ) && ! empty( $parent_id ) ) {
 			$images = get_children( array(
@@ -1432,12 +1422,12 @@ function _ghostbird_related_images( $content ) {
  * @access    private
  * @since     1.1
  */
-function _ghostbird_excerpt_search_toggle_wpautop() {
+function _nighthawk_excerpt_search_toggle_wpautop() {
 	$hook = current_filter();
-	if ( 'ghostbird_loop_search_start' == $hook ) {
+	if ( 'nighthawk_loop_search_start' == $hook ) {
 		remove_filter( 'the_excerpt', 'wpautop' );
 	}
-	else if ( 'ghostbird_loop_search_end' == $hook ) {
+	else if ( 'nighthawk_loop_search_end' == $hook ) {
 		add_filter( 'the_excerpt', 'wpautop' );
 	}
 }
@@ -1447,24 +1437,24 @@ function _ghostbird_excerpt_search_toggle_wpautop() {
  *
  * In cases where a post does not have an excerpt defined
  * WordPress will append the string "[...]" to a shortened
- * version of the post_content field. Ghostbird will replace
+ * version of the post_content field. Nighthawk will replace
  * this string with an ellipsis followed by a link to the
  * full post.
  *
  * This filter is attached to the 'excerpt_more' hook
- * in the _ghostbird_setup() function.
+ * in the _nighthawk_setup() function.
  *
  * @return    string         An ellipsis followed by a link to the single post.
  *
  * @access    private
  * @since     1.0
  */
-function _ghostbird_excerpt_more_auto( $more ) {
+function _nighthawk_excerpt_more_auto( $more ) {
 	if ( is_search() ) {
 		return ' &hellip;';
 	}
 	else {
-		return ' &hellip; ' . ghostbird_continue_reading_link();
+		return ' &hellip; ' . nighthawk_continue_reading_link();
 	}
 }
 
@@ -1473,19 +1463,19 @@ function _ghostbird_excerpt_more_auto( $more ) {
  *
  * For posts that have a custom excerpt defined, WordPress
  * will show this excerpt instead of shortening the post_content.
- * Ghostbird will append a link to the post's single view to the excerpt.
+ * Nighthawk will append a link to the post's single view to the excerpt.
  *
  * This filter is attached to the 'get_the_excerpt' hook
- * in the _ghostbird_setup() function.
+ * in the _nighthawk_setup() function.
  *
  * @return    string         Excerpt with a link to the post's single view.
  *
  * @access    private
  * @since     1.0
  */
-function _ghostbird_excerpt_more_custom( $excerpt ) {
+function _nighthawk_excerpt_more_custom( $excerpt ) {
 	if ( has_excerpt() && ! is_search() && ! is_attachment() && ! is_singular() ) {
-		$excerpt .= "\n" . ghostbird_continue_reading_link();
+		$excerpt .= "\n" . nighthawk_continue_reading_link();
 	}
 	return $excerpt;
 }
@@ -1494,7 +1484,7 @@ function _ghostbird_excerpt_more_custom( $excerpt ) {
  * Comment start.
  *
  * Prints most of a single comment.
- * @see _ghostbird_comment_end().
+ * @see _nighthawk_comment_end().
  *
  * @param     stdClass       Comment object.
  * @param     array          Arguments passed to wp_list_comments() merged with default values.
@@ -1504,14 +1494,14 @@ function _ghostbird_excerpt_more_custom( $excerpt ) {
  * @access    private
  * @since     1.0
  */
-function _ghostbird_comment_start( $comment, $args, $depth ) {
+function _nighthawk_comment_start( $comment, $args, $depth ) {
 
 	$GLOBALS['comment'] = $comment;
 
 	if ( '' == $comment->comment_type ) {
 		print "\n\n\n\n" . '<li id="comment-'; comment_ID(); print '" '; comment_class(); print '>';
 		if ( 0 === (int) $comment->comment_approved ) {
-			print esc_html__( 'Your comment is awaiting moderation.', 'ghostbird' );
+			print esc_html__( 'Your comment is awaiting moderation.', 'nighthawk' );
 		}
 		else {
 			$avatar = get_avatar( $comment, 45 );
@@ -1521,11 +1511,11 @@ function _ghostbird_comment_start( $comment, $args, $depth ) {
 			print "\n" . '<span class="comment-meta">';
 
 			/* Comment date. */
-			print "\n" . '<a class="comment-date" href="' . get_comment_link( $comment->comment_ID ) . '"  title="' . esc_attr__( 'Direct link to this comment.', 'ghostbird' ) . '">' . sprintf( esc_html__( '%1$s at %2$s', 'ghostbird' ), get_comment_date(),  get_comment_time() ) . '</a>';
+			print "\n" . '<a class="comment-date" href="' . get_comment_link( $comment->comment_ID ) . '"  title="' . esc_attr__( 'Direct link to this comment.', 'nighthawk' ) . '">' . sprintf( esc_html__( '%1$s at %2$s', 'nighthawk' ), get_comment_date(),  get_comment_time() ) . '</a>';
 
 			/* Edit comment link. */
 			if ( current_user_can( 'edit_comment', $comment->comment_ID ) ) {
-				print "\n" . '<span class="comment-edit"> <a href="' . esc_url( get_edit_comment_link( $comment->comment_ID ) ) . '">' . esc_html__( 'Edit', 'ghostbird' ) . '</a></span>';
+				print "\n" . '<span class="comment-edit"> <a href="' . esc_url( get_edit_comment_link( $comment->comment_ID ) ) . '">' . esc_html__( 'Edit', 'nighthawk' ) . '</a></span>';
 			}
 
 			/* Reply to comment link. */
@@ -1545,7 +1535,7 @@ function _ghostbird_comment_start( $comment, $args, $depth ) {
 		print '<li class="trackback">';
 		comment_author_link();
 		if ( current_user_can( 'edit_comment', $comment->comment_ID ) ) {
-			print "\n" . '<span class="comment-edit"> <a href="' . esc_url( get_edit_comment_link( $comment->comment_ID ) ) . '">' . esc_html__( 'Edit', 'ghostbird' ) . '</a></span>';
+			print "\n" . '<span class="comment-edit"> <a href="' . esc_url( get_edit_comment_link( $comment->comment_ID ) ) . '">' . esc_html__( 'Edit', 'nighthawk' ) . '</a></span>';
 		}
 	}
 }
@@ -1564,7 +1554,7 @@ function _ghostbird_comment_start( $comment, $args, $depth ) {
  * @access    private
  * @since     1.0
  */
-function _ghostbird_comment_end( $comment, $args, $depth ) {
+function _nighthawk_comment_end( $comment, $args, $depth ) {
 	print '</li>';
 }
 
@@ -1581,7 +1571,7 @@ function _ghostbird_comment_end( $comment, $args, $depth ) {
  * @access    private
  * @since     1.0
  */
-function _ghostbird_comment_reply_js() {
+function _nighthawk_comment_reply_js() {
 	if ( is_singular() && comments_open() ) {
 		if ( get_option( 'thread_comments' ) ) {
 			wp_enqueue_script( 'comment-reply' );
@@ -1600,7 +1590,7 @@ function _ghostbird_comment_reply_js() {
  * @access    private
  * @since     1.0
  */
-function _ghostbird_oembed_dataparse( $cache, $url, $attr = '', $post_ID = '' ) {
+function _nighthawk_oembed_dataparse( $cache, $url, $attr = '', $post_ID = '' ) {
 	return '<div class="embed">' . $cache . '</div>';
 }
 
@@ -1617,8 +1607,8 @@ function _ghostbird_oembed_dataparse( $cache, $url, $attr = '', $post_ID = '' ) 
  * @access    private
  * @since     1.0
  */
-function _ghostbird_syntaxhighlighter_theme( $themes ) {
-	$themes['ghostbird'] = 'Ghostbird';
+function _nighthawk_syntaxhighlighter_theme( $themes ) {
+	$themes['nighthawk'] = 'Nighthawk';
 	return $themes;
 }
 
@@ -1631,20 +1621,20 @@ function _ghostbird_syntaxhighlighter_theme( $themes ) {
  * located under Appearance -> Header in the administration
  * panels. It will inherit a nonce from the core form. The
  * values will be saved as "Theme Modifications" and the values
- * are processed by _ghostbird_process_custom_header_settings().
+ * are processed by _nighthawk_process_custom_header_settings().
  *
  * This action is attached to the 'custom_header_options'
- * hook in the _ghostbird_setup() function.
+ * hook in the _nighthawk_setup() function.
  *
  * @return    void
  *
  * @access    private
  * @since     1.0
  */
-function _ghostbird_settings_custom_header_text_controls() {
-	print '<table class="form-table"><tbody><tr><th>' . esc_html__( 'Header Text', 'ghostbird' ) . '</th><td>';
-	_ghostbird_control_boolean( 'ghostbird_display_site_title', esc_html__( 'Display site title.', 'ghostbird' ), get_theme_mod( 'ghostbird_display_site_title', 0 ) );
-	_ghostbird_control_boolean( 'ghostbird_display_tagline', esc_html__( 'Display tagline.', 'ghostbird' ), get_theme_mod( 'ghostbird_display_tagline', 0 ) );
+function _nighthawk_settings_custom_header_text_controls() {
+	print '<table class="form-table"><tbody><tr><th>' . esc_html__( 'Header Text', 'nighthawk' ) . '</th><td>';
+	_nighthawk_control_boolean( 'nighthawk_display_site_title', esc_html__( 'Display site title.', 'nighthawk' ), get_theme_mod( 'nighthawk_display_site_title', 0 ) );
+	_nighthawk_control_boolean( 'nighthawk_display_tagline', esc_html__( 'Display tagline.', 'nighthawk' ), get_theme_mod( 'nighthawk_display_tagline', 0 ) );
 	print '</td></tr></tbody></table>';
 }
 
@@ -1652,14 +1642,14 @@ function _ghostbird_settings_custom_header_text_controls() {
  * Process Custom Header Settings.
  *
  * This action is attached to the 'admin_head-appearance_page_custom-header'
- * hook in the _ghostbird_setup() function.
+ * hook in the _nighthawk_setup() function.
  *
  * @return    void
  *
  * @access    private
  * @since     1.0
  */
-function _ghostbird_process_custom_header_settings() {
+function _nighthawk_process_custom_header_settings() {
 	if ( isset( $_POST['save-header-options'] ) ) {
 		check_admin_referer( 'custom-header-options', '_wpnonce-custom-header-options' );
 
@@ -1668,16 +1658,16 @@ function _ghostbird_process_custom_header_settings() {
 		}
 
 		$display_title = 0;
-		if ( isset( $_POST['ghostbird_display_site_title'] ) ) {
+		if ( isset( $_POST['nighthawk_display_site_title'] ) ) {
 			$display_title = 1;
 		}
-		set_theme_mod( 'ghostbird_display_site_title', $display_title );
+		set_theme_mod( 'nighthawk_display_site_title', $display_title );
 
 		$display_tagline = 0;
-		if ( isset( $_POST['ghostbird_display_tagline'] ) ) {
+		if ( isset( $_POST['nighthawk_display_tagline'] ) ) {
 			$display_tagline = 1;
 		}
-		set_theme_mod( 'ghostbird_display_tagline', $display_tagline );
+		set_theme_mod( 'nighthawk_display_tagline', $display_tagline );
 	}
 }
 
@@ -1695,7 +1685,7 @@ function _ghostbird_process_custom_header_settings() {
  * @access    private
  * @since     1.0
  */
-function _ghostbird_control_boolean( $id, $label, $value = 0 ) {
+function _nighthawk_control_boolean( $id, $label, $value = 0 ) {
 	print "\n\n" . '<input' . ( ! empty( $value ) ? ' checked="checked"' : '' ) . ' type="checkbox" id="' . esc_attr( $id ) . '" name="' . esc_attr( $id ) . '" value="1" /> ';
 	print "\n" . '<label for="' . esc_attr( $id ) . '">' . esc_html( $label ) . '</label><br />';
 }
@@ -1709,7 +1699,7 @@ function _ghostbird_control_boolean( $id, $label, $value = 0 ) {
  * @access    private
  * @since     1.0
  */
-function _ghostbird_search_form( $form ) {
+function _nighthawk_search_form( $form ) {
 	static $id = 0;
 	$id++;
 	$id_attr = 'search-form-' . $id;
@@ -1732,17 +1722,17 @@ function _ghostbird_search_form( $form ) {
  * @access    private
  * @since     1.0
  */
-function _ghostbird_password_form( $form ) {
+function _nighthawk_password_form( $form ) {
 	static $id = 0;
 	$id++;
 	$id_attr = 'password-form-' . $id;
 
 	$form = "\n\n";
-	$form.= '<p>' . esc_html__( 'This post is password protected. To view it please enter your password below:', 'ghostbird' ) . '</p>';
+	$form.= '<p>' . esc_html__( 'This post is password protected. To view it please enter your password below:', 'nighthawk' ) . '</p>';
 	$form.= '<form class="bullet" action="' . esc_url( get_option( 'siteurl' ) . '/wp-pass.php' ) . '" method="post">';
-	$form.= '<label class="bullet-label" for="' . esc_attr( $id_attr ) . '">' . __( 'Enter Password', 'ghostbird' ) . '</label>';
+	$form.= '<label class="bullet-label" for="' . esc_attr( $id_attr ) . '">' . __( 'Enter Password', 'nighthawk' ) . '</label>';
 	$form.= '<input class="bullet-term" name="post_password" id="' . esc_attr( $id_attr ) . '" type="password" size="20" />';
-	$form.= '<input class="bullet-button" type="submit" name="Submit" value="' . esc_attr__( 'Unlock', 'ghostbird' ) . '" />';
+	$form.= '<input class="bullet-button" type="submit" name="Submit" value="' . esc_attr__( 'Unlock', 'nighthawk' ) . '" />';
 	$form.= '</form>';
 	return $form;
 }
@@ -1761,7 +1751,7 @@ function _ghostbird_password_form( $form ) {
  * @access    private
  * @since     1.0
  */
-function _ghostbird_content_prepend_title( $content ) {
+function _nighthawk_content_prepend_title( $content ) {
 	if ( is_single() ) {
 		return $content;
 	}
@@ -1771,9 +1761,9 @@ function _ghostbird_content_prepend_title( $content ) {
 	$post_format = get_post_format();
 	if ( in_array( $post_format, array( 'aside', 'link', 'status' ) ) ) {
 		$title      = get_the_title();
-		$title_attr = sprintf( __( 'Permalink to this %1$s', 'ghostbird' ), ghostbird_post_label_singular() );
+		$title_attr = sprintf( __( 'Permalink to this %1$s', 'nighthawk' ), nighthawk_post_label_singular() );
 		if ( ! empty( $title ) ) {
-			$content = '<a class="post-title" title="' . esc_attr( $title_attr ) . '" href="' . esc_url( get_permalink() )  . '">' . get_the_title() . '</a> ' . esc_html__( '&#8210;', 'ghostbird' ) . ' ' . $content;
+			$content = '<a class="post-title" title="' . esc_attr( $title_attr ) . '" href="' . esc_url( get_permalink() )  . '">' . get_the_title() . '</a> ' . esc_html__( '&#8210;', 'nighthawk' ) . ' ' . $content;
 		}
 	}
 	return $content;
@@ -1792,7 +1782,7 @@ function _ghostbird_content_prepend_title( $content ) {
  * @access    private
  * @since     1.0
  */
-function _ghostbird_content_append_link( $content ) {
+function _nighthawk_content_append_link( $content ) {
 	if ( is_single() ) {
 		return $content;
 	}
@@ -1802,7 +1792,7 @@ function _ghostbird_content_append_link( $content ) {
 	}
 	$title = get_the_title();
 	if ( empty( $title ) ) {
-		$content .= ' <a class="auto-link" title="' . sprintf( esc_attr__( 'Permalink to this %1$s', 'ghostbird' ), ghostbird_post_label_singular() ) . '" href="' . esc_url( get_permalink() )  . '">' . esc_html__( 'link', 'ghostbird' ) . '</a>';
+		$content .= ' <a class="auto-link" title="' . sprintf( esc_attr__( 'Permalink to this %1$s', 'nighthawk' ), nighthawk_post_label_singular() ) . '" href="' . esc_url( get_permalink() )  . '">' . esc_html__( 'link', 'nighthawk' ) . '</a>';
 	}
 	return $content;
 }
@@ -1824,7 +1814,7 @@ function _ghostbird_content_append_link( $content ) {
  * @access    private
  * @since     1.1
  */
-function _ghostbird_content_append_link_edit( $content ) {
+function _nighthawk_content_append_link_edit( $content ) {
 	if ( is_single() ) {
 		return $content;
 	}
@@ -1834,7 +1824,7 @@ function _ghostbird_content_append_link_edit( $content ) {
 	}
 	$format = get_post_format();
 	if ( in_array( $format, array( 'aside', 'link', 'status' ) ) ) {
-		$content .= ' <a class="post-edit-link auto-link" href="' . esc_url( $url ) . '" title="' . sprintf( esc_attr__( 'Edit this %1$s', 'ghostbird' ), ghostbird_post_label_singular() ) . '">' . esc_html__( 'edit', 'ghostbird' ) . '</a>';
+		$content .= ' <a class="post-edit-link auto-link" href="' . esc_url( $url ) . '" title="' . sprintf( esc_attr__( 'Edit this %1$s', 'nighthawk' ), nighthawk_post_label_singular() ) . '">' . esc_html__( 'edit', 'nighthawk' ) . '</a>';
 	}
 	return $content;
 }
@@ -1861,7 +1851,7 @@ function _ghostbird_content_append_link_edit( $content ) {
  * @access    private
  * @since     1.1
  */
-function _ghostbird_menu_dialog( $args ) {
+function _nighthawk_menu_dialog( $args ) {
 	$defaults = array(
 		'container'      => 'div',
 		'container_id'   => '',
@@ -1902,16 +1892,16 @@ function _ghostbird_menu_dialog( $args ) {
 
 		/* Attempt to retrieve the actual name of the current theme location. */
 		if ( ! empty( $args['theme_location'] ) && isset( $_wp_registered_nav_menus[$args['theme_location']] ) ) {
-			$first = sprintf( esc_html__( 'You have not defined a navigation menu for the theme location named "%1$s".', 'ghostbird' ), $_wp_registered_nav_menus[$args['theme_location']] );
+			$first = sprintf( esc_html__( 'You have not defined a navigation menu for the theme location named "%1$s".', 'nighthawk' ), $_wp_registered_nav_menus[$args['theme_location']] );
 		}
 
 		$message = '<p class="dialog notice">';
 
 		/* Provide a link to the appropriate administration panel. */
-		$message.= $first . '<br>' . sprintf( esc_html__( 'Please visit the %1$s to manage your menus.', 'ghostbird' ), '<a href="' . esc_url( admin_url( '/nav-menus.php' ) ) . '">' . esc_html__( 'menus page' ) . '</a>' );
+		$message.= $first . '<br>' . sprintf( esc_html__( 'Please visit the %1$s to manage your menus.', 'nighthawk' ), '<a href="' . esc_url( admin_url( '/nav-menus.php' ) ) . '">' . esc_html__( 'menus page' ) . '</a>' );
 
 		/* Build a link to hide the message. */
-		$message.= '<a href="' . esc_url( admin_url( '/admin-ajax.php?action=ghostbird_hide_message_nav_menu&_wpnonce=' . wp_create_nonce( 'ghostbird_hide_menu_' . $args['theme_location'] ) . '&menu=' . $args['theme_location'] ) ) . '">' . esc_html__( 'Hide this message', 'ghostbird' ) . '</a>';
+		$message.= '<a href="' . esc_url( admin_url( '/admin-ajax.php?action=nighthawk_hide_message_nav_menu&_wpnonce=' . wp_create_nonce( 'nighthawk_hide_menu_' . $args['theme_location'] ) . '&menu=' . $args['theme_location'] ) ) . '">' . esc_html__( 'Hide this message', 'nighthawk' ) . '</a>';
 
 		$message.= '</p>';
 	}
@@ -1923,7 +1913,7 @@ function _ghostbird_menu_dialog( $args ) {
  * Hide nav menu messages.
  *
  * This function will fire on a request to admin-ajax.php
- * where action is passed as "ghostbird_hide_message_nav_menu".
+ * where action is passed as "nighthawk_hide_message_nav_menu".
  * Although Ajax is not currently used this seemed like the
  * most appropriate place to hook into WordPress.
  *
@@ -1932,7 +1922,7 @@ function _ghostbird_menu_dialog( $args ) {
  * @access    private
  * @since     1.1
  */
-function _ghostbird_ajax_hide_message_nav_menu() {
+function _nighthawk_ajax_hide_message_nav_menu() {
 
 	$clean = array();
 
@@ -1950,7 +1940,7 @@ function _ghostbird_ajax_hide_message_nav_menu() {
 	$clean['menu'] = $_GET['menu'];
 
 	/* Nonce check. */
-	if ( false === check_ajax_referer( 'ghostbird_hide_menu_' . $clean['menu'], false, false ) ) {
+	if ( false === check_ajax_referer( 'nighthawk_hide_menu_' . $clean['menu'], false, false ) ) {
 		wp_safe_redirect( wp_get_referer() );
 	}
 
@@ -1968,8 +1958,8 @@ function _ghostbird_ajax_hide_message_nav_menu() {
  * @access    private
  * @since     1.1
  */
-function _ghostbird_edit_post_link( $html, $ID ) {
-	return '<a class="post-edit-link" href="' . esc_url( get_edit_post_link( $ID ) ) . '" title="' . sprintf( esc_attr__( 'Edit this %1$s', 'ghostbird' ), ghostbird_post_label_singular() ) . '">' . esc_html( wp_strip_all_tags( $html ) ) . '</a>';
+function _nighthawk_edit_post_link( $html, $ID ) {
+	return '<a class="post-edit-link" href="' . esc_url( get_edit_post_link( $ID ) ) . '" title="' . sprintf( esc_attr__( 'Edit this %1$s', 'nighthawk' ), nighthawk_post_label_singular() ) . '">' . esc_html( wp_strip_all_tags( $html ) ) . '</a>';
 }
 /**#@-*/
 
@@ -1979,6 +1969,6 @@ function _ghostbird_edit_post_link( $html, $ID ) {
  * @since          1.0
  * @deprecated     1.1
  */
-function ghostbird_author_bio( $before = 'deprecated', $after = 'deprecated', $print = 'deprecated' ) {
+function nighthawk_author_bio( $before = 'deprecated', $after = 'deprecated', $print = 'deprecated' ) {
 	get_template_part( 'biography' );
 }

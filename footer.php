@@ -17,7 +17,7 @@
  * 
  * This file should close any html tags opened in header.php.
  * 
- * @package      Ghostbird
+ * @package      Nighthawk
  * @author       Michael Fields <michael@mfields.org>
  * @copyright    Copyright (c) 2011, Michael Fields
  * @license      http://opensource.org/licenses/gpl-2.0.php GNU Public License
@@ -28,7 +28,7 @@
 
 </div><!-- #page -->
 
-<div id="page-footer"><?php do_action( 'ghostbird_paged_navigation' ); ?></div>
+<div id="page-footer"><?php do_action( 'nighthawk_paged_navigation' ); ?></div>
 
 <?php
 $active = array();
@@ -54,14 +54,14 @@ if ( 0 < $count ) {
 </div><!-- wrap -->
 
 <?php
-	wp_nav_menu( apply_filters( 'ghostbird_menu_args_secondary', array(
+	wp_nav_menu( apply_filters( 'nighthawk_menu_args_secondary', array(
 		'container'      => 'div',
 		'container_id'   => 'menu-bottom',
 		'menu_class'     => 'menu',
 		'theme_location' => 'secondary',
 		'depth'          => 1,
 		'items_wrap'     => '<ul id="%1$s" class="%2$s" role="navigation">%3$s</ul>',
-		'fallback_cb'    => '_ghostbird_menu_dialog',
+		'fallback_cb'    => '_nighthawk_menu_dialog',
 		) ) );
 ?>
 

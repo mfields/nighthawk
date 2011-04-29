@@ -17,7 +17,7 @@
  * <li>Includes footer.php</li>
  * </ol>
  * 
- * If you notice, Ghostbird contains no other complete template
+ * If you notice, Nighthawk contains no other complete template
  * files, only parts. This is by design and will hopefully make
  * customizing a bit easier. If you find that it is necessary to
  * create a custom template it is suggested that you copy the code
@@ -27,7 +27,7 @@
  * 
  * This file closes all html tags that it opens.
  * 
- * @package      Ghostbird
+ * @package      Nighthawk
  * @author       Michael Fields <michael@mfields.org>
  * @copyright    Copyright (c) 2011, Michael Fields
  * @license      http://opensource.org/licenses/gpl-2.0.php GNU Public License
@@ -45,10 +45,10 @@ get_header();
 <div id="content">
 
 <div id="intro">
-	<?php ghostbird_title( '<h1>', '</h1>' ); ?>
-	<?php ghostbird_byline( '<p id="byline">', '</p>' ); ?>
-	<?php ghostbird_summary( '<div id="summary">', '</div>' ); ?>
-	<?php ghostbird_summary_meta( '<div id="intro-meta">', '</div>' ); ?>
+	<?php nighthawk_title( '<h1>', '</h1>' ); ?>
+	<?php nighthawk_byline( '<p id="byline">', '</p>' ); ?>
+	<?php nighthawk_summary( '<div id="summary">', '</div>' ); ?>
+	<?php nighthawk_summary_meta( '<div id="intro-meta">', '</div>' ); ?>
 </div>
 
 <?php get_template_part( 'loop' ); ?>

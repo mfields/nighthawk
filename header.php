@@ -17,7 +17,7 @@
  * leaves 2 html div tags open. Both of these tags
  * are properly closed in footer.php by default.
  * 
- * @package      Ghostbird
+ * @package      Nighthawk
  * @author       Michael Fields <michael@mfields.org>
  * @copyright    Copyright (c) 2011, Michael Fields
  * @license      http://opensource.org/licenses/gpl-2.0.php GNU Public License
@@ -39,21 +39,21 @@
 
 <div id="wrap">
 	<div id="header">
-		<?php do_action( 'ghostbird_logo',       '<div id="logo">',       '</div>' ); ?>
-		<?php do_action( 'ghostbird_site_title', '<div id="site-title">', '</div>' ); ?>
-		<?php do_action( 'ghostbird_tagline',    '<div id="tagline">',    '</div>' ); ?>
+		<?php do_action( 'nighthawk_logo',       '<div id="logo">',       '</div>' ); ?>
+		<?php do_action( 'nighthawk_site_title', '<div id="site-title">', '</div>' ); ?>
+		<?php do_action( 'nighthawk_tagline',    '<div id="tagline">',    '</div>' ); ?>
 	</div>
 
 	<div id="page" role="document">
 
 <?php
-	wp_nav_menu( apply_filters( 'ghostbird_menu_args_primary', array(
+	wp_nav_menu( apply_filters( 'nighthawk_menu_args_primary', array(
 		'container'      => 'div',
 		'container_id'   => 'menu-top',
 		'menu_class'     => 'menu',
 		'theme_location' => 'primary',
 		'depth'          => 1,
 		'items_wrap'     => '<ul id="%1$s" class="%2$s" role="navigation">%3$s</ul>',
-		'fallback_cb'    => '_ghostbird_menu_dialog',
+		'fallback_cb'    => '_nighthawk_menu_dialog',
 		) ) );
 ?>

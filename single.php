@@ -6,7 +6,7 @@
  * post is being viewed. This template has been
  * coded to handle any public post_type.
  *
- * @package      Ghostbird
+ * @package      Nighthawk
  * @author       Michael Fields <michael@mfields.org>
  * @copyright    Copyright (c) 2011, Michael Fields
  * @license      http://opensource.org/licenses/gpl-2.0.php GNU Public License
@@ -18,9 +18,9 @@ if ( ! have_posts() ) {
 	get_template_part( '404' );
 }
 
-$ghostbird_post_type = get_post_type();
+$nighthawk_post_type = get_post_type();
 
-get_header( $ghostbird_post_type );
+get_header( $nighthawk_post_type );
 
 ?>
 
@@ -35,35 +35,35 @@ if ( have_posts() ) {
 <div id="intro">
 <?php
 	/* Title. */
-	if ( post_type_supports( $ghostbird_post_type, 'title' ) ) {
+	if ( post_type_supports( $nighthawk_post_type, 'title' ) ) {
 		the_title( "\n" . '<h1>', '</h1>' );
 	}
 
 	/* Byline. */
-	if ( post_type_supports( $ghostbird_post_type, 'author' ) ) {
-		print "\n" . '<p id="byline">' . sprintf( esc_html__( 'By %1$s', 'ghostbird' ), get_the_author() ) . '</p>';
+	if ( post_type_supports( $nighthawk_post_type, 'author' ) ) {
+		print "\n" . '<p id="byline">' . sprintf( esc_html__( 'By %1$s', 'nighthawk' ), get_the_author() ) . '</p>';
 	}
 ?>
 </div>
 
 <div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-	<?php do_action( 'ghostbird_entry_start' ); ?>
+	<?php do_action( 'nighthawk_entry_start' ); ?>
 
-	<?php ghostbird_featured_image( '<div class="featured-image">', '</div>' ); ?>
+	<?php nighthawk_featured_image( '<div class="featured-image">', '</div>' ); ?>
 
 	<div class="entry-content">
 	<?php the_content(); ?>
 	</div><!--entry-content-->
 
-	<?php wp_link_pages( array( 'before' => '<div class="page-link">' . __( 'Pages:', 'ghostbird' ), 'after' => '</div>' ) ); ?>
+	<?php wp_link_pages( array( 'before' => '<div class="page-link">' . __( 'Pages:', 'nighthawk' ), 'after' => '</div>' ) ); ?>
 
-	<div class="<?php print esc_attr( ghostbird_entry_meta_classes() ); ?>">
-		<?php ghostbird_entry_meta_date(); ?>
-		<?php ghostbird_entry_meta_taxonomy(); ?>
+	<div class="<?php print esc_attr( nighthawk_entry_meta_classes() ); ?>">
+		<?php nighthawk_entry_meta_date(); ?>
+		<?php nighthawk_entry_meta_taxonomy(); ?>
 	</div><!--meta-->
 
-	<?php do_action( 'ghostbird_entry_end' ); ?>
+	<?php do_action( 'nighthawk_entry_end' ); ?>
 
 </div><!--entry-->
 
@@ -72,7 +72,7 @@ if ( have_posts() ) {
 }
 ?>
 
-<?php get_template_part( 'biography', $ghostbird_post_type ); ?>
+<?php get_template_part( 'biography', $nighthawk_post_type ); ?>
 
 <?php comments_template( '', true ); ?>
 
@@ -80,4 +80,4 @@ if ( have_posts() ) {
 
 <div class="clear"></div>
 
-<?php get_footer( $ghostbird_post_type ); ?>
+<?php get_footer( $nighthawk_post_type ); ?>

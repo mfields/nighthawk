@@ -4,7 +4,7 @@
  *
  * This file closes all html tags that it opens.
  *
- * @package      Ghostbird
+ * @package      Nighthawk
  * @author       Michael Fields <michael@mfields.org>
  * @copyright    Copyright (c) 2011, Michael Fields
  * @license      http://opensource.org/licenses/gpl-2.0.php GNU Public License
@@ -18,12 +18,12 @@
 <div id="content">
 
 <div id="intro">
-	<h1><?php _e( 'Search Results', 'ghostbird' ) ?></h1>
+	<h1><?php _e( 'Search Results', 'nighthawk' ) ?></h1>
 
 	<?php get_search_form(); ?>
 
 	<div id="intro-meta">
-	<?php esc_html_e( sprintf( _n( '%1$s result was found for "%2$s".', '%1$s results were found for "%2$s".', (int) $wp_query->found_posts, 'ghostbird' ), number_format_i18n( (int) $wp_query->found_posts ), get_search_query() ) ); ?>
+	<?php esc_html_e( sprintf( _n( '%1$s result was found for "%2$s".', '%1$s results were found for "%2$s".', (int) $wp_query->found_posts, 'nighthawk' ), number_format_i18n( (int) $wp_query->found_posts ), get_search_query() ) ); ?>
 	</div>
 </div>
 
