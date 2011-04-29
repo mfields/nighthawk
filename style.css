@@ -44,7 +44,6 @@ address, article, aside, blockquote, dl, fieldset, form, ol, p, pre, table, ul,
 .entry-content div, .entry-meta, .embed {
 	font-size:1em;
 	margin:1.5em 0;
-	padding:0;
 	line-height:1.5em;
 }
 #gallery-1, #gallery-2, #gallery-3, #gallery-4, #gallery-5 { /* !important used to override inline css. */
@@ -288,10 +287,12 @@ form.bullet.subscribe-without-commenting input.bullet-button {
 	color:#333;
 	background-color:#bfeaff; /* Light Blue. */
 	outline:0;
-	border:.2em solid #000;
+	border:.2em solid #ccc;
 }
 .dialog.notice {
 	background-color:#ffe58c; /* Light Yellow. */
+	border-color:#e3CC7d;
+	color:#786C43;
 }
 
 
@@ -677,7 +678,7 @@ h2.entry-title {
 }
 .comment .comment {
 	padding-top:1.5em;
-	border-top:.1em dotted #ddd;
+	border-top:.1em solid #ccc;
 }
 .comment .comment:last-child {
 	margin-bottom:0;
@@ -697,7 +698,7 @@ h2.entry-title {
 	margin:1.5em 0;
 	padding:1.5em;
 	overflow:hidden;
-	border:.1em solid #e2dcd2;
+	border:.1em solid #ccc;
 	background-color:#fff;
 }
 
@@ -1143,7 +1144,8 @@ button,
 blockquote,
 #submit,
 .button,
-.dialog {
+.dialog,
+.depth-1 {
 	border-top-left-radius:          .5em;
 	border-top-right-radius:         .5em;
 	-webkit-border-top-left-radius:  .5em;
@@ -1161,7 +1163,8 @@ blockquote,
 #widgets,
 #page-footer,
 .button,
-.dialog {
+.dialog,
+.depth-1 {
 	border-bottom-left-radius:          .5em;
 	border-bottom-right-radius:         .5em;
 	-webkit-border-bottom-left-radius:  .5em;
