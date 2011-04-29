@@ -85,6 +85,7 @@ function _nighthawk_setup() {
 	add_action( 'widgets_init',               '_nighthawk_widgets_init' );
 	add_action( 'wp_loaded',                  '_nighthawk_custom_image_header' );
 	add_action( 'wp_print_scripts',           '_nighthawk_comment_reply_js' );
+	add_action( 'wp_print_styles',            '_nighthawk_google_fonts' );
 
 	/* Ajax Callbacks */
 	add_action( 'wp_ajax_nighthawk_hide_message_nav_menu', '_nighthawk_ajax_hide_message_nav_menu' );
@@ -905,6 +906,10 @@ function nighthawk_subscribe_to_comments_manual_form( $before = '', $after = '',
  *
  * @access    private
  */
+
+function _nighthawk_google_fonts() {
+	wp_enqueue_style( 'nighthawk-cabin', 'http://fonts.googleapis.com/css?family=Cabin:regular,regularitalic,bold,bolditalic', array(), NIGHTHAWK_VERSION );
+}
 
 /**
  * Post Label.
