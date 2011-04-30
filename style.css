@@ -808,29 +808,6 @@ input#submit,
 #page-footer {
 	clear:both;
 }
-#page-footer a {
-	color:#333;
-	background-color:#eef3fa;
-	padding:.35em .6em;
-	outline:0;
-	cursor:pointer;
-	text-align:center;
-	font-weight:bold;
-	-webkit-border-radius: .3em;
-	-moz-border-radius:    .3em;
-	border-radius:         .3em;
-}
-#page-footer a:focus,
-#page-footer a:hover,
-#page-footer a:active {
-	color:#333;
-	background-color:#eef3fa;
-	font-weight:bold;
-	text-decoration:none;
-	-webkit-box-shadow: .1em .1em .2em rgba( 0, 0, 0, 0.4 ) inset;
-	-moz-box-shadow:    .1em .1em .2em rgba( 0, 0, 0, 0.4 ) inset;
-	box-shadow:         .1em .1em .2em rgba( 0, 0, 0, 0.4 ) inset;
-}
 
 #page-footer a span {
 	position:relative;

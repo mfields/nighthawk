@@ -32,6 +32,6 @@ get_header( $taxonomy );
 
 </div><!--content-->
 
-<div id="page-footer"><?php do_action( 'nighthawk_paged_navigation' ); ?></div>
+<div id="page-footer" class="menu"><?php do_action( 'nighthawk_paged_navigation' ); ?></div>
 
 <?php get_footer( $taxonomy ); ?>
