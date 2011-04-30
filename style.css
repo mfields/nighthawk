@@ -538,14 +538,14 @@ h2.entry-title {
 	float:left;
 	width:60px;
 	height:60px;
-	margin:1.5em 0;
+	margin:.7em 0 0;
 	padding:0;
 	border-width:0;
 }
 .format-status .entry-title,
 .format-status .entry-content,
 .format-status .entry-meta {
-	margin-left:75px;
+	margin-left:90px;
 }
 .format-status .entry-meta {
 	margin-top:-.85em;
@@ -807,7 +807,7 @@ input#submit,
 
 #page-footer {
 	position:relative;
-	margin:0 -10px;
+	margin:0;
 	padding:1em;
 	min-height:1em;
 	text-align:center;

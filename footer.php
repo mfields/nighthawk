@@ -28,8 +28,6 @@
 
 </div><!-- #page -->
 
-<div id="page-footer"><?php do_action( 'nighthawk_paged_navigation' ); ?></div>
-
 <?php
 $active = array();
 $areas  = array( 'first', 'second', 'third' );

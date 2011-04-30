@@ -1335,7 +1335,7 @@ function _nighthawk_featured_image_first_attachment( $html ) {
  */
 function _nighthawk_featured_image_avatar( $html ) {
 	if ( 'status' == get_post_format() ) {
-		$html = get_avatar( get_the_author_meta( 'user_email' ), $size = '60' );
+		$html = get_avatar( get_the_author_meta( 'user_email' ), $size = '75' );
 	}
 	return $html;
 }

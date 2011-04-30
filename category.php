@@ -20,7 +20,7 @@ get_header( 'category' );
 
 ?>
 
-<div id="content">
+<div id="content" class="contain">
 
 	<div id="intro">
 		<h1><?php single_cat_title(); ?></h1>
@@ -34,7 +34,5 @@ get_header( 'category' );
 <?php get_template_part( 'loop', 'category' ); ?>
 
 </div><!--content-->
-
-<div class="clear"></div>
 
 <?php get_footer( 'category' ); ?>

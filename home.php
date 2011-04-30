@@ -26,7 +26,7 @@ get_header( 'post' );
 
 ?>
 
-<div id="content">
+<div id="content" class="contain">
 
 <?php get_template_part( 'loop', 'post' ); ?>
 
@@ -34,6 +34,6 @@ get_header( 'post' );
 
 </div><!--content-->
 
-<div class="clear"></div>
+<div id="page-footer"><?php do_action( 'nighthawk_paged_navigation' ); ?></div>
 
 <?php get_footer( 'post' ); ?>
