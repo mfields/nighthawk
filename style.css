@@ -387,10 +387,36 @@ td {
 	margin:0;
 	padding:0;
 }
+#menu-top .dialog {
+	text-align:center;
+}
+
+
+/* Bottom Menu. */
+#menu-bottom {
+	clear:both;
+	max-width:56em;
+	margin:1em auto 2em;
+}
+#menu-bottom.no-menu {
+	max-width:50em;
+}
+#menu-bottom ul {
+	margin:0;
+	padding:0;
+	text-align:center;
+}
+#menu-bottom li {
+	display:inline;
+	padding:.5em;
+}
+#menu-bottom .dialog {
+	text-align:center;
+}
 
 
 #page {
-	padding:0 3em 1.5em;
+	padding:0 3em 2em;
 	color:#666;
 	background:#fff;
 	clear:both;
@@ -969,26 +995,6 @@ table#wp-calendar {
 }
 #wp-calendar #prev {
 	text-align:left;
-}
-
-
-/* Bottom Menu. */
-#menu-bottom {
-	clear:both;
-	max-width:56em;
-	margin:1em auto 2em;
-}
-#menu-bottom.no-menu {
-	max-width:50em;
-}
-#menu-bottom ul {
-	margin:0;
-	padding:0;
-	text-align:center;
-}
-#menu-bottom li {
-	display:inline;
-	padding:.5em;
 }
 
 
