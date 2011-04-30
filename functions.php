@@ -1906,7 +1906,7 @@ function _nighthawk_menu_dialog( $args ) {
 		$message.= $first . '<br>' . sprintf( esc_html__( 'Please visit the %1$s to manage your menus.', 'nighthawk' ), '<a href="' . esc_url( admin_url( '/nav-menus.php' ) ) . '">' . esc_html__( 'menus page' ) . '</a>' );
 
 		/* Build a link to hide the message. */
-		$message.= '<a href="' . esc_url( admin_url( '/admin-ajax.php?action=nighthawk_hide_message_nav_menu&_wpnonce=' . wp_create_nonce( 'nighthawk_hide_menu_' . $args['theme_location'] ) . '&menu=' . $args['theme_location'] ) ) . '">' . esc_html__( 'Hide this message', 'nighthawk' ) . '</a>';
+		$message.= '<a href="' . esc_url( admin_url( '/admin-ajax.php?action=nighthawk_hide_message_nav_menu&_wpnonce=' . wp_create_nonce( 'nighthawk_hide_menu_' . $args['theme_location'] ) . '&menu=' . $args['theme_location'] ) ) . '"> ' . esc_html__( 'Hide this message', 'nighthawk' ) . '</a>';
 
 		$message.= '</p>';
 	}
