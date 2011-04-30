@@ -20,7 +20,7 @@
 
 </div><!-- #page -->
 
-<div id="page-footer"></div>
+<div id="page-footer" class="menu"></div>
 
 </div><!-- wrap -->
 

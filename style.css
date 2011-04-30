@@ -374,11 +374,10 @@ td {
 
 
 #menu-top {
-	background-color:#333;
-	margin:0 -3em 1em;
-	border-bottom:.1em solid #333;
+	margin:0 0 1em;
 }
 #menu-top ul {
+	text-align:center;
 	margin:0;
 	padding:0;
 }
@@ -671,7 +670,7 @@ h2.entry-title {
 	padding:0;
 }
 .comment-list .avatar {
-	float:left;
+	float:right;
 	width:75px;
 	height:75px;
 }
@@ -680,12 +679,11 @@ h2.entry-title {
 	font-size:1.3em;
 	color:#567797;
 	display:block;
-	margin:0 0 .25em 55px;
+	margin:0 0 .25em;
 	line-height:1;
 }
 .comment-meta {
 	display:block;
-	margin-left:55px;
 	font-size:.85em;
 	line-height:1;
 }
@@ -825,6 +823,26 @@ input#submit,
 }
 
 
+.menu a {
+	color:#777;
+	background-color:#eef3fa;
+	padding:.35em .6em;
+	outline:0;
+	cursor:pointer;
+	text-align:center;
+	text-decoration:none;
+	font-weight:bold;
+	-webkit-border-radius: .3em;
+	-moz-border-radius:    .3em;
+	border-radius:         .3em;
+}
+.menu a:focus,
+.menu a:hover,
+.menu a:active {
+	color:#555;
+}
+
+
 /* All Widgets. */
 #widgets {
 	clear:both;
@@ -939,8 +957,9 @@ table#wp-calendar {
 
 /* Bottom Menu. */
 #menu-bottom {
+	clear:both;
 	max-width:56em;
-	margin:1em auto 3em;
+	margin:1em auto 2em;
 }
 #menu-bottom.no-menu {
 	max-width:50em;
@@ -948,21 +967,11 @@ table#wp-calendar {
 #menu-bottom ul {
 	margin:0;
 	padding:0;
-	clear:both;
 	text-align:center;
 }
 #menu-bottom li {
 	display:inline;
 	padding:.5em;
-}
-#menu-bottom li a {
-	color:#b9d8f2;
-	font-weight:bold;
-}
-#menu-bottom li a:focus,
-#menu-bottom li a:hover,
-#menu-bottom li a:active {
-	color:#fff;
 }
 
 
@@ -1187,15 +1196,26 @@ li.cws-imp-plugin {
 	}
 }
 
-@media all and (max-width:550px) {
-	body,
-	#byline,
-	#intro-meta {
+@media only screen and ( max-width:550px ) {
+	body {
 		font-size:12px;
 	}
 	#wrap {
 		margin:1em 0;
 		padding:0;
+	}
+}
+
+@media only screen and ( max-device-width: 480px ) {
+	body {
+		margin:0;
+		padding:0;
+		font-size:30px;
+	}
+	#wrap {
+		margin:0;
+		padding:0;
+		width:100%;
 	}
 	#page-footer {
 		margin:0;
@@ -1259,7 +1279,7 @@ li.cws-imp-plugin {
 		-webkit-border-radius: .5em;
 		-moz-border-radius:    .5em;
 	}
-	
+
 	.comment-form-url,
 	.comment-form-email,
 	.comment-form-author,

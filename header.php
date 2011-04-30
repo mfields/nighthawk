@@ -47,7 +47,7 @@
 		<?php do_action( 'nighthawk_tagline',    '<div id="tagline">',    '</div>' ); ?>
 	</div>
 
-	<?php /*
+	<?php
 		wp_nav_menu( apply_filters( 'nighthawk_menu_args_primary', array(
 			'container'      => 'div',
 			'container_id'   => 'menu-top',
@@ -57,4 +57,4 @@
 			'items_wrap'     => '<ul id="%1$s" class="%2$s" role="navigation">%3$s</ul>',
 			'fallback_cb'    => '_nighthawk_menu_dialog',
 			) ) );
-	*/ ?>
+	?>
