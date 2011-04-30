@@ -1174,7 +1174,7 @@ function _nighthawk_widgets_init() {
  */
 function _nighthawk_custom_image_header() {
 	if ( ! defined( 'HEADER_TEXTCOLOR' ) ) {
-		define( 'HEADER_TEXTCOLOR', 'b9d8f2' );
+		define( 'HEADER_TEXTCOLOR', '777' );
 	}
 	if ( ! defined( 'HEADER_IMAGE' ) ) {
 		define( 'HEADER_IMAGE', get_template_directory_uri() . '/images/nighthawk.png' );
@@ -1509,7 +1509,7 @@ function _nighthawk_comment_start( $comment, $args, $depth ) {
 			print esc_html__( 'Your comment is awaiting moderation.', 'nighthawk' );
 		}
 		else {
-			$avatar = get_avatar( $comment, 45 );
+			$avatar = get_avatar( $comment, 100 );
 			print "\n" . '<div class="comment-head">';
 			print "\n" . $avatar;
 			print "\n" . '<span class="comment-author">' . get_comment_author_link( $comment->comment_ID ) . '</span>';
