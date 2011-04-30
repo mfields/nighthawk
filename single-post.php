@@ -61,6 +61,9 @@ if ( ! empty( $nighthawk_post_format ) ) {
 
 </div><!--content-->
 
-<div id="page-footer" class="menu"><?php do_action( 'nighthawk_paged_navigation' ); ?></div>
+<div id="page-footer">
+	<?php previous_post_link( '<div class="older-posts">%link</div>', __( 'Next', 'nighthawk' ) ); ?>
+	<?php next_post_link( '<div class="newer-posts">%link</div>', __( 'Back', 'nighthawk' ) ); ?>
+</div>
 
 <?php get_footer( $nighthawk_context ); ?>

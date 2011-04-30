@@ -20,8 +20,6 @@
 
 </div><!-- #page -->
 
-<div id="page-footer" class="menu"></div>
-
 </div><!-- wrap -->
 
 <?php wp_footer(); ?>

@@ -59,6 +59,4 @@ while ( have_posts() ) {
 
 </div><!--content-->
 
-<div class="clear"></div>
-
 <?php get_footer( 'page' ); ?>

@@ -806,20 +806,37 @@ input#submit,
 #page-footer {
 	clear:both;
 }
-
-#page-footer a span {
+.newer-posts,
+.back-posts,
+.older-posts,
+.more-posts {
 	position:relative;
-	top:-.15em;
-	display:inline;
+	top:2em;
+	background:#555;
 	margin:0;
-	padding:0;
-	border-width:0;
+	padding:.75em 1.75em;
 }
-.newer-posts, .back-posts {
+.newer-posts a,
+.back-posts a,
+.older-posts a,
+.more-posts a {
+	color:#fff;
+	font-size:1.25em;
+	font-family:cabin;
+	letter-spacing:.075em;
+	text-transform:uppercase;
+}
+.newer-posts,
+.back-posts {
 	float:left;
+	right:3em;
+	-moz-border-radius-topright:.5em;
 }
-.older-posts, .more-posts {
+.older-posts,
+.more-posts {
 	float:right;
+	left:3em;
+	-moz-border-radius-topleft:.5em;
 }
 
 
@@ -1121,7 +1138,6 @@ button,
 blockquote,
 #submit,
 #widgets,
-#page-footer,
 .button,
 .dialog,
 .depth-1 {
@@ -1219,16 +1235,6 @@ li.cws-imp-plugin {
 	}
 	#page-footer {
 		margin:0;
-	}
-	#intro,
-	#page-footer {
-		border-radius:         0;
-		-webkit-border-radius: 0;
-		-moz-border-radius:    0;
-	}
-	#page-footer:after,
-	#page-footer:before {
-		content:none;
 	}
 	#intro {
 		margin-left:-3em;
