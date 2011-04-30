@@ -694,28 +694,17 @@ function nighthawk_entry_meta_taxonomy() {
  *
  * @todo      Add support for wp_pagenavi plugin.
  */
-function nighthawk_paged_nav( $before = '', $after = '' ) {
-	$clear = '<div class="clear"></div>';
-	$left  = '<span>' . esc_html__( '&laquo;', 'nighthawk' ) . '</span>';
-	$right = '<span>' . esc_html__( '&raquo;', 'nighthawk' ) . '</span>';
-	if ( is_singular() ) {
-		print $before;
-		previous_post_link( '<div class="older-posts">%link</div>', sprintf( __( 'Next %1$s', 'nighthawk' ), $right ) );
-		next_post_link( '<div class="newer-posts">%link</div>', sprintf( __( '%1$s Back', 'nighthawk' ), $left ) );
-		print $clear . $after;
+function nighthawk_paged_nav( $args = array() ) {
+	$next = get_next_posts_link( __( 'More', 'nighthawk' ) );
+	if ( ! empty( $next ) ) {
+		$next =  '<div class="more-posts">' . $next . '</div>';
 	}
-	else {
-		$next = get_next_posts_link( __( 'More', 'nighthawk' ) );
-		if ( ! empty( $next ) ) {
-			$next =  '<div class="more-posts">' . $next . '</div>';
-		}
-		$prev = get_previous_posts_link( __( 'Back', 'nighthawk' ) );
-		if ( ! empty( $prev ) ) {
-			$prev = '<div class="back-posts">' . $prev . '</div>';
-		}
-		if ( ! empty( $prev ) || ! empty( $next ) ) {
-			print "\n" . $before . $prev . $next . $clear . $after;
-		}
+	$prev = get_previous_posts_link( __( 'Back', 'nighthawk' ) );
+	if ( ! empty( $prev ) ) {
+		$prev = '<div class="back-posts">' . $prev . '</div>';
+	}
+	if ( ! empty( $prev ) || ! empty( $next ) ) {
+		print "\n" . $prev . $next;
 	}
 }
 
