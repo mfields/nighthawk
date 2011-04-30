@@ -39,7 +39,7 @@
 
 <div id="wrap">
 
-	<div id="page" role="document">
+	<div id="page" class="contain" role="document">
 
 	<div id="header">
 		<?php #do_action( 'nighthawk_logo',       '<div id="logo">',       '</div>' ); ?>

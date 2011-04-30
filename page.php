@@ -19,7 +19,7 @@ get_header( 'page' );
 
 ?>
 
-<div id="content">
+<div id="content" class="contain">
 
 <?php
 while ( have_posts() ) {
