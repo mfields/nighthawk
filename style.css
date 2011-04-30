@@ -806,50 +806,30 @@ input#submit,
 
 
 #page-footer {
-	position:relative;
-	margin:0;
-	padding:1em;
-	min-height:1em;
-	text-align:center;
-	color:#fff;
+	clear:both;
 }
 #page-footer a {
-	color:#fff;
+	color:#333;
+	background-color:#eef3fa;
 	padding:.35em .6em;
 	outline:0;
 	cursor:pointer;
 	text-align:center;
-	font-weight:normal;
+	font-weight:bold;
 	-webkit-border-radius: .3em;
 	-moz-border-radius:    .3em;
 	border-radius:         .3em;
-	
-	/* START DELETE */
-	font-weight:bold;
-	color:#000;
-	background-color:#fff;
-	background-color:#eef3fa;
-	/* END DELETE */
-	
 }
 #page-footer a:focus,
 #page-footer a:hover,
 #page-footer a:active {
-	color:#fff;
-	background-color:#2f5890;
+	color:#333;
+	background-color:#eef3fa;
+	font-weight:bold;
 	text-decoration:none;
 	-webkit-box-shadow: .1em .1em .2em rgba( 0, 0, 0, 0.4 ) inset;
 	-moz-box-shadow:    .1em .1em .2em rgba( 0, 0, 0, 0.4 ) inset;
 	box-shadow:         .1em .1em .2em rgba( 0, 0, 0, 0.4 ) inset;
-	
-	
-	/* START DELETE */
-	font-weight:bold;
-	color:#000;
-	background-color:#fff;
-	background-color:#eef3fa;
-	/* END DELETE */
-	
 }
 
 #page-footer a span {
@@ -1173,8 +1153,7 @@ button,
 input#submit,
 th,
 .button,
-.bullet,
-#page-footer {
+.bullet {
 	color:#fff;
 	background:#3b63ae;
 	background-image:-webkit-gradient(
