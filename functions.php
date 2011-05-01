@@ -1937,13 +1937,3 @@ function _nighthawk_edit_post_link( $html, $ID ) {
 	return '<a class="post-edit-link" href="' . esc_url( get_edit_post_link( $ID ) ) . '" title="' . sprintf( esc_attr__( 'Edit this %1$s', 'nighthawk' ), nighthawk_post_label_singular() ) . '">' . esc_html( wp_strip_all_tags( $html ) ) . '</a>';
 }
 /**#@-*/
-
-/**
- * Author Bio.
- *
- * @since          1.0
- * @deprecated     1.1
- */
-function nighthawk_author_bio( $before = 'deprecated', $after = 'deprecated', $print = 'deprecated' ) {
-	get_template_part( 'biography' );
-}
