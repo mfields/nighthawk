@@ -75,7 +75,6 @@ function _nighthawk_setup() {
 	add_filter( 'post_class',                 '_nighthawk_post_class_entry' );
 	add_filter( 'post_class',                 '_nighthawk_post_class_featured' );
 	add_filter( 'post_thumbnail_html',        '_nighthawk_featured_image_first_attachment' );
-	add_filter( 'post_thumbnail_html',        '_nighthawk_featured_image_avatar' );
 	add_action( 'the_content',                '_nighthawk_related_images' );
 	add_filter( 'the_content',                '_nighthawk_content_prepend_title', 9 );
 	add_filter( 'the_content',                '_nighthawk_content_append_link', 9 );
@@ -1307,24 +1306,6 @@ function _nighthawk_featured_image_first_attachment( $html ) {
 			$image = array_shift( $images );
 			$html = wp_get_attachment_image( $image->ID, 'thumbnail' );
 		}
-	}
-	return $html;
-}
-
-/**
- * Featured Image: Status format.
- *
- * Use the avatar for the featured image on status posts.
- *
- * @param     string    Thumbnail html or empty string.
- * @return    string    HTML img tag to the first attached for posts with the "status" format, value of $html otherwise.
- *
- * @access    private
- * @since     1.0
- */
-function _nighthawk_featured_image_avatar( $html ) {
-	if ( 'status' == get_post_format() ) {
-		$html = get_avatar( get_the_author_meta( 'user_email' ), $size = '75' );
 	}
 	return $html;
 }
