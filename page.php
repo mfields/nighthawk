@@ -16,10 +16,7 @@ if ( ! have_posts() ) {
 }
 
 get_header( 'page' );
-
 ?>
-
-<div id="content" class="contain">
 
 <?php
 while ( have_posts() ) {
@@ -34,6 +31,8 @@ while ( have_posts() ) {
 		<?php } ?>
 		<?php nighthawk_summary_meta( '<div id="intro-meta">', '</div>' ); ?>
 	</div>
+
+	<div id="content" class="contain">
 
 	<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 

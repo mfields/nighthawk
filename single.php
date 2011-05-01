@@ -23,8 +23,6 @@ get_header( $nighthawk_post_type );
 
 ?>
 
-<div id="content" class="contain">
-
 <?php
 if ( have_posts() ) {
 	while ( have_posts() ) {
@@ -44,6 +42,8 @@ if ( have_posts() ) {
 	}
 ?>
 </div>
+
+<div id="content" class="contain">
 
 <div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 

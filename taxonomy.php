@@ -19,13 +19,13 @@ get_header( $taxonomy );
 
 ?>
 
-<div id="content" class="contain">
+<div id="intro">
+	<h1><?php single_term_title() ?></h1>
+	<div id="summary"><?php print term_description(); ?></div>
+	<?php nighthawk_summary_meta( '<div id="intro-meta">', '</div>' ) ?>
+</div>
 
-	<div id="intro">
-		<h1><?php single_term_title() ?></h1>
-		<div id="summary"><?php print term_description(); ?></div>
-		<?php nighthawk_summary_meta( '<div id="intro-meta">', '</div>' ) ?>
-	</div>
+<div id="content" class="contain">
 
 <?php get_template_part( 'loop', $taxonomy ); ?>
 

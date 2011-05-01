@@ -42,12 +42,12 @@ get_header();
 
 ?>
 
-<div id="content" class="contain">
-
 <div id="intro">
 	<?php nighthawk_summary( '<div id="summary">', '</div>' ); ?>
 	<?php nighthawk_summary_meta( '<div id="intro-meta">', '</div>' ); ?>
 </div>
+
+<div id="content" class="contain">
 
 <?php get_template_part( 'loop' ); ?>
 

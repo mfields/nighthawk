@@ -14,8 +14,6 @@
 
 <?php get_header( 'search' ); ?>
 
-<div id="content" class="contain">
-
 <div id="intro">
 	<h1><?php _e( 'Search Results', 'nighthawk' ) ?></h1>
 
@@ -25,6 +23,8 @@
 	<?php esc_html_e( sprintf( _n( '%1$s result was found for "%2$s".', '%1$s results were found for "%2$s".', (int) $wp_query->found_posts, 'nighthawk' ), number_format_i18n( (int) $wp_query->found_posts ), get_search_query() ) ); ?>
 	</div>
 </div>
+
+<div id="content" class="contain">
 
 <?php get_template_part( 'loop', 'search' ); ?>
 

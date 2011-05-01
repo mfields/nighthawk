@@ -50,8 +50,6 @@ if ( ! empty( $nighthawk_post_format ) ) {
 
 <?php get_header( $nighthawk_context ); ?>
 
-<div id="content" class="contain">
-
 <?php
 if ( have_posts() ) {
 	while ( have_posts() ) {
@@ -64,6 +62,8 @@ if ( have_posts() ) {
 	<p id="byline"><?php printf( esc_html__( 'By %1$s', 'nighthawk' ), get_the_author() ); ?></p>
 	<?php nighthawk_summary_meta( '<div id="intro-meta">', '</div>' ); ?>
 </div>
+
+<div id="content" class="contain">
 
 <div id="post-<?php the_ID(); ?>" <?php post_class( 'clear' ); ?>>
 

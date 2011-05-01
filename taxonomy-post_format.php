@@ -21,12 +21,12 @@ get_header( $term );
 
 ?>
 
-<div id="content" class="contain">
+<div id="intro">
+	<h1><?php print ucfirst( nighthawk_post_label_plural() ); ?></h1>
+	<?php nighthawk_summary_meta( '<div id="intro-meta">', '</div>' ) ?>
+</div>
 
-	<div id="intro">
-		<h1><?php print ucfirst( nighthawk_post_label_plural() ); ?></h1>
-		<?php nighthawk_summary_meta( '<div id="intro-meta">', '</div>' ) ?>
-	</div>
+<div id="content" class="contain">
 
 <?php get_template_part( 'loop', $term ); ?>
 
