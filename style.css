@@ -713,8 +713,7 @@ h2.entry-title {
 
 
 /* Comment List */
-.comment-list,
-.comment-list .children {
+.comment-list {
 	list-style-type:none;
 	margin:0;
 	padding:0;
@@ -736,30 +735,12 @@ h2.entry-title {
 .comment {
 	min-height:55px;
 	margin:1.5em 0;
-}
-.comment .comment {
-	padding-top:1.5em;
-	border-top:.1em solid #ccc;
-}
-.comment .comment:last-child {
-	margin-bottom:0;
-}
-.comment-content p:first-child,
-.comment-content p:only-child {
-	margin-top:.25em;
-}
-.comment-content p:last-child,
-.comment-content p:only-child {
-	margin-bottom:0;
-}
-.depth-1 {
-	margin:1.5em 0;
 	padding:1.5em 100px 1.5em 1.5em;
 	border:.1em solid #ccc;
 	background-color:#fff;
 	position:relative;
 }
-.depth-1 .avatar {
+.comment .avatar {
 	position:absolute;
 	right:0em;
 	top:0;
@@ -771,6 +752,15 @@ h2.entry-title {
 	border-width:0 0 .1em .1em;
 	border-style:solid;
 }
+.comment-content p:first-child,
+.comment-content p:only-child {
+	margin-top:.25em;
+}
+.comment-content p:last-child,
+.comment-content p:only-child {
+	margin-bottom:0;
+}
+
 
 /* Trackbacks. */
 .trackback {
