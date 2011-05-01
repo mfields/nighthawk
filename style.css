@@ -871,13 +871,17 @@ input#submit,
 .back-posts {
 	float:left;
 	right:3em;
-	-moz-border-radius-topright:.5em;
+	-moz-border-radius-topright:     .5em;
+	-webkit-border-top-right-radius: .5em;
+	border-top-right-radius:         .5em;
 }
 .older-posts,
 .more-posts {
 	float:right;
 	left:3em;
-	-moz-border-radius-topleft:.5em;
+	-moz-border-radius-topleft:     .5em;
+	-webkit-border-top-left-radius: .5em;
+	border-top-left-radius:         .5em;
 }
 
 
