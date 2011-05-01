@@ -251,10 +251,7 @@ function nighthawk_tagline( $before = '', $after = '' ) {
  */
 function nighthawk_summary( $before = '', $after = '', $print = true ) {
 	$summary = '';
-	if ( is_category() || is_tag() || is_tax() ) {
-		$summary = term_description();
-	}
-	else if ( is_author() ) {
+	if ( is_author() ) {
 		global $wp_query;
 		$summary = get_the_author_meta( 'description', $wp_query->get_queried_object_id() );
 		$summary = apply_filters( 'nighthawk_filter_text', $summary );
