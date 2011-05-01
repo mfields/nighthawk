@@ -70,7 +70,6 @@ function _nighthawk_setup() {
 	add_filter( 'embed_oembed_html',          '_nighthawk_oembed_dataparse', 10, 4 );
 	add_filter( 'embed_googlevideo',          '_nighthawk_oembed_dataparse', 10, 2 );
 	add_filter( 'excerpt_more',               '_nighthawk_excerpt_more_auto' );
-	add_filter( 'get_search_form',            '_nighthawk_search_form' );
 	add_filter( 'get_the_excerpt',            '_nighthawk_excerpt_more_custom' );
 	add_filter( 'post_class',                 '_nighthawk_post_class_entry' );
 	add_filter( 'post_class',                 '_nighthawk_post_class_featured' );
@@ -1666,26 +1665,17 @@ function _nighthawk_control_boolean( $id, $label, $value = 0 ) {
 }
 
 /**
- * Search Form.
+ * Search Form ID.
  *
- * @param     string    Default WordPress search from.
- * @return    string    Custom Search form.
+ * @return    string    ID attribute for search form.
  *
- * @access    private
+ * @access    public
  * @since     1.0
  */
-function _nighthawk_search_form( $form ) {
+function nighthawk_search_id() {
 	static $id = 0;
 	$id++;
-	$id_attr = 'search-form-' . $id;
-
-	$form = "\n\n";
-	$form.= "\n" . '<form class="bullet" role="search" method="get" action="' . get_option( 'siteurl' ) . '">';
-	$form.= "\n" . '<label class="bullet-label" for="' . esc_attr( $id_attr ) . '">Search</label>';
-	$form.= "\n" . '<input class="bullet-term" id="' . esc_attr( $id_attr ) . '" type="text" value="' . esc_attr( get_search_query( false ) ) . '" name="s" />';
-	$form.= "\n" . '<input class="bullet-button" type="submit" value="Search" />';
-	$form.= "\n" . '</form>';
-	return $form;
+	return 'search-form-' . $id;
 }
 
 /**
