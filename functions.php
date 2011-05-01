@@ -600,18 +600,18 @@ function nighthawk_featured_image( $before = '', $after = '', $print = true ) {
  *
  * @see       _nighthawk_label() for full documentation.
  *
+ * @param     Default value to return.
  * @return    string
  *
  * @access    public
  * @since     1.0
  */
-function nighthawk_post_label_singular() {
-	$label  = '';
+function nighthawk_post_label_singular( $default = '' ) {
 	$labels = _nighthawk_label();
 	if ( isset( $labels[0] ) ) {
-		$label = $labels[0];
+		return $labels[0];
 	}
-	return $label;
+	return $default;
 }
 
 /**
@@ -627,18 +627,18 @@ function nighthawk_post_label_singular() {
  *
  * @see       _nighthawk_label() for full documentation.
  *
+ * @param     Default value to return.
  * @return    string
  *
  * @access    public
  * @since     1.0
  */
-function nighthawk_post_label_plural() {
-	$label  = '';
+function nighthawk_post_label_plural( $default = '' ) {
 	$labels = _nighthawk_label();
 	if ( isset( $labels[1] ) ) {
-		$label = $labels[1];
+		return $labels[1];
 	}
-	return $label;
+	return $default;
 }
 
 /**
