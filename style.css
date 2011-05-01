@@ -1298,7 +1298,13 @@ li.cws-imp-plugin {
 		-webkit-border-radius: .5em;
 		-moz-border-radius:    .5em;
 	}
-
+	.comment {
+		padding-right:175px;
+	}
+	.comment .avatar {
+		width:150px;
+		height:150px;
+	}
 	.comment-form-url,
 	.comment-form-email,
 	.comment-form-author,

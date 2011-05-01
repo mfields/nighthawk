@@ -1305,7 +1305,7 @@ function _nighthawk_comment_start( $comment, $args, $depth ) {
 			print esc_html__( 'Your comment is awaiting moderation.', 'nighthawk' );
 		}
 		else {
-			$avatar = get_avatar( $comment, 100 );
+			$avatar = get_avatar( $comment, 150 );
 			print "\n" . '<div class="comment-head">';
 			print "\n" . $avatar;
 			print "\n" . '<span class="comment-author">' . get_comment_author_link( $comment->comment_ID ) . '</span>';
