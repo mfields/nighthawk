@@ -8,7 +8,7 @@
  * @author       Michael Fields <michael@mfields.org>
  * @copyright    Copyright (c) 2011, Michael Fields
  * @license      http://opensource.org/licenses/gpl-2.0.php GNU Public License
- * @since        1.1
+ * @since        1.0
  */
 ?><!DOCTYPE HTML>
 <html <?php language_attributes(); ?>>

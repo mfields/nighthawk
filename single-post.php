@@ -33,7 +33,6 @@
  * @copyright    Copyright (c) 2011, Michael Fields
  * @license      http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since        1.0
- * @alter        1.1
  */
 
 /* In the event that no posts are returned. */
