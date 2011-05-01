@@ -1243,15 +1243,16 @@ li.cws-imp-plugin {
 	body {
 		margin:0;
 		padding:0;
-		font-size:30px;
+		font-size:50px;
 	}
 	#wrap {
 		margin:0;
 		padding:0;
 		width:100%;
 	}
-	#page-footer {
-		margin:0;
+	#page {
+		padding-left:1em;
+		padding-right:1em;
 	}
 	#intro {
 		margin-left:-3em;
@@ -1283,24 +1284,15 @@ li.cws-imp-plugin {
 		-webkit-border-radius: .5em;
 		-moz-border-radius:    .5em;
 	}
-	.more-posts,
-	.back-posts {
-		display:block;
-		width:45%;
-	}
-	#page-footer .more-posts a,
-	#page-footer .back-posts a {
-		display:block;
-		font-size:1.3em;
-		padding:.5em 0;
-		background-color:#a3c3e9;
-		
-		color:#223967;
-		border:.125em solid #335599;
-		
-		border-radius:         .5em;
-		-webkit-border-radius: .5em;
-		-moz-border-radius:    .5em;
+	.newer-posts,
+	.back-posts,
+	.older-posts,
+	.more-posts {
+		margin:0;
+		top:0;
+		right:0;
+		bottom:0;
+		left:0;
 	}
 	.comment {
 		padding-right:175px;
