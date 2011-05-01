@@ -42,10 +42,13 @@ if ( have_posts() ) {
 			print '</div><!--meta-->';
 			break;
 		case 'status' :
-			nighthawk_featured_image( '<div class="featured-image">', '</div>' );
+			print '<div class="featured-image">' . get_avatar( get_the_author_meta( 'user_email' ), $size = '75' ) . '</div>';
 			print "\n" . '<div class="entry-content">';
 			the_content();
 			print "\n" . '</div><!--entry-content-->';
+			print '<div class="' . esc_attr( nighthawk_entry_meta_classes() ) . '">';
+			nighthawk_entry_meta_date();
+			print '</div><!--meta-->';
 			break;
 		default :
 			nighthawk_featured_image( '<div class="featured-image">', '</div>' );
