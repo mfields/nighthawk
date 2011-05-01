@@ -2,16 +2,41 @@
 /**
  * Functions
  *
+ * This file defines three specific types of functions.
+ * Please see the @type tag in each function's docblock
+ * to determine how the function should be used.
+ *
+ * 1. Template Tags
+ *
+ * Any function defined in this this section may be used
+ * freely in appropriate template files. Please see
+ * each function's documentation for intended usage.
+ *
+ * 2. Core Callbacks
+ *
+ * Functions of this type are intended to be used as callbacks
+ * for WordPress core functions and template tags. They are not
+ * to be used on their own.
+ *
+ * 3. Private Functions.
+ *
+ * The functions defined below are deemed to be private
+ * meaning that they should not be used in any template file for
+ * any reason. These functions may or may not be presnt in
+ * future releases of the Nighthawk theme. If you feel that you
+ * absolutely need to use one of them it is suggested that you
+ * copy the full function into your child theme's functions.php file
+ * and rename it. This will ensure that it always exists in your
+ * installation regardless of how Nighthawk changes.
+ *
  * @package      Nighthawk
  * @author       Michael Fields <michael@mfields.org>
  * @copyright    Copyright (c) 2011, Michael Fields
  * @license      http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since        1.0
- * @alter        1.1
- *
  */
 
-define( 'NIGHTHAWK_VERSION', '1.1DEV' );
+define( 'NIGHTHAWK_VERSION', '0.2DEV' );
 
 /**
  * Theme Setup
@@ -30,7 +55,6 @@ define( 'NIGHTHAWK_VERSION', '1.1DEV' );
  *
  * @access    private
  * @since     1.0
- * @alter     1.1
  */
 function _nighthawk_setup() {
 
@@ -110,19 +134,6 @@ function _nighthawk_setup() {
 }
 add_action( 'after_setup_theme', '_nighthawk_setup' );
 
-/**#@+
- * Public Functions
- *
- * Any function defined in this this section may be used
- * freely in appropriate template files. Please see
- * each function's documentation for intended usage.
- *
- * Functions are roughly defined in the order that
- * they would be called during a template request.
- *
- * @access    public
- */
-
 /**
  * Logo.
  *
@@ -141,6 +152,7 @@ add_action( 'after_setup_theme', '_nighthawk_setup' );
  * @param     string    Text to print after the logo.
  * @return    void      Print the logo if stored value is not empty.
  *
+ * @access    private
  * @since     1.0
  */
 function nighthawk_logo( $before = '', $after = '' ) {
@@ -168,6 +180,7 @@ function nighthawk_logo( $before = '', $after = '' ) {
  * @param     string    Text to print after the site title.
  * @return    void      Print the site title if stored value is not empty.
  *
+ * @access    private
  * @since     1.0
  */
 function nighthawk_site_title( $before = '', $after = '' ) {
@@ -192,6 +205,7 @@ function nighthawk_site_title( $before = '', $after = '' ) {
  * @param     string    Text to print after the tagline.
  * @return    void      Print the tagline if stored value is not empty.
  *
+ * @access    private
  * @since     1.0
  */
 function nighthawk_tagline( $before = '', $after = '' ) {
@@ -206,13 +220,12 @@ function nighthawk_tagline( $before = '', $after = '' ) {
  *
  * Generate a title for each view.
  *
- * v1.1 - Search support removed.
- *
  * @param     string    Text to include before the title.
  * @param     string    Text to include after the title.
  * @param     bool      Should this function print? Defaults to true.
  * @return    string/void
  *
+ * @access    public
  * @since     1.0
  */
 function nighthawk_title( $before = '', $after = '', $print = true ) {
@@ -326,6 +339,7 @@ function nighthawk_title( $before = '', $after = '', $print = true ) {
  * @param     string    Text to print after.
  * @return    void
  *
+ * @access    public
  * @since     1.0
  */
 function nighthawk_byline( $before = '', $after = '' ) {
@@ -383,15 +397,13 @@ function nighthawk_byline( $before = '', $after = '' ) {
  * Child themes and plugins can use the 'nighthawk_summary'
  * filter to modify this function's output.
  *
- * v1.1 - Support for pages has been removed.
- *
  * @param     string         Text to print before the summary.
  * @param     string         Text to print after the summary.
  * @param     bool           True to print the summary, false to return it as a string.
  * @return    void/string
  *
+ * @access    public
  * @since     1.0
- * @alter     1.1
  */
 function nighthawk_summary( $before = '', $after = '', $print = true ) {
 	$summary = '';
@@ -425,16 +437,13 @@ function nighthawk_summary( $before = '', $after = '', $print = true ) {
  *
  * Print meta information pertaining to the current view.
  *
- * v1.1 - Support for categories has been removed.
- * v1.1 - Support for tags has been removed.
- *
  * @param     string         Text to prepend to the summary meta.
  * @param     string         Text to append to the summary meta.
  * @param     bool           True to print, false to return a string. Defaults to true.
  * @return    void/string
  *
+ * @access    public
  * @since     1.0
- * @alter     1.1
  */
 function nighthawk_summary_meta( $before = '', $after = '', $print = true ) {
 	global $wp_query;
@@ -522,6 +531,7 @@ function nighthawk_summary_meta( $before = '', $after = '', $print = true ) {
  *
  * @return    string         Permalink with the text "Continue Reading".
  *
+ * @access    public
  * @since     1.0
  */
 function nighthawk_continue_reading_link() {
@@ -559,10 +569,8 @@ function nighthawk_entry_meta_classes() {
  * bullet point U+2022 (8226) which is included via the css
  * :before pseudo class.
  *
- * @return    void
- *
+ * @access    public
  * @since     1.0
- * @alter     1.1
  */
 function nighthawk_entry_meta_date() {
 	if ( post_password_required() ) {
@@ -618,10 +626,9 @@ function nighthawk_entry_meta_date() {
  * This function should do nothing for custom post_types.
  *
  * @todo      localize
- * @return    void
  *
+ * @access    public
  * @since     1.0
- * @alter     1.1
  */
 function nighthawk_entry_meta_taxonomy() {
 	if ( post_password_required() ) {
@@ -686,11 +693,10 @@ function nighthawk_entry_meta_taxonomy() {
  *
  * Print appropriate paged navigation for the current view.
  *
- * @return    void
- *
- * @since     1.0
- *
  * @todo      Add support for wp_pagenavi plugin.
+ *
+ * @access    public
+ * @since     1.0
  */
 function nighthawk_paged_nav( $args = array() ) {
 	$next = get_next_posts_link( __( 'More', 'nighthawk' ) );
@@ -716,6 +722,7 @@ function nighthawk_paged_nav( $args = array() ) {
  *
  * @todo Allow to be hidden by postmeta.
  *
+ * @access    public
  * @since     1.0
  */
 function nighthawk_featured_image( $before = '', $after = '', $print = true ) {
@@ -754,8 +761,8 @@ function nighthawk_featured_image( $before = '', $after = '', $print = true ) {
  *
  * @return    string
  *
+ * @access    public
  * @since     1.0
- * @alter     1.1
  */
 function nighthawk_post_label_singular() {
 	$label  = '';
@@ -781,8 +788,8 @@ function nighthawk_post_label_singular() {
  *
  * @return    string
  *
+ * @access    public
  * @since     1.0
- * @alter     1.1
  */
 function nighthawk_post_label_plural() {
 	$label  = '';
@@ -799,7 +806,7 @@ function nighthawk_post_label_plural() {
  * @return    string
  *
  * @access    public
- * @since     1.1
+ * @since     1.0
  */
 function nighthawk_subscribe_to_comments_checkbox() {
 	$checkbox = '';
@@ -820,7 +827,7 @@ function nighthawk_subscribe_to_comments_checkbox() {
  * @return    string
  *
  * @access    public
- * @since     1.1
+ * @since     1.0
  */
 function nighthawk_subscribe_to_comments_manual_form( $before = '', $after = '', $print = true, $args = array() ) {
 	$args = wp_parse_args( $args, array(
@@ -873,27 +880,6 @@ function nighthawk_subscribe_to_comments_manual_form( $before = '', $after = '',
 	}
 }
 
-/**#@-*/
-
-/**#@+
- * Private Functions.
- *
- * The functions defined below are deemed to be private
- * meaning that they should not be used in any template file for
- * any reason. They are mainly callbacks for WordPress core functions,
- * actions and filters. These functions may or may not be presnt in
- * future releases of the Nighthawk theme. If you feel that you
- * absolutely need to use one of them it is suggested that you
- * copy the full function into your child theme's functions.php file
- * and rename it. This will ensure that it always exists in your
- * installation regardless of how Nighthawk changes.
- *
- * Functions are roughly defined in the order that
- * they would be called during a template request.
- *
- * @access    private
- */
-
 function _nighthawk_google_fonts() {
 	wp_enqueue_style( 'nighthawk-cabin', 'http://fonts.googleapis.com/css?family=Cabin:regular,regularitalic,bold,bolditalic', array(), NIGHTHAWK_VERSION );
 }
@@ -924,7 +910,7 @@ function _nighthawk_google_fonts() {
  * @return    array     Index "0" is the singular form while index "1" is the plural form.
  *
  * @access    private
- * @since     1.1
+ * @since     1.0
  */
 function _nighthawk_label() {
 
@@ -980,7 +966,7 @@ function _nighthawk_label() {
  * Label for posts.
  *
  * @access    private
- * @since     1.1
+ * @since     1.0
  */
 function _nighthawk_label_post( $post_format = null ) {
 
@@ -1014,7 +1000,7 @@ function _nighthawk_label_post( $post_format = null ) {
  * Label for attachments.
  *
  * @access    private
- * @since     1.1
+ * @since     1.0
  */
 function _nighthawk_label_attachment() {
 	$mime = 'file';
@@ -1060,7 +1046,7 @@ function _nighthawk_label_attachment() {
  * Label for custom post type objects.
  *
  * @access    private
- * @since     1.1
+ * @since     1.0
  */
 function _nighthawk_label_custom_post_type( $post_type = null ) {
 
@@ -1394,7 +1380,7 @@ function _nighthawk_related_images( $content ) {
  * @return    void
  *
  * @access    private
- * @since     1.1
+ * @since     1.0
  */
 function _nighthawk_excerpt_search_toggle_wpautop() {
 	$hook = current_filter();
@@ -1777,7 +1763,7 @@ function _nighthawk_content_append_link( $content ) {
  * @return    string    Custom post content.
  *
  * @access    private
- * @since     1.1
+ * @since     1.0
  */
 function _nighthawk_content_append_link_edit( $content ) {
 	if ( is_single() ) {
@@ -1814,7 +1800,7 @@ function _nighthawk_content_append_link_edit( $content ) {
  * @return    string    Dialog for those who can edit theme options - empty sting to all others.
  *
  * @access    private
- * @since     1.1
+ * @since     1.0
  */
 function _nighthawk_menu_dialog( $args ) {
 	$defaults = array(
@@ -1885,7 +1871,7 @@ function _nighthawk_menu_dialog( $args ) {
  * @todo      Enable Ajax functionality for menu hiding.
  *
  * @access    private
- * @since     1.1
+ * @since     1.0
  */
 function _nighthawk_ajax_hide_message_nav_menu() {
 
@@ -1921,9 +1907,8 @@ function _nighthawk_ajax_hide_message_nav_menu() {
  * Edit post link filter.
  *
  * @access    private
- * @since     1.1
+ * @since     1.0
  */
 function _nighthawk_edit_post_link( $html, $ID ) {
 	return '<a class="post-edit-link" href="' . esc_url( get_edit_post_link( $ID ) ) . '" title="' . sprintf( esc_attr__( 'Edit this %1$s', 'nighthawk' ), nighthawk_post_label_singular() ) . '">' . esc_html( wp_strip_all_tags( $html ) ) . '</a>';
 }
-/**#@-*/
