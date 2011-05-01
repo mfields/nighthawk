@@ -1798,7 +1798,7 @@ function _nighthawk_content_append_link_edit( $content ) {
 		return $content;
 	}
 	$format = get_post_format();
-	if ( in_array( $format, array( 'aside', 'link', 'status' ) ) ) {
+	if ( in_array( $format, array( 'aside', 'link' ) ) ) {
 		$content .= ' <a class="post-edit-link auto-link" href="' . esc_url( $url ) . '" title="' . sprintf( esc_attr__( 'Edit this %1$s', 'nighthawk' ), nighthawk_post_label_singular() ) . '">' . esc_html__( 'edit', 'nighthawk' ) . '</a>';
 	}
 	return $content;
