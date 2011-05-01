@@ -45,7 +45,6 @@ get_header();
 <div id="content" class="contain">
 
 <div id="intro">
-	<?php nighthawk_byline( '<p id="byline">', '</p>' ); ?>
 	<?php nighthawk_summary( '<div id="summary">', '</div>' ); ?>
 	<?php nighthawk_summary_meta( '<div id="intro-meta">', '</div>' ); ?>
 </div>
