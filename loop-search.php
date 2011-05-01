@@ -17,7 +17,7 @@
 
 <?php if ( have_posts() ) { ?>
 
-	<div id="search-results" class="content">
+	<div id="search-results">
 	
 	<?php while ( have_posts() ) { the_post(); ?>
 		
