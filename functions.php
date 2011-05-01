@@ -216,47 +216,6 @@ function nighthawk_tagline( $before = '', $after = '' ) {
 }
 
 /**
- * Byline.
- *
- * Display the name of an entry's author in singular views.
- *
- * @param     string    Text to print before.
- * @param     string    Text to print after.
- * @return    void
- *
- * @access    public
- * @since     1.0
- */
-function nighthawk_byline( $before = '', $after = '' ) {
-	$byline = '';
-	$author_name = '';
-	if ( is_singular() && ! is_attachment() ) {
-		$author_name = get_the_author();
-		/*
-		 * get_the_author() only works inside the loop.
-		 * Need to do manual labor if nighthawk_byline()
-		 * is used outside the loop.
-		 */
-		if ( empty( $author_name ) ) {
-			global $posts;
-			if ( isset( $posts[0]->post_author ) ) {
-				$author = get_userdata( $posts[0]->post_author );
-				if ( isset( $author->display_name ) ) {
-					$author_name = $author->display_name;
-				}
-			}
-		}
-	}
-	if ( ! empty( $author_name ) ) {
-		$byline = sprintf( __( 'By %1$s', 'nighthawk' ), $author_name );
-	}
-	$byline = apply_filters( 'nighthawk-byline', $byline, $author_name );
-	if ( ! empty( $byline ) ) {
-		print "\n" . $before . esc_html( $byline ) . $after;
-	}
-}
-
-/**
  * Summary.
  *
  * This function is will look for a summary for the
