@@ -55,7 +55,8 @@ if ( have_comments() ) {
 	print '<ol class="comment-list">';
 	wp_list_comments( apply_filters( 'nighthawk_list_comments_args', array(
 		'callback'     => '_nighthawk_comment_start',
-		'end-callback' => '_nighthawk_comment_end'
+		'end-callback' => '_nighthawk_comment_end',
+		'max-depth'    => 1
 		) ) );
 	print '</ol>';
 
