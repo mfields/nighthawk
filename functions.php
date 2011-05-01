@@ -1738,7 +1738,7 @@ function _nighthawk_content_prepend_title( $content ) {
 		$title      = get_the_title();
 		$title_attr = sprintf( __( 'Permalink to this %1$s', 'nighthawk' ), nighthawk_post_label_singular() );
 		if ( ! empty( $title ) ) {
-			$content = '<a class="post-title" title="' . esc_attr( $title_attr ) . '" href="' . esc_url( get_permalink() )  . '">' . get_the_title() . '</a> ' . esc_html__( '&#8210;', 'nighthawk' ) . ' ' . $content;
+			$content = '<a class="entry-title" title="' . esc_attr( $title_attr ) . '" href="' . esc_url( get_permalink() )  . '">' . get_the_title() . '</a> ' . ' ' . $content;
 		}
 	}
 	return $content;
