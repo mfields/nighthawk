@@ -1081,6 +1081,9 @@ function _nighthawk_post_class_entry( $classes ) {
 	if ( ! in_array( 'entry', $classes ) ) {
 		$classes[] = 'entry';
 	}
+	if ( ! in_array( 'clear', $classes ) ) {
+		$classes[] = 'clear';
+	}
 	return array_unique( $classes );
 }
 
