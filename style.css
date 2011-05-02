@@ -546,6 +546,15 @@ h2.entry-title {
 }
 
 
+/* Meta. */
+.entry-meta {
+	clear:both;
+}
+.entry-meta p {
+	margin:0;
+}
+
+
 /* Aside posts. */
 .many .format-aside .post-title {
 	font-weight:bold;
@@ -574,12 +583,12 @@ h2.entry-title {
 
 /* Status posts. */
 .format-status {
-	border:.1em solid #ccc;
-	background-color:#fff;
 	position:relative;
-	overflow:visible;
+	min-height:75px;
+	margin:1em 0 5em;
 	padding:1.25em;
-	margin:1em 0 4em;
+	border:.1em solid #ccc;
+	overflow:visible;
 }
 .format-status .entry-content {
 	margin:0;
@@ -588,11 +597,19 @@ h2.entry-title {
 .format-status .entry-content {
 	margin-left:100px;
 }
+.format-status .entry-content p:first-child,
+.format-status .entry-content p:only-child {
+	margin-top:-.25em;
+}
+.format-status .entry-content p:last-child,
+.format-status .entry-content p:only-child {
+	margin-bottom:0;
+}
 .format-status .entry-meta {
-	position:absolute;
-	bottom:-4em;
-	right:1em;
-	background:#ccc;
+	float:left;
+	margin:3em 0 0 -1.25em;
+	padding:0;
+	text-align:left;
 }
 .format-status .featured-image {
 	float:left;
@@ -609,14 +626,6 @@ h2.entry-title {
 	-moz-border-radius-topright:.4em;
 	-moz-border-radius-bottomleft:.4em;
 }
-.format-status p:first-child,
-.format-status p:only-child {
-	margin-top:-.25em;
-}
-.format-status p:last-child,
-.format-status p:only-child {
-	margin-bottom:0;
-}
 
 
 /* Quote posts. */
@@ -625,15 +634,6 @@ h2.entry-title {
 }
 .format-quote blockquote {
 	margin-left:0;
-}
-
-
-/* Meta. */
-.entry-meta {
-	clear:both;
-}
-.entry-meta p {	
-	margin:0;
 }
 
 

@@ -1585,6 +1585,9 @@ function _nighthawk_content_append_link( $content ) {
 	if ( false !== strpos( $content, $link ) ) {
 		return $content;
 	}
+	if ( ! in_array( get_post_format(), array( 'link' ) ) ) {
+		return $content;
+	}
 	$title = get_the_title();
 	if ( empty( $title ) ) {
 		$content .= ' <a class="auto-link" title="' . sprintf( esc_attr__( 'Permalink to this %1$s', 'nighthawk' ), nighthawk_post_label_singular() ) . '" href="' . esc_url( get_permalink() )  . '">' . esc_html__( 'link', 'nighthawk' ) . '</a>';
