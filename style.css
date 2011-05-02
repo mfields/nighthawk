@@ -388,7 +388,7 @@ td {
 	list-style-type:none;
 	display:inline;
 	margin:0;
-	padding:0;
+	padding:0 1em;
 }
 #menu-top .dialog {
 	text-align:center;
@@ -437,14 +437,14 @@ td {
 
 
 #page {
-	padding:0 0 2em;
+	padding:0;
 	color:#666;
 	background:#fff;
 	clear:both;
 }
 #content {
 	color:#444;
-	padding:0 3em;
+	padding:1.5em 3em;
 }
 
 
@@ -459,11 +459,11 @@ td {
 }
 #intro {
 	margin:1.5em 0;
-	padding:1em 1.5em;
+	padding:1em 3em;
 	overflow:hidden;
 	border-width:.2em 0;
 	border-style:solid;
-	border-color:#d6e8f1;
+	border-color:#d8e0eb;
 	background-color:#eef3fa;
 	color:#666;
 }
@@ -659,17 +659,16 @@ h2.entry-title {
 .search-results .entry {
 	border-width:0;
 	padding:0;
-	margin:0;
-	font-size:.9em;
+	margin:0 0 3em;
 }
 .search-results p {
 	line-height:1.25em;
-	margin-top:0;
+	margin:0;
 }
 .search-results h2.entry-title {
-	margin-top: 1.5em;
 	font-weight:normal;
 	font-size:1.2em;
+	margin:0 0 .25em;
 }
 .search-results h2.entry-title a {
 	text-decoration:underline;
@@ -869,8 +868,6 @@ input#submit,
 .back-posts,
 .older-posts,
 .more-posts {
-	position:relative;
-	top:2em;
 	background:#555;
 	margin:0;
 	padding:.75em 1.75em;
@@ -888,7 +885,6 @@ input#submit,
 .newer-posts,
 .back-posts {
 	float:left;
-	right:3em;
 	-moz-border-radius-topright:     .5em;
 	-webkit-border-top-right-radius: .5em;
 	border-top-right-radius:         .5em;
@@ -896,7 +892,6 @@ input#submit,
 .older-posts,
 .more-posts {
 	float:right;
-	left:3em;
 	-moz-border-radius-topleft:     .5em;
 	-webkit-border-top-left-radius: .5em;
 	border-top-left-radius:         .5em;
@@ -1121,7 +1116,8 @@ pre,
 
 
 /* Reset shadows for certain elements. */
-.entry img.wp-smiley {
+.entry img.wp-smiley,
+.search-results .format-status {
 	border-width:0; 
 	box-shadow:none;
 	-webkit-box-shadow:none;
