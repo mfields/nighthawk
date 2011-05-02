@@ -239,7 +239,7 @@ form.bullet {
 	position:relative;
 	padding-right:6em;
 	height:2em;
-	border:.1em solid #cfb994;
+	border:.1em solid #ccc;
 	border-top-right-radius:            .5em;
 	-webkit-border-top-right-radius:    .5em;
 	-moz-border-radius-topright:        .5em;
@@ -815,7 +815,7 @@ h2.entry-title {
 	padding:.25em;
 	line-height:1;
 	font-size:1em;
-	border:.1em solid #ccc5ba;
+	border:.1em solid #ccc;
 }
 .comment-form-url input,
 .comment-form-email input,
@@ -834,7 +834,6 @@ h2.entry-title {
 }
 .addendum {
 	font-size:.6em;
-	color:#a39887;
 }
 
 
@@ -910,12 +909,9 @@ input#submit,
 #widgets {
 	clear:both;
 	position:relative;
-	background-color:#faefdc;
+	background-color:#fff;
 	margin:0 .5em;
 	padding:1em;
-	border-width:0 .1em .1em;
-	border-style:solid;
-	border-color:#e2caa0;
 	color:#666;
 }
 #widgets a {
@@ -965,7 +961,7 @@ table#wp-calendar {
 	font-size:1em;
 	border-collapse:collapse;
 	background-color:#fff;
-	border:.1em solid #888;
+	border:.1em solid #ccc;
 }
 #widgets.count-2 table#wp-calendar,
 #widgets.count-1 table#wp-calendar {
@@ -987,7 +983,7 @@ table#wp-calendar {
 }
 #wp-calendar thead {
 	background-color:#5588bb;
-	border:.1em solid #888;
+	border:.1em solid #ccc;
 	color:#fff;
 }
 #wp-calendar tbody td {
@@ -995,7 +991,7 @@ table#wp-calendar {
 	background-color:#fff;
 	text-align:center;
 	width:14.28%;
-	border:.1em solid #888;
+	border:.1em solid #ccc;
 	font-weight:bold;
 }
 #wp-calendar tbody td a {
