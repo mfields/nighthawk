@@ -1436,8 +1436,8 @@ function _nighthawk_syntaxhighlighter_theme( $themes ) {
  */
 function _nighthawk_settings_custom_header_text_controls() {
 	print '<table class="form-table"><tbody><tr><th>' . esc_html__( 'Header Text', 'nighthawk' ) . '</th><td>';
-	_nighthawk_control_boolean( 'nighthawk_display_site_title', esc_html__( 'Display site title.', 'nighthawk' ), get_theme_mod( 'nighthawk_display_site_title', 0 ) );
-	_nighthawk_control_boolean( 'nighthawk_display_tagline', esc_html__( 'Display tagline.', 'nighthawk' ), get_theme_mod( 'nighthawk_display_tagline', 0 ) );
+	_nighthawk_control_boolean( 'nighthawk_display_site_title', esc_html__( 'Display site title.', 'nighthawk' ), get_theme_mod( 'nighthawk_display_site_title', 1 ) );
+	_nighthawk_control_boolean( 'nighthawk_display_tagline', esc_html__( 'Display tagline.', 'nighthawk' ), get_theme_mod( 'nighthawk_display_tagline', 1 ) );
 	print '</td></tr></tbody></table>';
 }
 
