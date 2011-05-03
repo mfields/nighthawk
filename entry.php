@@ -44,3 +44,5 @@
 ?>
 
 </div><!--entry-->
+
+<?php do_action( 'nighthawk_append_to_entry_template' ); ?>
