@@ -121,10 +121,10 @@ function _nighthawk_setup() {
 	/* Theme modifications. */
 	add_action( 'custom_header_options', '_nighthawk_settings_custom_header_text_controls' );
 	add_action( 'admin_head-appearance_page_custom-header', '_nighthawk_process_custom_header_settings', 51 );
-	if ( 0 != (int) get_theme_mod( 'nighthawk_display_site_title', 0 ) ) {
+	if ( 0 != (int) get_theme_mod( 'nighthawk_display_site_title', 1 ) ) {
 		add_action( 'nighthawk_site_title', 'nighthawk_site_title', 10, 2 );
 	}
-	if ( 0 != (int) get_theme_mod( 'nighthawk_display_tagline', 0 ) ) {
+	if ( 0 != (int) get_theme_mod( 'nighthawk_display_tagline', 1 ) ) {
 		add_action( 'nighthawk_tagline', 'nighthawk_tagline', 10, 2 );
 	}
 
