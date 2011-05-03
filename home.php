@@ -8,8 +8,6 @@
  * a page to be used as their "Blog Page", this template
  * will be used instead of page.php.
  *
- * This file closes all html tags that it opens.
- * 
  * @package      Nighthawk
  * @author       Michael Fields <michael@mfields.org>
  * @copyright    Copyright (c) 2011, Michael Fields
@@ -27,7 +25,14 @@ get_header( 'post' );
 
 <div id="content" class="contain">
 
-<?php get_template_part( 'loop', 'post' ); ?>
+<?php
+if ( have_posts() ) {
+	while ( have_posts() ) {
+		the_post();
+		get_template_part( 'entry', get_post_type() );
+	}
+}
+?>
 
 <?php comments_template( '', true ); ?>
 

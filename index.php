@@ -12,7 +12,7 @@
  * <li>Prints view title if available.</li>
  * <li>Prints summary if available.</li>
  * <li>Runs the WordPress Loop.</li>
- * <li>Includes loop.php.</li>
+ * <li>Includes entry.php.</li>
  * <li>Includes comments.php.</li>
  * <li>Includes footer.php</li>
  * </ol>
@@ -49,7 +49,14 @@ get_header();
 
 <div id="content" class="contain">
 
-<?php get_template_part( 'loop' ); ?>
+<?php
+if ( have_posts() ) {
+	while ( have_posts() ) {
+		the_post();
+		get_template_part( 'entry', get_post_type() );
+	}
+}
+?>
 
 <?php comments_template( '', true ); ?>
 

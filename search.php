@@ -26,7 +26,14 @@
 
 <div id="content" class="contain">
 
-<?php get_template_part( 'loop', 'search' ); ?>
+<?php
+if ( have_posts() ) {
+	while ( have_posts() ) {
+		the_post();
+		get_template_part( 'entry', get_post_type() );
+	}
+}
+?>
 
 </div><!--content-->
 

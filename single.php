@@ -45,26 +45,7 @@ if ( have_posts() ) {
 
 <div id="content" class="contain">
 
-<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
-
-	<?php do_action( 'nighthawk_entry_start' ); ?>
-
-	<?php nighthawk_featured_image( '<div class="featured-image">', '</div>' ); ?>
-
-	<div class="entry-content">
-	<?php the_content(); ?>
-	</div><!--entry-content-->
-
-	<?php wp_link_pages( array( 'before' => '<div class="page-link">' . __( 'Pages:', 'nighthawk' ), 'after' => '</div>' ) ); ?>
-
-	<div class="<?php print esc_attr( nighthawk_entry_meta_classes() ); ?>">
-		<?php nighthawk_entry_meta_date(); ?>
-		<?php nighthawk_entry_meta_taxonomy(); ?>
-	</div><!--meta-->
-
-	<?php do_action( 'nighthawk_entry_end' ); ?>
-
-</div><!--entry-->
+<?php get_template_part( 'entry', get_post_type() ); ?>
 
 <?php
 	}

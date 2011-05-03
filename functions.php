@@ -432,9 +432,8 @@ function nighthawk_entry_meta_date() {
 	printf( __( 'Posted on %1$s', 'nighthawk' ), $datestamp );
 
 	/* Comments */
-	if ( ! is_singular() && ( ( comments_open() && ! post_password_required() ) || 0 < get_comments_number() ) ) {
-		print ' ';
-		print '<span class="comment-link">';
+	if ( ! is_singular() && comments_open() && ! post_password_required() ) {
+		print ' <span class="comment-link">';
 		comments_popup_link(
 			esc_html( _x( 'Comment', 'verb', 'nighthawk' ) ), /* Zero comments */
 			esc_html( __( '1 Comment', 'nighthawk' ) ),       /* One Comment */
@@ -1759,3 +1758,39 @@ function _nighthawk_ajax_hide_message_nav_menu() {
 function _nighthawk_edit_post_link( $html, $ID ) {
 	return '<a class="post-edit-link" href="' . esc_url( get_edit_post_link( $ID ) ) . '" title="' . sprintf( esc_attr__( 'Edit this %1$s', 'nighthawk' ), nighthawk_post_label_singular() ) . '">' . esc_html( wp_strip_all_tags( $html ) ) . '</a>';
 }
+
+function nighthawk_entry_id() {
+	print esc_attr( nighthawk_entry_id_get() );
+}
+
+function nighthawk_entry_id_get() {
+	$parts = array(
+		get_post_type(),
+		get_post_format(),
+		get_the_ID()
+		);
+	$attr = implode( '-', array_filter( $parts ) );
+	if ( ctype_alnum( $attr ) ) {
+		return 'entry-' . $attr;
+	}
+	return $attr;
+}
+
+function nighthawk_entry_template_name() {
+	$template = get_post_type();
+	if ( 'post' == $template ) {
+		$format = get_post_format();
+		if ( ! empty( $format ) ) {
+			$template .= '-' . get_post_format();
+		}
+	}
+	return sanitize_title_with_dashes( $template );
+}
+
+function _nighthawk_filter_post_title( $title ) {
+	if ( empty( $title ) && 'post' == get_post_type() ) {
+		$title = ucfirst( nighthawk_post_label_singular() );
+	}
+	return $title;
+}
+add_action( 'the_title', '_nighthawk_filter_post_title' );
