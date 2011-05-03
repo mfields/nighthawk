@@ -24,7 +24,7 @@
  * @since        1.0
  */
 ?>
-
+	<?php do_action( 'nighthawk_append_to_page_div' ) ?>
 </div><!-- #page -->
 
 <?php

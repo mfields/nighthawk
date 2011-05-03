@@ -437,6 +437,7 @@ td {
 
 
 #page {
+	position:relative;
 	padding:0;
 	color:#666;
 	background:#fff;
