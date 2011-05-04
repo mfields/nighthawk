@@ -1244,20 +1244,24 @@ li.cws-imp-plugin {
 	body {
 		margin:0;
 		padding:0;
-		font-size:50px;
+		font-size:40px;
 	}
 	#wrap {
 		margin:0;
 		padding:0;
-		width:100%;
+		max-width:100%;
+	}
+	#site-title {
+		font-size:2em;
 	}
 	#page {
-		padding-left:1em;
-		padding-right:1em;
+		width:100%;
 	}
 	#intro {
-		margin-left:-3em;
-		margin-right:-3em;
+	}
+	#content {
+		color:#444;
+		padding:1em;
 	}
 	#featured-image {
 		display:none;
