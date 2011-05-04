@@ -378,17 +378,26 @@ td {
 
 #menu-top {
 	margin:0 0 1em;
+	text-align:center;
 }
 #menu-top ul {
-	text-align:center;
+	display:inline-block;
 	margin:0;
-	padding:0;
+	padding:.5em;
+	border:.25em double #eee;
+	-moz-border-radius: 1em;
+	-webkit-border-radius: 1em;
+	border-radius: 1em;
 }
 #menu-top li {
 	list-style-type:none;
 	display:inline;
 	margin:0;
-	padding:0 1em;
+	padding:1em .75em;
+	line-height:1.5em;
+}
+#menu li a {
+	padding:2em 0;
 }
 #menu-top .dialog {
 	text-align:center;
