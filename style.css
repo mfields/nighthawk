@@ -797,51 +797,6 @@ h2.entry-title {
 
 
 /* Comment Form. */
-.comment-form-url,
-.comment-form-email,
-.comment-form-author,
-.comment-form-comment {
-	float:left;
-	width:100%;
-	margin:0 0 .25em;
-	padding:0;
-	line-height:1;
-}
-.comment-form-url label,
-.comment-form-email label,
-.comment-form-author label,
-.comment-form-comment label {
-	float:left;
-	width:15%;
-	margin:0;
-	text-align:right;
-	padding-right:2%;
-	border:.1em solid transparent;
-	line-height:2;
-	font-size:1em;
-	font-weight:bold;
-	color:#3a5066;
-}
-.comment-form-url input,
-.comment-form-email input,
-.comment-form-author input,
-.comment-form-comment textarea {
-	display:block;
-	padding:.25em;
-	line-height:1;
-	font-size:1em;
-	border:.1em solid #ccc;
-}
-.comment-form-url input,
-.comment-form-email input,
-.comment-form-author input {
-	width:55%;
-}
-.comment-form-comment textarea {
-	margin-top:2px;
-	width:79%;
-	height:15em;
-}
 .required {
 	display:none;
 	height:0;
@@ -1426,48 +1381,5 @@ img.forced-dimensions {}
 	.comment .avatar {
 		width:150px;
 		height:150px;
-	}
-	.comment-form-url,
-	.comment-form-email,
-	.comment-form-author,
-	.comment-form-comment {
-		float:none;
-		display:block;
-		line-height:1;
-	}
-	.comment-form-url label,
-	.comment-form-email label,
-	.comment-form-author label,
-	.comment-form-comment label {
-		float:none;
-		width:auto;
-		margin:0;
-		text-align:left;
-		padding-right:0;
-		border:.1em solid transparent;
-		line-height:2;
-		font-size:1em;
-		font-weight:bold;
-		color:#3a5066;
-	}
-	.comment-form-url input,
-	.comment-form-email input,
-	.comment-form-author input,
-	.comment-form-comment textarea {
-		display:block;
-		padding:.25em;
-		line-height:1;
-		font-size:1em;
-		border:.1em solid #ccc5ba;
-	}
-	.comment-form-url input,
-	.comment-form-email input,
-	.comment-form-author input {
-		width:100%;
-	}
-	.comment-form-comment textarea {
-		margin-top:2px;
-		width:100%;
-		height:15em;
 	}
 }
