@@ -60,12 +60,7 @@ address, article, aside, blockquote, dl, fieldset, form, ol, p, pre, table, ul,
 	margin:1.5em 0;
 	line-height:1.5em;
 }
-#gallery-1, #gallery-2, #gallery-3, #gallery-4, #gallery-5 { /* !important used to override inline css. */
-	font-size:1em !important;
-	margin:1.5em 0 !important;
-	padding:0 !important;
-	line-height:1.5em !important;
-}
+
 
 /* Lists */
 ul, ol {
