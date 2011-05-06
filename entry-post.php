@@ -25,7 +25,12 @@
 		case 'gallery' :
 			nighthawk_featured_image( '<div class="featured-image">', '</div>' );
 			print "\n" . '<div class="entry-content">';
-			the_excerpt();
+			if ( is_single ) {
+				the_content();
+			}
+			else {
+				the_excerpt();
+			}
 			print "\n" . '</div><!--entry-content-->';
 			print '<div class="' . esc_attr( nighthawk_entry_meta_classes() ) . '">';
 			nighthawk_entry_meta_date();
