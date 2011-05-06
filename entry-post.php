@@ -47,11 +47,11 @@
 			print '</div><!--meta-->';
 			break;
 		default :
-			nighthawk_featured_image( '<div class="featured-image">', '</div>' );
-			
 			if ( ! is_singular() ) {
 				the_title( "\n" . '<h2 class="entry-title"><a href="' . get_permalink() . '">', '</a></h2>' );
 			}
+
+			nighthawk_featured_image( '<div class="featured-image">', '</div>' );
 
 			print "\n" . '<div class="entry-content">';
 			the_content( __( 'Continue Reading', 'nighthawk' ) );
