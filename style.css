@@ -424,8 +424,9 @@ td {
 }
 #menu-bottom li a {
 	color:#777;
-	background-color:#eef3fa;
 	padding:.35em .6em;
+	background-color:#f6f6f6;
+	border:.1em solid #ddd;
 	outline:0;
 	cursor:pointer;
 	text-align:center;
@@ -508,12 +509,11 @@ td {
 	background-color:#fff;
 }
 h2.entry-title {
-	clear:none;
+	/*clear:none;*/
 	margin-bottom:.25em;
 }
-.entry img {
-	background-color:#fff;
-	max-width:615px;
+.entry-content img {
+	max-width:860px;
 	height:auto;
 }
 .entry pre {
@@ -542,19 +542,15 @@ h2.entry-title {
 
 /* Featured image. */
 .entry .featured-image {
-	float:right;
-	border:.1em solid #ccc;
-	margin:1.5em 0 1em 1.5em;
-	padding:10px 12px 8px 10px;
-	background-color:#fff;
 	text-align:center;
 }
-.entry .featured-image img {
-	box-shadow:         none;
-	-webkit-box-shadow: none;
-	-moz-box-shadow:    none;
+.format-standard .featured-image {
+	float:right;
+	margin:1.5em 0 1em 1.5em;
+	padding:10px 12px 8px 10px;
+	border:.1em solid #ccc;
+	background-color:#fff;
 }
-
 
 /* Meta. */
 .entry-meta {
@@ -627,9 +623,6 @@ h2.entry-title {
 	height:70px;
 	margin:0;
 	padding:0;
-	border-color:#ccc;
-	border-width:0 0 .1em .1em;
-	border-style:solid;
 	box-shadow:         none;
 	-webkit-box-shadow: none;
 	-moz-box-shadow:    none;
@@ -1115,9 +1108,8 @@ fieldset,
 pre,
 .box,
 .author-avatar,
-.entry img,
-.entry .featured-image,
 .format-status,
+.format-standard .featured-image,
 .gallery img {
 	box-shadow:         .2em .2em .3em rgba( 0, 0, 0, 0.3 );
 	-webkit-box-shadow: .2em .2em .3em rgba( 0, 0, 0, 0.3 );
