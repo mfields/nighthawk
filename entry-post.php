@@ -48,7 +48,7 @@
 			break;
 		default :
 			if ( ! is_singular() ) {
-				the_title( "\n" . '<h2 class="entry-title"><a href="' . get_permalink() . '">', '</a></h2>' );
+				the_title( "\n" . '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '">', '</a></h2>' );
 			}
 
 			nighthawk_featured_image( '<div class="featured-image">', '</div>' );
