@@ -1302,16 +1302,14 @@ function _nighthawk_comment_start( $comment, $args, $depth ) {
 	$GLOBALS['comment'] = $comment;
 
 	if ( '' == $comment->comment_type ) {
-		print "\n\n\n\n" . '<li id="comment-'; comment_ID(); print '" '; comment_class(); print '>';
+		print "\n\n\n\n" . '<li id="comment-'; comment_ID(); print '" '; comment_class( 'box' ); print '>';
 		if ( 0 === (int) $comment->comment_approved ) {
 			print esc_html__( 'Your comment is awaiting moderation.', 'nighthawk' );
 		}
 		else {
-			$avatar = get_avatar( $comment, 150 );
-			print "\n" . '<div class="comment-head">';
-			print "\n" . $avatar;
-			print "\n" . '<span class="comment-author">' . get_comment_author_link( $comment->comment_ID ) . '</span>';
-			print "\n" . '<span class="comment-meta">';
+			print "\n" . get_avatar( $comment, 150 );
+			print "\n" . '<span class="heading commenter">' . get_comment_author_link( $comment->comment_ID ) . '</span>';
+			print "\n" . '<span class="meta">';
 
 			/* Comment date. */
 			print "\n" . '<a class="comment-date" href="' . get_comment_link( $comment->comment_ID ) . '"  title="' . esc_attr__( 'Direct link to this comment.', 'nighthawk' ) . '">' . sprintf( esc_html__( '%1$s at %2$s', 'nighthawk' ), get_comment_date(),  get_comment_time() ) . '</a>';
@@ -1328,10 +1326,10 @@ function _nighthawk_comment_start( $comment, $args, $depth ) {
 				'before'    => "\n" . ' <span class="comment-reply">',
 				'after'     => '</span>'
 				) ) );
-			print '</span>';
-			print "\n" . '<div style="clear:both"></div>';
-			print "\n" . '</div>';
-			print "\n" . '<div class="comment-content">'; comment_text(); print '</div>';
+
+			print '</span><!-- .meta -->';
+
+			print "\n" . '<div class="content">'; comment_text(); print '</div>';
 		}
 	}
 	else {
