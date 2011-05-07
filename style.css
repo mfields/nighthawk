@@ -25,22 +25,6 @@ body {
 	font-family:Trebuchet,arial,sans-serif;
 	font-size:20px;
 }
-#header:after {
-	position:absolute;
-	z-index:-1;
-	top:10em;
-	left:0;
-	right:0;
-	display:block;
-	background:#eee;
-	height:15em;
-	content: '';
-	border-top:.2em solid #ddd;
-	border-bottom:.2em solid #ddd;
-	box-shadow:         0 0 .25em rgba( 0, 0, 0, 0.2 );
-	-webkit-box-shadow: 0 0 .25em rgba( 0, 0, 0, 0.2 );
-	-moz-box-shadow:    0 0 .25em rgba( 0, 0, 0, 0.2 );
-}
 
 
 /* Font-size + margin for all headings */
