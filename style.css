@@ -426,6 +426,7 @@ td {
 
 #page {
 	position:relative;
+	z-index:1;
 	padding:0;
 	color:#666;
 	background:#fff;
@@ -808,13 +809,11 @@ input#submit,
 #widgets {
 	clear:both;
 	position:relative;
+	z-index:0;
 	background-color:#fff;
-	margin:0 .5em;
+	margin:0 1em;
 	padding:1em;
 	color:#666;
-}
-#widgets a {
-	color:#54778a;
 }
 #widgets .area {
 	float:left;
@@ -938,7 +937,8 @@ small,
 
 
 /* Shadow centered. */
-#page {
+#page,
+#widgets {
 	box-shadow:         0 0 .75em rgba( 0, 0, 0, 0.4 );
 	-webkit-box-shadow: 0 0 .75em rgba( 0, 0, 0, 0.4 );
 	-moz-box-shadow:    0 0 .75em rgba( 0, 0, 0, 0.4 );
