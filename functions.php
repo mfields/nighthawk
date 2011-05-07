@@ -1794,3 +1794,13 @@ function _nighthawk_filter_post_title( $title ) {
 	return $title;
 }
 add_action( 'the_title', '_nighthawk_filter_post_title' );
+
+function _nighthawk_commentform_before() {
+	print "\n" . '<div class="box">';
+}
+add_action( 'comment_form_before', '_nighthawk_commentform_before' );
+
+function _nighthawk_commentform_after() {
+	print "\n" . '</div>';
+}
+add_action( 'comment_form_after', '_nighthawk_commentform_after' );
