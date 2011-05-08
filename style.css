@@ -574,7 +574,7 @@ h2.entry-title {
 
 
 /* Link posts. */
-.format-link .content {
+.format-link {
 	border:.1em solid #e2dcd2;
 	color:#9b9a93;
 	background-color:#fffef2;
@@ -631,7 +631,6 @@ h2.entry-title {
 	margin:0 0 3em;
 }
 .search-results p {
-	line-height:1.25em;
 	margin:0;
 }
 .search-results h2.entry-title {
