@@ -18,9 +18,12 @@
 	switch ( get_post_format() ) {
 		case 'aside' :
 		case 'link' :
-			print "\n" . '<div class="entry-content">';
+			print "\n" . '<div class="content">';
 			the_content();
-			print "\n" . '</div><!--entry-content-->';
+			print "\n" . '</div><!--content-->';
+			print '<div class="meta">';
+			nighthawk_entry_meta_date();
+			print '</div><!--meta-->';
 			break;
 		case 'gallery' :
 			nighthawk_featured_image( '<div class="featured-image">', '</div>' );
@@ -38,11 +41,11 @@
 			print '</div><!--meta-->';
 			break;
 		case 'status' :
-			print '<div class="featured-image">' . get_avatar( get_the_author_meta( 'user_email' ), $size = '75' ) . '</div>';
-			print "\n" . '<div class="entry-content">';
+			print '<div class="avatar">' . get_avatar( get_the_author_meta( 'user_email' ), $size = '100' ) . '</div>';
+			print "\n" . '<div class="content">';
 			the_content();
-			print "\n" . '</div><!--entry-content-->';
-			print '<div class="' . esc_attr( nighthawk_entry_meta_classes() ) . '">';
+			print "\n" . '</div><!--content-->';
+			print '<div class="meta">';
 			nighthawk_entry_meta_date();
 			print '</div><!--meta-->';
 			break;
