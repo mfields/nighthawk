@@ -748,33 +748,25 @@ h2.entry-title {
 #page-footer {
 	clear:both;
 }
-.newer-posts,
-.back-posts,
-.older-posts,
-.more-posts {
+.nav-paged {
 	background:#555;
 	margin:0;
 	padding:.75em 1.75em;
 }
-.newer-posts a,
-.back-posts a,
-.older-posts a,
-.more-posts a {
+.nav-paged a {
 	color:#fff;
 	font-size:1.25em;
 	font-family:Cabin,Trebuchet,arial,sans-serif;
 	letter-spacing:.075em;
 	text-transform:uppercase;
 }
-.newer-posts,
-.back-posts {
+.timeline-progress {
 	float:left;
 	-moz-border-radius-topright:     .5em;
 	-webkit-border-top-right-radius: .5em;
 	border-top-right-radius:         .5em;
 }
-.older-posts,
-.more-posts {
+.timeline-regress {
 	float:right;
 	-moz-border-radius-topleft:     .5em;
 	-webkit-border-top-left-radius: .5em;
@@ -1189,10 +1181,7 @@ img.forced-dimensions {}
 		-webkit-border-radius: .5em;
 		-moz-border-radius:    .5em;
 	}
-	.newer-posts,
-	.back-posts,
-	.older-posts,
-	.more-posts {
+	.nav-paged {
 		margin:0;
 		top:0;
 		right:0;

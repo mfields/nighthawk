@@ -538,11 +538,11 @@ function nighthawk_entry_meta_taxonomy() {
 function nighthawk_paged_nav( $args = array() ) {
 	$next = get_next_posts_link( __( 'More', 'nighthawk' ) );
 	if ( ! empty( $next ) ) {
-		$next =  '<div class="more-posts">' . $next . '</div>';
+		$next =  '<div class="nav-paged timeline-regress">' . $next . '</div>';
 	}
 	$prev = get_previous_posts_link( __( 'Back', 'nighthawk' ) );
 	if ( ! empty( $prev ) ) {
-		$prev = '<div class="back-posts">' . $prev . '</div>';
+		$prev = '<div class="nav-paged timeline-progress">' . $prev . '</div>';
 	}
 	if ( ! empty( $prev ) || ! empty( $next ) ) {
 		print "\n" . $prev . $next;
