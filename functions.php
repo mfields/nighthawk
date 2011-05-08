@@ -1786,6 +1786,9 @@ function nighthawk_entry_template_name() {
 }
 
 function _nighthawk_filter_post_title( $title ) {
+	if ( ! is_singular() ) {
+		return $title;
+	}
 	if ( empty( $title ) && 'post' == get_post_type() ) {
 		$title = ucfirst( nighthawk_post_label_singular() );
 	}
