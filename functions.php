@@ -1084,15 +1084,13 @@ function _nighthawk_post_class( $classes ) {
 	if ( ! in_array( 'clear', $classes ) ) {
 		$classes[] = 'clear';
 	}
+	if ( ! in_array( 'box', $classes ) ) {
+		$classes[] = 'box';
+	}
 
 	$featured_image = get_the_post_thumbnail();
 	if ( ! empty( $featured_image ) ) {
 		$classes[] = 'has-featured-image';
-	}
-
-	$post_format = get_post_format();
-	if ( in_array( $post_format, array( 'link', 'status' ) ) ) {
-		$classes[] = 'box';
 	}
 
 	return array_unique( $classes );
