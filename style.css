@@ -612,7 +612,6 @@ h2.entry-title {
 }
 
 
-
 /* Quote posts. */
 .format-quote.entry {
 	padding-left:22px;
@@ -621,21 +620,6 @@ h2.entry-title {
 	margin-left:0;
 }
 
-
-/* 404 Template. 
-#content.error404 h2 {
-	margin-bottom:0;
-}
-#content.error404 .widget {
-	margin-bottom:2em;
-}
-#content.error404 .widget h2 {
-	margin-bottom:.5em;
-}
-#content.error404 .widget ul {
-	margin-top:0;
-}
-*/
 
 /* Search Template. */
 .search #intro .bullet {
