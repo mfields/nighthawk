@@ -786,6 +786,12 @@ input#submit,
 	margin:0 1em;
 	padding:1em;
 	color:#666;
+	-webkit-border-bottom-left-radius: .5em;
+	-webkit-border-bottom-right-radius:.5em;
+	-moz-border-radius-bottomright:    .5em;
+	-moz-border-radius-bottomleft:     .5em;
+	border-bottom-left-radius:         .5em;
+	border-bottom-right-radius:        .5em;
 }
 #widgets .area {
 	float:left;
@@ -940,34 +946,15 @@ pre,
 }
 
 
-/* Rounded corners - Top. */
+/* Rounded corners. */
 button,
 blockquote,
 #submit,
 .button,
 .dialog {
-	border-top-left-radius:          .5em;
-	border-top-right-radius:         .5em;
-	-webkit-border-top-left-radius:  .5em;
-	-webkit-border-top-right-radius: .5em;
-	-moz-border-radius-topleft:      .5em;
-	-moz-border-radius-topright:     .5em;
-}
-
-
-/* Rounded corners: Bottom. */
-button,
-blockquote,
-#submit,
-#widgets,
-.button,
-.dialog {
-	border-bottom-left-radius:          .5em;
-	border-bottom-right-radius:         .5em;
-	-webkit-border-bottom-left-radius:  .5em;
-	-webkit-border-bottom-right-radius: .5em;
-	-moz-border-radius-bottomright:     .5em;
-	-moz-border-radius-bottomleft:      .5em;
+	-webkit-border-radius:.5em;
+	-moz-border-radius:   .5em;
+	border-radius:        .5em;
 }
 
 
