@@ -41,13 +41,11 @@
 			print '</div><!--meta-->';
 			break;
 		case 'status' :
-			print '<div class="avatar">' . get_avatar( get_the_author_meta( 'user_email' ), $size = '100' ) . '</div>';
+			print '<div class="image">' . get_avatar( get_the_author_meta( 'user_email' ), $size = '100' ) . '</div>';
 			print "\n" . '<div class="content">';
 			the_content();
 			print "\n" . '</div><!--content-->';
-			print '<div class="meta">';
-			nighthawk_entry_meta_date();
-			print '</div><!--meta-->';
+			print '<a href="' . esc_url( get_permalink() . '#respond' ) . '" class="comment-icon"><img src="' . get_template_directory_uri() . '/images/comment.png" alt="' . __( 'Link to comments section', 'nighthawk' ) . '" /></a>';
 			break;
 		default :
 			if ( ! is_singular() ) {
