@@ -114,8 +114,6 @@ function _nighthawk_setup() {
 	/* Custom hooks. */
 	add_action( 'nighthawk_logo',               'nighthawk_logo', 10, 2 );
 	add_action( 'nighthawk_paged_navigation',   'nighthawk_paged_nav', 10, 2 );
-	add_action( 'nighthawk_loop_search_start',  '_nighthawk_excerpt_search_toggle_wpautop' );
-	add_action( 'nighthawk_loop_search_end',    '_nighthawk_excerpt_search_toggle_wpautop' );
 
 	/* Theme modifications. */
 	add_action( 'custom_header_options', '_nighthawk_settings_custom_header_text_controls' );
@@ -1201,33 +1199,6 @@ function _nighthawk_related_images( $content ) {
 		}
 	}
 	return $content;
-}
-
-/**
- * Toggle wpautop for search excerpts.
- *
- * Search results have special formatting that is
- * not conducive to the_excerpt() enclosing its
- * output in paragraph tags. This function will
- * remove this filter at the start of loop-search.php
- * and reinstate it after the loop has completed.
- *
- * This function will do absolutely nothing in every
- * other case.
- *
- * @return    void
- *
- * @access    private
- * @since     1.0
- */
-function _nighthawk_excerpt_search_toggle_wpautop() {
-	$hook = current_filter();
-	if ( 'nighthawk_loop_search_start' == $hook ) {
-		remove_filter( 'the_excerpt', 'wpautop' );
-	}
-	else if ( 'nighthawk_loop_search_end' == $hook ) {
-		add_filter( 'the_excerpt', 'wpautop' );
-	}
 }
 
 /**
