@@ -1071,9 +1071,6 @@ img.forced-dimensions {}
 	#content {
 		padding:1em;
 	}
-}
-
-@media only screen and ( max-width:400px ) {
 	.format-standard .entry-content {
 		clear:both;
 	}
