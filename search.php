@@ -2,7 +2,8 @@
 /**
  * Search Template.
  *
- * This file closes all html tags that it opens.
+ * Removes the wpautop function from the "the_excerpt" filter
+ * for the duration of the loop.
  *
  * @package      Nighthawk
  * @author       Michael Fields <michael@mfields.org>
@@ -27,12 +28,18 @@
 <div id="content" class="contain">
 
 <?php
+
+remove_filter( 'the_excerpt', 'wpautop' );
+
 if ( have_posts() ) {
 	while ( have_posts() ) {
 		the_post();
-		get_template_part( 'entry', get_post_type() );
+		get_template_part( 'entry-search', get_post_type() );
 	}
 }
+
+add_filter( 'the_excerpt', 'wpautop' );
+
 ?>
 
 </div><!--content-->
