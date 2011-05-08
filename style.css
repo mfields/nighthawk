@@ -47,7 +47,7 @@ address, article, aside, blockquote, dl, fieldset, form, ol, p, pre, table, ul,
 
 
 /* Blocks that need padding */
-pre, fieldset, blockquote {
+blockquote, fieldset, pre {
 	text-align:left;
 	padding:1em;
 	background-color:#fff;
