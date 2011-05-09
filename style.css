@@ -1007,7 +1007,7 @@ img.forced-dimensions {}
 }
 
 
-@media all and (max-width:1100px) {
+@media all and ( max-width:1100px ) {
 	body {
 		font-size:14px;
 	}
@@ -1024,7 +1024,7 @@ img.forced-dimensions {}
 }
 
 
-@media all and (max-width:800px) {
+@media all and ( max-width:800px ) {
 	#wrap {
 		padding:0 1em;
 	}
