@@ -1147,12 +1147,8 @@ img.forced-dimensions {}
 		color:#444;
 		padding:1em;
 	}
-	#featured-image {
-		display:none;
-	}
-	.entry .featured-image {
-		display:none;
-	}
+	#featured-image,
+	.entry .featured-image,
 	.format-status .image {
 		display:none;
 	}
