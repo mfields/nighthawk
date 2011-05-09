@@ -45,7 +45,7 @@
 			print "\n" . '<div class="content">';
 			the_content();
 			print "\n" . '</div><!--content-->';
-			print '<a href="' . esc_url( get_permalink() . '#respond' ) . '" class="comment-icon"><img src="' . get_template_directory_uri() . '/images/comment.png" alt="' . __( 'Link to comments section', 'nighthawk' ) . '" /></a>';
+			print '<a href="' . esc_url( get_permalink() . '#respond' ) . '" class="comment-icon" title="' . esc_attr__( 'Add a comment', 'nighthawk' ) . '"><img src="' . get_template_directory_uri() . '/images/comment.png" alt="" /></a>';
 			break;
 		default :
 			if ( ! is_singular() ) {

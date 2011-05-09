@@ -25,7 +25,10 @@ body {
 	font-family:Trebuchet,arial,sans-serif;
 	font-size:20px;
 }
-
+input, textarea {
+	font-size:1em;
+	font-family:Trebuchet,arial,sans-serif;
+}
 
 /* Font-size + margin for all headings */
 h1, h2, h3, h4, h5, h6 { padding:0; line-height:1.2em; clear:both; }
@@ -208,6 +211,7 @@ legend {
 }
 input,
 textarea {
+	font-size:1em;
 	padding:.5em;
 	border:.1em solid #ccc;
 }
@@ -734,6 +738,10 @@ h2.entry-title {
 #respond label {
 	display:block;
 }
+.comment-form-comment textarea {
+	width:98%;
+	height:16em;
+}
 .required {
 	display:none;
 	height:0;
@@ -980,8 +988,6 @@ img.forced-dimensions {}
 
 
 @media all and ( min-width:1100px ) {
-	.gallery-columns-4 .gallery-item img.attachment-thumbnail,
-	.gallery-columns-5 .gallery-item img.attachment-thumbnail { width:150px; }
 	.format-status {
 		min-height:80px;
 		margin-left:120px;
@@ -991,6 +997,8 @@ img.forced-dimensions {}
 		height:100px;
 		left:-120px;
 	}
+	.gallery-columns-4 .gallery-item img.attachment-thumbnail,
+	.gallery-columns-5 .gallery-item img.attachment-thumbnail { width:150px; }
 }
 
 
@@ -1026,6 +1034,9 @@ img.forced-dimensions {}
 	body {
 		font-size:12px;
 	}
+	.comment-form-comment textarea {
+		height:14em;
+	}
 	#wrap {
 		margin:1em 0;
 		padding:0;
@@ -1038,19 +1049,12 @@ img.forced-dimensions {}
 		padding-left:1em;
 		padding-right:1em;
 	}
-	.gallery-columns-1 .gallery-item, .gallery-columns-2 .gallery-item, .gallery-columns-3 .gallery-item, .gallery-columns-4 .gallery-item, .gallery-columns-5 .gallery-item, .gallery-columns-6 .gallery-item, .gallery-columns-7 .gallery-item, .gallery-columns-8 .gallery-item, .gallery-columns-9 .gallery-item {
-		float:none;
-		clear:both;
-		display:block;
-		width:100% !important;
-		text-align:center;
-	}
-	.gallery-columns-1 .gallery-caption, .gallery-columns-2 .gallery-caption, .gallery-columns-3 .gallery-caption, .gallery-columns-4 .gallery-caption, .gallery-columns-5 .gallery-caption, .gallery-columns-6 .gallery-caption, .gallery-columns-7 .gallery-caption, .gallery-columns-8 .gallery-caption, .gallery-columns-9 .gallery-caption{
-		width:100%;
-	}
 	.entry-content img.larger-than-300 {
 		width:100%;
 		height:auto;
+	}
+	.comment-form-comment textarea {
+		width:96%;
 	}
 	#content {
 		padding:1em;
@@ -1092,6 +1096,16 @@ img.forced-dimensions {}
 		display:block;
 		width:100%;
 		margin:0 0 .75em;
+	}
+	.gallery-columns-1 .gallery-item, .gallery-columns-2 .gallery-item, .gallery-columns-3 .gallery-item, .gallery-columns-4 .gallery-item, .gallery-columns-5 .gallery-item, .gallery-columns-6 .gallery-item, .gallery-columns-7 .gallery-item, .gallery-columns-8 .gallery-item, .gallery-columns-9 .gallery-item {
+		float:none;
+		clear:both;
+		display:block;
+		width:100% !important;
+		text-align:center;
+	}
+	.gallery-columns-1 .gallery-caption, .gallery-columns-2 .gallery-caption, .gallery-columns-3 .gallery-caption, .gallery-columns-4 .gallery-caption, .gallery-columns-5 .gallery-caption, .gallery-columns-6 .gallery-caption, .gallery-columns-7 .gallery-caption, .gallery-columns-8 .gallery-caption, .gallery-columns-9 .gallery-caption{
+		width:100%;
 	}
 }
 
