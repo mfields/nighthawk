@@ -41,7 +41,7 @@
 			print '</div><!--meta-->';
 			break;
 		case 'status' :
-			print '<div class="image">' . get_avatar( get_the_author_meta( 'user_email' ), $size = '100' ) . '</div>';
+			print '<a href="' . esc_url( get_permalink() ) . '" class="image">' . get_avatar( get_the_author_meta( 'user_email' ), $size = '100' ) . '</a>';
 			print "\n" . '<div class="content">';
 			the_content();
 			print "\n" . '</div><!--content-->';
