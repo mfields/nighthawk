@@ -1103,22 +1103,7 @@ img.forced-dimensions {}
 	#menu-bottom li a {
 		display:block;
 		width:100%;
-		border:.1em solid #ddd;
 		margin:0;
-		padding:.35em .6em;
-		outline:0;
-		cursor:pointer;
-		text-align:center;
-		text-decoration:none;
-		font-weight:bold;
-		-webkit-border-radius: .3em;
-		-moz-border-radius:    .3em;
-		border-radius:         .3em;
-	}
-	#menu-bottom li a:focus,
-	#menu-bottom li a:hover,
-	#menu-bottom li a:active {
-		color:#555;
 	}
 }
 
