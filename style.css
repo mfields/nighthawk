@@ -463,6 +463,9 @@ div.box .content p:only-child {
 	color:#666;
 	background:#fff;
 	clear:both;
+	-webkit-box-shadow: 0 0 .75em rgba( 0, 0, 0, 0.4 );
+	-moz-box-shadow:    0 0 .75em rgba( 0, 0, 0, 0.4 );
+	box-shadow:         0 0 .75em rgba( 0, 0, 0, 0.4 );
 }
 #content {
 	color:#444;
@@ -785,6 +788,9 @@ h2.entry-title {
 	-moz-border-radius-bottomleft:     .5em;
 	border-bottom-left-radius:         .5em;
 	border-bottom-right-radius:        .5em;
+	-webkit-box-shadow: 0 0 .75em rgba( 0, 0, 0, 0.4 );
+	-moz-box-shadow:    0 0 .75em rgba( 0, 0, 0, 0.4 );
+	box-shadow:         0 0 .75em rgba( 0, 0, 0, 0.4 );
 }
 #widgets .area {
 	float:left;
@@ -908,15 +914,6 @@ small,
 .comment-edit:before,
 .comment-reply:before {
 	content:'\2022\00A0';
-}
-
-
-/* Shadow centered. */
-#page,
-#widgets {
-	box-shadow:         0 0 .75em rgba( 0, 0, 0, 0.4 );
-	-webkit-box-shadow: 0 0 .75em rgba( 0, 0, 0, 0.4 );
-	-moz-box-shadow:    0 0 .75em rgba( 0, 0, 0, 0.4 );
 }
 
 
