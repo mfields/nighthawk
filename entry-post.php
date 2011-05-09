@@ -21,9 +21,11 @@
 			print "\n" . '<div class="content">';
 			the_content();
 			print "\n" . '</div><!--content-->';
+			/*
 			print '<div class="meta">';
 			nighthawk_entry_meta_date();
 			print '</div><!--meta-->';
+			*/
 			break;
 		case 'gallery' :
 			nighthawk_featured_image( '<div class="featured-image">', '</div>' );
