@@ -1012,12 +1012,9 @@ img.forced-dimensions {}
 		font-size:14px;
 	}
 	#featured-image,
-	#featured-image img {
-		width:100px;
-		height:auto;
-	}
+	#featured-image img,
 	.entry-content img.larger-than-860 {
-		width:100%;
+		width:100px;
 		height:auto;
 	}
 	.comment-list .image {
