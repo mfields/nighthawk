@@ -68,7 +68,7 @@ if ( 0 < $count ) {
 ( function( window, document, undefined ) {
 
 	var maybeAddClass = function( e, cn ) {
-		var c = e.getAttribute( 'class' );
+		var c = String( e.getAttribute( 'class' ) );
 		if ( 0 == c.length ) {
 			e.className += cn;
 		}
