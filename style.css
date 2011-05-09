@@ -586,13 +586,16 @@ h2.entry-title {
 
 /* Link posts. */
 .format-link {
-	border:.1em solid #e2dcd2;
-	color:#9b9a93;
-	background-color:#fffef2;
-	padding:.5em;
+	border:.1em solid #ccc;
 	-webkit-border-radius:.5em;
 	-moz-border-radius:   .5em;
 	border-radius:        .5em;
+	background:#eef3fa url( images/icons.png ) -90px -35px no-repeat;
+}
+.format-link .content {
+	margin-left:28px;
+	padding:.25em .5em;
+	background:#fff;
 }
 
 
