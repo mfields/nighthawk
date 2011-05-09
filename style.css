@@ -1090,20 +1090,17 @@ img.forced-dimensions {}
 		margin:2em auto 2em;
 		padding:0 3em;
 	}
-	#menu-bottom ul {
-		margin:0;
-		padding:0;
-		text-align:center;
-	}
+	#menu-bottom ul,
 	#menu-bottom li {
 		display:block;
 		margin:0;
 		padding:0;
+		text-align:center;
 	}
 	#menu-bottom li a {
 		display:block;
 		width:100%;
-		margin:0;
+		margin:0 0 .75em;
 	}
 }
 
