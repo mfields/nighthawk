@@ -522,7 +522,6 @@ div.box .content p:only-child {
 
 /* All posts. */
 .entry {
-	padding:.5em;
 	overflow:hidden;
 	background-color:#fff;
 }
