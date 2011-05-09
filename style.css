@@ -359,7 +359,6 @@ div.box .content p:only-child {
 	max-width:50em;
 	margin:0 auto;
 	padding:0 1em 1em;
-	background:transparent;
 }
 #header {
 	margin:0;
@@ -1075,7 +1074,6 @@ img.forced-dimensions {}
 		margin-right:10px;
 		float:none;
 		text-align:center;
-		background-color:transparent;
 		border-width:0;
 		-moz-box-shadow:none;
 		-webkit-box-shadow:none;
