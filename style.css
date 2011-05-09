@@ -933,16 +933,6 @@ pre,
 }
 
 
-/* Reset shadows for certain elements. */
-.entry img.wp-smiley,
-.search-results .format-status {
-	border-width:0; 
-	box-shadow:none;
-	-webkit-box-shadow:none;
-	-moz-box-shadow:none;
-}
-
-
 /* I make plugins plugin. */
 #cws-imp-plugin-list {
 	padding:0;
