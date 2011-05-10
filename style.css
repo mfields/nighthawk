@@ -607,28 +607,27 @@ h2.entry-title {
 /* Status posts. */
 .format-status {
 	z-index:1;
-	min-height:55px;
 	margin-left:85px;
-	padding:.5em;
+	padding:0;
 	border:1px solid #ccc;
 	overflow:visible;
 	border-radius:.5em;
-	background:#fff url( images/status-tile.png ) top right repeat-y;
 	-webkit-background-clip:padding-box;
 	background-clip:padding-box;
+	background-color:#eef3fa;
 }
 .format-status a.entry-title {
 	font-weight:bold;
 	color:#555;
 }
 .format-status .content {
-	margin:0 35px 0 0;
-}
-.format-status .meta {
-	clear:both;
-	float:left;
-	padding:1em 0 0;
-	text-align:left;
+	min-height:60px;
+	margin:0 27px 0 0;
+	padding:5px;
+	background-color:#fff;
+	-webkit-border-radius:.5em;
+	-moz-border-radius:   .5em;
+	border-radius:        .5em;
 }
 .format-status .image {
 	position:absolute;
@@ -988,8 +987,11 @@ img.forced-dimensions {}
 
 @media all and ( min-width:1100px ) {
 	.format-status {
-		min-height:80px;
 		margin-left:120px;
+	}
+	.format-status .content {
+		padding:7px 10px;
+		min-height:84px;
 	}
 	.format-status .image {
 		width:100px;
@@ -1071,9 +1073,11 @@ img.forced-dimensions {}
 		box-shadow:none;
 	}
 	.format-status {
-		min-height:25px;
-		padding:.75em;
 		margin-left:55px;
+	}
+	.format-status .content {
+		padding:5px;
+		min-height:35px;
 	}
 	.format-status .image {
 		width:45px;
