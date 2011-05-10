@@ -15,6 +15,10 @@ Goals
 TODO
 ----
 
-* Code blocks are cut off on right-hand side.
 * Fix positioning of link icon.
 * Rework icon sprite.
+
+DONE
+----
+
+* Code blocks are cut off on right-hand side.
