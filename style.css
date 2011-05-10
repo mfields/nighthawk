@@ -294,7 +294,7 @@ div.box {
 	position:relative;
 	margin-top:1.5em;
 	margin-bottom:1.5em;
-	padding-right:1em; /* Important in case of box shadows. */
+	margin-right:.5em;
 }
 div.box .heading {
 	display:block;
@@ -475,6 +475,7 @@ div.box .content p:only-child {
 #content {
 	color:#444;
 	padding:1.5em 3em;
+	overflow:hidden;
 }
 
 
@@ -522,10 +523,6 @@ div.box .content p:only-child {
 
 
 /* All posts. */
-.entry {
-	overflow:hidden;
-	background-color:#fff;
-}
 h2.entry-title {
 	/*clear:none;*/
 	margin-bottom:.25em;
