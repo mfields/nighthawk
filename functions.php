@@ -1078,6 +1078,9 @@ function _nighthawk_body_class( $classes ) {
  * @since     1.0
  */
 function _nighthawk_post_class( $classes ) {
+	if ( is_search() ) {
+		return array( 'search-result', 'box' );
+	}
 	if ( ! in_array( 'entry', $classes ) ) {
 		$classes[] = 'entry';
 	}

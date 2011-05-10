@@ -657,33 +657,18 @@ h2.entry-title {
 }
 
 
-/* Search Template. */
-.search #intro .bullet {
-	margin:.75em 0;
+/* Search results. */
+.search-result {
+	margin-bottom:3em;
 }
-.search-results .entry {
-	border-width:0;
-	padding:0;
-	margin:0 0 3em;
-}
-.search-results p {
-	margin:0;
-}
-.search-results h2.entry-title {
+.search-result .heading {
 	font-weight:normal;
 	font-size:1.2em;
 	margin:0 0 .25em;
 }
-.search-results h2.entry-title a {
-	text-decoration:underline;
-}
-.search-results .entry-date {
-	font-style:italic;
-}
-.search-results .format-status .entry-title,
-.search-results .format-status .content,
-.search-results .format-status .meta {
-	margin-left:0;
+.search-result .content {
+	margin:0;
+	padding:0;
 }
 
 
