@@ -66,7 +66,7 @@ function _nighthawk_setup() {
 	load_theme_textdomain( 'nighthawk', get_template_directory() . '/languages' );
 
 	add_theme_support( 'menus' );
-	add_theme_support( 'post-formats', array( 'aside', 'gallery', 'link', 'status', 'quote', 'video' ) );
+	add_theme_support( 'post-formats', array( 'aside', 'chat', 'gallery', 'link', 'status', 'quote', 'video' ) );
 	add_theme_support( 'post-thumbnails' );
 	add_theme_support( 'automatic-feed-links' );
 	add_custom_background();
@@ -101,6 +101,7 @@ function _nighthawk_setup() {
 	add_filter( 'the_content',                '_nighthawk_content_prepend_title', 9 );
 	add_filter( 'the_content',                '_nighthawk_content_append_link', 9 );
 	add_filter( 'the_content',                '_nighthawk_content_append_link_edit', 9 );
+	add_filter( 'the_content',                '_nighthawk_post_format_chat', 12 );
 	add_filter( 'the_password_form',          '_nighthawk_password_form' );
 	add_action( 'widget_title',               '_nighthawk_calendar_widget_title', 10, 3 );
 	add_action( 'widgets_init',               '_nighthawk_widgets_init' );
@@ -1772,3 +1773,43 @@ function _nighthawk_commentform_after() {
 	print "\n" . '</div>';
 }
 add_action( 'comment_form_after', '_nighthawk_commentform_after' );
+
+/**
+* Post Content: Chat format.
+*
+* This filter is designed to be attached to the post_content hook.
+* In the event that the current global post object has been assigned
+* a format of "chat", this function will attemt to find the first pre
+* tag in $content. This pre tag is understood to contain the contents
+* of a chat transcript. If the transcript is found each line will be
+* enclosed in a span element and odd numbered lines will be given the
+* class attribute of "alt". The pre tag is then replaced with a div
+* tag with a class attribute of "chat-log".
+*
+* @param      string     post_content field of the current entry.
+* @return     string     Filtered results for chat formats, unaltered value of $content otherwise.
+*
+* @access     private
+* @since      1.0
+*/
+function _nighthawk_post_format_chat( $content ) {
+	if ( 'chat' != get_post_format() ) {
+		return $content;
+	}
+
+	preg_match( '/<pre>(.*?)<\/pre>/s', $content, $matches );
+
+	if ( isset( $matches[1] ) ) {
+		$lines = array_filter( explode( "\n", $matches[1] ) );
+		$filtered = '';
+		foreach ( (array) $lines as $order => $line ) {
+			$filtered.= "\n" . '<span' . ( 1 == $order % 2 ? '' : ' class="alt"' ) . '>' . str_replace( array( '<br>', '<br />', '<br/>' ), '', $line ) . '</span>';
+		}
+		if ( ! empty( $filtered ) ) {
+			$filtered = "\n" . '<div class="chat-log">' . $filtered . "\n" . '</div>';
+			$content = preg_replace( '/<pre>(.*?)<\/pre>/s', $filtered, $content, 1 );
+		}
+	}
+
+	return $content;
+}
