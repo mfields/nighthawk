@@ -20,6 +20,11 @@ get_header( 'category' );
 ?>
 
 <div id="intro">
+	<?php print apply_filters( 'taxonomy-images-queried-term-image', array(
+		'size'   => 'post-thumbnail',
+		'before' => '<div id="featured-image">',
+		'after'  => '</div>',
+		) ); ?>
 	<h1><?php single_cat_title(); ?></h1>
 	<div id="summary"><?php print category_description(); ?></div>
 	<div id="intro-meta">

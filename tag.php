@@ -20,6 +20,11 @@ get_header( 'tag' );
 ?>
 
 <div id="intro">
+	<?php print apply_filters( 'taxonomy-images-queried-term-image', array(
+		'size'   => 'post-thumbnail',
+		'before' => '<div id="featured-image">',
+		'after'  => '</div>',
+		) ); ?>
 	<h1><?php single_tag_title(); ?></h1>
 	<div id="summary"><?php print tag_description(); ?></div>
 	<div id="intro-meta">
