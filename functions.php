@@ -66,7 +66,7 @@ function _nighthawk_setup() {
 	load_theme_textdomain( 'nighthawk', get_template_directory() . '/languages' );
 
 	add_theme_support( 'menus' );
-	add_theme_support( 'post-formats', array( 'aside', 'chat', 'gallery', 'link', 'status', 'quote', 'video' ) );
+	add_theme_support( 'post-formats', array( 'aside', 'audio', 'chat', 'gallery', 'image', 'link', 'status', 'quote', 'video' ) );
 	add_theme_support( 'post-thumbnails' );
 	add_theme_support( 'automatic-feed-links' );
 	add_custom_background();
