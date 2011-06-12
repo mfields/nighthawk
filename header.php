@@ -36,6 +36,8 @@
 
 <body <?php body_class(); ?>>
 
+<?php do_action( 'nighthawk_start' ); ?>
+
 <div id="wrap">
 
 	<div id="page" class="contain" role="document">

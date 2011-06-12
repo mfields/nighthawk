@@ -1026,7 +1026,6 @@ img.forced-dimensions {}
 	body {
 		font-size:14px;
 	}
-	#featured-image,
 	#featured-image img,
 	.entry-content img.larger-than-860 {
 		width:100px;
@@ -1060,6 +1059,9 @@ img.forced-dimensions {}
 	#wrap {
 		margin:1em 0;
 		padding:0;
+	}
+	#featured-image {
+		display:none;
 	}
 }
 
