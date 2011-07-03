@@ -631,13 +631,13 @@ h2.entry-title {
 .format-status {
 	z-index:1;
 	margin-left:85px;
-	padding:0;
+	padding:.5em;
 	border:1px solid #ccc;
 	overflow:visible;
 	border-radius:.5em;
+	background:#fff url( images/status-tile.png ) top right repeat-y;
 	-webkit-background-clip:padding-box;
 	background-clip:padding-box;
-	background-color:#eef3fa;
 }
 .format-status a.entry-title {
 	font-weight:bold;
@@ -661,13 +661,18 @@ h2.entry-title {
 	left:-85px;
 	width:70px;
 	height:70px;
+	border:1px solid #ccc;
+	border-right-width:0;
+	-webkit-border-radius:.5em;
+	-moz-border-radius:   .5em
+	border-radius:        .5em;
+	overflow:hidden;
 }
 .format-status .image img {
 	width:100%;
 	height:100%;
-	border:1px solid #ccc;
 	-webkit-border-radius:.5em;
-	-moz-border-radius:   .5em;
+	-moz-border-radius:   .5em
 	border-radius:        .5em;
 }
 .format-status .comment-icon {
