@@ -23,7 +23,7 @@ body {
 	color:#555;
 	background:#eee url( images/diagonal-stripes.png ) fixed;
 	font-family:Trebuchet,arial,sans-serif;
-	font-size:20px;
+	font-size:14px;
 }
 input, textarea {
 	font-size:1em;
@@ -193,7 +193,7 @@ table {
 	border:.1em solid #555;
 }
 th, td {
-	text-align:left;
+	/*text-align:left;*/
 	padding:.25em .5em;
 }
 th{
@@ -361,7 +361,7 @@ div.box .content p:only-child {
 
 /* Template */
 #wrap {
-	max-width:50em;
+	max-width:56em;
 	margin:0 auto;
 	padding:0 1em 1em;
 }
@@ -943,7 +943,6 @@ small,
 
 /* Shadow offset. */
 blockquote,
-fieldset,
 pre,
 .chat-log,
 .format-status,
@@ -1001,40 +1000,6 @@ img.forced-dimensions {}
 	.gallery-columns-7 .gallery-item img,
 	.gallery-columns-8 .gallery-item img,
 	.gallery-columns-9 .gallery-item img { width:100%; }
-}
-
-
-@media all and ( min-width:1100px ) {
-	.format-status {
-		margin-left:120px;
-	}
-	.format-status .content {
-		padding:7px 10px;
-		min-height:84px;
-	}
-	.format-status .image {
-		width:100px;
-		height:100px;
-		left:-120px;
-	}
-	.gallery-columns-4 .gallery-item img.attachment-thumbnail,
-	.gallery-columns-5 .gallery-item img.attachment-thumbnail { width:150px; }
-}
-
-
-@media all and ( max-width:1100px ) {
-	body {
-		font-size:14px;
-	}
-	#featured-image img,
-	.entry-content img.larger-than-860 {
-		width:100px;
-		height:auto;
-	}
-	.comment-list .image {
-		width:75px;
-		height:75px;
-	}
 }
 
 
@@ -1191,4 +1156,53 @@ img.forced-dimensions {}
 		width:150px;
 		height:150px;
 	}
+}
+
+.post-archive {
+	width:100%;
+	border-width:0;
+}
+.post-archive thead {
+	display:none;
+}
+.post-archive td {
+	border-width:1px 0;
+	border-color:#ccc;
+	/*text-align:center;*/
+}
+.post-archive td:first-child {
+	text-align:left;
+}
+.post-archive td:last-child {
+	padding-top:10px;
+	vertical-align:middle;
+}
+.post-archive tr:first-child td {
+	border-top-width:0;
+}
+.post-archive tr:last-child td {
+	border-bottom-width:0;
+}
+.post-archive .comment-respond {
+	width:20px;
+}
+.post-archive .comment-count {
+	text-align:center;
+}
+
+.github-commits {
+	border-color:#ddd;
+}
+.github-commits .time {
+	width:170px;
+}
+.github-commits td {
+	border-color:#ddd;
+}
+.github-commits thead th {
+	border-color:#ddd;
+	background-color:#eef3fa;
+	color:#666;
+	text-align:left;
+	font-weight:normal;
 }

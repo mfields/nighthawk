@@ -362,6 +362,15 @@ function nighthawk_summary_meta( $before = '', $after = '', $print = true ) {
 	}
 }
 
+function nighthawk_found_posts() {
+	global $wp_query;
+	$total = 0;
+	if ( isset( $wp_query->found_posts ) ) {
+		$total = $wp_query->found_posts;
+	}
+	return (int) $total;
+}
+
 /**
  * Continue Reading Link.
  *
@@ -941,6 +950,16 @@ function _nighthawk_calendar_widget_title( $title = '', $instance = '', $id_base
  */
 function _nighthawk_widgets_init() {
 
+	register_sidebar( array(
+		'name'          => __( 'Dropdowns', 'nighthawk' ),
+		'id'            => 'dropdowns',
+		'description'   => __( 'Dropdowns that appear at the top of the page on all views.', 'nighthawk' ),
+		'before_widget' => '<div id="%1$s" class="widget %2$s">',
+		'after_widget'  => '</div></div>',
+		'before_title'  => '<h3 class="trigger">',
+		'after_title'   => '</h3><div class="dropdown">',
+	) );
+
 	/* Area 1 - Left column below content. */
 	register_sidebar( array(
 		'name'          => __( 'Bottom 1', 'nighthawk' ),
@@ -1275,7 +1294,7 @@ function _nighthawk_comment_start( $comment, $args, $depth ) {
 			print esc_html__( 'Your comment is awaiting moderation.', 'nighthawk' );
 		}
 		else {
-			print "\n" . get_avatar( $comment, 150 );
+			print "\n" . get_avatar( $comment, 45 );
 			print "\n" . '<span class="heading commenter">' . get_comment_author_link( $comment->comment_ID ) . '</span>';
 			print "\n" . '<span class="meta">';
 

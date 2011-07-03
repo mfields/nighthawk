@@ -29,14 +29,14 @@ get_header( $taxonomy );
 				$url = get_post_type_archive_link( $post_type->name );
 			}
 		}
-		
+
 		if ( ! empty( $url ) ) {
 			print '<a href="' . esc_url( $url ) . '">' . esc_html( $title ) . '</a>';
 		}
 		else {
 			print esc_html( $title );
 		}
-		
+
 	?></h1>
 	<?php nighthawk_summary_meta( '<div id="intro-meta">', '</div>' ) ?>
 </div>

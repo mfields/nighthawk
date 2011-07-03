@@ -43,7 +43,14 @@
 			print '</div><!--meta-->';
 			break;
 		case 'status' :
-			print '<a href="' . esc_url( get_permalink() ) . '" class="image">' . get_avatar( get_the_author_meta( 'user_email' ), $size = '100' ) . '</a>';
+			$avatar = get_avatar( get_the_author_meta( 'user_email' ), $size = '100' );
+			if ( ! is_single() ) {
+				$avatar = '<a href="' . esc_url( get_permalink() ) . '" class="image">' . $avatar . '</a>';
+			}
+			else {
+				$avatar = '<span class="image">' . $avatar . '</span>';
+			}
+			print $avatar;
 			print "\n" . '<div class="content">';
 			the_content();
 			print "\n" . '</div><!--content-->';

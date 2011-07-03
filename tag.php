@@ -20,7 +20,7 @@ get_header( 'tag' );
 ?>
 
 <div id="intro">
-	<?php print apply_filters( 'taxonomy-images-queried-term-image', array(
+	<?php print apply_filters( 'taxonomy-images-queried-term-image', '', array(
 		'size'   => 'post-thumbnail',
 		'before' => '<div id="featured-image">',
 		'after'  => '</div>',
@@ -36,12 +36,8 @@ get_header( 'tag' );
 <div id="content" class="contain">
 
 <?php
-if ( have_posts() ) {
-	while ( have_posts() ) {
-		the_post();
-		get_template_part( 'entry', get_post_type() );
-	}
-}
+	query_posts( wp_parse_args( $query_string, array( 'posts_per_page' => 30 ) ) );
+	get_template_part( 'loop-post-table', 'date' )
 ?>
 
 </div><!--content-->

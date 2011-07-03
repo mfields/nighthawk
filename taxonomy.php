@@ -19,8 +19,11 @@ get_header( $taxonomy );
 
 ?>
 
+
+
+
 <div id="intro">
-	<?php print apply_filters( 'taxonomy-images-queried-term-image', array(
+	<?php print apply_filters( 'taxonomy-images-queried-term-image', '', array(
 		'size'   => 'post-thumbnail',
 		'before' => '<div id="featured-image">',
 		'after'  => '</div>',
@@ -33,12 +36,8 @@ get_header( $taxonomy );
 <div id="content" class="contain">
 
 <?php
-if ( have_posts() ) {
-	while ( have_posts() ) {
-		the_post();
-		get_template_part( 'entry', get_post_type() );
-	}
-}
+	query_posts( wp_parse_args( $query_string, array( 'posts_per_page' => 30 ) ) );
+	get_template_part( 'loop-post-table', 'date' )
 ?>
 
 </div><!--content-->
@@ -46,3 +45,9 @@ if ( have_posts() ) {
 <div id="page-footer"><?php do_action( 'nighthawk_paged_navigation' ); ?></div>
 
 <?php get_footer( $taxonomy ); ?>
+
+
+
+
+
+<?php
