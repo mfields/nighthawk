@@ -951,13 +951,13 @@ function _nighthawk_calendar_widget_title( $title = '', $instance = '', $id_base
 function _nighthawk_widgets_init() {
 
 	register_sidebar( array(
-		'name'          => __( 'Dropdowns', 'nighthawk' ),
+		'name'          => 'Dropdowns',
 		'id'            => 'dropdowns',
-		'description'   => __( 'Dropdowns that appear at the top of the page on all views.', 'nighthawk' ),
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</div></div>',
-		'before_title'  => '<h3 class="trigger">',
-		'after_title'   => '</h3><div class="dropdown">',
+		'description'   => 'Dropdowns that appear at the top of the page on all views.',
+		'before_widget' => '<div id="%1$s" class="dropdown widget %2$s">',
+		'after_widget'  => '</div>',
+		'before_title'  => '<h3 class="widget-title">',
+		'after_title'   => '</h3>',
 	) );
 
 	/* Area 1 - Left column below content. */
@@ -1832,3 +1832,17 @@ function _nighthawk_post_format_chat( $content ) {
 
 	return $content;
 }
+
+function _nighthawk_widget_dropdowns_scripts() {
+	if ( is_admin() ) {
+		return;
+	}
+	wp_enqueue_script(
+		'dropdown-widgets',
+		get_template_directory_uri() . '/dropdowns.js',
+		array( 'jquery' ),
+		'0.1',
+		true
+	);
+}
+add_action( 'wp_print_scripts', '_nighthawk_widget_dropdowns_scripts' );

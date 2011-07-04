@@ -18,7 +18,7 @@ html {
 body {
 	position:relative;
 	z-index:0;
-	margin:2em 0;
+	margin:0 0 2em;
 	padding:0;
 	color:#555;
 	background:#eee url( images/diagonal-stripes.png ) fixed;
@@ -411,7 +411,7 @@ div.box .content p:only-child {
 	padding:1em .75em;
 	line-height:1.5em;
 }
-#menu li a {
+#menu-top li a {
 	padding:2em 0;
 }
 #menu-top .dialog {
@@ -664,7 +664,7 @@ h2.entry-title {
 	border:1px solid #ccc;
 	border-right-width:0;
 	-webkit-border-radius:.5em;
-	-moz-border-radius:   .5em
+	-moz-border-radius:   .5em;
 	border-radius:        .5em;
 	overflow:hidden;
 }
@@ -672,7 +672,7 @@ h2.entry-title {
 	width:100%;
 	height:100%;
 	-webkit-border-radius:.5em;
-	-moz-border-radius:   .5em
+	-moz-border-radius:   .5em;
 	border-radius:        .5em;
 }
 .format-status .comment-icon {
@@ -1027,7 +1027,7 @@ img.forced-dimensions {}
 		height:14em;
 	}
 	#wrap {
-		margin:1em 0;
+		margin:0;
 		padding:0;
 	}
 	#featured-image {
@@ -1211,3 +1211,120 @@ img.forced-dimensions {}
 	text-align:left;
 	font-weight:normal;
 }
+
+/* Start Dropdown Widgets */
+
+#menu {
+	font-family: Helvetica, Arial, sans-serif;
+	font-weight:normal;
+	position:relative;
+	z-index:10;
+	margin:0 0 1em;
+	padding:0;
+	width:100%;
+	float:left;
+	border:1px solid #222;
+	border-top-width:0;
+
+	-webkit-border-bottom-left-radius:  8px;
+	-webkit-border-bottom-right-radius: 8px;
+	-moz-border-radius-bottomright:     8px;
+	-moz-border-radius-bottomleft:      8px;
+	border-bottom-left-radius:          8px;
+	border-bottom-right-radius:         8px;
+}
+#dropdowns ul,
+#dropdowns ol {
+	list-style-position:inside;
+	padding:0 0 0 .5em;
+	margin:0;
+}
+#triggers {
+	position:relative;
+	z-index:2;
+	float:left;
+	width:100%;
+	margin:0;
+	padding:8px 0 0;
+	border-top-color:#474747;
+	border-top-style:solid;
+	border-width:1px;
+	border-radius:5px;
+	font-size:14px;
+	line-height:1;
+}
+#triggers li {
+	float:left;
+	margin:0 0 8px 8px;
+	padding:0;
+	list-style-type:none;
+	border-radius:5px;
+	border: 1px solid #202020;
+}
+#triggers a {
+	float:left;
+	padding:5px 7px 3px;
+	color:#bbb;
+	line-height:1;
+	text-decoration:none;
+	border-top:1px solid #666;
+	border-bottom:1px solid #303030;
+	border-radius:5px;
+	-webkit-transition:-webkit-box-shadow 0.1s linear;
+	-moz-transition:box-shadow 0.2s;
+}
+#triggers a:hover,
+#triggers a:focus {
+	outline:none;
+	color:#ddd;
+	border-top-color:#777;
+}
+#triggers a.active {
+	background:#333;
+	background:-moz-linear-gradient( top, #333 1%, #555 100% );
+	background:-webkit-gradient( linear, left top, left bottom, color-stop( 1%, #333 ), color-stop( 100%, #555 ) );
+	background:-webkit-linear-gradient( top, #333 1%, #555 100% );
+	background:-o-linear-gradient( top, #333 1%, #555 100% );
+	background:-ms-linear-gradient( top, #333 1%, #555 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='#333', endColorstr='#555', GradientType=0 );
+	background:linear-gradient( top, #333 1%, #555 100% );
+}
+#dropdowns {
+	position:relative;
+	z-index:1;
+	clear:both;
+	font-size:14px;
+	color:#555;
+}
+#dropdowns a {
+	color:#555;
+}
+#dropdowns .widget {
+	position:absolute;
+	z-index:1;
+	background-color:#fff;
+	padding:10px;
+	border:1px solid #999;
+	border-top-width:0;
+
+	-webkit-border-bottom-left-radius:  5px;
+	-webkit-border-bottom-right-radius: 5px;
+	-moz-border-radius-bottomright:     5px;
+	-moz-border-radius-bottomleft:      5px;
+	border-bottom-left-radius:          5px;
+	border-bottom-right-radius:         5px;
+}
+#menu,
+#triggers li {
+	background: #555;
+	background: -moz-linear-gradient( top, #555 1%, #333 100% );
+	background: -webkit-gradient( linear, left top, left bottom, color-stop( 1%, #555 ), color-stop( 100%, #333 ) );
+	background: -webkit-linear-gradient( top, #555 1%, #333 100% );
+	background: -o-linear-gradient( top, #555 1%, #333 100% );
+	background: -ms-linear-gradient( top, #555 1%, #333 100% );
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#555', endColorstr='#333', GradientType=0 );
+	background: linear-gradient( top, #555 1%, #333 100% );
+}
+
+
+/* End Dropdown Widgets */
