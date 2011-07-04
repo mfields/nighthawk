@@ -37,7 +37,7 @@ get_header( 'tag' );
 
 <?php
 	query_posts( wp_parse_args( $query_string, array( 'posts_per_page' => 30 ) ) );
-	get_template_part( 'loop-post-table', 'date' )
+	get_template_part( 'loop-post-table', 'tag' )
 ?>
 
 </div><!--content-->
