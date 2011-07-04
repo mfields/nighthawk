@@ -25,9 +25,9 @@ if ( have_posts() ) {
 	
 	print '<thead>';
 	print '<tr>';
-	print '<th scope="col">Post Title</th>';
-	print '<th scope="col">Comment Count</th>';
-	print '<th scope="col">Comment Link</th>';
+	print '<th scope="col">' . __( 'Post Title', 'nighthawk' ) . '</th>';
+	print '<th scope="col">' . __( 'Comment Count', 'nighthawk' ) . '</th>';
+	print '<th scope="col">' . __( 'Comment Link', 'nighthawk' ) . '</th>';
 	print '</tr>';
 	print '</thead>';
 	
@@ -35,7 +35,6 @@ if ( have_posts() ) {
 	while ( have_posts() ) {
 		the_post();
 		print '<tr>';
-		
 
 		$title = the_title( '', '', false );
 		if ( empty( $title ) ) {
@@ -45,7 +44,7 @@ if ( have_posts() ) {
 		print '<td><a href="' . esc_url( get_permalink() ) . '">' . $title . '</a></td>';
 
 		print '<td>';
-		comments_popup_link( '%', '%', '%', 'comments-link', '%' );
+		comments_popup_link( '0', '1', '%', 'comments-link', '%' );
 		print '</td>';
 
 		print '<td><a href="' . esc_url( get_permalink() . '#respond' ) . '" class="comment-icon" title="' . esc_attr__( 'Add a comment', 'nighthawk' ) . '"><img src="' . get_template_directory_uri() . '/images/comment.png" alt="" /></a></td>';
