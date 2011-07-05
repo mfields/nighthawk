@@ -1306,6 +1306,7 @@ img.forced-dimensions {}
 	padding:10px;
 	border:1px solid #999;
 	border-top-width:0;
+	max-width:740px;
 
 	-webkit-border-bottom-left-radius:  5px;
 	-webkit-border-bottom-right-radius: 5px;
@@ -1314,6 +1315,18 @@ img.forced-dimensions {}
 	border-bottom-left-radius:          5px;
 	border-bottom-right-radius:         5px;
 }
+#dropdowns .widget p:first-child,
+#dropdowns .widget p:only-child {
+	margin-top:0;
+}
+#dropdowns .widget p:last-child,
+#dropdowns .widget p:only-child {
+	margin-bottom:0;
+}
+#dropdowns .widget_gravatar {
+	max-width:400px;
+}
+
 #menu,
 #triggers li {
 	background: #555;
@@ -1324,6 +1337,12 @@ img.forced-dimensions {}
 	background: -ms-linear-gradient( top, #555 1%, #333 100% );
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#555', endColorstr='#333', GradientType=0 );
 	background: linear-gradient( top, #555 1%, #333 100% );
+}
+
+#dropdowns form.bullet {
+	margin: 0;
+	width:300px;
+	border-color:#999;
 }
 
 
