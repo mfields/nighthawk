@@ -70,7 +70,6 @@
 			wp_link_pages( array( 'before' => '<div class="page-link">' . __( 'Pages:', 'nighthawk' ), 'after' => '</div>' ) );
 
 			print '<div class="' . esc_attr( nighthawk_entry_meta_classes() ) . '">';
-			nighthawk_entry_meta_date();
 			nighthawk_entry_meta_taxonomy();
 			print '</div><!--meta-->';
 			break;
