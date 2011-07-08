@@ -52,7 +52,28 @@ if ( have_posts() ) {
 
 <div id="content" class="contain">
 
-<?php get_template_part( 'entry', get_post_type() ); ?>
+<?php
+
+	do_action( 'nighthawk_entry_start' );
+
+	/* Content. */
+	if ( post_type_supports( $nighthawk_post_type, 'editor' ) ) {
+		print "\n" . '<div class="entry-content">';
+		the_content( __( 'Continue Reading', 'nighthawk' ) );
+		print "\n" . '</div><!--entry-content-->';
+		wp_link_pages( array( 'before' => '<div class="page-link">' . __( 'Pages:', 'nighthawk' ), 'after' => '</div>' ) );
+	}
+
+	/* Excerpt - Attempt to display excerpt only if the post_type does not support content. */
+	else if ( post_type_supports( $nighthawk_post_type, 'excerpt' ) ) {
+		print "\n" . '<div class="entry-content">';
+		the_excerpt();
+		print "\n" . '</div><!--entry-content-->';
+	}
+
+	do_action( 'nighthawk_entry_end' );
+
+?>
 
 <?php
 	}
