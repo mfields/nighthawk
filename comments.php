@@ -37,6 +37,15 @@ if ( ! have_comments() && ! comments_open() ) {
 	return;
 }
 
+/*
+ * Return early if ...
+ * post_type does not support comments.
+ */
+$post_type = get_post_type();
+if ( ! post_type_supports( $post_type, 'comments' ) ) {
+	return;
+}
+
 if ( have_comments() ) {
 	
 	/* Comment heading. */
