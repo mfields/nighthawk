@@ -294,6 +294,7 @@ function nighthawk_summary_meta( $before = '', $after = '', $print = true ) {
 
 	$sentence = '';
 	$feed_url = '';
+
 	if ( is_home() || is_post_type_archive() ) {
 		global $posts;
 		$post_type = $wp_query->get_queried_object();
@@ -303,7 +304,7 @@ function nighthawk_summary_meta( $before = '', $after = '', $print = true ) {
 		if ( isset( $post_type->name ) && isset( $post_type->label ) && isset( $post_type->labels->singular_name ) ) {
 			$feed_url   = get_post_type_archive_feed_link( $post_type->name );
 			$feed_title = sprintf( __( 'Get updated whenever new %1$s are published.', 'nighthawk' ), $post_type->label );
-			$sentence   = sprintf( _n( 'Only one %2$s found in this archive.', 'There are %1$s %2$s in this archive.', $total, 'nighthawk' ), number_format_i18n( $total ), nighthawk_post_label_plural(), nighthawk_post_label_singular() );
+			$sentence   = sprintf( _n( 'Only one %3$s found in this archive.', 'There are %1$s %2$s in this archive.', $total, 'nighthawk' ), number_format_i18n( $total ), nighthawk_post_label_plural(), nighthawk_post_label_singular() );
 			$sentence   = apply_filters( 'nighthawk_summary_meta_post_type_archive', $sentence, $post_type );
 			$sentence   = apply_filters( "nighthawk_summary_meta_{$post_type->name}_archive", $sentence, $post_type );
 		}
