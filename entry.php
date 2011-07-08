@@ -2,7 +2,7 @@
 /**
  * Default Entry Template.
  *
- * Displays a single entry from the posts table.
+ * Displays a single post.
  * This file will attempt to display as much info
  * as possible for the post_type.
  *
