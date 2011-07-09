@@ -59,7 +59,7 @@ if ( have_posts() ) {
 	/* Content. */
 	if ( post_type_supports( $nighthawk_post_type, 'editor' ) ) {
 		print "\n" . '<div class="entry-content">';
-		the_content( __( 'Continue Reading', 'nighthawk' ) );
+		the_content();
 		print "\n" . '</div><!--entry-content-->';
 		wp_link_pages( array( 'before' => '<div class="page-link">' . __( 'Pages:', 'nighthawk' ), 'after' => '</div>' ) );
 	}
