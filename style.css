@@ -533,6 +533,16 @@ h2.entry-title {
 	max-width:860px;
 	height:auto;
 }
+.entry .footer {
+	border-top:1px dotted #ccc;
+	margin-top:2.5em;
+	padding-top:1em;
+	font-size:.9em;
+	text-align:center;
+}
+.entry .footer a {
+	color:#999;
+}
 .entry pre {
 	padding:5%;
 	width:90%;
