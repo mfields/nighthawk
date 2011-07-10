@@ -23,7 +23,7 @@
 
 	/* Title. */
 	if ( post_type_supports( $nighthawk_post_type, 'title' ) ) {
-		the_title( "\n" . '<h2 class="entry-title">', '</h2>' );
+		the_title( "\n" . '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '">', '</a></h2>' );
 	}
 
 	/* Content. */
