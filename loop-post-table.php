@@ -34,6 +34,8 @@ if ( have_posts() ) {
 	print '<tbody>';
 	while ( have_posts() ) {
 		the_post();
+		$post_type = get_post_type();
+
 		print '<tr>';
 
 		$title = the_title( '', '', false );
@@ -44,10 +46,16 @@ if ( have_posts() ) {
 		print '<td><a href="' . esc_url( get_permalink() ) . '">' . $title . '</a></td>';
 
 		print '<td>';
-		comments_popup_link( '0', '1', '%', 'comments-link', '%' );
+		if ( post_type_supports( $post_type, 'comments' ) ) {
+			comments_popup_link( '0', '1', '%', 'comments-link', '%' );
+		}
 		print '</td>';
 
-		print '<td><a href="' . esc_url( get_permalink() . '#respond' ) . '" class="comment-icon" title="' . esc_attr__( 'Add a comment', 'nighthawk' ) . '"><img src="' . get_template_directory_uri() . '/images/comment.png" alt="" /></a></td>';
+		print '<td>';
+		if ( post_type_supports( $post_type, 'comments' ) ) {
+			print '<a href="' . esc_url( get_permalink() . '#respond' ) . '" class="comment-icon" title="' . esc_attr__( 'Add a comment', 'nighthawk' ) . '"><img src="' . get_template_directory_uri() . '/images/comment.png" alt="" /></a>';
+		}
+		print '</td>';
 
 		print '</tr>';
 	}
