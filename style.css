@@ -304,21 +304,21 @@ div.box .heading {
 	font-size:1.5em;
 	color:#567797;
 }
-div.box .meta {
+.box .meta {
 	display:block;
 	margin-bottom:1em;
 	font-size:.85em;
 	line-height:1.25;
 }
-div.box .content p {
+.box .content p {
 	margin:0 0 .75em;
 }
-div.box .content p:first-child,
-div.box .content p:only-child {
+.box .content p:first-child,
+.box .content p:only-child {
 	margin-top:0;
 }
-div.box .content p:last-child,
-div.box .content p:only-child {
+.box .content p:last-child,
+.box .content p:only-child {
 	margin-bottom:0;
 }
 
