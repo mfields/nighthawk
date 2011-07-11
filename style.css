@@ -290,13 +290,13 @@ form.bullet.subscribe-without-commenting input.bullet-button {
 }
 
 
-div.box {
+.box {
 	position:relative;
 	margin-top:1.5em;
 	margin-bottom:1.5em;
 	margin-right:.5em;
 }
-div.box .heading {
+.box .heading {
 	display:block;
 	margin:0 0 .5em;
 	line-height:1.25;
@@ -620,6 +620,7 @@ h2.entry-title {
 }
 
 /* Link posts. */
+.trackback,
 .format-link {
 	border:.1em solid #ccc;
 	-webkit-border-radius:.5em;
@@ -627,6 +628,7 @@ h2.entry-title {
 	border-radius:        .5em;
 	background:#eef3fa url( images/icons.png ) -90px -35px no-repeat;
 }
+.trackback .content,
 .format-link .content {
 	margin-left:28px;
 	padding:.25em .5em;
@@ -746,24 +748,6 @@ h2.entry-title {
 }
 .comment-date {
 	color:#888;
-}
-
-
-/* Trackbacks. */
-.trackback {
-	padding:.75em 1.5em;
-	border:.1em solid #e2dcd2;
-	color:#b6b5ad;
-	background-color:#fffef2;
-	margin:.5em 0;
-}
-.trackback a {
-	color:#b6b5ad;
-}
-.trackback a:focus,
-.trackback a:hover,
-.trackback a:active {
-	color:#7c7c76;
 }
 
 

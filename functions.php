@@ -1321,11 +1321,13 @@ function _nighthawk_comment_start( $comment, $args, $depth ) {
 		}
 	}
 	else {
-		print '<li class="trackback">';
-		comment_author_link();
-		if ( current_user_can( 'edit_comment', $comment->comment_ID ) ) {
-			print "\n" . '<span class="comment-edit"> <a href="' . esc_url( get_edit_comment_link( $comment->comment_ID ) ) . '">' . esc_html__( 'Edit', 'nighthawk' ) . '</a></span>';
-		}
+		print '<li class="trackback box">';
+		print '<div class="content">';
+			comment_author_link();
+			if ( current_user_can( 'edit_comment', $comment->comment_ID ) ) {
+				print "\n" . '<span class="comment-edit"> <a href="' . esc_url( get_edit_comment_link( $comment->comment_ID ) ) . '">' . esc_html__( 'Edit', 'nighthawk' ) . '</a></span>';
+			}
+		print '</div>';
 	}
 }
 
