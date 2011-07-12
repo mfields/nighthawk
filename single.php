@@ -39,7 +39,7 @@ if ( have_posts() ) {
 	/* Date Information. */
 	if ( apply_filters( 'nighthawk-show-date-for-single-' . $nighthawk_post_type, true ) ) {
 		print "\n" . '<div id="dateline">';
-		printf( __( 'Posted on %1$s', 'nighthawk' ), '<time class="date" pubdate="pubdate" datetime="' . esc_attr( get_post_time( 'Y-m-d\TH:i:s\Z', true ) ) . '">' . esc_html( get_the_time( sprintf( __( '%1$s \a\t %2$s', 'nighthawk' ), get_option( 'date_format' ), get_option( 'time_format' ) ) ) ) . '</time>' );
+		printf( __( 'Posted on %1$s', 'nighthawk' ), '<time class="date" pubdate="pubdate" datetime="' . esc_attr( get_post_time( 'Y-m-d\TH:i:s\Z', true ) ) . '">' . esc_html( get_post_time( get_option( 'date_format' ) ) ) . '</time>' );
 		print "\n" .'</div>';
 	}
 
