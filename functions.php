@@ -1666,3 +1666,49 @@ function nighthawk_post_labels_init() {
 	Mfields_Post_Label::init( 'nighthawk' );
 	#add_action( 'shutdown', array( 'Mfields_Post_Label', 'dump' ) );
 }
+
+Nighthawk::init();
+
+class Nighthawk {
+	static private $query = null;
+	static private $theme = null;
+	static public function init() {
+		add_action( 'template_redirect', array( __class__, 'setup' ) );
+	}
+	static public function total() {
+		return (int) self::$query->total;
+	}
+	static public function columns() {
+		return (array) self::$theme->columns;
+	}
+	static public function set_columns( $columns = null ) {
+		self::$theme->columns = $columns;
+	}
+	static public function setup() {
+		self::$query = new stdClass();
+
+		global $wp_query;
+		$total = 0;
+		if ( isset( $wp_query->found_posts ) ) {
+			self::$query->total = $wp_query->found_posts;
+		}
+
+		self::$theme->columns = array(
+			array(
+				'label'    => __( 'Post Title', 'nighthawk' ),
+				'class'    => 'post-title',
+				'callback' => 'nighthawk_td_title',
+			),
+			array(
+				'label'    => __( 'Source', 'nighthawk' ),
+				'class'    => 'bookmark-source',
+				'callback' => 'nighthawk_td_bookmark_source',
+			),
+			array(
+				'label'    => __( 'Comment Link', 'nighthawk' ),
+				'class'    => 'comment-respond',
+				'callback' => 'nighthawk_td_comment_icon',
+			),
+		);
+	}
+}
