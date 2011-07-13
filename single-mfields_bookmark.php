@@ -52,7 +52,7 @@ if ( have_posts() ) {
 	the_content();
 	print "\n" . '</div><!--entry-content-->';
 	
-	print '<div class="footer"><a href="' . esc_url( get_post_type_archive_link( $nighthawk_post_type ) ) . '">View all bookmarks</a></div>';
+	print '<div class="footer"><a href="' . esc_url( get_post_type_archive_link( $nighthawk_post_type ) ) . '">' . __( 'View all bookmarks', 'nighthawk' ) . '</a></div>';
 	
 	do_action( 'nighthawk_entry_end' );
 
