@@ -1770,6 +1770,11 @@ function nighthawk_td_comment_icon( $column = array() ) {
 		return;
 	}
 
+	if ( ! comments_open( get_the_ID() ) ) {
+		nighthawk_td_permalink_icon( $column );
+		return;
+	}
+
 	print "\n\t" . '<td class="' . esc_attr( $column['class'] ) . '"><a href="' . esc_url( get_permalink() . '#respond' ) . '" class="comment-icon" title="' . esc_attr__( 'Add a comment', 'nighthawk' ) . '"><img src="' . esc_url( get_template_directory_uri() ) . '/images/comment.png" alt="" /></a></td>';
 }
 
