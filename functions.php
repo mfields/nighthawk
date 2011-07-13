@@ -64,6 +64,7 @@ function _nighthawk_setup() {
 	}
 
 	load_theme_textdomain( 'nighthawk', get_template_directory() . '/languages' );
+	add_action( 'template_redirect', 'nighthawk_post_labels_init' );
 
 	add_theme_support( 'menus' );
 	add_theme_support( 'post-formats', array( 'aside', 'audio', 'chat', 'gallery', 'image', 'link', 'status', 'quote', 'video' ) );
@@ -614,7 +615,8 @@ function nighthawk_featured_image( $before = '', $after = '', $print = true ) {
  * @since     1.0
  */
 function nighthawk_post_label_singular( $default = '' ) {
-	$labels = _nighthawk_label();
+	#$labels = _nighthawk_label();
+	$labels = Mfields_Post_Label::get_label();
 	if ( isset( $labels[0] ) ) {
 		return $labels[0];
 	}
@@ -641,7 +643,8 @@ function nighthawk_post_label_singular( $default = '' ) {
  * @since     1.0
  */
 function nighthawk_post_label_plural( $default = '' ) {
-	$labels = _nighthawk_label();
+	#$labels = _nighthawk_label();
+	$labels = Mfields_Post_Label::get_label();
 	if ( isset( $labels[1] ) ) {
 		return $labels[1];
 	}
@@ -1849,3 +1852,9 @@ function _nighthawk_widget_dropdowns_scripts() {
 	);
 }
 add_action( 'wp_print_scripts', '_nighthawk_widget_dropdowns_scripts' );
+
+function nighthawk_post_labels_init() {
+	require_once 'mfields-post-label.php';
+	Mfields_Post_Label::init( 'nighthawk' );
+	#add_action( 'shutdown', array( 'Mfields_Post_Label', 'dump' ) );
+}
