@@ -1234,7 +1234,6 @@ img.forced-dimensions {}
 .post-archive td {
 	border-width:1px 0;
 	border-color:#ccc;
-	/*text-align:center;*/
 }
 .post-archive td:first-child {
 	text-align:left;
@@ -1249,11 +1248,11 @@ img.forced-dimensions {}
 .post-archive tr:last-child td {
 	border-bottom-width:0;
 }
-.post-archive .comment-respond {
-	width:20px;
-}
 .post-archive .comment-count {
 	text-align:center;
+}
+.post-archive .icon {
+	width:20px;
 }
 
 .github-commits {

@@ -1679,6 +1679,14 @@ class Nighthawk {
 		return (int) self::$query->total;
 	}
 	static public function columns() {
+		if ( current_user_can( 'edit_posts' ) ) {
+			$edit = array(
+				'label'    => __( 'Edit', 'nighthawk' ),
+				'class'    => 'edit-post icon',
+				'callback' => 'nighthawk_td_edit',
+			);
+			array_unshift( self::$theme->columns, $edit );
+		}
 		return (array) self::$theme->columns;
 	}
 	static public function set_columns( $columns = null ) {
@@ -1706,11 +1714,17 @@ class Nighthawk {
 			),
 			array(
 				'label'    => __( 'Comment Link', 'nighthawk' ),
-				'class'    => 'comment-respond',
+				'class'    => 'comment-respond icon',
 				'callback' => 'nighthawk_td_comment_icon',
 			),
 		);
 	}
+}
+
+function nighthawk_td_edit( $column = array() ) {
+	print "\n\t" . '<td class="' . esc_attr( $column['class'] ) . '">';
+	print '<a href="' . esc_url( get_edit_post_link() ) . '"><img src="' . esc_url( get_template_directory_uri() . '/images/edit.png' ) . '" alt="' . esc_attr__( 'Edit', 'nighthawk' ) . '"></a>';
+	print '</td>';
 }
 
 function nighthawk_td_comment_count( $column = array() ) {
