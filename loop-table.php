@@ -39,7 +39,7 @@ if ( have_posts() ) {
 	print "\n\n" . '<tbody>';
 	while ( have_posts() ) {
 		the_post();
-		print "\n" . '<tr>';
+		print "\n" . '<tr '; post_class(); print '>';
 		foreach ( $columns as $column ) {
 			call_user_func( $column['callback'], $column );
 		}
