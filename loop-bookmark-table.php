@@ -65,24 +65,7 @@ function nighthawk_td_bookmark_source( $column = array() ) {
 }
 
 if ( have_posts() ) {
-
-	$columns = array(
-		array(
-			'label'    => __( 'Post Title', 'nighthawk' ),
-			'class'    => 'post-title',
-			'callback' => 'nighthawk_td_title',
-		),
-		array(
-			'label'    => __( 'Source', 'nighthawk' ),
-			'class'    => 'bookmark-source',
-			'callback' => 'nighthawk_td_bookmark_source',
-		),
-		array(
-			'label'    => __( 'Comment Link', 'nighthawk' ),
-			'class'    => 'comment-respond',
-			'callback' => 'nighthawk_td_comment_icon',
-		),
-	);
+	$columns = Nighthawk::columns();
 
 	print "\n\n" . '<table class="post-archive">' . "\n";
 
