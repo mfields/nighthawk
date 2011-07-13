@@ -606,8 +606,6 @@ function nighthawk_featured_image( $before = '', $after = '', $print = true ) {
  * like the following: "This Status Update is filed under News."
  * where "Status Update" is the post label and "News" is the category.
  *
- * @see       _nighthawk_label() for full documentation.
- *
  * @param     Default value to return.
  * @return    string
  *
@@ -615,7 +613,6 @@ function nighthawk_featured_image( $before = '', $after = '', $print = true ) {
  * @since     1.0
  */
 function nighthawk_post_label_singular( $default = '' ) {
-	#$labels = _nighthawk_label();
 	$labels = Mfields_Post_Label::get_label();
 	if ( isset( $labels[0] ) ) {
 		return $labels[0];
@@ -634,8 +631,6 @@ function nighthawk_post_label_singular( $default = '' ) {
  * where "image" is the post label and "Taco Pictures" is the
  * title of the parent post.
  *
- * @see       _nighthawk_label() for full documentation.
- *
  * @param     Default value to return.
  * @return    string
  *
@@ -643,7 +638,6 @@ function nighthawk_post_label_singular( $default = '' ) {
  * @since     1.0
  */
 function nighthawk_post_label_plural( $default = '' ) {
-	#$labels = _nighthawk_label();
 	$labels = Mfields_Post_Label::get_label();
 	if ( isset( $labels[1] ) ) {
 		return $labels[1];
@@ -733,192 +727,6 @@ function nighthawk_subscribe_to_comments_manual_form( $before = '', $after = '',
 
 function _nighthawk_google_fonts() {
 	wp_enqueue_style( 'nighthawk-cabin', 'http://fonts.googleapis.com/css?family=Cabin:regular,regularitalic,bold,bolditalic', array(), NIGHTHAWK_VERSION );
-}
-
-/**
- * Post Label.
- *
- * Returns a noun representing the type or format of the global
- * post object. This function is used internally by the
- * nighthawk_entry_meta_taxonomy() function to create a sentence much
- * like the following: "This Status Update is filed under News."
- * where "Status Update" is the post label and "News" is the category.
- *
- * A "post label" can be one of three things:'
- * post format, custom post_type label or the mime type of an attachment.
- *
- * For "posts" having a post format, a string representing the format will be used.
- * If no format has been defined (assumung "standard" post format) This function
- * will use the term "post".
- *
- * For all other post_types, Nighthawk will use the values defined in
- * the post_type's "labels" array for singular and plural values.
- *
- * The output of this function may be extended by using the built-in filters:
- *
- * 'nighthawk_post_label_single' and 'nighthawk_post_label_plural'
- *
- * @return    array     Index "0" is the singular form while index "1" is the plural form.
- *
- * @access    private
- * @since     1.0
- */
-function _nighthawk_label() {
-
-	static $cache = array();
-
-	$cache_id = 0;
-
-	if ( is_tax( 'post_format' ) ) {
-		global $wp_query;
-		$term = get_term( $wp_query->get_queried_object(), 'post_format' );
-		if ( isset( $term->slug ) ) {
-			$cache_id = str_replace( 'post-format-', '', $term->slug );
-		}
-	}
-	else if ( is_post_type_archive() ) {
-		global $wp_query;
-		$obj = $wp_query->get_queried_object();
-		if ( isset( $obj->post_type ) ) {
-			$cache_id = $obj->post_type;
-		}
-	}
-	else {
-		$cache_id = get_the_ID();
-	}
-
-	if ( isset( $cache[$cache_id] ) ) {
-		return $cache[$cache_id];
-	}
-
-	$output = apply_filters( 'nighthawk_post_label_default', _nx_noop( 'entry', 'entries', 'post label' ) );
-
-	$post_type = get_post_type();
-
-	if ( 'post' == $post_type || is_tax( 'post_format' ) ) {
-		$output = _nighthawk_label_post();
-	}
-	else if ( 'page' == $post_type ) {
-		$output = apply_filters( 'nighthawk_post_label_page', _nx_noop( 'page', 'pages', 'post label' ) );
-	}
-	else if ( 'attachment' == $post_type ) {
-		$output = _nighthawk_label_attachment();
-	}
-	else {
-		$output = _nighthawk_label_custom_post_type( $post_type );
-	}
-
-	$cache[$cache_id] = $output;
-
-	return $cache[$cache_id];
-}
-
-/**
- * Label for posts.
- *
- * @access    private
- * @since     1.0
- */
-function _nighthawk_label_post( $post_format = null ) {
-
-	$output = apply_filters( 'nighthawk_post_label_default', _nx_noop( 'post', 'posts', 'post label' ) );
-
-	$post_format_strings = array(
-		''        => $output,
-		'aside'   => _nx_noop( 'aside',           'asides',           'post label' ),
-		'audio'   => _nx_noop( 'audio file',      'audio files',      'post label' ),
-		'chat'    => _nx_noop( 'chat transcript', 'chat transcripts', 'post label' ),
-		'gallery' => _nx_noop( 'gallery',         'galleries',        'post label' ),
-		'image'   => _nx_noop( 'image',           'images',           'post label' ),
-		'link'    => _nx_noop( 'link',            'links',            'post label' ),
-		'quote'   => _nx_noop( 'quote',           'quotes',           'post label' ),
-		'status'  => _nx_noop( 'status update',   'status updates',   'post label' ),
-		'video'   => _nx_noop( 'video',           'videos',           'post label' )
-		);
-
-	if ( empty( $post_format ) ) {
-		$post_format = get_post_format();
-	}
-
-	if ( isset( $post_format_strings[$post_format] ) ) {
-		$output = $post_format_strings[$post_format];
-	}
-
-	return apply_filters( 'nighthawk_post_label_archive_post_format', $output, $post_format );
-}
-
-/**
- * Label for attachments.
- *
- * @access    private
- * @since     1.0
- */
-function _nighthawk_label_attachment() {
-	$mime = 'file';
-	$mime_strings = array(
-		'file'        => _nx_noop( 'file',        'files',        'post label' ),
-		'image'       => _nx_noop( 'image',       'images',       'post label' ),
-		'icon'        => _nx_noop( 'icon',        'icons',        'post label' ),
-		'zip'         => _nx_noop( 'zip archive', 'zip archives', 'post label' ),
-		'doc'         => _nx_noop( 'document',    'documents',    'post label' ),
-		'pdf'         => _nx_noop( 'PDF',         'PDFs',         'post label' ),
-		'spreadsheet' => _nx_noop( 'spreadsheet', 'spreadsheets', 'post label' ),
-		'video'       => _nx_noop( 'video',       'videos',       'post label' ),
-		);
-
-	$post_mime_type = get_post_mime_type();
-
-	if ( in_array( $post_mime_type, array( 'image/jpeg', 'image/gif', 'image/png', 'image/bmp', 'image/tiff' ) ) ) {
-		$mime = 'image';
-	}
-	else if ( 'image/x-icon' == $post_mime_type ) {
-		$mime = 'icon';
-	}
-	else if ( 'application/zip' == $post_mime_type ) {
-		$mime = 'zip';
-	}
-	else if ( in_array( $post_mime_type, array( 'application/msword', 'application/vnd.oasis.opendocument.text' ) ) ) {
-		$mime = 'doc';
-	}
-	else if ( 'application/pdf' == $post_mime_type ) {
-		$mime = 'pdf';
-	}
-	else if ( in_array( $post_mime_type, array( 'application/vnd.ms-excel', 'application/vnd.oasis.opendocument.spreadsheet' ) ) ) {
-		$mime = 'spreadsheet';
-	}
-	else if ( in_array( $post_mime_type, array( 'video/asf', 'video/avi', 'video/divx', 'video/x-flv', 'video/quicktime', 'video/mpeg', 'video/mp4', 'video/ogg', 'video/x-matroska' ) ) ) {
-		$mime = 'video';
-	}
-
-	return apply_filters( 'nighthawk_post_label_attachment', $mime_strings[$mime], $post_mime_type );
-}
-
-/**
- * Label for custom post type objects.
- *
- * @access    private
- * @since     1.0
- */
-function _nighthawk_label_custom_post_type( $post_type = null ) {
-
-	$output = _nx_noop( 'entry', 'entries', 'post label' );
-
-	if ( empty( $post_type ) ) {
-		$post_type = get_post_type();
-	}
-
-	$post_type_object = get_post_type_object( $post_type );
-
-	if ( isset( $post_type_object->labels->singular_name ) && ! empty( $post_type_object->labels->singular_name ) ) {
-		$output[0]        = $post_type_object->labels->singular_name;
-		$output['single'] = $post_type_object->labels->singular_name;
-	}
-	if ( isset( $post_type_object->labels->name ) && ! empty( $post_type_object->labels->name ) ) {
-		$output[1]        = $post_type_object->labels->name;
-		$output['plural'] = $post_type_object->labels->name;
-	}
-
-	return $output;
 }
 
 /**
