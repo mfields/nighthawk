@@ -1712,3 +1712,47 @@ class Nighthawk {
 		);
 	}
 }
+
+function nighthawk_td_title( $column = array() ) {
+	$title = the_title( '', '', false );
+	if ( empty( $title ) ) {
+		$title = sprintf( 'untitled %1$s', nighthawk_post_label_singular() );
+	}
+
+	$url = get_post_meta( get_the_ID(), '_mfields_bookmark_url', true );
+	if ( ! empty( $url ) ) {
+		$title_attr = 'Visit this document';
+		$action = get_post_meta( get_the_ID(), '_mfields_bookmark_link_text', true );
+		if ( ! empty( $action ) ) {
+			$title_attr = ' title="' . esc_attr( $action ) . '"';
+		}
+		$title  = '<a href="' . esc_url( $url ) . '" rel="external"' . $title_attr . '>' . $title . '</a>';
+	}
+
+	print "\n\t" . '<td class="' . esc_attr( $column['class'] ) . '"><a href="' . esc_url( get_permalink() ) . '">' . $title . '</a></td>';
+}
+
+
+function nighthawk_td_comment_icon( $column = array() ) {
+	print "\n\t" . '<td class="' . esc_attr( $column['class'] ) . '"><a href="' . esc_url( get_permalink() . '#respond' ) . '" class="comment-icon" title="' . esc_attr__( 'Add a comment', 'nighthawk' ) . '"><img src="' . get_template_directory_uri() . '/images/comment.png" alt="" /></a></td>';
+}
+
+
+function nighthawk_td_bookmark_source( $column = array() ) {
+	$taxonomy = 'mfields_bookmark_source';
+	$sources = get_the_terms( get_the_ID(), $taxonomy );
+
+	if ( is_wp_error( $sources ) ) {
+		return;
+	}
+
+	$link = '';
+	if ( ! empty( $sources ) && is_array( $sources ) ) {
+		$source = current( $sources );
+		if ( isset( $source->name ) ) {
+			$link = '<a href="' . esc_url( get_term_link( $source, $taxonomy ) ) . '">' . esc_html( $source->name ) . '</a>';
+		}
+	}
+
+	print "\n\t" . '<td class="' . esc_attr( $column['class'] ) . '">' . $link . '</td>';
+}
