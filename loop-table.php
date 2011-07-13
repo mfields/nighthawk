@@ -1,6 +1,6 @@
 <?php
 /**
- * Bookmark Table Loop.
+ * Post Table Loop.
  *
  * This template represents a full loop which is used in many
  * "archive" sections of this theme. This loop is currently
@@ -15,9 +15,6 @@
  * @copyright    Copyright (c) 2011, Michael Fields
  * @license      http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since        1.0
- *
- * @todo         Move all functions to the bookmark plugin.
- * @todo         Maybe add permalink.
  */
 
 if ( have_posts() ) {

@@ -60,14 +60,14 @@ get_header( $taxonomy );
 			'callback' => 'nighthawk_td_title',
 		),
 		array(
-			'label'    => __( 'Comment Link', 'nighthawk' ),
-			'class'    => 'comment-respond',
-			'callback' => 'nighthawk_td_comment_icon',
+			'label'    => __( 'Permalink', 'nighthawk' ),
+			'class'    => 'permalink',
+			'callback' => 'nighthawk_td_permalink_icon',
 		),
 	) );
 
 	query_posts( wp_parse_args( $query_string, array( 'posts_per_page' => 30 ) ) );
-	get_template_part( 'loop-bookmark-table', 'taxonomy' )
+	get_template_part( 'loop-table' );
 ?>
 
 </div><!--content-->

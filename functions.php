@@ -1700,9 +1700,9 @@ class Nighthawk {
 				'callback' => 'nighthawk_td_title',
 			),
 			array(
-				'label'    => __( 'Source', 'nighthawk' ),
-				'class'    => 'bookmark-source',
-				'callback' => 'nighthawk_td_bookmark_source',
+				'label'    => __( 'Comment Count', 'nighthawk' ),
+				'class'    => 'comment-count',
+				'callback' => 'nighthawk_td_comment_count',
 			),
 			array(
 				'label'    => __( 'Comment Link', 'nighthawk' ),
@@ -1713,7 +1713,24 @@ class Nighthawk {
 	}
 }
 
+function nighthawk_td_comment_count( $column = array() ) {
+	$post_type = get_post_type();
+	if ( ! post_type_supports( $post_type, 'title' ) ) {
+		print "\n\t" . '<td class="' . esc_attr( $column['class'] ) . ' empty-cell"></td>';
+		return;
+	}
+	print "\n\t" . '<td class="' . esc_attr( $column['class'] ) . '">';
+	comments_popup_link( '0', '1', '%', 'comments-link', '' );
+	print '</td>';
+}
+
 function nighthawk_td_title( $column = array() ) {
+	$post_type = get_post_type();
+	if ( ! post_type_supports( $post_type, 'title' ) ) {
+		print "\n\t" . '<td class="' . esc_attr( $column['class'] ) . ' empty-cell"></td>';
+		return;
+	}
+
 	$title = the_title( '', '', false );
 	if ( empty( $title ) ) {
 		$title = sprintf( 'untitled %1$s', nighthawk_post_label_singular() );
@@ -1732,11 +1749,22 @@ function nighthawk_td_title( $column = array() ) {
 	print "\n\t" . '<td class="' . esc_attr( $column['class'] ) . '"><a href="' . esc_url( get_permalink() ) . '">' . $title . '</a></td>';
 }
 
-
 function nighthawk_td_comment_icon( $column = array() ) {
+	$post_type = get_post_type();
+	if ( ! post_type_supports( $post_type, 'comments' ) ) {
+		print "\n\t" . '<td class="' . esc_attr( $column['class'] ) . ' empty-cell"></td>';
+		return;
+	}
+
 	print "\n\t" . '<td class="' . esc_attr( $column['class'] ) . '"><a href="' . esc_url( get_permalink() . '#respond' ) . '" class="comment-icon" title="' . esc_attr__( 'Add a comment', 'nighthawk' ) . '"><img src="' . get_template_directory_uri() . '/images/comment.png" alt="" /></a></td>';
 }
 
+/**
+ * @todo Get a permalink icon for here!!!
+ */
+function nighthawk_td_permalink_icon( $column = array() ) {
+	print "\n\t" . '<td class="' . esc_attr( $column['class'] ) . '"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark" class="comment-icon" title="' . esc_attr__( 'Permalink', 'nighthawk' ) . '"><img src="' . get_template_directory_uri() . '/images/comment.png" alt="" /></a></td>';
+}
 
 function nighthawk_td_bookmark_source( $column = array() ) {
 	$taxonomy = 'mfields_bookmark_source';
