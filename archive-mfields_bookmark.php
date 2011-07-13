@@ -44,6 +44,25 @@ get_header( $nighthawk_post_type );
 <div id="content" class="contain">
 
 <?php
+
+	Nighthawk::set_columns( array(
+		array(
+			'label'    => __( 'Post Title', 'nighthawk' ),
+			'class'    => 'post-title',
+			'callback' => 'nighthawk_td_title',
+		),
+		array(
+			'label'    => __( 'Source', 'nighthawk' ),
+			'class'    => 'bookmark-source',
+			'callback' => 'nighthawk_td_bookmark_source',
+		),
+		array(
+			'label'    => __( 'Comment Link', 'nighthawk' ),
+			'class'    => 'comment-respond',
+			'callback' => 'nighthawk_td_comment_icon',
+		),
+	) );
+
 	query_posts( wp_parse_args( $query_string, array( 'posts_per_page' => 30 ) ) );
 	get_template_part( 'loop-bookmark-table' )
 ?>
