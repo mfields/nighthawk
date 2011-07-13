@@ -25,7 +25,6 @@
 
 <div id="wrap">
 	<div id="header">
-		<?php do_action( 'nighthawk_logo',       '<div id="logo">',       '</div>' ); ?>
 		<?php do_action( 'nighthawk_site_title', '<div id="site-title">', '</div>' ); ?>
 		<?php do_action( 'nighthawk_tagline',    '<div id="tagline">',    '</div>' ); ?>
 	</div>
