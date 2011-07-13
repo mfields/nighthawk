@@ -18,7 +18,7 @@ get_header( 'archive' );
 ?>
 
 <div id="intro">
-	<h1><?php 
+	<h1><?php
 		$url = '';
 		$title = __( 'Archives', 'nighthawk' );
 		if ( is_post_type_archive() ) {
