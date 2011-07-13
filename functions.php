@@ -60,7 +60,7 @@ function _nighthawk_setup() {
 
 	global $content_width;
 	if ( ! isset( $content_width ) ) {
-		$content_width = 615;
+		$content_width = 700;
 	}
 
 	load_theme_textdomain( 'nighthawk', get_template_directory() . '/languages' );
