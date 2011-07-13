@@ -1391,7 +1391,7 @@ function _nighthawk_menu_dialog( $args ) {
 		global $_wp_registered_nav_menus;
 
 		/* Default message. */
-		$first = esc_html__( 'You have not defined a navigation menu for this theme location.' );
+		$first = esc_html__( 'You have not defined a navigation menu for this theme location.', 'nighthawk' );
 
 		/* Attempt to retrieve the actual name of the current theme location. */
 		if ( ! empty( $args['theme_location'] ) && isset( $_wp_registered_nav_menus[$args['theme_location']] ) ) {
