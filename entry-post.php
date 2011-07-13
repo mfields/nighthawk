@@ -22,20 +22,6 @@
 			the_content();
 			print "\n" . '</div><!--content-->';
 			break;
-		case 'gallery' :
-			nighthawk_featured_image( '<div class="featured-image">', '</div>' );
-			print "\n" . '<div class="entry-content">';
-			if ( is_single ) {
-				the_content();
-			}
-			else {
-				the_excerpt();
-			}
-			print "\n" . '</div><!--entry-content-->';
-			print '<div class="' . esc_attr( nighthawk_entry_meta_classes() ) . '">';
-			nighthawk_entry_meta_taxonomy();
-			print '</div><!--meta-->';
-			break;
 		case 'status' :
 			$avatar = get_avatar( get_the_author_meta( 'user_email' ), $size = '100' );
 			if ( ! is_single() ) {

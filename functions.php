@@ -67,7 +67,7 @@ function _nighthawk_setup() {
 	add_action( 'template_redirect', 'nighthawk_post_labels_init' );
 
 	add_theme_support( 'menus' );
-	add_theme_support( 'post-formats', array( 'aside', 'audio', 'chat', 'gallery', 'image', 'link', 'status', 'quote', 'video' ) );
+	add_theme_support( 'post-formats', array( 'aside', 'audio', 'chat', 'image', 'link', 'status', 'quote', 'video' ) );
 	add_theme_support( 'post-thumbnails' );
 	add_theme_support( 'automatic-feed-links' );
 	add_custom_background();
@@ -97,7 +97,6 @@ function _nighthawk_setup() {
 	add_filter( 'excerpt_more',               '_nighthawk_excerpt_more_auto' );
 	add_filter( 'get_the_excerpt',            '_nighthawk_excerpt_more_custom' );
 	add_filter( 'post_class',                 '_nighthawk_post_class' );
-	add_filter( 'post_thumbnail_html',        '_nighthawk_featured_image_first_attachment' );
 	add_action( 'the_content',                '_nighthawk_related_images' );
 	add_filter( 'the_content',                '_nighthawk_content_prepend_title', 9 );
 	add_filter( 'the_content',                '_nighthawk_content_append_link', 9 );
@@ -870,39 +869,6 @@ function _nighthawk_post_class( $classes ) {
 	}
 
 	return array_unique( $classes );
-}
-
-/**
- * Featured Image: Gallery format.
- *
- * Use the first image attachment for the featured image in
- * archive views. This function should respect a user's
- * choice to assign an image via the Featured Image
- * meta box. If $html has any value at all, this function
- * does nothing.
- *
- * @param     string    Thumbnail html or empty string.
- * @return    string    HTML img tag to the first attached for posts with the gallery format in all archives, value of $html otherwise.
- *
- * @access    private
- * @since     1.0
- */
-function _nighthawk_featured_image_first_attachment( $html ) {
-	if ( 'gallery' == get_post_format() && ! is_single() && empty( $html ) ) {
-		$images = get_children( array(
-			'post_parent'    => get_the_ID(),
-			'post_type'      => 'attachment',
-			'post_mime_type' => 'image',
-			'orderby'        => 'menu_order',
-			'order'          => 'ASC',
-			'numberposts'    => 1
-			) );
-		if ( $images ) {
-			$image = array_shift( $images );
-			$html = wp_get_attachment_image( $image->ID, 'thumbnail' );
-		}
-	}
-	return $html;
 }
 
 /**
