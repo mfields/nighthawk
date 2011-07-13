@@ -21,11 +21,6 @@
 			print "\n" . '<div class="content">';
 			the_content();
 			print "\n" . '</div><!--content-->';
-			/*
-			print '<div class="meta">';
-			nighthawk_entry_meta_date();
-			print '</div><!--meta-->';
-			*/
 			break;
 		case 'gallery' :
 			nighthawk_featured_image( '<div class="featured-image">', '</div>' );
@@ -38,7 +33,6 @@
 			}
 			print "\n" . '</div><!--entry-content-->';
 			print '<div class="' . esc_attr( nighthawk_entry_meta_classes() ) . '">';
-			nighthawk_entry_meta_date();
 			nighthawk_entry_meta_taxonomy();
 			print '</div><!--meta-->';
 			break;

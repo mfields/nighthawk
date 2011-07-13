@@ -401,65 +401,6 @@ function nighthawk_entry_meta_classes() {
 }
 
 /**
- * Entry Meta Date
- *
- * Generate and display a sentence containing the date
- * and time that the global post object was published
- * and a link to the comments section. The date and time
- * string will be linked to the post's single view. The
- * comment link should not display in singular views.
- *
- * If the current logged-in user has the capability to
- * edit the post, an edit link will be displayed as well.
- *
- * An example sentence might read:
- * "Posted on January 24, 2011 at 12:20 am * Comment * Edit"
- *
- * The star (*) character in the above example represents a
- * bullet point U+2022 (8226) which is included via the css
- * :before pseudo class.
- *
- * @access    public
- * @since     1.0
- */
-function nighthawk_entry_meta_date() {
-	if ( post_password_required() ) {
-		return '';
-	}
-
-	print "\n" . '<p>';
-
-	/* Date + Permalink */
-	$title_attr  = sprintf( __( 'Permanent link to this %1$s', 'nighthawk' ), nighthawk_post_label_singular() );
-	$date_format = sprintf( __( '%1$s \a\t %2$s', 'nighthawk' ), get_option( 'date_format' ), get_option( 'time_format' ) );
-	$date        = get_the_time( $date_format );
-	$datestamp = '<a class="datetime" href="' . esc_url( get_permalink() ) . '" title="' . esc_attr( $title_attr ) . '">' . esc_html( $date ) . '</a>';
-	if ( is_single() ) {
-		$datestamp =  '<span class="datetime" title="' . esc_attr( $title_attr ) . '">' . esc_html( $date ) . '</span>';
-	}
-
-	printf( __( 'Posted on %1$s', 'nighthawk' ), $datestamp );
-
-	/* Comments */
-	if ( ! is_singular() && comments_open() && ! post_password_required() ) {
-		print ' <span class="comment-link">';
-		comments_popup_link(
-			esc_html( _x( 'Comment', 'verb', 'nighthawk' ) ), /* Zero comments */
-			esc_html( __( '1 Comment', 'nighthawk' ) ),       /* One Comment */
-			esc_html( __( '% Comments', 'nighthawk' ) ),      /* More than one comment */
-			'',                                               /* CSS class */
-			esc_html( __( '% Comments', 'nighthawk' ) )       /* Comments Disabled */
-			);
-		print '</span>';
-	}
-
-	/* Edit link */
-	edit_post_link( esc_html__( 'Edit', 'nighthawk' ), ' <span class="post-edit">', '</span>' );
-
-	print '</p>';
-}
-
-/**
  * Entry Meta Taxonomy.
  *
  * Generate and display a sentence containing all core
