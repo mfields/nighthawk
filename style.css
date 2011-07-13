@@ -508,7 +508,6 @@ form.bullet.subscribe-without-commenting input.bullet-button {
 	margin:0;
 	line-height:1.25;
 	clear:none;
-
 }
 #byline,
 #dateline,
@@ -523,6 +522,26 @@ form.bullet.subscribe-without-commenting input.bullet-button {
 	color:#54778a;
 }
 
+#intro .page-link a {
+	float:left;
+	width:1em;
+	background-color:#555;
+	text-align:center;
+	padding:.2em .3em;
+	border-radius:.25em;
+	border:1px solid #d8e0eb;
+	margin:0 .25em .25em 0;
+	font-size:.9em;
+	color:#ccc;
+	font-weight:bold;
+}
+#intro .page-link a:hover,
+#intro .page-link a:focus,
+#intro .page-link a:active {
+	text-decoration:none;
+	background-color:#333;
+	color:#fff;
+}
 
 /* All posts. */
 h2.entry-title {
