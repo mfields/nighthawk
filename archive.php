@@ -10,10 +10,10 @@
  */
 
 if ( ! have_posts() ) {
-	get_template_part( '404', $taxonomy );
+	get_template_part( '404', 'archive' );
 }
 
-get_header( $taxonomy );
+get_header( 'archive' );
 
 ?>
 
@@ -56,4 +56,4 @@ if ( have_posts() ) {
 
 <div id="page-footer"><?php do_action( 'nighthawk_paged_navigation' ); ?></div>
 
-<?php get_footer( $taxonomy ); ?>
+<?php get_footer( 'archive' ); ?>
