@@ -33,9 +33,9 @@ get_header( $nighthawk_post_type );
 			$total = (int) $wp_query->found_posts;
 		}
 
-		printf( _n( 'There is %1$s bookmark in this section.', 'There are %1$s links in this section.', $total, 'nighthawk' ), number_format_i18n( $total ) );
+		printf( _n( 'There is %1$s bookmark in this section.', 'There are %1$s bookmarks in this section.', $total, 'nighthawk' ), number_format_i18n( $total ) );
 
-		print ' <span class="subscribe"><a href="' . esc_url( get_post_type_archive_feed_link( $nighthawk_post_type ) ) . '" title="' . esc_attr( __( 'Get updated whenever a new link is bookmarked.', 'nighthawk' ) ) . '">' . esc_html__( 'Subscribe', 'nighthawk' ) . '</a></span>';
+		print ' <span class="subscribe"><a href="' . esc_url( get_post_type_archive_feed_link( $nighthawk_post_type ) ) . '" title="' . esc_attr( __( 'Get updated whenever a new bookmark is published.', 'nighthawk' ) ) . '">' . esc_html__( 'Subscribe', 'nighthawk' ) . '</a></span>';
 
 	?></div>
 
