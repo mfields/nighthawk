@@ -17,12 +17,12 @@
  * @since        1.0
  */
 
-$description = get_the_author_meta( 'description' );
-if ( empty( $description ) ) {
+if ( ! post_type_supports( get_post_type(), 'author' ) ) {
 	return;
 }
 
-if ( ! post_type_supports( get_post_type(), 'author' ) ) {
+$description = get_the_author_meta( 'description' );
+if ( empty( $description ) ) {
 	return;
 }
 ?>
