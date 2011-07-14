@@ -58,6 +58,11 @@ define( 'NIGHTHAWK_VERSION', '0.2DEV' );
  */
 function _nighthawk_setup() {
 
+	if ( is_admin() ) {
+		require_once get_template_directory() . '/admin.php';
+		Nighthawk_Admin::init();
+	}
+
 	global $content_width;
 	if ( ! isset( $content_width ) ) {
 		$content_width = 700;
