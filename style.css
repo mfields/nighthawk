@@ -372,8 +372,7 @@ form.bullet.subscribe-without-commenting input.bullet-button {
 	padding:1em;
 }
 #header-image {
-	max-width:755px;
-	height:200px;
+	max-height:200px;
 	overflow:hidden;
 	text-align:center;
 }

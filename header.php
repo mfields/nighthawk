@@ -49,21 +49,21 @@
 
 	<div id="page" class="contain" role="document">
 
-	<div id="header">
-		<?php
-			if ( empty( $header_image ) ) {
-				get_template_part( 'top', 'no-image' );
-			}
-			else {
-				print "\n" . '<div id="header-image">';
-				printf(
-					'<img src="%1$s" width="%2$s" height="%3$s" alt="%4$s">',
-					esc_url( $header_image ),
-					esc_attr( HEADER_IMAGE_WIDTH ),
-					esc_attr( HEADER_IMAGE_HEIGHT ),
-					esc_attr( get_bloginfo( 'blogname' ) )
-				);
-				print '</div>';
-			}
-		?>
-	</div>
+	<?php
+		if ( empty( $header_image ) ) {
+			print "\n" . '<div id="header">';
+			get_template_part( 'top', 'no-image' );
+			print "\n" . '</div>';
+		}
+		else {
+			print "\n" . '<div id="header-image">';
+			printf(
+				'<img src="%1$s" width="%2$s" height="%3$s" alt="%4$s">',
+				esc_url( $header_image ),
+				esc_attr( HEADER_IMAGE_WIDTH ),
+				esc_attr( HEADER_IMAGE_HEIGHT ),
+				esc_attr( get_bloginfo( 'blogname' ) )
+			);
+			print '</div>';
+		}
+	?>
