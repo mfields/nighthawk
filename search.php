@@ -27,20 +27,7 @@
 
 <div id="content" class="contain">
 
-<?php
-
-remove_filter( 'the_excerpt', 'wpautop' );
-
-if ( have_posts() ) {
-	while ( have_posts() ) {
-		the_post();
-		get_template_part( 'entry-search', get_post_type() );
-	}
-}
-
-add_filter( 'the_excerpt', 'wpautop' );
-
-?>
+<?php get_template_part( 'loop-search', get_post_type() ); ?>
 
 </div><!--content-->
 
