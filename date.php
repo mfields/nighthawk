@@ -22,7 +22,7 @@ get_header( 'archive-date' );
 	
 	<?php
 	
-	$total = nighthawk_found_posts();
+	$total = Nighthawk::post_total();
 	
 	if ( is_year() ) {
 		$meta = sprintf( _n( 'One entry was published in %2$s.', '%1$s entries were published in %2$s.', $total, 'nighthawk' ), number_format_i18n( $total ), get_the_date( 'Y' ) );

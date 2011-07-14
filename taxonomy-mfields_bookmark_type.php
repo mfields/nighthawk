@@ -31,8 +31,8 @@ get_header( $taxonomy );
 
 	<?php
 
-	$sentence = sprintf( _n( 'This site contains one %2$s labeled as %4$s.', 'This site contains %1$s %3$s labeled as %4$s.', Nighthawk::total(), 'nighthawk' ), 
-		number_format_i18n( Nighthawk::total() ),
+	$sentence = sprintf( _n( 'This site contains one %2$s labeled as %4$s.', 'This site contains %1$s %3$s labeled as %4$s.', Nighthawk::post_total(), 'nighthawk' ), 
+		number_format_i18n( Nighthawk::post_total() ),
 		'<a href="' . esc_url( get_post_type_archive_link( 'mfields_bookmark' ) ) . '">' . nighthawk_post_label_singular() . '</a>',
 		'<a href="' . esc_url( get_post_type_archive_link( 'mfields_bookmark' ) ) . '">' . nighthawk_post_label_plural() . '</a>',
 		single_term_title( '', false )

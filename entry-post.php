@@ -1,6 +1,6 @@
 <?php
 /**
- * Displays a Post.
+ * Display a post in the blog view.
  *
  * @package      Nighthawk
  * @author       Michael Fields <michael@mfields.org>
@@ -16,12 +16,6 @@
 	do_action( 'nighthawk_entry_start' );
 
 	switch ( get_post_format() ) {
-		case 'aside' :
-		case 'link' :
-			print "\n" . '<div class="content">';
-			the_content();
-			print "\n" . '</div><!--content-->';
-			break;
 		case 'status' :
 			$avatar = get_avatar( get_the_author_meta( 'user_email' ), $size = '100' );
 			if ( ! is_single() ) {
@@ -41,7 +35,12 @@
 				the_title( "\n" . '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '">', '</a></h2>' );
 			}
 
-			nighthawk_featured_image( '<div class="featured-image">', '</div>' );
+			$featured_image = get_the_post_thumbnail();
+			if ( ! empty( $featured_image ) ) {
+				print "\n" . '<div class="featured-image">';
+				print '<a href="' . esc_url( get_permalink() ) . '">' . $featured_image . '</a>';
+				print '</div>';
+			}
 
 			print "\n" . '<div class="entry-content">';
 			the_content( __( 'Continue Reading', 'nighthawk' ) );
@@ -49,7 +48,7 @@
 
 			wp_link_pages( array( 'before' => '<div class="page-link">' . __( 'Pages:', 'nighthawk' ), 'after' => '</div>' ) );
 
-			print '<div class="' . esc_attr( nighthawk_entry_meta_classes() ) . '">';
+			print '<div class="entry-meta">';
 			nighthawk_entry_meta_taxonomy();
 			print '</div><!--meta-->';
 			break;

@@ -67,7 +67,7 @@ function _nighthawk_setup() {
 	add_action( 'template_redirect', 'nighthawk_post_labels_init' );
 
 	add_theme_support( 'menus' );
-	add_theme_support( 'post-formats', array( 'aside', 'audio', 'chat', 'image', 'link', 'status', 'quote', 'video' ) );
+	add_theme_support( 'post-formats', array( 'status' ) );
 	add_theme_support( 'post-thumbnails' );
 	add_theme_support( 'automatic-feed-links' );
 	add_custom_background();
@@ -89,187 +89,36 @@ function _nighthawk_setup() {
 	add_filter( 'get_the_author_description', 'convert_chars' );
 	add_filter( 'get_the_author_description', 'wpautop' );
 
-	/* Nighthawk hooking into WordPress. */
-	add_action( 'body_class',                 '_nighthawk_body_class' );
-	add_filter( 'edit_post_link',             '_nighthawk_edit_post_link', 9, 2 );
-	add_filter( 'embed_oembed_html',          '_nighthawk_oembed_dataparse', 10, 4 );
-	add_filter( 'embed_googlevideo',          '_nighthawk_oembed_dataparse', 10, 2 );
-	add_filter( 'excerpt_more',               '_nighthawk_excerpt_more_auto' );
-	add_filter( 'get_the_excerpt',            '_nighthawk_excerpt_more_custom' );
-	add_filter( 'post_class',                 '_nighthawk_post_class' );
-	add_action( 'the_content',                '_nighthawk_related_images' );
-	add_filter( 'the_content',                '_nighthawk_content_prepend_title', 9 );
-	add_filter( 'the_content',                '_nighthawk_content_append_link', 9 );
-	add_filter( 'the_content',                '_nighthawk_content_append_link_edit', 9 );
-	add_filter( 'the_content',                '_nighthawk_post_format_chat', 12 );
-	add_filter( 'the_password_form',          '_nighthawk_password_form' );
-	add_action( 'widget_title',               '_nighthawk_calendar_widget_title', 10, 3 );
-	add_action( 'widgets_init',               '_nighthawk_widgets_init' );
-	add_action( 'wp_loaded',                  '_nighthawk_custom_image_header' );
-	add_action( 'wp_print_scripts',           '_nighthawk_comment_reply_js' );
-	add_action( 'wp_print_styles',            '_nighthawk_google_fonts' );
+	/* WordPress Core. */
+	add_filter( 'edit_post_link',    '_nighthawk_edit_post_link', 9, 2 );
+	add_filter( 'embed_oembed_html', '_nighthawk_oembed_dataparse', 10, 4 );
+	add_filter( 'embed_googlevideo', '_nighthawk_oembed_dataparse', 10, 2 );
+	add_filter( 'excerpt_more',      '_nighthawk_excerpt_more_auto' );
+	add_filter( 'get_the_excerpt',   '_nighthawk_excerpt_more_custom' );
+	add_filter( 'post_class',        '_nighthawk_post_class' );
+	add_action( 'the_content',       '_nighthawk_related_images' );
+	add_filter( 'the_password_form', '_nighthawk_password_form' );
+	add_action( 'widget_title',      '_nighthawk_calendar_widget_title', 10, 3 );
+	add_action( 'widgets_init',      '_nighthawk_widgets_init' );
+	add_action( 'wp_loaded',         '_nighthawk_custom_image_header' );
+	add_action( 'wp_print_scripts',  '_nighthawk_comment_reply_js' );
+	add_action( 'wp_print_styles',   '_nighthawk_google_fonts' );
 
 	/* Ajax Callbacks */
 	add_action( 'wp_ajax_nighthawk_hide_message_nav_menu', '_nighthawk_ajax_hide_message_nav_menu' );
 
 	/* Custom hooks. */
-	add_action( 'nighthawk_logo',               'nighthawk_logo', 10, 2 );
-	add_action( 'nighthawk_paged_navigation',   'nighthawk_paged_nav', 10, 2 );
+	add_action( 'nighthawk_paged_navigation', 'nighthawk_paged_nav', 10, 2 );
 
 	/* Theme modifications. */
 	add_action( 'custom_header_options', '_nighthawk_settings_custom_header_text_controls' );
 	add_action( 'admin_head-appearance_page_custom-header', '_nighthawk_process_custom_header_settings', 51 );
-	if ( 0 != (int) get_theme_mod( 'nighthawk_display_site_title', 1 ) ) {
-		add_action( 'nighthawk_site_title', 'nighthawk_site_title', 10, 2 );
-	}
-	if ( 0 != (int) get_theme_mod( 'nighthawk_display_tagline', 1 ) ) {
-		add_action( 'nighthawk_tagline', 'nighthawk_tagline', 10, 2 );
-	}
 
-	/* Nighthawk hooking into SyntaxHighlighter Evolved plugin. */
+	/* SyntaxHighlighter Evolved plugin. */
 	wp_register_style( 'syntaxhighlighter-theme-nighthawk', get_template_directory_uri() . '/style-syntax-highlighter.css', array( 'syntaxhighlighter-core' ), '1' );
 	add_filter( 'syntaxhighlighter_themes', '_nighthawk_syntaxhighlighter_theme' );
 }
 add_action( 'after_setup_theme', '_nighthawk_setup' );
-
-/**
- * Logo.
- *
- * The logo is defined using the WordPress Header Image
- * feature. User can upload a custom logo from their
- * hard drive or choose to use no logo at all.
- *
- * The "Site Title" as defined by the user via
- * Settings -> General will be used to populate
- * the image's alt attribute.
- *
- * This function will wrap the image in an anchor tag
- * for all views save the front page.
- *
- * @param     string    Text to print before the logo.
- * @param     string    Text to print after the logo.
- * @return    void      Print the logo if stored value is not empty.
- *
- * @access    private
- * @since     1.0
- */
-function nighthawk_logo( $before = '', $after = '' ) {
-	$url = get_header_image();
-	if ( ! empty( $url ) ) {
-		$img = '<img src="' . esc_url( $url ) . '" width="' . esc_attr( HEADER_IMAGE_WIDTH ) . '" height="' . esc_attr( HEADER_IMAGE_HEIGHT ) . '" alt="' . esc_attr( get_bloginfo( 'blogname' ) ) . '">';
-		if ( ! is_front_page() || is_paged() ) {
-			$img = '<a href="' . esc_attr( home_url() ) . '">' . $img . '</a>';
-		}
-		print "\n" . $before . $img . $after;
-	}
-}
-
-/**
- * Title.
- *
- * Print the site's title. Value is defined
- * under Settings -> General -> Site Title.
- * in the administration panels.
- *
- * This function will wrap the title in an anchor tag
- * for all views save the front page.
- *
- * @param     string    Text to print before the site title.
- * @param     string    Text to print after the site title.
- * @return    void      Print the site title if stored value is not empty.
- *
- * @access    private
- * @since     1.0
- */
-function nighthawk_site_title( $before = '', $after = '' ) {
-	$text = get_bloginfo( 'blogname' );
-	if ( ! empty( $text ) ) {
-		if ( ! is_front_page() || is_paged() ) {
-			$text = '<a href="' . esc_url( home_url() ) . '">' . esc_html( $text ) . '</a>';
-		}
-		print "\n" . $before . $text . $after;
-	}
-}
-
-/**
- * Tagline.
- *
- * Print the tagline of the site.
- *
- * Value is defined by administrator via
- * Settings -> General -> Tagline.
- *
- * @param     string    Text to print before the tagline.
- * @param     string    Text to print after the tagline.
- * @return    void      Print the tagline if stored value is not empty.
- *
- * @access    private
- * @since     1.0
- */
-function nighthawk_tagline( $before = '', $after = '' ) {
-	$text = get_bloginfo( 'description' );
-	if ( ! empty( $text ) ) {
-		print "\n" . $before . esc_html( $text ) . $after;
-	}
-}
-
-/**
- * Summary.
- *
- * This function is will look for a summary for the
- * queried object. There are currently 4 supported summary
- * types:
- *
- * The first is for taxonomy term archives. If the queried
- * term has a value in its description field, this will be used
- * as the summary.
- *
- * The second is for pages. Nighthawk enables the exceprt meta box
- * for "page" post_type. If defined, the excerpt will be recognized
- * as the summary.
- *
- * The third is for author archives. If the queried author has
- * filled out the "Biographical Info" portion of their profile
- * this data will be used as the summary.
- *
- * The fourth is for post_type archive pages. If the post_type
- * has been registered with a 'description' property, the value
- * of this property will be used as the summary.
- *
- * Child themes and plugins can use the 'nighthawk_summary'
- * filter to modify this function's output.
- *
- * @param     string         Text to print before the summary.
- * @param     string         Text to print after the summary.
- * @param     bool           True to print the summary, false to return it as a string.
- * @return    void/string
- *
- * @access    public
- * @since     1.0
- */
-function nighthawk_summary( $before = '', $after = '', $print = true ) {
-	$summary = '';
-	if ( is_author() ) {
-		global $wp_query;
-		$summary = get_the_author_meta( 'description', $wp_query->get_queried_object_id() );
-		$summary = apply_filters( 'nighthawk_filter_text', $summary );
-	}
-	else if ( is_post_type_archive() ) {
-		global $wp_query;
-		$post_type  = $wp_query->get_queried_object();
-		if ( isset( $post_type->description ) && ! empty( $post_type->description ) ) {
-			$summary = apply_filters( 'nighthawk_filter_text', esc_html( $post_type->description ) );
-		}
-	}
-	$summary = apply_filters( 'nighthawk_summary', $summary );
-	if ( ! empty( $summary ) ) {
-		$summary = "\n" . $before . $summary . $after;
-		if ( ! $print ) {
-			return $summary;
-		}
-		print $summary;
-	}
-}
 
 /**
  * Summary Meta.
@@ -363,15 +212,6 @@ function nighthawk_summary_meta( $before = '', $after = '', $print = true ) {
 	}
 }
 
-function nighthawk_found_posts() {
-	global $wp_query;
-	$total = 0;
-	if ( isset( $wp_query->found_posts ) ) {
-		$total = $wp_query->found_posts;
-	}
-	return (int) $total;
-}
-
 /**
  * Continue Reading Link.
  *
@@ -389,14 +229,6 @@ function nighthawk_continue_reading_link() {
 		$text = __( 'View this gallery', 'nighthawk' );
 	}
 	return ' <a href="'. esc_url( get_permalink() ) . '">' . esc_html( $text ) . '</a>';
-}
-
-function nighthawk_entry_meta_classes() {
-	$classes = array( 'entry-meta' );
-	if ( post_password_required() ) {
-		$classes[] = 'hide';
-	}
-	return implode( ' ', $classes );
 }
 
 /**
@@ -498,42 +330,6 @@ function nighthawk_paged_nav( $args = array() ) {
 	}
 	if ( ! empty( $prev ) || ! empty( $next ) ) {
 		print "\n" . $prev . $next;
-	}
-}
-
-/**
- * Featured Image.
- *
- * @param     string         Text to prepend to the image tag.
- * @param     string         Text to append to the image tag.
- * @param     bool           True to print, false to return a string. Defaults to true.
- * @return    void/string
- *
- * @todo Allow to be hidden by postmeta.
- *
- * @access    public
- * @since     1.0
- */
-function nighthawk_featured_image( $before = '', $after = '', $print = true ) {
-	if ( post_password_required() ) {
-		return '';
-	}
-	$image = '';
-	$featured_image = get_the_post_thumbnail();
-	if ( ! empty( $featured_image ) ) {
-		$image = $featured_image;
-		if ( ! is_singular() ) {
-			$image = '<a href="' . esc_url( get_permalink() ) . '">' . $image . '</a>';
-		}
-	}
-	if ( ! empty( $image ) ) {
-		$image = $before . $image . $after;
-		if ( $print ) {
-			print $image;
-		}
-		else {
-			return $image;
-		}
 	}
 }
 
@@ -759,13 +555,13 @@ function _nighthawk_custom_image_header() {
 		define( 'HEADER_TEXTCOLOR', '777' );
 	}
 	if ( ! defined( 'HEADER_IMAGE' ) ) {
-		define( 'HEADER_IMAGE', get_template_directory_uri() . '/images/nighthawk.png' );
+		define( 'HEADER_IMAGE', get_template_directory_uri() . '/images/lanterns.jpg' );
 	}
 	if ( ! defined( 'HEADER_IMAGE_WIDTH' ) ) {
-		define( 'HEADER_IMAGE_WIDTH', 240 );
+		define( 'HEADER_IMAGE_WIDTH', 1000 );
 	}
 	if ( ! defined( 'HEADER_IMAGE_HEIGHT' ) ) {
-		define( 'HEADER_IMAGE_HEIGHT', 60 );
+		define( 'HEADER_IMAGE_HEIGHT', 288 );
 	}
 	if ( ! defined( 'NO_HEADER_TEXT' ) ) {
 		define( 'NO_HEADER_TEXT', true );
@@ -794,7 +590,7 @@ function _nighthawk_custom_image_header_live() {
  * @since     1.0
  */
 function _nighthawk_custom_image_header_admin() {
-	$background_color = get_theme_mod( 'background_color', '375876' );
+	$background_color = get_theme_mod( 'background_color', 'ffffff' );
 	print <<< EOF
 <style type="text/css">
 div#headimg {
@@ -809,39 +605,7 @@ EOF;
 }
 
 /**
- * Body Class Filter.
- *
- * Apply custom css classes to the body tag.
- *
- * <ul>
- * <li>Adds the "many" class to all views containing multiple entries.</li>
- * <li>Adds the "singular" class to all views containing one entry.</li>
- * </ul>
- *
- * @param     array     Classes for the body tag.
- * @return    array     Modified classes for the body tag.
- *
- * @access    private
- * @since     1.0
- */
-function _nighthawk_body_class( $classes ) {
-	if ( in_array( 'blog', $classes ) || in_array( 'archive', $classes ) ) {
-		$classes[] = 'many';
-	}
-	if ( is_single() || is_page() ) {
-		$classes[] = 'singular';
-	}
-	return array_unique( $classes );
-}
-
-/**
  * Post Classes.
- *
- * Add the following classes to all posts:
- * - entry
- * - clear
- *
- * Add a class of 'has-featured-image' to posts having a featured image.
  *
  * @param     array     All classes for the post container.
  * @return    array     Modified classes for the post container.
@@ -853,15 +617,9 @@ function _nighthawk_post_class( $classes ) {
 	if ( is_search() ) {
 		return array( 'search-result', 'box' );
 	}
-	if ( ! in_array( 'entry', $classes ) ) {
-		$classes[] = 'entry';
-	}
-	if ( ! in_array( 'clear', $classes ) ) {
-		$classes[] = 'clear';
-	}
-	if ( ! in_array( 'box', $classes ) ) {
-		$classes[] = 'box';
-	}
+
+	$classes[] = 'entry';
+	$classes[] = 'box';
 
 	$featured_image = get_the_post_thumbnail();
 	if ( ! empty( $featured_image ) ) {
@@ -1238,101 +996,6 @@ function _nighthawk_password_form( $form ) {
 }
 
 /**
- * Prepend title to content.
- *
- * Posts formatted as an "aside" and "link" will have
- * the title prepended to the content on all multiple
- * views. The title will be linked to the post's single
- * view and will have a class attribute of "entry-title".
- *
- * @param     string    Post content.
- * @return    string    Custom post content.
- *
- * @access    private
- * @since     1.0
- */
-function _nighthawk_content_prepend_title( $content ) {
-	if ( is_single() ) {
-		return $content;
-	}
-	if ( post_password_required() ) {
-		return $content;
-	}
-	$post_format = get_post_format();
-	if ( in_array( $post_format, array( 'aside', 'link', 'status' ) ) ) {
-		$title      = get_the_title();
-		$title_attr = sprintf( __( 'Permalink to this %1$s', 'nighthawk' ), nighthawk_post_label_singular() );
-		if ( ! empty( $title ) ) {
-			$content = '<a class="entry-title" title="' . esc_attr( $title_attr ) . '" href="' . esc_url( get_permalink() )  . '">' . get_the_title() . '</a> ' . ' ' . $content;
-		}
-	}
-	return $content;
-}
-
-/**
- * Append permalink to content.
- *
- * In cases where a post does not have a title,
- * a link will be appended to the post content.
- * This link will have a class attribute of "auto-link".
- *
- * @param     string    Post content.
- * @return    string    Custom post content.
- *
- * @access    private
- * @since     1.0
- */
-function _nighthawk_content_append_link( $content ) {
-	if ( is_single() ) {
-		return $content;
-	}
-	$link = 'class="more-link"';
-	if ( false !== strpos( $content, $link ) ) {
-		return $content;
-	}
-	if ( ! in_array( get_post_format(), array( 'link' ) ) ) {
-		return $content;
-	}
-	$title = get_the_title();
-	if ( empty( $title ) ) {
-		$content .= ' <a class="auto-link" title="' . sprintf( esc_attr__( 'Permalink to this %1$s', 'nighthawk' ), nighthawk_post_label_singular() ) . '" href="' . esc_url( get_permalink() )  . '">' . esc_html__( 'link', 'nighthawk' ) . '</a>';
-	}
-	return $content;
-}
-
-/**
- * Append edit link to content.
- *
- * Certain post formats (aside, link and status)
- * do not display meta information at the bottom
- * of the entry box. While this makes them more
- * compact, it also removes the helpful edit link.
- * This function will add the link inside the_content
- * before wpautop() fires and after the [link] link
- * is appended.
- *
- * @param     string    Post content.
- * @return    string    Custom post content.
- *
- * @access    private
- * @since     1.0
- */
-function _nighthawk_content_append_link_edit( $content ) {
-	if ( is_single() ) {
-		return $content;
-	}
-	$url = get_edit_post_link();
-	if ( empty( $url ) ) {
-		return $content;
-	}
-	$format = get_post_format();
-	if ( in_array( $format, array( 'aside', 'link' ) ) ) {
-		$content .= ' <a class="post-edit-link auto-link" href="' . esc_url( $url ) . '" title="' . sprintf( esc_attr__( 'Edit this %1$s', 'nighthawk' ), nighthawk_post_label_singular() ) . '">' . esc_html__( 'edit', 'nighthawk' ) . '</a>';
-	}
-	return $content;
-}
-
-/**
  * Menu dialog.
  *
  * Override WordPress default fallback for wp_nav_menu().
@@ -1514,46 +1177,6 @@ function _nighthawk_commentform_after() {
 }
 add_action( 'comment_form_after', '_nighthawk_commentform_after' );
 
-/**
-* Post Content: Chat format.
-*
-* This filter is designed to be attached to the post_content hook.
-* In the event that the current global post object has been assigned
-* a format of "chat", this function will attemt to find the first pre
-* tag in $content. This pre tag is understood to contain the contents
-* of a chat transcript. If the transcript is found each line will be
-* enclosed in a span element and odd numbered lines will be given the
-* class attribute of "alt". The pre tag is then replaced with a div
-* tag with a class attribute of "chat-log".
-*
-* @param      string     post_content field of the current entry.
-* @return     string     Filtered results for chat formats, unaltered value of $content otherwise.
-*
-* @access     private
-* @since      1.0
-*/
-function _nighthawk_post_format_chat( $content ) {
-	if ( 'chat' != get_post_format() ) {
-		return $content;
-	}
-
-	preg_match( '/<pre>(.*?)<\/pre>/s', $content, $matches );
-
-	if ( isset( $matches[1] ) ) {
-		$lines = array_filter( explode( "\n", $matches[1] ) );
-		$filtered = '';
-		foreach ( (array) $lines as $order => $line ) {
-			$filtered.= "\n" . '<span' . ( 1 == $order % 2 ? '' : ' class="alt"' ) . '>' . str_replace( array( '<br>', '<br />', '<br/>' ), '', $line ) . '</span>';
-		}
-		if ( ! empty( $filtered ) ) {
-			$filtered = "\n" . '<div class="chat-log">' . $filtered . "\n" . '</div>';
-			$content = preg_replace( '/<pre>(.*?)<\/pre>/s', $filtered, $content, 1 );
-		}
-	}
-
-	return $content;
-}
-
 function _nighthawk_widget_dropdowns_scripts() {
 	if ( is_admin() ) {
 		return;
@@ -1582,7 +1205,7 @@ class Nighthawk {
 	static public function init() {
 		add_action( 'template_redirect', array( __class__, 'setup' ) );
 	}
-	static public function total() {
+	static public function post_total() {
 		return (int) self::$query->total;
 	}
 	static public function columns() {

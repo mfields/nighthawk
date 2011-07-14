@@ -40,21 +40,30 @@
 
 <div id="wrap">
 
+	<?php
+		$header_image = get_header_image();
+		if ( ! empty( $header_image ) ) {
+			get_template_part( 'top', 'with-image' );
+		}
+	?>
+
 	<div id="page" class="contain" role="document">
 
 	<div id="header">
-		<?php do_action( 'nighthawk_site_title', '<div id="site-title">', '</div>' ); ?>
-		<?php do_action( 'nighthawk_tagline',    '<div id="tagline">',    '</div>' ); ?>
+		<?php
+			if ( empty( $header_image ) ) {
+				get_template_part( 'top', 'no-image' );
+			}
+			else {
+				print "\n" . '<div id="header-image">';
+				printf(
+					'<img src="%1$s" width="%2$s" height="%3$s" alt="%4$s">',
+					esc_url( $header_image ),
+					esc_attr( HEADER_IMAGE_WIDTH ),
+					esc_attr( HEADER_IMAGE_HEIGHT ),
+					esc_attr( get_bloginfo( 'blogname' ) )
+				);
+				print '</div>';
+			}
+		?>
 	</div>
-
-	<?php
-		wp_nav_menu( apply_filters( 'nighthawk_menu_args_primary', array(
-			'container'      => 'div',
-			'container_id'   => 'menu-top',
-			'menu_class'     => 'menu',
-			'theme_location' => 'primary',
-			'depth'          => 1,
-			'items_wrap'     => '<ul id="%1$s" class="%2$s" role="navigation">%3$s</ul>',
-			'fallback_cb'    => '_nighthawk_menu_dialog',
-			) ) );
-	?>

@@ -28,7 +28,7 @@
 		<?php do_action( 'nighthawk_site_title', '<div id="site-title">', '</div>' ); ?>
 		<?php do_action( 'nighthawk_tagline',    '<div id="tagline">',    '</div>' ); ?>
 	</div>
-	
+
 	<div id="menu-top"></div>
-	
+
 	<div id="page" role="document">

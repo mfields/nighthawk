@@ -12,7 +12,7 @@
 
 
 
-<article id="<?php nighthawk_entry_id(); ?>" <?php post_class(); ?>>
+<div id="<?php nighthawk_entry_id(); ?>" <?php post_class(); ?>>
 <?php
 	do_action( 'nighthawk_entry_start' );
 
@@ -33,6 +33,6 @@
 	do_action( 'nighthawk_entry_end' );
 ?>
 
-</article>
+</div>
 
 <?php do_action( 'nighthawk_append_to_entry_template' ); ?>
