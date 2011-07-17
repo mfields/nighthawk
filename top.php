@@ -16,9 +16,10 @@
 
 	if ( 0 != (int) get_theme_mod( 'nighthawk_display_tagline', 1 ) ) {
 		$text = get_bloginfo( 'description' );
-		if ( ! empty( $text ) ) {
-			print "\n" . '<div id="tagline">' . esc_html( $text ) . '</div>';
+		if ( empty( $text ) ) {
+			return;
 		}
+		print "\n" . '<div id="tagline">' . esc_html( $text ) . '</div>';
 	}
 
 	wp_nav_menu( apply_filters( 'nighthawk_menu_args_primary', array(
