@@ -2,12 +2,16 @@
 
 	if ( 0 != (int) get_theme_mod( 'nighthawk_display_site_title', 1 ) ) {
 		$text = get_bloginfo( 'blogname' );
-		if ( ! empty( $text ) ) {
-			if ( ! is_front_page() || is_paged() ) {
-				$text = '<a href="' . esc_url( home_url() ) . '">' . esc_html( $text ) . '</a>';
-			}
-			print "\n" . '<div id="site-title">' . $text . '</div>';
+		if ( empty( $text ) ) {
+			return;
 		}
+		if ( is_front_page() && ! is_paged() ) {
+			$text = esc_html( $text );
+		}
+		else {
+			$text = '<a href="' . esc_url( home_url() ) . '">' . esc_html( $text ) . '</a>';
+		}
+		print "\n" . '<div id="site-title">' . $text . '</div>';
 	}
 
 	if ( 0 != (int) get_theme_mod( 'nighthawk_display_tagline', 1 ) ) {
