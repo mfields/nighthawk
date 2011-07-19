@@ -140,7 +140,7 @@ class Mfields_Post_Label {
 		);
 	}
 
-	static public function attachment( $v ) {
+	static public function attachment() {
 		$mime = get_post_mime_type();
 		switch( $mime ) {
 			case 'image/jpeg' :
