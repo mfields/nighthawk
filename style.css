@@ -832,24 +832,6 @@ h2.entry-title {
 	border-color:#ccc;
 }
 
-
-/* Buttons. */
- {
-	padding:.5em;
-	border-width:0;
-	line-height:1;
-	text-align:center;
-	text-decoration:none;
-	font-size:1em;
-	font-weight:bold;
-	color:#fff;
-	background-color:#555;
-	cursor:pointer;
-	-webkit-border-radius:.5em;
-	-moz-border-radius:   .5em;
-	border-radius:        .5em;
-}
-
 button,
 .button,
 input#submit {
