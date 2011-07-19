@@ -50,7 +50,7 @@ if ( ! empty( $stickies ) ) {
 	the_title( "\n" . '<h1>', '</h1>' );
 
 	print "\n" . '<div id="summary">';
-	the_content();
+	the_content( __( 'Continue Reading', 'nighthawk' ) );
 	print "\n" . '</div>';
 
 	wp_link_pages( array(
