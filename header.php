@@ -56,14 +56,12 @@
 			print "\n" . '</div>';
 		}
 		else {
-			print "\n" . '<div id="header-image">';
 			printf(
-				'<img src="%1$s" width="%2$s" height="%3$s" alt="%4$s">',
+				"\n" . '<div id="header-image"><img src="%1$s" width="%2$s" height="%3$s" alt="%4$s"></div>',
 				esc_url( $header_image ),
 				esc_attr( HEADER_IMAGE_WIDTH ),
 				esc_attr( HEADER_IMAGE_HEIGHT ),
 				esc_attr( get_bloginfo( 'blogname' ) )
 			);
-			print '</div>';
 		}
 	?>
