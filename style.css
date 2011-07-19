@@ -576,6 +576,9 @@ h2.entry-title {
 .entry .bullet {
 	border-color:#ccc;
 }
+.entry .attachment {
+	text-align:center;
+}
 
 
 /* Featured image. */

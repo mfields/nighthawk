@@ -1338,3 +1338,17 @@ function nighthawk_td_bookmark_source( $column = array() ) {
 
 	print "\n\t" . '<td class="' . esc_attr( $column['class'] ) . '">' . $link . '</td>';
 }
+
+function _nighthawk_prepend_attachment( $content ) {
+	$post_type = get_post_type();
+
+	if ( empty( $post_type ) || 'attachment' != $post_type ) {
+		return $content;
+	}
+
+	$p = '<p class="attachment">' . wp_get_attachment_link( 0, 'large', false ) . '</p>';
+
+	return $p . "\n" . $content;
+}
+remove_filter( 'the_content', 'prepend_attachment' );
+add_filter( 'the_content', '_nighthawk_prepend_attachment' );
