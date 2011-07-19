@@ -21,19 +21,9 @@ if ( ! have_posts() ) {
 
 get_header( 'post' );
 
-?>
-
-
-
-<?php
-if ( ! have_posts() ) {
-	/**
-	 * @todo Some kinda 404 stuff here...
-	 */
-}
-
 /*
- * Loop for Sticky Posts.
+ * Do we have sticky posts?
+ * If so, we will store them in an array.
  */
 $stickies = array();
 while ( have_posts() ) {
@@ -44,6 +34,13 @@ while ( have_posts() ) {
 	$stickies[] = $post;
 }
 
+/*
+ * Display first sticky.
+ *
+ * The first sticky post will be displayed
+ * in the intro div. We will pop it of the
+ * sticky array before it is displayed.
+ */
 if ( ! empty( $stickies ) ) {
 	$post = array_pop( $stickies );
 	setup_postdata( $post );
@@ -64,12 +61,22 @@ if ( ! empty( $stickies ) ) {
 	print "\n" . '</div>';
 }
 
+/*
+ * All other stickies.
+ *
+ * The remaining stickies, if any, will be
+ * displayed in a custom list under the intro.
+ */
 if ( ! empty( $stickies ) ) {
-	foreach ( $stickies as $i => $stickies ) {
-		the_title( '<h2>', '</h2>' );
+	print "\n\n" . '<ul id="intro-list">';
+	foreach ( $stickies as $i => $post ) {
+		setup_postdata( $post );
+		the_title( '<li><a href="' . esc_url( get_permalink() ) . '">', '</a></li>' );
 	}
+	print "\n" . '</ul>';
 }
 
+wp_reset_postdata();
 ?>
 
 <div id="content" class="contain">

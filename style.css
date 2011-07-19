@@ -545,6 +545,19 @@ form.bullet.subscribe-without-commenting input.bullet-button {
 	background-color:#333;
 	color:#fff;
 }
+#intro-list {
+	list-style-type:none;
+	padding:.5em;
+	margin:0 3em;
+	border:1px solid #ddd;
+	border-top-width:0;
+	-webkit-border-bottom-left-radius: .5em;
+	-webkit-border-bottom-right-radius:.5em;
+	-moz-border-radius-bottomright:    .5em;
+	-moz-border-radius-bottomleft:     .5em;
+	border-bottom-left-radius:         .5em;
+	border-bottom-right-radius:        .5em;
+}
 
 /* All posts. */
 h2.entry-title {
@@ -579,7 +592,6 @@ h2.entry-title {
 .entry .attachment {
 	text-align:center;
 }
-
 
 /* Featured image. */
 .entry .featured-image {
