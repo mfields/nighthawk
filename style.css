@@ -1173,13 +1173,10 @@ img.forced-dimensions {}
 .post-archive td {
 	border-width:1px 0;
 	border-color:#ccc;
+	padding:7px;
 }
 .post-archive td:first-child {
 	text-align:left;
-}
-.post-archive td:last-child {
-	padding-top:10px;
-	vertical-align:middle;
 }
 .post-archive tr:first-child td {
 	border-top-width:0;
@@ -1190,8 +1187,10 @@ img.forced-dimensions {}
 .post-archive .comment-count {
 	text-align:center;
 }
-.post-archive .icon {
+.post-archive td.edit-post,
+.post-archive td.comment-respond {
 	width:20px;
+	vertical-align:middle;
 }
 
 .github-commits {
@@ -1354,4 +1353,31 @@ img.forced-dimensions {}
 .bookmark-source a:active,
 .bookmark-source a:focus {
 	color:#555 !important;
+}
+
+a.permalink-icon,
+a.comment-icon {
+	display:block;
+	width:16px;
+	height:16px;
+	text-indent:-9999em;
+	padding:0;
+	background:url( images/icon-sprite.png ) no-repeat;
+}
+a.permalink-icon {
+	background-position:-16px 0;
+}
+a.permalink-icon:hover,
+a.permalink-icon:focus,
+a.permalink-icon:active {
+	background-position:-16px -16px;
+}
+
+a.comment-icon {
+	background-position:0 0;
+}
+a.comment-icon:hover,
+a.comment-icon:focus,
+a.comment-icon:active {
+	background-position:0 -16px;
 }
