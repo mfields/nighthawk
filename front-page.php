@@ -47,7 +47,14 @@ if ( ! empty( $stickies ) ) {
 
 	print "\n" . '<div id="intro">';
 
-	the_title( "\n" . '<h1>', '</h1>' );
+	$title = __( 'Featured', 'nighthawk' );
+
+	$post_title = the_title( '', '', false );
+	if ( ! empty( $post_title ) ) {
+		$title = $post_title;
+	}
+
+	print "\n" . '<h1><a href="' . esc_url( get_permalink() ) . '">' . $title . '</a></h1>';
 
 	print "\n" . '<div id="summary">';
 	the_content( __( 'Continue Reading', 'nighthawk' ) );
