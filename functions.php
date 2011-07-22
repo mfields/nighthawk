@@ -722,12 +722,10 @@ function _nighthawk_related_images( $content ) {
  * @since     1.0
  */
 function _nighthawk_excerpt_more_auto( $more ) {
-	if ( is_search() ) {
-		return ' &hellip;';
-	}
-	else {
+	if ( in_the_loop() ) {
 		return ' &hellip; ' . nighthawk_continue_reading_link();
 	}
+	return ' &hellip;';
 }
 
 /**
