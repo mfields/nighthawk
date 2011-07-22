@@ -22,7 +22,7 @@ get_header( 'author' );
 
 the_post();
 
-print '<div id="intro" class="vcard">';
+print '<header id="intro" class="vcard">';
 
 print '<h1 class="url fn n">' . esc_html( get_the_author() ) . '</h1>';
 
@@ -31,7 +31,7 @@ if ( ! empty( $bio ) ) {
 	print '<div id="summary">' . $bio . '</div>';
 }
 
-print '</div>';
+print '</header>';
 
 rewind_posts();
 

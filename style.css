@@ -498,7 +498,8 @@ form.bullet.subscribe-without-commenting input.bullet-button {
 
 
 #intro {
-	/*margin:1.5em 0 0;*/
+	display:block;
+	margin:0;
 	padding:1em 3em;
 	overflow:hidden;
 	border-width:.2em 0;

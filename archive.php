@@ -17,7 +17,7 @@ get_header( 'archive' );
 
 ?>
 
-<div id="intro">
+<header id="intro">
 	<h1><?php
 		$url = '';
 		$title = __( 'Archives', 'nighthawk' );
@@ -39,7 +39,7 @@ get_header( 'archive' );
 
 	?></h1>
 	<?php nighthawk_summary_meta( '<div id="intro-meta">', '</div>' ) ?>
-</div>
+</header>
 
 <div id="content" class="contain">
 

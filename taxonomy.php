@@ -19,10 +19,7 @@ get_header( $taxonomy );
 
 ?>
 
-
-
-
-<div id="intro">
+<header id="intro">
 	<?php print apply_filters( 'taxonomy-images-queried-term-image', '', array(
 		'size'   => 'post-thumbnail',
 		'before' => '<div id="featured-image">',
@@ -31,7 +28,7 @@ get_header( $taxonomy );
 	<h1><?php single_term_title() ?></h1>
 	<div id="summary"><?php print term_description(); ?></div>
 	<?php nighthawk_summary_meta( '<div id="intro-meta">', '</div>' ) ?>
-</div>
+</header>
 
 <div id="content" class="contain">
 

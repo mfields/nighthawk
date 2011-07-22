@@ -45,7 +45,7 @@ if ( ! empty( $stickies ) ) {
 	$post = array_pop( $stickies );
 	setup_postdata( $post );
 
-	print "\n" . '<div id="intro">';
+	print "\n" . '<header id="intro">';
 
 	$title = __( 'Featured', 'nighthawk' );
 
@@ -65,7 +65,7 @@ if ( ! empty( $stickies ) ) {
 		'after'  => '</div>'
 	) );
 
-	print "\n" . '</div>';
+	print "\n" . '</header>';
 }
 
 /*

@@ -30,7 +30,7 @@ if ( have_posts() ) {
 		the_post();
 ?>
 
-<div id="intro">
+<header id="intro">
 <?php
 
 	the_title( "\n" . '<h1>', '</h1>' );
@@ -40,7 +40,7 @@ if ( have_posts() ) {
 	print "\n" .'</div>';
 
 ?>
-</div>
+</header>
 
 <div id="content" class="contain">
 	<div id="<?php nighthawk_entry_id(); ?>" <?php post_class(); ?>>

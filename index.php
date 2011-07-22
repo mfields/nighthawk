@@ -19,9 +19,9 @@ get_header();
 
 ?>
 
-<div id="intro">
+<header id="intro">
 	<?php nighthawk_summary_meta( '<div id="intro-meta">', '</div>' ); ?>
-</div>
+</header>
 
 <div id="content" class="contain">
 

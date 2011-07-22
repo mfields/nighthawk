@@ -17,7 +17,7 @@ get_header( 'archive-date' );
 
 ?>
 
-<div id="intro">
+<header id="intro">
 	<h1><?php _e( 'Archives', 'nighthawk' ); ?></h1>
 	
 	<?php
@@ -44,7 +44,7 @@ get_header( 'archive-date' );
 ?>
 
 	<?php print '<div id="intro-meta">' . $meta . '</div>'; ?>
-</div>
+</header>
 
 <div id="content" class="contain">
 

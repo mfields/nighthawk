@@ -29,7 +29,8 @@ if ( have_posts() ) {
 		the_post();
 ?>
 
-<div id="intro">
+
+<header id="intro">
 <?php
 	/* Title. */
 	if ( post_type_supports( $nighthawk_post_type, 'title' ) ) {
@@ -48,7 +49,7 @@ if ( have_posts() ) {
 		print "\n" . '<p id="byline">' . sprintf( esc_html__( 'By %1$s', 'nighthawk' ), get_the_author() ) . '</p>';
 	}
 ?>
-</div>
+</header>
 
 <div id="content" class="contain">
 

@@ -19,7 +19,7 @@ get_header( $taxonomy );
 
 ?>
 
-<div id="intro">
+<header id="intro">
 
 	<?php print apply_filters( 'taxonomy-images-queried-term-image', '', array(
 		'size'   => 'post-thumbnail',
@@ -48,7 +48,7 @@ get_header( $taxonomy );
 
 	?>
 
-</div>
+</header>
 
 <div id="content" class="contain">
 

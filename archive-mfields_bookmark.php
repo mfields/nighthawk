@@ -21,7 +21,7 @@ get_header( $nighthawk_post_type );
 
 ?>
 
-<div id="intro">
+<header id="intro">
 
 	<h1>Bookmarks</h1>
 
@@ -39,7 +39,7 @@ get_header( $nighthawk_post_type );
 
 	?></div>
 
-</div>
+</header>
 
 <div id="content" class="contain">
 
