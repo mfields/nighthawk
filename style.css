@@ -522,6 +522,9 @@ form.bullet.subscribe-without-commenting input.bullet-button {
 	line-height:1.5;
 	font-weight:normal;
 }
+#intro.has-featured-image p {
+	margin-right:180px;
+}
 #intro p a {
 	color:#54778a;
 }

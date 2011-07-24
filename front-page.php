@@ -45,7 +45,14 @@ if ( ! empty( $stickies ) ) {
 	$post = array_pop( $stickies );
 	setup_postdata( $post );
 
-	print "\n" . '<header id="intro">';
+	$featured_image = get_the_post_thumbnail();
+
+	$class = '';
+	if ( ! empty( $featured_image ) ) {
+		$class = ' class="has-featured-image"';
+	}
+
+	print "\n" . '<header id="intro"' . $class . '>';
 
 	$title = __( 'Featured', 'nighthawk' );
 
@@ -55,6 +62,12 @@ if ( ! empty( $stickies ) ) {
 	}
 
 	print "\n" . '<h1><a href="' . esc_url( get_permalink() ) . '">' . $title . '</a></h1>';
+
+	if ( ! empty( $featured_image ) ) {
+		print "\n" . '<div id="featured-image">';
+		print '<a href="' . esc_url( get_permalink() ) . '">' . $featured_image . '</a>';
+		print '</div>';
+	}
 
 	print "\n" . '<div id="summary">';
 	the_content( __( 'Continue Reading', 'nighthawk' ) );
