@@ -6,8 +6,6 @@
  * views. It will also be displayed in instances where
  * a query produces no results.
  *
- * This file closes all html tags that it opens.
- *
  * This file terminates script execution.
  *
  * @package      Nighthawk
