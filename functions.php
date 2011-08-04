@@ -1329,8 +1329,11 @@ function nighthawk_td_bookmark_source( $column = array() ) {
 	$link = '';
 	if ( ! empty( $sources ) && is_array( $sources ) ) {
 		$source = current( $sources );
-		if ( isset( $source->name ) ) {
-			$link = '<a href="' . esc_url( get_term_link( $source, $taxonomy ) ) . '">' . esc_html( $source->name ) . '</a>';
+
+		$link = esc_html( $source->name );
+
+		if ( 1 < absint( $source->count ) ) {
+			$link = '<a href="' . esc_url( get_term_link( $source, $taxonomy ) ) . '">' . $link . '</a>';
 		}
 	}
 

@@ -1350,8 +1350,12 @@ img.forced-dimensions {}
 
 /* End Dropdown Widgets */
 
+.bookmark-source,
 .bookmark-source a {
 	color:#999 !important;
+}
+.bookmark-source a {
+	text-decoration:underline;
 }
 .bookmark-source a:hover,
 .bookmark-source a:active,
