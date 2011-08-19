@@ -151,7 +151,7 @@ function nighthawk_summary_meta( $before = '', $after = '', $print = true ) {
 
 	if ( is_home() || is_post_type_archive() ) {
 		global $posts;
-		$post_type = $wp_query->get_queried_object();
+		$post_type = get_queried_object();
 		if ( empty( $post_type ) ) {
 			$post_type = get_post_type_object( 'post' );
 		}
@@ -182,7 +182,7 @@ function nighthawk_summary_meta( $before = '', $after = '', $print = true ) {
 		}
 	}
 	else if ( is_tax() ) {
-		$term = $wp_query->get_queried_object();
+		$term = get_queried_object();
 		if ( isset( $term->term_id ) && isset( $term->name ) && isset( $term->taxonomy ) ) {
 			$taxonomy = get_taxonomy( $term->taxonomy );
 			$taxonomy_name = __( 'taxonomy', 'nighthawk' );
