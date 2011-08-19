@@ -130,9 +130,9 @@ add_action( 'after_setup_theme', '_nighthawk_setup' );
  *
  * Print meta information pertaining to the current view.
  *
- * @param     string         Text to prepend to the summary meta.
- * @param     string         Text to append to the summary meta.
- * @param     bool           True to print, false to return a string. Defaults to true.
+ * @param     string         $before Text to prepend to the summary meta.
+ * @param     string         $after Text to append to the summary meta.
+ * @param     bool           $print True to print, false to return a string. Defaults to true.
  * @return    void/string
  *
  * @access    public
@@ -347,8 +347,8 @@ function nighthawk_paged_nav( $args = array() ) {
  * like the following: "This Status Update is filed under News."
  * where "Status Update" is the post label and "News" is the category.
  *
- * @param     Default value to return.
- * @return    string
+ * @param     string    $default Value to return if no label can be calculated.
+ * @return    string    A singular noun representing the global post object.
  *
  * @access    public
  * @since     1.0
@@ -372,8 +372,8 @@ function nighthawk_post_label_singular( $default = '' ) {
  * where "image" is the post label and "Taco Pictures" is the
  * title of the parent post.
  *
- * @param     Default value to return.
- * @return    string
+ * @param     string    $default Value to return if no label can be calculated.
+ * @return    string    A singular noun representing the global post object.
  *
  * @access    public
  * @since     1.0
@@ -478,9 +478,9 @@ function _nighthawk_google_fonts() {
  * widget even if the title's value is left empty by the user.
  * This function will remove the empty heading tag.
  *
- * @param     string         The value of the calendar widget's title for this instance.
- * @param     n/a            n/a
- * @param     n/a            n/a
+ * @param     string         $title The value of the calendar widget's title for this instance.
+ * @param     unknown        $instance
+ * @param     string         $id_base
  * @return    string         Calendar widget title.
  *
  * @access    private
@@ -612,7 +612,7 @@ EOF;
 /**
  * Post Classes.
  *
- * @param     array     All classes for the post container.
+ * @param     array     $classes All classes for the post container.
  * @return    array     Modified classes for the post container.
  *
  * @access    private
@@ -716,6 +716,7 @@ function _nighthawk_related_images( $content ) {
  * This filter is attached to the 'excerpt_more' hook
  * in the _nighthawk_setup() function.
  *
+ * @param     string         $more unused.
  * @return    string         An ellipsis followed by a link to the single post.
  *
  * @access    private
@@ -738,6 +739,7 @@ function _nighthawk_excerpt_more_auto( $more ) {
  * This filter is attached to the 'get_the_excerpt' hook
  * in the _nighthawk_setup() function.
  *
+ * @param     string         $excerpt Post excerpt.
  * @return    string         Excerpt with a link to the post's single view.
  *
  * @access    private
@@ -756,10 +758,9 @@ function _nighthawk_excerpt_more_custom( $excerpt ) {
  * Prints most of a single comment.
  * @see _nighthawk_comment_end().
  *
- * @param     stdClass       Comment object.
- * @param     array          Arguments passed to wp_list_comments() merged with default values.
- * @param     int            Position of the current comment in relation to the root comment of this tree. Starts at zero.
- * @param     void
+ * @param     stdClass  $comment Comment object.
+ * @param     array     $args Arguments passed to wp_list_comments() merged with default values.
+ * @param     int       $depth Position of the current comment in relation to the root comment of this tree. Starts at zero.
  *
  * @access    private
  * @since     1.0
@@ -816,10 +817,9 @@ function _nighthawk_comment_start( $comment, $args, $depth ) {
  * Custom callback for wp_list_comments().
  * Print a closing html list-item element.
  *
- * @param     stdClass       Comment object.
- * @param     array          Arguments passed to wp_list_comments() merged with default values.
- * @param     int            Position of the current comment in relation to the root comment of this tree. Starts at zero.
- * @param     void
+ * @param     stdClass  $comment Comment object.
+ * @param     array     $args Arguments passed to wp_list_comments() merged with default values.
+ * @param     int       $depth Position of the current comment in relation to the root comment of this tree. Starts at zero.
  *
  * @access    private
  * @since     1.0
@@ -871,7 +871,7 @@ function _nighthawk_oembed_dataparse( $cache, $url, $attr = '', $post_ID = '' ) 
  *
  * {@link http://wordpress.org/extend/plugins/syntaxhighlighter/ SyntaxHighlighter Evolved }
  *
- * @param     array     All themes registered with the SyntaxHighlighter Evolved plugin.
+ * @param     array     $themes All themes registered with the SyntaxHighlighter Evolved plugin.
  * @return    array     Same list with custom theme appended.
  *
  * @access    private
@@ -947,9 +947,9 @@ function _nighthawk_process_custom_header_settings() {
  * Generates and prints a form element/label to
  * control a boolean setting.
  *
- * @param     string    The key of a recognized setting.
- * @param     string    Localized, human-readable label for the setting.
- * @param     bool      Current value of the setting.
+ * @param     string    $id The key of a recognized setting.
+ * @param     string    $label Localized, human-readable label for the setting.
+ * @param     bool      $value Current value of the setting.
  * @return    void
  *
  * @access    private
@@ -977,7 +977,7 @@ function nighthawk_search_id() {
 /**
  * Password Form.
  *
- * @param     string    Default WordPress search from.
+ * @param     string    $form Default WordPress search from.
  * @return    string    Custom Search form.
  *
  * @access    private
@@ -1014,7 +1014,7 @@ function _nighthawk_password_form( $form ) {
  *
  * @todo      Enable Ajax functionality for menu hiding.
  *
- * @param     array     Arguments originally passed to wp_nav_menu.
+ * @param     array     $args Arguments originally passed to wp_nav_menu.
  * @return    string    Dialog for those who can edit theme options - empty sting to all others.
  *
  * @access    private
@@ -1123,6 +1123,9 @@ function _nighthawk_ajax_hide_message_nav_menu() {
 
 /**
  * Edit post link filter.
+ *
+ * @param     string    $html Default anchor tag generated by WordPress.
+ * @param     int       $ID Post ID.
  *
  * @access    private
  * @since     1.0
