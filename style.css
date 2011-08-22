@@ -354,16 +354,7 @@ ul.form-errors { /* Grunion Contact Form Plugin. */
 ul.form-errors li.form-error-message { /* Grunion Contact Form Plugin. */
 	color:#786C43 !important;
 }
-/*
-<div class="form-error">
-<h3>Error!</h3>
-<ul class="form-errors">
-	<li class="form-error-message" style="color: red;">Name is required</li>
-	<li class="form-error-message" style="color: red;">Email requires a valid email address</li>
-	<li class="form-error-message" style="color: red;">Message is required</li>
-</ul>
-</div>
-*/
+
 
 /* Float Clearing. */
 .contain:before,
