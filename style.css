@@ -591,14 +591,12 @@ form.bullet.subscribe-without-commenting input.bullet-button {
 
 /* Featured image. */
 .entry .featured-image {
-	text-align:center;
-}
-.format-standard .featured-image {
 	float:right;
-	margin:1.5em 0 1em 1.5em;
+	margin:0 0 1em 1em;
 	padding:10px 12px 8px 10px;
 	border:.1em solid #ccc;
 	background-color:#fff;
+	text-align:center;
 }
 
 /* Meta. */
@@ -607,6 +605,10 @@ form.bullet.subscribe-without-commenting input.bullet-button {
 }
 .meta p {
 	margin:0;
+}
+.entry-meta {
+	clear:both;
+	font-size:.8em;
 }
 
 /* Entries in blog view. */
@@ -620,9 +622,12 @@ form.bullet.subscribe-without-commenting input.bullet-button {
 	padding:0 3em;
 }
 #blog h2.entry-title {
-	/*clear:none;*/
 	margin-top:0;
 	margin-bottom:.25em;
+}
+#blog .has-featured-image h2.entry-title {
+	margin-right:190px;
+	clear:none;
 }
 #blog .format-status .image {
 	float:left;
@@ -643,10 +648,13 @@ form.bullet.subscribe-without-commenting input.bullet-button {
 	-moz-border-radius:   .5em;
 	border-radius:        .5em;
 }
-.format-status .content {
-	margin-left:80px;
+.format-status .content,
+.format-status .entry-meta {
+	margin-left:85px;
 }
-
+.format-status .entry-meta p {
+	margin-top:0;
+}
 
 /* Search results. */
 .search-result {
