@@ -1256,17 +1256,6 @@ function nighthawk_td_edit( $column = array() ) {
 	print '</td>';
 }
 
-function nighthawk_td_comment_count( $column = array() ) {
-	$post_type = get_post_type();
-	if ( ! post_type_supports( $post_type, 'title' ) ) {
-		print "\n\t" . '<td class="' . esc_attr( $column['class'] ) . ' empty-cell"></td>';
-		return;
-	}
-	print "\n\t" . '<td class="' . esc_attr( $column['class'] ) . '">';
-	comments_popup_link( '0', '1', '%', 'comments-link', '' );
-	print '</td>';
-}
-
 function nighthawk_td_title( $column = array() ) {
 	$post_type = get_post_type();
 	if ( ! post_type_supports( $post_type, 'title' ) ) {
@@ -1290,6 +1279,16 @@ function nighthawk_td_title( $column = array() ) {
 	}
 
 	print "\n\t" . '<td class="' . esc_attr( $column['class'] ) . '"><a href="' . esc_url( get_permalink() ) . '">' . $title . '</a></td>';
+}
+
+function nighthawk_td_comment_count( $column = array() ) {
+	if ( post_password_required() ) {
+		print "\n\t" . '<td class="' . esc_attr( $column['class'] ) . ' empty-cell"></td>';
+		return;
+	}
+	print "\n\t" . '<td class="' . esc_attr( $column['class'] ) . '">';
+	comments_popup_link( '0', '1', '%', 'comments-link', '' );
+	print '</td>';
 }
 
 function nighthawk_td_comment_icon( $column = array() ) {
