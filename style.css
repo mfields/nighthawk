@@ -609,61 +609,6 @@ form.bullet.subscribe-without-commenting input.bullet-button {
 	margin:0;
 }
 
-/* Status posts. 
-.format-status {
-	z-index:1;
-	margin-left:85px;
-	padding:0;
-	border:1px solid #ccc;
-	overflow:visible;
-	border-radius:.5em;
-	background-color:#eef3fa;
-	-webkit-background-clip:padding-box;
-	background-clip:padding-box;
-}
-.format-status a.entry-title {
-	font-weight:bold;
-	color:#555;
-}
-.format-status .content {
-	min-height:60px;
-	margin:0 27px 0 0;
-	padding:5px;
-	background-color:#fff;
-	-webkit-border-radius:.5em;
-	-moz-border-radius:   .5em;
-	border-radius:        .5em;
-}
-.format-status .image {
-	position:absolute;
-	z-index:0;
-	margin:0;
-	padding:0;
-	top:0;
-	left:-85px;
-	width:70px;
-	height:70px;
-	border:1px solid #ccc;
-	border-right-width:0;
-	-webkit-border-radius:.5em;
-	-moz-border-radius:   .5em;
-	border-radius:        .5em;
-	overflow:hidden;
-}
-.format-status .image img {
-	width:100%;
-	height:100%;
-	-webkit-border-radius:.5em;
-	-moz-border-radius:   .5em;
-	border-radius:        .5em;
-}
-.format-status .comment-icon {
-	position:absolute;
-	top:5px;
-	right:5px;
-}
-*/
-
 /* Entries in blog view. */
 #blog {
 	padding:1.5em 0;
@@ -678,6 +623,28 @@ form.bullet.subscribe-without-commenting input.bullet-button {
 	/*clear:none;*/
 	margin-top:0;
 	margin-bottom:.25em;
+}
+#blog .format-status .image {
+	float:left;
+	width:70px;
+	height:70px;
+	border:1px solid #ccc;
+	position:relative;
+	top:.3em;
+	-webkit-border-radius:.5em;
+	-moz-border-radius:   .5em;
+	border-radius:        .5em;
+	overflow:hidden;
+}
+#blog .format-status .image img {
+	width:100%;
+	height:100%;
+	-webkit-border-radius:.5em;
+	-moz-border-radius:   .5em;
+	border-radius:        .5em;
+}
+.format-status .content {
+	margin-left:80px;
 }
 
 

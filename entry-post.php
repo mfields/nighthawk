@@ -10,14 +10,14 @@
  */
 ?>
 
-<div id="<?php nighthawk_entry_id(); ?>" <?php post_class(); ?>>
+<div id="<?php nighthawk_entry_id(); ?>" <?php post_class( 'contain' ); ?>>
 
 <?php
 	do_action( 'nighthawk_entry_start' );
 
 	switch ( get_post_format() ) {
 		case 'status' :
-			$avatar = get_avatar( get_the_author_meta( 'user_email' ), $size = '100' );
+			$avatar = get_avatar( get_the_author_meta( 'user_email' ), $size = '70' );
 			if ( ! is_single() ) {
 				$avatar = '<a href="' . esc_url( get_permalink() ) . '" class="image">' . $avatar . '</a>';
 			}
