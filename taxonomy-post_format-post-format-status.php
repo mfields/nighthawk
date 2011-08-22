@@ -1,12 +1,9 @@
 <?php
 /**
- * Blog timeline template
+ * Status Update Template.
  *
- * This file is responsible for creating the blog view.
- * In a default installation of WordPress, this will be
- * the home page. In instances where users have designated
- * a page to be used as their "Blog Page", this template
- * will be used instead of page.php.
+ * Used when status updates are queried:
+ * example.com/type/status or example.com/?post_format=status
  *
  * @package      Nighthawk
  * @author       Michael Fields <michael@mfields.org>
