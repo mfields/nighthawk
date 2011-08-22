@@ -327,8 +327,7 @@ form.bullet.subscribe-without-commenting input.bullet-button {
 
 /* Dialogs */
 .dialog,
-ul.form-errors /* Grunion Contact Form Plugin. */
-{
+ul.form-errors { /* Grunion Contact Form Plugin. */
 	display:block;
 	margin:.5em;
 	padding:.5em;
@@ -664,7 +663,7 @@ ul.form-errors li.form-error-message { /* Grunion Contact Form Plugin. */
 	margin-left:85px;
 }
 .format-status .entry-meta p {
-	margin-top:0;
+	margin-top:.25em;
 }
 
 /* Search results. */
@@ -846,8 +845,7 @@ ul.form-errors li.form-error-message { /* Grunion Contact Form Plugin. */
 button,
 .button,
 input#submit,
-input.pushbutton-wide /* Grunion Contact Form Plugin */
-{
+input.pushbutton-wide { /* Grunion Contact Form Plugin */
 	padding:5px 7px 3px;
 	color:#bbb;
 	line-height:1;
