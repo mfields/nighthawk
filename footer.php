@@ -70,52 +70,5 @@ if ( 0 < $count ) {
 
 <?php wp_footer(); ?>
 
-<script>
-( function( window, document, undefined ) {
-
-	var maybeAddClass = function( e, cn ) {
-		var c = String( e.getAttribute( 'class' ) );
-		if ( 0 == c.length ) {
-			e.className += cn;
-		}
-		else if ( -1 == c.indexOf( cn ) ) {
-			e.className += ' ' + cn;
-		}
-		return e;
-	}
-
-	var imgs, i, w;
-	imgs = document.getElementById( 'content' ).getElementsByTagName( 'img' );
-
-	for ( i = 0; i < imgs.length; i++ ) {
-		if ( 860 <= imgs[i].width ) {
-			imgs[i] = maybeAddClass( imgs[i], 'larger-than-860' );
-		}
-		else if ( 607 <= imgs[i].width ) {
-			imgs[i] = maybeAddClass( imgs[i], 'larger-than-607' );
-		}
-		else if ( 300 <= imgs[i].width ) {
-			imgs[i] = maybeAddClass( imgs[i], 'larger-than-300' );
-		}
-
-		/* Remove inline styles from image's caption wrapper element. */
-		if ( 'A' == imgs[i].parentNode.tagName ) {
-			var classAttr = String( imgs[i].parentNode.parentNode.getAttribute( 'class' ) );
-			if ( -1 != classAttr.indexOf( 'wp-caption' ) ) {
-				imgs[i].parentNode.parentNode.removeAttribute( 'style' );
-			}
-		}
-
-		/* Add a class to images that have been resized in the editor. */
-		if ( 'naturalWidth' in imgs[i] && imgs[i].naturalWidth != imgs[i].getAttribute( 'width' ) ) {
-			imgs[i] = maybeAddClass( imgs[i], 'forced-dimensions' );
-		}
-		if ( 'naturalHeight' in imgs[i] && imgs[i].naturalHeight != imgs[i].getAttribute( 'height' ) ) {
-			imgs[i] = maybeAddClass( imgs[i], 'forced-dimensions' );
-		}
-	}
-} ) ( this, document );
-</script>
-
 </body>
 </html>
