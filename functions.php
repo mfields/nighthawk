@@ -984,17 +984,10 @@ function nighthawk_search_id() {
  * @since     1.0
  */
 function _nighthawk_password_form( $form ) {
-	static $id = 0;
-	$id++;
-	$id_attr = 'password-form-' . $id;
-
-	$form = "\n\n";
-	$form.= '<p>' . esc_html__( 'This post is password protected. To view it please enter your password below:', 'nighthawk' ) . '</p>';
-	$form.= '<form class="bullet" action="' . esc_url( get_option( 'siteurl' ) . '/wp-pass.php' ) . '" method="post">';
-	$form.= '<label class="bullet-label" for="' . esc_attr( $id_attr ) . '">' . __( 'Enter Password', 'nighthawk' ) . '</label>';
-	$form.= '<input class="bullet-term" name="post_password" id="' . esc_attr( $id_attr ) . '" type="password" size="20" />';
-	$form.= '<input class="bullet-button" type="submit" name="Submit" value="' . esc_attr__( 'Unlock', 'nighthawk' ) . '" />';
-	$form.= '</form>';
+	ob_start();
+	get_template_part( 'password-protected-post-form' );
+	$form = ob_get_contents();
+	ob_end_clean();
 	return $form;
 }
 
