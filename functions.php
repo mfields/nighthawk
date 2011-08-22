@@ -1287,7 +1287,7 @@ function nighthawk_td_comment_count( $column = array() ) {
 		return;
 	}
 	print "\n\t" . '<td class="' . esc_attr( $column['class'] ) . '">';
-	comments_popup_link( '0', '1', '%', 'comments-link', '' );
+	comments_popup_link( '', '1', '%', 'comments-link', '' );
 	print '</td>';
 }
 
