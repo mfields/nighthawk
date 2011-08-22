@@ -1307,9 +1307,6 @@ function nighthawk_td_comment_icon( $column = array() ) {
 	print "\n\t" . '<td class="' . esc_attr( $column['class'] ) . '"><a href="' . esc_url( get_permalink() . '#respond' ) . '" class="comment-icon">' . esc_html__( 'Add a comment', 'nighthawk' ) . '</a></td>';
 }
 
-/**
- * @todo Get a permalink icon for here!!!
- */
 function nighthawk_td_permalink_icon( $column = array() ) {
 	print "\n\t" . '<td class="' . esc_attr( $column['class'] ) . '"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark" class="permalink-icon">' . esc_html__( 'Permalink', 'nighthawk' ) . '</a></td>';
 }
