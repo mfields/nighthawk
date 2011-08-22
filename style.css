@@ -658,11 +658,11 @@ ul.form-errors li.form-error-message { /* Grunion Contact Form Plugin. */
 	-moz-border-radius:   .5em;
 	border-radius:        .5em;
 }
-.format-status .content,
-.format-status .entry-meta {
+#blog .format-status .content,
+#blog .format-status .entry-meta {
 	margin-left:85px;
 }
-.format-status .entry-meta p {
+#blog .format-status .entry-meta p {
 	margin-top:.25em;
 }
 
