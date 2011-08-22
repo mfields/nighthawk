@@ -99,7 +99,6 @@ function _nighthawk_setup() {
 	add_filter( 'embed_oembed_html', '_nighthawk_oembed_dataparse', 10, 4 );
 	add_filter( 'embed_googlevideo', '_nighthawk_oembed_dataparse', 10, 2 );
 	add_filter( 'excerpt_more',      '_nighthawk_excerpt_more_auto' );
-	add_filter( 'get_the_excerpt',   '_nighthawk_excerpt_more_custom' );
 	add_filter( 'post_class',        '_nighthawk_post_class' );
 	add_action( 'the_content',       '_nighthawk_related_images' );
 	add_filter( 'the_password_form', '_nighthawk_password_form' );
@@ -215,25 +214,6 @@ function nighthawk_summary_meta( $before = '', $after = '', $print = true ) {
 			return $sentence;
 		}
 	}
-}
-
-/**
- * Continue Reading Link.
- *
- * Get a link to the global post's single view
- * with the phraze "Continue Reading".
- *
- * @return    string         Permalink with the text "Continue Reading".
- *
- * @access    public
- * @since     1.0
- */
-function nighthawk_continue_reading_link() {
-	$text = __( 'Continue reading', 'nighthawk' );
-	if ( 'gallery' == get_post_format() ) {
-		$text = __( 'View this gallery', 'nighthawk' );
-	}
-	return ' <a href="'. esc_url( get_permalink() ) . '">' . esc_html( $text ) . '</a>';
 }
 
 /**
@@ -723,33 +703,7 @@ function _nighthawk_related_images( $content ) {
  * @since     1.0
  */
 function _nighthawk_excerpt_more_auto( $more ) {
-	if ( in_the_loop() ) {
-		return ' &hellip; ' . nighthawk_continue_reading_link();
-	}
 	return ' &hellip;';
-}
-
-/**
- * Excerpt More (custom).
- *
- * For posts that have a custom excerpt defined, WordPress
- * will show this excerpt instead of shortening the post_content.
- * Nighthawk will append a link to the post's single view to the excerpt.
- *
- * This filter is attached to the 'get_the_excerpt' hook
- * in the _nighthawk_setup() function.
- *
- * @param     string         $excerpt Post excerpt.
- * @return    string         Excerpt with a link to the post's single view.
- *
- * @access    private
- * @since     1.0
- */
-function _nighthawk_excerpt_more_custom( $excerpt ) {
-	if ( has_excerpt() && ! is_search() && ! is_attachment() && ! is_singular() ) {
-		$excerpt .= "\n" . nighthawk_continue_reading_link();
-	}
-	return $excerpt;
 }
 
 /**
