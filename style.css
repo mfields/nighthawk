@@ -326,7 +326,9 @@ form.bullet.subscribe-without-commenting input.bullet-button {
 
 
 /* Dialogs */
-.dialog {
+.dialog,
+ul.form-errors /* Grunion Contact Form Plugin. */
+{
 	display:block;
 	margin:.5em;
 	padding:.5em;
@@ -343,7 +345,25 @@ form.bullet.subscribe-without-commenting input.bullet-button {
 	border-color:#e3CC7d;
 	color:#786C43;
 }
-
+ul.form-errors { /* Grunion Contact Form Plugin. */
+	background-color:#ffe58c; /* Light Yellow. */
+	border-color:#e3CC7d;
+	color:#786C43;
+	padding-left:2em;
+}
+ul.form-errors li.form-error-message { /* Grunion Contact Form Plugin. */
+	color:#786C43 !important;
+}
+/*
+<div class="form-error">
+<h3>Error!</h3>
+<ul class="form-errors">
+	<li class="form-error-message" style="color: red;">Name is required</li>
+	<li class="form-error-message" style="color: red;">Email requires a valid email address</li>
+	<li class="form-error-message" style="color: red;">Message is required</li>
+</ul>
+</div>
+*/
 
 /* Float Clearing. */
 .contain:before,
@@ -834,7 +854,9 @@ form.bullet.subscribe-without-commenting input.bullet-button {
 
 button,
 .button,
-input#submit {
+input#submit,
+input.pushbutton-wide /* Grunion Contact Form Plugin */
+{
 	padding:5px 7px 3px;
 	color:#bbb;
 	line-height:1;
@@ -855,9 +877,12 @@ input#submit {
 }
 button:hover,
 .button:hover,
-input#submit:hover {
+input#submit:hover,
+input.pushbutton-wide /* Grunion Contact Form Plugin */
+{
 	outline:none;
 	color:#ddd;
+	cursor:pointer;
 }
 button:active,
 button:focus,
