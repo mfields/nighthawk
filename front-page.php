@@ -99,7 +99,7 @@ if ( ! empty( $stickies ) ) {
 wp_reset_postdata();
 ?>
 
-<div id="content" class="contain">
+<div id="blog" class="contain">
 
 <?php
 while ( have_posts() ) {

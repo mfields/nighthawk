@@ -45,6 +45,7 @@ address, article, aside, blockquote, dl, fieldset, form, ol, p, pre, table, ul,
 .entry-content div, .embed {
 	font-size:1em;
 	margin:1.5em 0;
+	padding:0;
 	line-height:1.5em;
 }
 
@@ -473,11 +474,9 @@ form.bullet.subscribe-without-commenting input.bullet-button {
 	box-shadow:         0 0 .75em rgba( 0, 0, 0, 0.4 );
 }
 #content {
-	color:#444;
 	padding:1.5em 3em;
 	overflow:hidden;
 }
-
 
 /* Intro box */
 #featured-image {
@@ -561,10 +560,6 @@ form.bullet.subscribe-without-commenting input.bullet-button {
 }
 
 /* All posts. */
-h2.entry-title {
-	/*clear:none;*/
-	margin-bottom:.25em;
-}
 .entry-content img {
 	max-width:860px;
 	height:auto;
@@ -614,7 +609,7 @@ h2.entry-title {
 	margin:0;
 }
 
-/* Status posts. */
+/* Status posts. 
 .format-status {
 	z-index:1;
 	margin-left:85px;
@@ -666,6 +661,23 @@ h2.entry-title {
 	position:absolute;
 	top:5px;
 	right:5px;
+}
+*/
+
+/* Entries in blog view. */
+#blog {
+	padding:1.5em 0;
+	overflow:hidden;
+}
+#blog .entry {
+	border-bottom:1px solid #ddd;
+	margin:1.5em 0;
+	padding:0 3em;
+}
+#blog h2.entry-title {
+	/*clear:none;*/
+	margin-top:0;
+	margin-bottom:.25em;
 }
 
 
@@ -951,7 +963,6 @@ small,
 /* Shadow offset. */
 blockquote,
 pre,
-.format-status,
 .format-standard .featured-image,
 .gallery img {
 	box-shadow:         .2em .2em .3em rgba( 0, 0, 0, 0.3 );
