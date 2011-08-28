@@ -13,6 +13,12 @@ Copyright          2011 Michael Fields.
 */
 
 
+/* =Notes
+--------------------------------------------------------------
+
+	- The .form-errors class is defined in the Grunion Contact Form plugin.
+*/
+
 html {
 	margin: 0;
 	padding: 0;
@@ -393,35 +399,35 @@ form.bullet.subscribe-without-commenting input.bullet-button {
 -------------------------------------------------------------- */
 
 .box {
-	position:relative;
-	margin-top:1.5em;
-	margin-bottom:1.5em;
-	margin-right:.5em;
+	margin-top: 1.5em;
+	margin-bottom: 1.5em;
+	margin-right: .5em;
+	position: relative;
 }
 .box .heading {
-	display:block;
-	margin:0 0 .5em;
-	line-height:1.25;
-	font-weight:bold;
-	font-size:1.5em;
-	color:#567797;
+	color: #567797;
+	display: block;
+	font-size: 1.5em;
+	font-weight: bold;
+	line-height: 1.25;
+	margin: 0 0 .5em;
 }
 .box .meta {
-	display:block;
-	margin-bottom:1em;
-	font-size:.85em;
-	line-height:1.25;
+	display: block;
+	font-size: .85em;
+	line-height: 1.25;
+	margin-bottom: 1em;
 }
 .box .content p {
-	margin:0 0 .75em;
+	margin: 0 0 .75em;
 }
 .box .content p:first-child,
 .box .content p:only-child {
-	margin-top:0;
+	margin-top: 0;
 }
 .box .content p:last-child,
 .box .content p:only-child {
-	margin-bottom:0;
+	margin-bottom: 0;
 }
 
 
@@ -429,31 +435,31 @@ form.bullet.subscribe-without-commenting input.bullet-button {
 -------------------------------------------------------------- */
 
 .dialog,
-ul.form-errors { /* Grunion Contact Form Plugin. */
-	display:block;
-	margin:.5em;
-	padding:.5em;
-	color:#333;
-	background-color:#bfeaff; /* Light Blue. */
-	outline:0;
-	border:.2em solid #ccc;
-	-webkit-border-radius:.5em;
-	-moz-border-radius:   .5em;
-	border-radius:        .5em;
+ul.form-errors {
+	display: block;
+	margin: .5em;
+	padding: .5em;
+	color: #333;
+	background-color: #bfeaff; /* Light Blue. */
+	outline: 0;
+	border: .2em solid #ccc;
+	-webkit-border-radius: .5em;
+	-moz-border-radius: .5em;
+	border-radius: .5em;
 }
 .dialog.notice {
-	background-color:#ffe58c; /* Light Yellow. */
-	border-color:#e3CC7d;
-	color:#786C43;
+	background-color: #ffe58c; /* Light Yellow. */
+	border-color: #e3cc7d;
+	color: #786c43;
 }
-ul.form-errors { /* Grunion Contact Form Plugin. */
-	background-color:#ffe58c; /* Light Yellow. */
-	border-color:#e3CC7d;
-	color:#786C43;
-	padding-left:2em;
+ul.form-errors {
+	background-color: #ffe58c; /* Light Yellow. */
+	border-color: #e3cc7d;
+	color: #786c43;
+	padding-left: 2em;
 }
-ul.form-errors li.form-error-message { /* Grunion Contact Form Plugin. */
-	color:#786C43 !important;
+ul.form-errors li.form-error-message {
+	color: #786c43 !important;
 }
 
 
@@ -462,16 +468,16 @@ ul.form-errors li.form-error-message { /* Grunion Contact Form Plugin. */
 
 .contain:before,
 .contain:after {
-	content:"\0020";
-	display:block;
-	height:0;
-	visibility:hidden;
+	content: "\0020";
+	display: block;
+	height: 0;
+	visibility: hidden;
 }
 .contain:after {
-	clear:both;
+	clear: both;
 }
 .contain {
-	zoom:1;
+	zoom: 1;
 }
 
 
@@ -479,50 +485,50 @@ ul.form-errors li.form-error-message { /* Grunion Contact Form Plugin. */
 -------------------------------------------------------------- */
 
 #wrap {
-	max-width:56em;
-	margin:0 auto;
-	padding:0 1em 1em;
+	margin: 0 auto;
+	max-width: 56em;
+	padding: 0 1em 1em;
 }
 #header {
-	margin:0;
-	min-height:100px;
-	padding:1em;
+	margin: 0;
+	min-height: 100px;
+	padding: 1em;
 }
 #header-image {
-	max-height:200px;
-	overflow:hidden;
-	text-align:center;
+	max-height: 200px;
+	overflow: hidden;
+	text-align: center;
 }
 #site-title {
-	margin:0;
-	font-size:4em;
-	font-weight:bold;
-	text-align:center;
+	font-size: 4em;
+	font-weight: bold;
+	margin: 0;
+	text-align: center;
 }
 #site-title,
 #site-title a {
-	color:#333;
+	color: #333;
 }
 #tagline {
-	margin:0;
-	color:#777;
-	font-style:italic;
-	text-align:center;
+	color: #777;
+	font-style: italic;
+	margin: 0;
+	text-align: center;
 }
 #page {
-	position:relative;
-	z-index:1;
-	padding:0;
-	color:#666;
-	background:#fff;
-	clear:both;
+	background: #fff;
+	clear: both;
+	color: #666;
+	position: relative;
+	padding: 0;
+	-moz-box-shadow: 0 0 .75em rgba( 0, 0, 0, 0.4 );
 	-webkit-box-shadow: 0 0 .75em rgba( 0, 0, 0, 0.4 );
-	-moz-box-shadow:    0 0 .75em rgba( 0, 0, 0, 0.4 );
-	box-shadow:         0 0 .75em rgba( 0, 0, 0, 0.4 );
+	box-shadow: 0 0 .75em rgba( 0, 0, 0, 0.4 );
+	z-index: 1;
 }
 #content {
-	padding:1.5em 3em;
-	overflow:hidden;
+	padding: 1.5em 3em;
+	overflow: hidden;
 }
 
 
@@ -530,25 +536,25 @@ ul.form-errors li.form-error-message { /* Grunion Contact Form Plugin. */
 -------------------------------------------------------------- */
 
 #menu-top {
-	margin:0 0 1em;
-	text-align:center;
+	margin: 0 0 1em;
+	text-align: center;
 }
 #menu-top ul {
-	margin:0;
-	padding:.5em;
+	margin: 0;
+	padding: .5em;
 }
 #menu-top li {
-	list-style-type:none;
-	display:inline;
+	display: inline;
+	list-style-type: none;
 }
 #menu-top li a {
-	line-height:2.5em;
-	background-color:#eee;
-	border:1px solid #ddd;
-	padding:.5em;
+	background-color: #eee;
+	border: 1px solid #ddd;
+	line-height: 2.5em;
+	padding: .5em;
 }
 #menu-top .dialog {
-	text-align:center;
+	text-align: center;
 }
 
 
@@ -556,45 +562,45 @@ ul.form-errors li.form-error-message { /* Grunion Contact Form Plugin. */
 -------------------------------------------------------------- */
 
 #menu-bottom {
-	clear:both;
-	max-width:56em;
-	margin:1em auto 2em;
+	clear: both;
+	margin: 1em auto 2em;
+	max-width: 56em;
 }
 #menu-bottom.no-menu {
-	max-width:50em;
+	max-width: 50em;
 }
 #menu-bottom ul {
-	margin:0;
-	padding:0;
-	text-align:center;
+	margin: 0;
+	padding: 0;
+	text-align: center;
 }
 #menu-bottom li {
-	display:inline;
-	padding:.5em;
-	white-space:nowrap;
+	display: inline;
+	padding: .5em;
+	white-space: nowrap;
 }
 #menu-bottom li a {
-	color:#777;
-	padding:.35em .6em;
-	line-height:3em;
-	background-color:#f6f6f6;
-	border:.1em solid #ddd;
-	outline:0;
-	cursor:pointer;
-	text-align:center;
-	text-decoration:none;
-	font-weight:bold;
+	background-color: #f6f6f6;
+	border: .1em solid #ddd;
+	-moz-border-radius: .3em;
 	-webkit-border-radius: .3em;
-	-moz-border-radius:    .3em;
-	border-radius:         .3em;
+	border-radius: .3em;
+	color: #777;
+	cursor: pointer;
+	font-weight: bold;
+	line-height: 3em;
+	outline: 0;
+	padding: .35em .6em;
+	text-align: center;
+	text-decoration: none;
 }
 #menu-bottom li a:focus,
 #menu-bottom li a:hover,
 #menu-bottom li a:active {
-	color:#555;
+	color: #555;
 }
 #menu-bottom .dialog {
-	text-align:center;
+	text-align: center;
 }
 
 
@@ -602,80 +608,84 @@ ul.form-errors li.form-error-message { /* Grunion Contact Form Plugin. */
 -------------------------------------------------------------- */
 
 #featured-image {
-	float:right;
-	width:150px;
-	margin:.5em 0 0 1em;
+	float: right;
+	margin: .5em 0 0 1em;
+	width: 150px;
 }
 #featured-image img {
-	float:right;
+	float: right;
 }
 #summary p:first-child,
-#summary p:only-child { margin-top:.25em; }
+#summary p:only-child {
+	margin-top: .25em;
+}
 #summary p:last-child,
-#summary p:only-child { margin-bottom:0; }
+#summary p:only-child {
+	margin-bottom: 0;
+}
 #intro {
-	display:block;
-	margin:0;
-	padding:1em 3em;
-	overflow:hidden;
-	border-width:.2em 0;
-	border-style:solid;
-	border-color:#d8e0eb;
-	background-color:#eef3fa;
-	color:#666;
+	background-color: #eef3fa;
+	border-color: #d8e0eb;
+	border-style: solid;
+	border-width: .2em 0;
+	color: #666;
+	display: block;
+	margin: 0;
+	overflow: hidden;
+	padding: 1em 3em;
 }
 #intro h1 {
-	margin:0;
-	line-height:1.25;
-	clear:none;
+	clear: none;
+	line-height: 1.25;
+	margin: 0;
 }
 #byline,
 #dateline,
 #intro-meta {
-	margin:.5em 0 0;
-	color:#555;
-	font-size:.8em;
-	line-height:1.5;
-	font-weight:normal;
+	color: #555;
+	font-size: .8em;
+	font-weight: normal;
+	line-height: 1.5;
+	margin: .5em 0 0;
 }
 #intro.has-featured-image p {
-	margin-right:180px;
+	margin-right: 180px;
 }
 #intro p a {
-	color:#54778a;
+	color: #54778a;
 }
 #intro .page-link a {
-	float:left;
-	width:1em;
-	background-color:#555;
-	text-align:center;
-	padding:.2em .3em;
-	border-radius:.25em;
-	border:1px solid #d8e0eb;
-	margin:0 .25em .25em 0;
-	font-size:.9em;
-	color:#ccc;
-	font-weight:bold;
+	background-color: #555;
+	border: 1px solid #d8e0eb;
+	border-radius: .25em;
+	color: #ccc;
+	float: left;
+	font-size: .9em;
+	font-weight: bold;
+	margin: 0 .25em .25em 0;
+	padding: .2em .3em;
+	text-align: center;
+	width: 1em;
 }
 #intro .page-link a:hover,
 #intro .page-link a:focus,
 #intro .page-link a:active {
-	text-decoration:none;
-	background-color:#333;
-	color:#fff;
+	background-color: #333;
+	color: #fff;
+	text-decoration: none;
 }
 #intro-list {
-	list-style-type:none;
-	padding:.5em;
-	margin:0 3em;
-	border:1px solid #ddd;
-	border-top-width:0;
+	border: 1px solid #ddd;
+	border-top-width: 0;
+	-moz-border-radius-bottomright: .5em;
+	-webkit-border-bottom-right-radius: .5em;
+	border-bottom-right-radius: .5em;
+	-moz-border-radius-bottomleft: .5em;
 	-webkit-border-bottom-left-radius: .5em;
-	-webkit-border-bottom-right-radius:.5em;
-	-moz-border-radius-bottomright:    .5em;
-	-moz-border-radius-bottomleft:     .5em;
-	border-bottom-left-radius:         .5em;
-	border-bottom-right-radius:        .5em;
+	border-bottom-left-radius: .5em;
+	list-style-type: none;
+	margin: 0 3em;
+	padding: .5em;
 }
 
 
