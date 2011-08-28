@@ -184,23 +184,35 @@ var {
 }
 
 
-/* =Margin for All Content Blocks
+/* =Block Level Elements
 -------------------------------------------------------------- */
 
-address, article, aside, blockquote, dl, fieldset, form, ol, p, pre, table, ul,
-.entry-content div, .embed {
-	font-size:1em;
-	margin:1.5em 0;
-	padding:0;
-	line-height:1.5em;
+address,
+article,
+aside,
+blockquote,
+dl,
+fieldset,
+form,
+ol,
+p,
+pre,
+table,
+ul,
+.embed,
+.entry-content div {
+	display: block;
+	font-size: 1em;
+	line-height: 1.5em;
+	margin: 1.5em 0;
+	padding: 0;
 }
-
-
-/* Blocks that need padding */
-blockquote, fieldset, pre {
-	text-align:left;
-	padding:1em;
-	background-color:#fff;
+blockquote,
+fieldset,
+pre {
+	text-align: left;
+	padding: 1em;
+	background-color: #fff;
 }
 
 
