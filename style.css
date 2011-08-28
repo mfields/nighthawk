@@ -11,6 +11,8 @@ Tags:              one-column, flexible-width, custom-header, custom-background,
 
 Copyright          2011 Michael Fields.
 */
+
+
 html {
 	margin:0;
 	padding:0;
@@ -30,7 +32,8 @@ input, textarea {
 	font-family:Trebuchet,arial,sans-serif;
 }
 
-/* Font-size + margin for all headings */
+/* =Headings
+-------------------------------------------------------------- */
 h1, h2, h3, h4, h5, h6 { padding:0; line-height:1.2em; clear:both; }
 h1 { font-size:2.25em; margin:.83em 0; }
 h2 { font-size:1.75em; margin:1.05em 0; }
@@ -58,7 +61,8 @@ blockquote, fieldset, pre {
 }
 
 
-/* Lists */
+/* =Lists
+-------------------------------------------------------------- */
 ul, ol {
 	padding-left:1.5em;
 }
@@ -105,8 +109,10 @@ blockquote blockquote:last-child {
 	margin-bottom:0;
 }
 
-	
-/* Typography - font, color + interaction. */
+
+/* =Typography - font, color + interaction.
+-------------------------------------------------------------- */
+
 h1, h2, h3, h4, h5, h6, #site-title, .comment-author {
 	font-family:Cabin,Trebuchet,arial,sans-serif;
 }
@@ -189,7 +195,9 @@ small {
 }
 
 
-/* Tables */
+/* =Tables
+-------------------------------------------------------------- */
+
 table {
 	border-collapse:collapse;
 	border:.1em solid #555;
@@ -207,7 +215,9 @@ td {
 }
 
 
-/* Forms */
+/* =Forms
+-------------------------------------------------------------- */
+
 legend {
 	padding:.5em;
 }
@@ -230,6 +240,11 @@ textarea:focus {
 	outline:.2em solid #cadbe3;
 	background:#e2f5ff;
 }
+
+
+/* =Bullet Forms
+-------------------------------------------------------------- */
+
 form.bullet {
 	position:relative;
 	padding-right:6em;
@@ -292,6 +307,9 @@ form.bullet.subscribe-without-commenting input.bullet-button {
 }
 
 
+/* =Generic Box Class
+-------------------------------------------------------------- */
+
 .box {
 	position:relative;
 	margin-top:1.5em;
@@ -325,7 +343,9 @@ form.bullet.subscribe-without-commenting input.bullet-button {
 }
 
 
-/* Dialogs */
+/* =Dialogs
+-------------------------------------------------------------- */
+
 .dialog,
 ul.form-errors { /* Grunion Contact Form Plugin. */
 	display:block;
@@ -355,7 +375,9 @@ ul.form-errors li.form-error-message { /* Grunion Contact Form Plugin. */
 }
 
 
-/* Float Clearing. */
+/* =Float Clearing
+-------------------------------------------------------------- */
+
 .contain:before,
 .contain:after {
 	content:"\0020";
@@ -371,7 +393,9 @@ ul.form-errors li.form-error-message { /* Grunion Contact Form Plugin. */
 }
 
 
-/* Template */
+/* =Layout
+-------------------------------------------------------------- */
+
 #wrap {
 	max-width:56em;
 	margin:0 auto;
@@ -403,7 +427,25 @@ ul.form-errors li.form-error-message { /* Grunion Contact Form Plugin. */
 	font-style:italic;
 	text-align:center;
 }
+#page {
+	position:relative;
+	z-index:1;
+	padding:0;
+	color:#666;
+	background:#fff;
+	clear:both;
+	-webkit-box-shadow: 0 0 .75em rgba( 0, 0, 0, 0.4 );
+	-moz-box-shadow:    0 0 .75em rgba( 0, 0, 0, 0.4 );
+	box-shadow:         0 0 .75em rgba( 0, 0, 0, 0.4 );
+}
+#content {
+	padding:1.5em 3em;
+	overflow:hidden;
+}
 
+
+/* =Menu Top
+-------------------------------------------------------------- */
 
 #menu-top {
 	margin:0 0 1em;
@@ -415,8 +457,7 @@ ul.form-errors li.form-error-message { /* Grunion Contact Form Plugin. */
 }
 #menu-top li {
 	list-style-type:none;
-	display:inline;	
-	
+	display:inline;
 }
 #menu-top li a {
 	line-height:2.5em;
@@ -429,7 +470,9 @@ ul.form-errors li.form-error-message { /* Grunion Contact Form Plugin. */
 }
 
 
-/* Bottom Menu. */
+/* =Menu Bottom
+-------------------------------------------------------------- */
+
 #menu-bottom {
 	clear:both;
 	max-width:56em;
@@ -473,23 +516,9 @@ ul.form-errors li.form-error-message { /* Grunion Contact Form Plugin. */
 }
 
 
-#page {
-	position:relative;
-	z-index:1;
-	padding:0;
-	color:#666;
-	background:#fff;
-	clear:both;
-	-webkit-box-shadow: 0 0 .75em rgba( 0, 0, 0, 0.4 );
-	-moz-box-shadow:    0 0 .75em rgba( 0, 0, 0, 0.4 );
-	box-shadow:         0 0 .75em rgba( 0, 0, 0, 0.4 );
-}
-#content {
-	padding:1.5em 3em;
-	overflow:hidden;
-}
+/* =Intro Box
+-------------------------------------------------------------- */
 
-/* Intro box */
 #featured-image {
 	float:right;
 	width:150px;
@@ -502,8 +531,6 @@ ul.form-errors li.form-error-message { /* Grunion Contact Form Plugin. */
 #summary p:only-child { margin-top:.25em; }
 #summary p:last-child,
 #summary p:only-child { margin-bottom:0; }
-
-
 #intro {
 	display:block;
 	margin:0;
@@ -535,7 +562,6 @@ ul.form-errors li.form-error-message { /* Grunion Contact Form Plugin. */
 #intro p a {
 	color:#54778a;
 }
-
 #intro .page-link a {
 	float:left;
 	width:1em;
@@ -570,7 +596,10 @@ ul.form-errors li.form-error-message { /* Grunion Contact Form Plugin. */
 	border-bottom-right-radius:        .5em;
 }
 
-/* All posts. */
+
+/* =All Entries
+-------------------------------------------------------------- */
+
 .entry-content img {
 	max-width:860px;
 	height:auto;
@@ -599,7 +628,6 @@ ul.form-errors li.form-error-message { /* Grunion Contact Form Plugin. */
 .entry .attachment {
 	text-align:center;
 }
-
 /* Featured image. */
 .entry .featured-image {
 	float:right;
@@ -609,7 +637,6 @@ ul.form-errors li.form-error-message { /* Grunion Contact Form Plugin. */
 	background-color:#fff;
 	text-align:center;
 }
-
 /* Meta. */
 .meta {
 	clear:both;
@@ -622,7 +649,10 @@ ul.form-errors li.form-error-message { /* Grunion Contact Form Plugin. */
 	font-size:.8em;
 }
 
-/* Entries in blog view. */
+
+/* =Entries in Blog View
+-------------------------------------------------------------- */
+
 #blog {
 	padding:1.5em 0;
 	overflow:hidden;
@@ -671,7 +701,10 @@ ul.form-errors li.form-error-message { /* Grunion Contact Form Plugin. */
 	padding:0;
 }
 
-/* Search results. */
+
+/* =Search Results
+-------------------------------------------------------------- */
+
 .search-result {
 	margin-bottom:3em;
 }
@@ -686,7 +719,9 @@ ul.form-errors li.form-error-message { /* Grunion Contact Form Plugin. */
 }
 
 
-/* Image template */
+/* =Image Template
+-------------------------------------------------------------- */
+
 #related-images {
 	margin:0;
 	padding:0;
@@ -701,12 +736,12 @@ ul.form-errors li.form-error-message { /* Grunion Contact Form Plugin. */
 }
 
 
-/* A Single Comment */
+/* =Comment List
+-------------------------------------------------------------- */
+
 .comment {
 	min-height:55px;
 }
-
-/* Comment List */
 .comment-list {
 	list-style-type:none;
 	margin:0;
@@ -715,8 +750,6 @@ ul.form-errors li.form-error-message { /* Grunion Contact Form Plugin. */
 .comment-date {
 	color:#888;
 }
-
-
 .trackback {
 	border:.1em solid #ccc;
 	-webkit-border-radius:.5em;
@@ -736,7 +769,9 @@ ul.form-errors li.form-error-message { /* Grunion Contact Form Plugin. */
 }
 
 
-/* Comment Form. */
+/* =Comment Form
+-------------------------------------------------------------- */
+
 #respond label {
 	display:block;
 }
@@ -754,6 +789,8 @@ ul.form-errors li.form-error-message { /* Grunion Contact Form Plugin. */
 }
 
 
+/* =Post Navigation
+-------------------------------------------------------------- */
 #page-footer {
 	clear:both;
 }
@@ -783,7 +820,9 @@ ul.form-errors li.form-error-message { /* Grunion Contact Form Plugin. */
 }
 
 
-/* All Widgets. */
+/* =Widgets
+-------------------------------------------------------------- */
+
 #widgets {
 	clear:both;
 	position:relative;
@@ -835,7 +874,6 @@ ul.form-errors li.form-error-message { /* Grunion Contact Form Plugin. */
 #widgets .textwidget p:first-child {
 	margin-top:0;
 }
-
 #wp-calendar {
 	border-color:#ccc;
 }
@@ -846,6 +884,10 @@ ul.form-errors li.form-error-message { /* Grunion Contact Form Plugin. */
 	font-weight:bold;
 	border-color:#ccc;
 }
+
+
+/* =Buttons
+-------------------------------------------------------------- */
 
 button,
 .button,
@@ -895,7 +937,9 @@ input#submit:active {
 }
 
 
-/* WordPress generated classes. */
+/* =WordPress Generated Classes
+-------------------------------------------------------------- */
+
 .alignnone,
 div.alignnone {
 	margin:0 1em 0 0;
@@ -932,7 +976,9 @@ div.aligncenter {
 .wp-caption-text {}
 
 
-/* Small text, lighter color */
+/* =Smaller Text, Lighter Color
+-------------------------------------------------------------- */
+
 small,
 .meta,
 .wp-caption-text,
@@ -944,7 +990,9 @@ small,
 }
 
 
-/* Bullet points */
+/* =Bullet Points
+-------------------------------------------------------------- */
+
 .post-edit:before,
 .subscribe:before,
 .comment-link:before,
@@ -954,7 +1002,9 @@ small,
 }
 
 
-/* Shadow offset. */
+/* =Shadows
+-------------------------------------------------------------- */
+
 blockquote,
 pre,
 .format-standard .featured-image,
@@ -965,7 +1015,9 @@ pre,
 }
 
 
-/* I make plugins plugin. */
+/* =I Make Plugins (plugin by Mark Jaquith)
+-------------------------------------------------------------- */
+
 #cws-imp-plugin-list {
 	padding:0;
 }
@@ -986,11 +1038,256 @@ li.cws-imp-plugin {
 img.forced-dimensions {}
 
 
-/* Gallery Shortcode Reset. */
-.entry #gallery-1 img, .entry #gallery-2 img, .entry #gallery-3 img, .entry #gallery-4 img, .entry #gallery-5 img, .entry #gallery-6 img, .entry #gallery-7 img, .entry #gallery-8 img, .entry #gallery-9 img, .entry #gallery-10 img {
+/* =Gallery Shortcode Reset
+-------------------------------------------------------------- */
+
+.entry #gallery-1 img,
+.entry #gallery-2 img,
+.entry #gallery-3 img,
+.entry #gallery-4 img,
+.entry #gallery-5 img,
+.entry #gallery-6 img,
+.entry #gallery-7 img,
+.entry #gallery-8 img,
+.entry #gallery-9 img,
+.entry #gallery-10 img {
 	border-width:0;
 }
 
+
+/* =Post Archive Tables
+-------------------------------------------------------------- */
+
+.post-archive {
+	width:100%;
+	border-width:0;
+}
+.post-archive thead {
+	display:none;
+}
+.post-archive td {
+	border-width:1px 0;
+	border-color:#ccc;
+	padding:7px;
+}
+.post-archive td:first-child {
+	text-align:left;
+}
+.post-archive tr:first-child td {
+	border-top-width:0;
+}
+.post-archive tr:last-child td {
+	border-bottom-width:0;
+}
+.post-archive .comment-count {
+	text-align:center;
+}
+.post-archive td.edit-post,
+.post-archive td.comment-respond {
+	width:20px;
+	vertical-align:middle;
+}
+a.permalink-icon,
+a.comment-icon {
+	display:block;
+	width:16px;
+	height:16px;
+	text-indent:-9999em;
+	padding:0;
+	background:url( images/icon-sprite.png ) no-repeat;
+}
+a.permalink-icon {
+	background-position:-16px 0;
+}
+a.permalink-icon:hover,
+a.permalink-icon:focus,
+a.permalink-icon:active {
+	background-position:-16px -16px;
+}
+
+a.comment-icon {
+	background-position:0 0;
+}
+a.comment-icon:hover,
+a.comment-icon:focus,
+a.comment-icon:active {
+	background-position:0 -16px;
+}
+
+
+/* =Githib Commits (Plugin by Michael Fields)
+-------------------------------------------------------------- */
+
+.github-commits {
+	border-color:#ddd;
+}
+.github-commits .time {
+	width:170px;
+}
+.github-commits td {
+	border-color:#ddd;
+}
+.github-commits thead th {
+	border-color:#ddd;
+	background-color:#eef3fa;
+	color:#666;
+	text-align:left;
+	font-weight:normal;
+}
+
+
+/* =Dropdown Widgets
+-------------------------------------------------------------- */
+
+#menu {
+	font-family: Helvetica, Arial, sans-serif;
+	font-weight:normal;
+	position:relative;
+	z-index:10;
+	margin:0 0 1em;
+	padding:0;
+	width:100%;
+	float:left;
+	border:1px solid #222;
+	border-top-width:0;
+
+	-webkit-border-bottom-left-radius:  8px;
+	-webkit-border-bottom-right-radius: 8px;
+	-moz-border-radius-bottomright:     8px;
+	-moz-border-radius-bottomleft:      8px;
+	border-bottom-left-radius:          8px;
+	border-bottom-right-radius:         8px;
+}
+#dropdowns ul,
+#dropdowns ol {
+	list-style-position:inside;
+	padding:0 0 0 .5em;
+	margin:0;
+}
+#triggers {
+	position:relative;
+	z-index:2;
+	float:left;
+	width:100%;
+	margin:0;
+	padding:8px 0 0;
+	border-top-color:#474747;
+	border-top-style:solid;
+	border-width:1px;
+	border-radius:5px;
+	font-size:14px;
+	line-height:1;
+}
+#triggers li {
+	float:left;
+	margin:0 0 8px 8px;
+	padding:0;
+	list-style-type:none;
+	border-radius:5px;
+	border: 1px solid #202020;
+}
+#triggers a {
+	float:left;
+	padding:5px 7px 3px;
+	color:#bbb;
+	line-height:1;
+	text-decoration:none;
+	border-top:1px solid #666;
+	border-bottom:1px solid #303030;
+	border-radius:5px;
+	-webkit-transition:-webkit-box-shadow 0.1s linear;
+	-moz-transition:box-shadow 0.2s;
+}
+#triggers a:hover,
+#triggers a:focus {
+	outline:none;
+	color:#ddd;
+	border-top-color:#777;
+}
+#triggers a.active {
+	background:#333;
+	background:-moz-linear-gradient( top, #333 1%, #555 100% );
+	background:-webkit-gradient( linear, left top, left bottom, color-stop( 1%, #333 ), color-stop( 100%, #555 ) );
+	background:-webkit-linear-gradient( top, #333 1%, #555 100% );
+	background:-o-linear-gradient( top, #333 1%, #555 100% );
+	background:-ms-linear-gradient( top, #333 1%, #555 100% );
+	filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='#333', endColorstr='#555', GradientType=0 );
+	background:linear-gradient( top, #333 1%, #555 100% );
+}
+#dropdowns {
+	position:relative;
+	z-index:1;
+	clear:both;
+	font-size:14px;
+	color:#555;
+}
+#dropdowns a {
+	color:#555;
+}
+#dropdowns .widget {
+	position:absolute;
+	z-index:1;
+	background-color:#fff;
+	padding:10px;
+	border:1px solid #999;
+	border-top-width:0;
+	max-width:740px;
+
+	-webkit-border-bottom-left-radius:  5px;
+	-webkit-border-bottom-right-radius: 5px;
+	-moz-border-radius-bottomright:     5px;
+	-moz-border-radius-bottomleft:      5px;
+	border-bottom-left-radius:          5px;
+	border-bottom-right-radius:         5px;
+}
+#dropdowns .widget p:first-child,
+#dropdowns .widget p:only-child {
+	margin-top:0;
+}
+#dropdowns .widget p:last-child,
+#dropdowns .widget p:only-child {
+	margin-bottom:0;
+}
+#dropdowns .widget_gravatar {
+	max-width:400px;
+}
+#menu,
+#triggers li {
+	background: #555;
+	background: -moz-linear-gradient( top, #555 1%, #333 100% );
+	background: -webkit-gradient( linear, left top, left bottom, color-stop( 1%, #555 ), color-stop( 100%, #333 ) );
+	background: -webkit-linear-gradient( top, #555 1%, #333 100% );
+	background: -o-linear-gradient( top, #555 1%, #333 100% );
+	background: -ms-linear-gradient( top, #555 1%, #333 100% );
+	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#555', endColorstr='#333', GradientType=0 );
+	background: linear-gradient( top, #555 1%, #333 100% );
+}
+#dropdowns form.bullet {
+	margin: 0;
+	width:300px;
+	border-color:#999;
+}
+
+
+/* =Mfields Bookmarks (Plugin by Michael Fields)
+-------------------------------------------------------------- */
+
+.bookmark-source,
+.bookmark-source a {
+	color:#999 !important;
+}
+.bookmark-source a {
+	text-decoration:underline;
+}
+.bookmark-source a:hover,
+.bookmark-source a:active,
+.bookmark-source a:focus {
+	color:#555 !important;
+}
+
+
+/* =Responsive Layout
+-------------------------------------------------------------- */
 
 @media all and ( min-width:400px ) {
 	.gallery-columns-4 .gallery-item { width:24% !important; }
@@ -1167,227 +1464,4 @@ img.forced-dimensions {}
 		width:150px;
 		height:150px;
 	}
-}
-
-.post-archive {
-	width:100%;
-	border-width:0;
-}
-.post-archive thead {
-	display:none;
-}
-.post-archive td {
-	border-width:1px 0;
-	border-color:#ccc;
-	padding:7px;
-}
-.post-archive td:first-child {
-	text-align:left;
-}
-.post-archive tr:first-child td {
-	border-top-width:0;
-}
-.post-archive tr:last-child td {
-	border-bottom-width:0;
-}
-.post-archive .comment-count {
-	text-align:center;
-}
-.post-archive td.edit-post,
-.post-archive td.comment-respond {
-	width:20px;
-	vertical-align:middle;
-}
-
-.github-commits {
-	border-color:#ddd;
-}
-.github-commits .time {
-	width:170px;
-}
-.github-commits td {
-	border-color:#ddd;
-}
-.github-commits thead th {
-	border-color:#ddd;
-	background-color:#eef3fa;
-	color:#666;
-	text-align:left;
-	font-weight:normal;
-}
-
-/* Start Dropdown Widgets */
-
-#menu {
-	font-family: Helvetica, Arial, sans-serif;
-	font-weight:normal;
-	position:relative;
-	z-index:10;
-	margin:0 0 1em;
-	padding:0;
-	width:100%;
-	float:left;
-	border:1px solid #222;
-	border-top-width:0;
-
-	-webkit-border-bottom-left-radius:  8px;
-	-webkit-border-bottom-right-radius: 8px;
-	-moz-border-radius-bottomright:     8px;
-	-moz-border-radius-bottomleft:      8px;
-	border-bottom-left-radius:          8px;
-	border-bottom-right-radius:         8px;
-}
-#dropdowns ul,
-#dropdowns ol {
-	list-style-position:inside;
-	padding:0 0 0 .5em;
-	margin:0;
-}
-#triggers {
-	position:relative;
-	z-index:2;
-	float:left;
-	width:100%;
-	margin:0;
-	padding:8px 0 0;
-	border-top-color:#474747;
-	border-top-style:solid;
-	border-width:1px;
-	border-radius:5px;
-	font-size:14px;
-	line-height:1;
-}
-#triggers li {
-	float:left;
-	margin:0 0 8px 8px;
-	padding:0;
-	list-style-type:none;
-	border-radius:5px;
-	border: 1px solid #202020;
-}
-#triggers a {
-	float:left;
-	padding:5px 7px 3px;
-	color:#bbb;
-	line-height:1;
-	text-decoration:none;
-	border-top:1px solid #666;
-	border-bottom:1px solid #303030;
-	border-radius:5px;
-	-webkit-transition:-webkit-box-shadow 0.1s linear;
-	-moz-transition:box-shadow 0.2s;
-}
-#triggers a:hover,
-#triggers a:focus {
-	outline:none;
-	color:#ddd;
-	border-top-color:#777;
-}
-#triggers a.active {
-	background:#333;
-	background:-moz-linear-gradient( top, #333 1%, #555 100% );
-	background:-webkit-gradient( linear, left top, left bottom, color-stop( 1%, #333 ), color-stop( 100%, #555 ) );
-	background:-webkit-linear-gradient( top, #333 1%, #555 100% );
-	background:-o-linear-gradient( top, #333 1%, #555 100% );
-	background:-ms-linear-gradient( top, #333 1%, #555 100% );
-	filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='#333', endColorstr='#555', GradientType=0 );
-	background:linear-gradient( top, #333 1%, #555 100% );
-}
-#dropdowns {
-	position:relative;
-	z-index:1;
-	clear:both;
-	font-size:14px;
-	color:#555;
-}
-#dropdowns a {
-	color:#555;
-}
-#dropdowns .widget {
-	position:absolute;
-	z-index:1;
-	background-color:#fff;
-	padding:10px;
-	border:1px solid #999;
-	border-top-width:0;
-	max-width:740px;
-
-	-webkit-border-bottom-left-radius:  5px;
-	-webkit-border-bottom-right-radius: 5px;
-	-moz-border-radius-bottomright:     5px;
-	-moz-border-radius-bottomleft:      5px;
-	border-bottom-left-radius:          5px;
-	border-bottom-right-radius:         5px;
-}
-#dropdowns .widget p:first-child,
-#dropdowns .widget p:only-child {
-	margin-top:0;
-}
-#dropdowns .widget p:last-child,
-#dropdowns .widget p:only-child {
-	margin-bottom:0;
-}
-#dropdowns .widget_gravatar {
-	max-width:400px;
-}
-
-#menu,
-#triggers li {
-	background: #555;
-	background: -moz-linear-gradient( top, #555 1%, #333 100% );
-	background: -webkit-gradient( linear, left top, left bottom, color-stop( 1%, #555 ), color-stop( 100%, #333 ) );
-	background: -webkit-linear-gradient( top, #555 1%, #333 100% );
-	background: -o-linear-gradient( top, #555 1%, #333 100% );
-	background: -ms-linear-gradient( top, #555 1%, #333 100% );
-	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#555', endColorstr='#333', GradientType=0 );
-	background: linear-gradient( top, #555 1%, #333 100% );
-}
-
-#dropdowns form.bullet {
-	margin: 0;
-	width:300px;
-	border-color:#999;
-}
-
-
-/* End Dropdown Widgets */
-
-.bookmark-source,
-.bookmark-source a {
-	color:#999 !important;
-}
-.bookmark-source a {
-	text-decoration:underline;
-}
-.bookmark-source a:hover,
-.bookmark-source a:active,
-.bookmark-source a:focus {
-	color:#555 !important;
-}
-
-a.permalink-icon,
-a.comment-icon {
-	display:block;
-	width:16px;
-	height:16px;
-	text-indent:-9999em;
-	padding:0;
-	background:url( images/icon-sprite.png ) no-repeat;
-}
-a.permalink-icon {
-	background-position:-16px 0;
-}
-a.permalink-icon:hover,
-a.permalink-icon:focus,
-a.permalink-icon:active {
-	background-position:-16px -16px;
-}
-
-a.comment-icon {
-	background-position:0 0;
-}
-a.comment-icon:hover,
-a.comment-icon:focus,
-a.comment-icon:active {
-	background-position:0 -16px;
 }
