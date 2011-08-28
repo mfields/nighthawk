@@ -26,9 +26,78 @@ body {
 	background: #eee url( images/diagonal-stripes.png ) fixed;
 	font-size: 14px;
 }
-input,
-textarea {
-	font-size: 1em;
+
+
+/* =Inline Elements
+-------------------------------------------------------------- */
+
+a {
+	color: #5588bb;
+	text-decoration: none;
+}
+a img {
+	border-width: 0;
+}
+a.edit-term img {
+	border-width: 0;
+}
+a:hover,
+a:active,
+a:focus {
+	outline: 0;
+	text-decoration: underline;
+}
+a:focus img {
+	outline: .2em solid #bfeaff;
+}
+abbr,
+acronym {
+	border-bottom: 1px dashed #999;
+	cursor: help;
+}
+big {
+	font-size: 2em;
+	position: relative;
+	top: .1em;
+}
+code,
+var {
+	background: #eef3fa;
+	border: .1em solid #d6e8f1;
+	color: #60686c;
+	font-style: normal;
+	padding: 0 .3em;
+}
+b code,
+b var,
+strong code,
+strong var {
+	border-width: .2em;
+}
+del,
+s,
+strike {
+	background-color: #555;
+	color: #555;
+	text-decoration: line-through;
+}
+ins {
+	background-color: #bfffc5;
+	text-decoration: none;
+}
+pre {
+	border: .1em solid #ccc;
+	white-space: pre-wrap;
+}
+pre code {
+	background: transparent;
+	border-width: 0;
+	padding: 0;
+	white-space: pre-wrap;
+}
+small {
+	font-size: 0.9em;
+	line-height: 1.5em;
 }
 
 
@@ -147,6 +216,9 @@ dt, dd {
 	margin:0;
 	padding:0;
 }
+dt {
+	font-weight: bold;
+}
 dd {
 	margin-bottom:1.5em;
 }
@@ -177,80 +249,9 @@ blockquote p:first-child,
 blockquote blockquote:first-child {
 	margin-top:0;
 }
-
 blockquote p:last-child,
 blockquote blockquote:last-child {
 	margin-bottom:0;
-}
-
-
-/* =Typography - font, color + interaction.
--------------------------------------------------------------- */
-
-a {
-	color:#5588bb;
-	text-decoration:none;
-}
-a img {
-	border-width:0;
-}
-a.edit-term img {
-	border-width:0;
-}
-a:hover,
-a:active,
-a:focus {
-	text-decoration:underline;
-	outline:0;
-}
-a:focus img {
-	outline:.2em solid #bfeaff;
-}
-abbr, acronym {
-	border-bottom:1px dashed #999;
-	cursor:help;
-}
-big {
-	position:relative;
-	top:.1em;
-	font-size:2em;
-}
-code, var {
-	border:.1em solid #d6e8f1;
-	background:#eef3fa;
-	padding:0 .3em;
-	color:#60686c;
-	font-style:normal;
-}
-b code, b var, strong code, strong var {
-	border-width:.2em;
-}
-del, strike, s, .required {
-	color:#555;
-	background-color:#555;
-	text-decoration:line-through;
-}
-dt {
-	font-weight:bold;
-}
-ins {
-	text-decoration:none;
-	background-color:#fffabf;
-	background-color:#bfffc5;
-}
-pre {
-	border:.1em solid #ccc;
-	white-space:pre-wrap;
-}
-pre code {
-	border-width:0;
-	background:transparent;
-	padding:0;
-	white-space:pre-wrap;
-}
-small {
-	font-size:0.9em;
-	line-height:1.5em;
 }
 
 
