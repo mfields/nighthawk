@@ -218,13 +218,19 @@ pre {
 
 /* =Lists
 -------------------------------------------------------------- */
-ul, ol {
+
+ol,
+ul {
 	padding-left:1.5em;
 }
-ul ul, ol ol, ul ol, ol ul {
+ol ol,
+ol ul,
+ul ol,
+ul ul {
 	margin:0;
 }
-dt, dd {
+dd,
+dt {
 	margin:0;
 	padding:0;
 }
@@ -235,27 +241,31 @@ dd {
 	margin-bottom:1.5em;
 }
 
+
+/* =Blockquotes
+-------------------------------------------------------------- */
+
 blockquote {
-	position:relative;
-	min-height:34px;
-	padding-left:2em;
-	margin-left:22px;
-	border:.1em solid #ccc;
-	background-color:#f7f7f7;
-	font-style:italic;
-	-webkit-border-radius:.5em;
-	-moz-border-radius:   .5em;
-	border-radius:        .5em;
+	background-color: #f7f7f7;
+	border: .1em solid #ccc;
+	-webkit-border-radius: .5em;
+	-moz-border-radius: .5em;
+	border-radius: .5em;
+	font-style: italic;
+	margin-left: 22px;
+	min-height: 34px;
+	padding-left: 2em;
+	position: relative;
 }
 blockquote:before {
-	content:url( images/quote.png );
-	position:absolute;
-	top:10px;
-	left:-22px;
+	content: url( images/quote.png );
+	position: absolute;
+	top: 10px;
+	left: -22px;
 }
 blockquote blockquote {
-	margin-left:0;
 	margin-right:0;
+	margin-left:0;
 }
 blockquote p:first-child,
 blockquote blockquote:first-child {
