@@ -666,6 +666,10 @@ ul.form-errors li.form-error-message { /* Grunion Contact Form Plugin. */
 #blog .format-status .entry-meta p {
 	margin-top:.25em;
 }
+#blog .post-password-required form p {
+	margin:0;
+	padding:0;
+}
 
 /* Search results. */
 .search-result {
