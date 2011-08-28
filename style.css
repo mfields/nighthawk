@@ -281,19 +281,19 @@ blockquote blockquote:last-child {
 -------------------------------------------------------------- */
 
 table {
-	border-collapse:collapse;
-	border:.1em solid #555;
+	border-collapse: collapse;
+	border: .1em solid #555;
 }
-th, td {
-	/*text-align:left;*/
-	padding:.25em .5em;
-}
-th{
-	color:#fff;
-	background-color:#555;
-	}
+th,
 td {
-	border:.1em solid #777;
+	padding: .25em .5em;
+}
+th {
+	background-color: #555;
+	color: #fff;
+}
+td {
+	border: .1em solid #777;
 }
 
 
@@ -301,26 +301,26 @@ td {
 -------------------------------------------------------------- */
 
 legend {
-	padding:.5em;
+	padding: .5em;
 }
 input,
 textarea {
-	font-size:1em;
-	padding:.5em;
-	border:.1em solid #ccc;
+	border: .1em solid #ccc;
+	font-size: 1em;
+	padding: .5em;
 }
 fieldset {
-	padding:.5em 1em;
-	border:.1em solid #ccc;
+	border: .1em solid #ccc;
+	padding: .5em 1em;
 }
 input[type="file"] {
-	padding:0;
+	padding: 0;
 }
 input:focus,
 textarea:focus {
-	color:#60686c;
-	outline:.2em solid #cadbe3;
-	background:#e2f5ff;
+	background: #e2f5ff;
+	color: #60686c;
+	outline: .2em solid #cadbe3;
 }
 
 
@@ -328,64 +328,64 @@ textarea:focus {
 -------------------------------------------------------------- */
 
 form.bullet {
-	position:relative;
-	padding-right:6em;
+	border: .1em solid #ccc;
+	-moz-border-radius-topright: .25em;
+	-webkit-border-top-right-radius: .25em;
+	border-top-right-radius: .25em;
+	-moz-border-radius-bottomright: .25em;
+	-webkit-border-bottom-right-radius: .25em;
+	border-bottom-right-radius: .25em;
+	background: #555;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+	color: #fff;
 	height:2em;
-	border:.1em solid #ccc;
-	color:#fff;
-	background:#555;
-	-webkit-border-top-right-radius:   .25em;
-	-moz-border-radius-topright:       .25em;
-	border-top-right-radius:           .25em;
-	-webkit-border-bottom-right-radius:.25em;
-	-moz-border-radius-bottomright:    .25em;
-	border-bottom-right-radius:        .25em;
-	-webkit-background-clip:padding-box;
-	background-clip:padding-box;
+	padding-right:6em;
+	position:relative;
 }
 form.bullet br {
-	display:none;
+	display: none;
 }
 form.bullet input.bullet-term,
 form.bullet input.bullet-button {
-	position:absolute;
-	display:block;
-	top:0;
-	height:2em;
-	line-height:2em;
-	font-size:1em;
-	margin:0;
-	border-width:0;
+	border-width: 0;
+	display: block;
+	font-size: 1em;
+	height: 2em;
+	line-height: 2em;
+	position: absolute;
+	top: 0;
+	margin: 0;
 }
 form.bullet label.bullet-label {
-	display:none;
+	display: none;
 }
 form.bullet input.bullet-term {
-	position:relative;
-	float:left;
-	z-index:2;
-	padding:0 .5em;
-	display:block;
-	width:100%;
-	background:#fff;
+	background: #fff;
+	display: block;
+	float: left;
+	padding: 0 .5em;
+	position: relative;
+	width: 100%;
+	z-index: 2;
 }
 form.bullet input.bullet-term:focus {
-	outline:none;
+	outline: none;
 }
 form.bullet input.bullet-button {
-	width:5em;
-	right:0;
-	padding:0;
-	cursor:pointer;
-	background:transparent;
-	text-align:center;
-	color:#fff;
+	background: transparent;
+	color: #fff;
+	cursor: pointer;
+	right: 0;
+	padding: 0;
+	text-align: center;
+	width: 5em;
 }
 form.bullet.subscribe-without-commenting {
-	padding-right:8em;
+	padding-right: 8em;
 }
 form.bullet.subscribe-without-commenting input.bullet-button {
-	width:7em;
+	width: 7em;
 }
 
 
