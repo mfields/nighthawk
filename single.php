@@ -21,16 +21,12 @@ $nighthawk_post_type = get_post_type();
 
 get_header( $nighthawk_post_type );
 
-?>
-
-<?php
 if ( have_posts() ) {
 	while ( have_posts() ) {
 		the_post();
 ?>
 
-
-<header id="intro">
+<header id="intro" <?php post_class( 'contain' ); ?>>
 <?php
 	/* Title. */
 	if ( post_type_supports( $nighthawk_post_type, 'title' ) ) {
@@ -51,7 +47,7 @@ if ( have_posts() ) {
 ?>
 </header>
 
-<div id="content" class="contain">
+<div id="content" <?php post_class( 'contain' ); ?>>
 
 <?php
 
