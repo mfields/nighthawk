@@ -36,15 +36,15 @@
 			/*print '<a href="' . esc_url( get_permalink() . '#respond' ) . '" class="comment-icon" title="' . esc_attr__( 'Add a comment', 'nighthawk' ) . '"><img src="' . get_template_directory_uri() . '/images/comment.png" alt="" /></a>';*/
 			break;
 		default :
+			if ( ! is_singular() ) {
+				the_title( "\n" . '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '">', '</a></h2>' );
+			}
+			
 			$featured_image = get_the_post_thumbnail();
 			if ( ! empty( $featured_image ) ) {
 				print "\n" . '<div class="featured-image">';
 				print '<a href="' . esc_url( get_permalink() ) . '">' . $featured_image . '</a>';
 				print '</div>';
-			}
-
-			if ( ! is_singular() ) {
-				the_title( "\n" . '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '">', '</a></h2>' );
 			}
 
 			print "\n" . '<div class="entry-content">';
