@@ -2,21 +2,21 @@
 /**
  * Footer Template
  *
- * This file is responsible for generating the 
+ * This file is responsible for generating the
  * bottom-most html for all public-facing views.
  * It's content is generated via core WordPress
  * functions as well as custom actions defined
  * in functions.php.
- * 
- * Child themes are encouraged to work with the 
+ *
+ * Child themes are encouraged to work with the
  * actions defined herein to add or remove data
  * to/from the top of the template. In the event
- * that the html needs to be modified, this 
+ * that the html needs to be modified, this
  * template may be duplicated inside a child theme
  * and edited there.
- * 
+ *
  * This file should close any html tags opened in header.php.
- * 
+ *
  * @package      Nighthawk
  * @author       Michael Fields <michael@mfields.org>
  * @copyright    Copyright (c) 2011, Michael Fields
