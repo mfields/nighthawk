@@ -68,6 +68,43 @@ if ( 0 < $count ) {
 		) ) );
 ?>
 
+<script>
+/**
+ * Special padding for introduction header.
+ *
+ * Add whitespace to the left of most elements in the
+ * the introduction when the title starts with a letter
+ * like T or Y. This only really works for one-liners,
+ * but is a nice touch.
+ */
+( function() {
+	var title, chars, first, summary, meta, className;
+
+	title = document.getElementById( 'document-title' );
+
+	first = '';
+	if ( null != title ) {
+		first = title.toString().charAt( 0 );
+	}
+
+	chars = [ 't', 'T', 'y', 'Y', 'i', '1' ];
+	if ( chars.indexOf( first ) ) {
+		elements = [
+			'summary',
+			'intro-meta',
+			'byline'
+		];
+		for ( i = 0; i < elements.length; i++ ) {
+			el = document.getElementById( elements[i] );
+			if ( null == el )
+				continue;
+			el.className = ' nudge';
+		}
+	}
+
+} )();
+</script>
+
 <?php wp_footer(); ?>
 
 </body>
