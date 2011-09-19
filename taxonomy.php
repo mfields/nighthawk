@@ -25,7 +25,7 @@ get_header( $taxonomy );
 		'before' => '<div id="featured-image">',
 		'after'  => '</div>',
 		) ); ?>
-	<h1><?php single_term_title() ?></h1>
+	<h1 id="document-title"><?php single_term_title() ?></h1>
 	<div id="summary"><?php print term_description(); ?></div>
 	<?php nighthawk_summary_meta( '<div id="intro-meta">', '</div>' ) ?>
 </header>

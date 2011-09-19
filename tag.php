@@ -25,7 +25,7 @@ get_header( 'tag' );
 		'before' => '<div id="featured-image">',
 		'after'  => '</div>',
 		) ); ?>
-	<h1><?php single_tag_title(); ?></h1>
+	<h1 id="document-title"><?php single_tag_title(); ?></h1>
 	<div id="summary"><?php print tag_description(); ?></div>
 	<div id="intro-meta">
 		<?php printf( _n( '%1$s entry has been tagged with the term &#8220;%2$s&#8221.', '%1$s entries have been tagged with the term &#8220;%2$s&#8221.', (int) $wp_query->found_posts, 'nighthawk' ), number_format_i18n( (int) $wp_query->found_posts ), single_tag_title( '', false ) ); ?>

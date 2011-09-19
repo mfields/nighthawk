@@ -21,7 +21,7 @@ get_header( 'post' );
 ?>
 
 <header id="intro">
-	<h1><?php _e( 'Status Updates', 'nighthawk' ); ?></h1>
+	<h1 id="document-title"><?php _e( 'Status Updates', 'nighthawk' ); ?></h1>
 	<?php nighthawk_summary_meta( '<div id="intro-meta">', '</div>' ) ?>
 </header>
 

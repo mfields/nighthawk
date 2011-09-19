@@ -25,7 +25,7 @@ get_header( 'category' );
 		'before' => '<div id="featured-image">',
 		'after'  => '</div>',
 		) ); ?>
-	<h1><?php single_cat_title(); ?></h1>
+	<h1 id="document-title"><?php single_cat_title(); ?></h1>
 	<div id="summary"><?php print category_description(); ?></div>
 	<div id="intro-meta">
 		<?php printf( _n( 'There is %1$s entry in this category.', 'There are %1$s entries in this category.', (int) $wp_query->found_posts, 'nighthawk' ), number_format_i18n( (int) $wp_query->found_posts ) ); ?>

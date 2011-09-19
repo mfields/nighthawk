@@ -61,7 +61,7 @@ if ( ! empty( $stickies ) ) {
 		$title = $post_title;
 	}
 
-	print "\n" . '<h1><a href="' . esc_url( get_permalink() ) . '">' . $title . '</a></h1>';
+	print "\n" . '<h1 id="document-title"><a href="' . esc_url( get_permalink() ) . '">' . $title . '</a></h1>';
 
 	if ( ! empty( $featured_image ) ) {
 		print "\n" . '<div id="featured-image">';

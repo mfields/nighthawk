@@ -23,7 +23,7 @@ get_header( $nighthawk_post_type );
 
 <header id="intro">
 
-	<h1>Bookmarks</h1>
+	<h1 id="document-title"><?php _e( 'Bookmarks', 'nighthawk' ); ?></h1>
 
 	<div id="intro-meta"><?php
 

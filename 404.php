@@ -19,7 +19,7 @@
 <?php get_header(); ?>
 
 <header id="intro">
-	<h1><?php esc_html_e( 'Error 404', 'nighthawk' ); ?></h1>
+	<h1 id="document-title"><?php esc_html_e( 'Error 404', 'nighthawk' ); ?></h1>
 	<div id="summary"><p><?php esc_html_e( 'Sorry, but the page you are looking for could not be found. It may have been moved or even deleted. Please try a search or use one of the links below.', 'nighthawk' ); ?></p></div>
 	<?php get_search_form(); ?>
 </header>

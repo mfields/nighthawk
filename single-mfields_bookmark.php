@@ -33,7 +33,7 @@ if ( have_posts() ) {
 <header id="intro">
 <?php
 
-	the_title( "\n" . '<h1>', '</h1>' );
+	the_title( "\n" . '<h1 id="document-title">', '</h1>' );
 
 	print "\n" . '<div id="dateline">';
 	printf( __( 'Bookmarked on %1$s', 'nighthawk' ), '<time class="date" pubdate="pubdate" datetime="' . esc_attr( get_post_time( 'Y-m-d\TH:i:s\Z', true ) ) . '">' . esc_html( get_the_time( get_option( 'date_format' ) ) ) . '</time> by <span rel="author">' .  get_the_author() . '</span>' );

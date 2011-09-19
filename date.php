@@ -18,7 +18,7 @@ get_header( 'archive-date' );
 ?>
 
 <header id="intro">
-	<h1><?php _e( 'Archives', 'nighthawk' ); ?></h1>
+	<h1 id="document-title"><?php _e( 'Archives', 'nighthawk' ); ?></h1>
 
 	<?php
 

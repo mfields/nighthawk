@@ -30,7 +30,7 @@ if ( have_posts() ) {
 <?php
 	/* Title. */
 	if ( post_type_supports( $nighthawk_post_type, 'title' ) ) {
-		the_title( "\n" . '<h1>', '</h1>' );
+		the_title( "\n" . '<h1 id="document-title">', '</h1>' );
 	}
 
 	/* Date Information. */
