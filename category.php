@@ -3,7 +3,7 @@
  * Category Template
  *
  * This file closes all html tags that it opens.
- * 
+ *
  * @package      Nighthawk
  * @author       Michael Fields <michael@mfields.org>
  * @copyright    Copyright (c) 2011, Michael Fields
@@ -42,6 +42,6 @@ get_header( 'category' );
 
 </div><!--content-->
 
-<div id="page-footer" class="menu"><?php do_action( 'nighthawk_paged_navigation' ); ?></div>
+<?php get_template_part( 'nav-posts', 'category' ); ?>
 
 <?php get_footer( 'category' ); ?>

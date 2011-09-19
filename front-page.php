@@ -113,6 +113,6 @@ while ( have_posts() ) {
 
 </div><!--content-->
 
-<div id="page-footer"><?php do_action( 'nighthawk_paged_navigation' ); ?></div>
+<?php get_template_part( 'nav-posts', 'front-page' ); ?>
 
 <?php get_footer( 'post' ); ?>

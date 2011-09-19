@@ -19,11 +19,11 @@ get_header( 'archive-date' );
 
 <header id="intro">
 	<h1><?php _e( 'Archives', 'nighthawk' ); ?></h1>
-	
+
 	<?php
-	
+
 	$total = Nighthawk::post_total();
-	
+
 	if ( is_year() ) {
 		$meta = sprintf( _n( 'One entry was published in %2$s.', '%1$s entries were published in %2$s.', $total, 'nighthawk' ), number_format_i18n( $total ), get_the_date( 'Y' ) );
 	}
@@ -55,6 +55,6 @@ get_header( 'archive-date' );
 
 </div><!--content-->
 
-<div id="page-footer"><?php do_action( 'nighthawk_paged_navigation' ); ?></div>
+<?php get_template_part( 'nav-posts', 'date' ); ?>
 
 <?php get_footer( 'archive-date' ); ?>

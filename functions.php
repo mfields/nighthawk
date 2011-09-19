@@ -111,9 +111,6 @@ function _nighthawk_setup() {
 	/* Ajax Callbacks */
 	add_action( 'wp_ajax_nighthawk_hide_message_nav_menu', '_nighthawk_ajax_hide_message_nav_menu' );
 
-	/* Custom hooks. */
-	add_action( 'nighthawk_paged_navigation', 'nighthawk_paged_nav', 10, 2 );
-
 	/* Theme modifications. */
 	add_action( 'custom_header_options', '_nighthawk_settings_custom_header_text_controls' );
 	add_action( 'admin_head-appearance_page_custom-header', '_nighthawk_process_custom_header_settings', 51 );
@@ -295,30 +292,6 @@ function nighthawk_entry_meta_taxonomy() {
 }
 
 /**
- * Paged Navigation.
- *
- * Print appropriate paged navigation for the current view.
- *
- * @todo      Add support for wp_pagenavi plugin.
- *
- * @access    public
- * @since     1.0
- */
-function nighthawk_paged_nav( $args = array() ) {
-	$next = get_next_posts_link( __( 'More', 'nighthawk' ) );
-	if ( ! empty( $next ) ) {
-		$next =  '<div class="nav-paged timeline-regress">' . $next . '</div>';
-	}
-	$prev = get_previous_posts_link( __( 'Back', 'nighthawk' ) );
-	if ( ! empty( $prev ) ) {
-		$prev = '<div class="nav-paged timeline-progress">' . $prev . '</div>';
-	}
-	if ( ! empty( $prev ) || ! empty( $next ) ) {
-		print "\n" . $prev . $next;
-	}
-}
-
-/**
  * Post label - singular.
  *
  * Returns a noun representing the type or format of the global
@@ -379,11 +352,11 @@ function nighthawk_subscribe_to_comments_checkbox() {
 	if ( ! function_exists( 'show_subscription_checkbox' ) ) {
 		return $checkbox;
 	}
-	
+
 	ob_start();
 	show_subscription_checkbox();
 	$checkbox = ob_get_clean();
-	 
+
 	return $checkbox;
 }
 

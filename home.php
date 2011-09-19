@@ -10,10 +10,10 @@
  */
 
 if ( ! have_posts() ) {
-	get_template_part( '404', 'post' );
+	get_template_part( '404', 'home' );
 }
 
-get_header( 'post' );
+get_header( 'home' );
 
 ?>
 
@@ -32,6 +32,6 @@ if ( have_posts() ) {
 
 </div><!--content-->
 
-<div id="page-footer"><?php do_action( 'nighthawk_paged_navigation' ); ?></div>
+<?php get_template_part( 'nav-posts', 'home' ); ?>
 
-<?php get_footer( 'post' ); ?>
+<?php get_footer( 'home' ); ?>

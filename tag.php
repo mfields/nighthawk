@@ -3,7 +3,7 @@
  * Tag Template
  *
  * This file closes all html tags that it opens.
- * 
+ *
  * @package      Nighthawk
  * @author       Michael Fields <michael@mfields.org>
  * @copyright    Copyright (c) 2011, Michael Fields
@@ -42,6 +42,6 @@ get_header( 'tag' );
 
 </div><!--content-->
 
-<div id="page-footer"><?php do_action( 'nighthawk_paged_navigation' ); ?></div>
+<?php get_template_part( 'nav-posts', 'tag' ); ?>
 
 <?php get_footer( 'archive-tag' ); ?>

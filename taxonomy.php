@@ -39,7 +39,7 @@ get_header( $taxonomy );
 
 </div><!--content-->
 
-<div id="page-footer"><?php do_action( 'nighthawk_paged_navigation' ); ?></div>
+<?php get_template_part( 'nav-posts', 'taxonomy' ); ?>
 
 <?php get_footer( $taxonomy ); ?>
 

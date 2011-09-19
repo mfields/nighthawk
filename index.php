@@ -3,7 +3,7 @@
  * Default Template.
  *
  * When all else fails, this template is loaded.
- * 
+ *
  * @package      Nighthawk
  * @author       Michael Fields <michael@mfields.org>
  * @copyright    Copyright (c) 2011, Michael Fields
@@ -38,6 +38,6 @@ if ( have_posts() ) {
 
 </div><!--content-->
 
-<div id="page-footer"><?php do_action( 'nighthawk_paged_navigation' ); ?></div>
+<?php get_template_part( 'nav-posts', 'index' ); ?>
 
 <?php get_footer(); ?>

@@ -898,16 +898,16 @@ ul.form-errors li.form-error-message {
 	text-transform:uppercase;
 }
 .timeline-progress {
-	float:left;
-	-moz-border-radius-topright:     .5em;
-	-webkit-border-top-right-radius: .5em;
-	border-top-right-radius:         .5em;
+	float: right;
+	-moz-border-radius-topleft: .5em;
+	-webkit-border-top-left-radius: .5em;
+	border-top-left-radius: .5em;
 }
 .timeline-regress {
-	float:right;
-	-moz-border-radius-topleft:     .5em;
-	-webkit-border-top-left-radius: .5em;
-	border-top-left-radius:         .5em;
+	float: left;
+	-moz-border-radius-topright: .5em;
+	-webkit-border-top-right-radius: .5em;
+	border-top-right-radius: .5em;
 }
 
 
@@ -1065,7 +1065,12 @@ div.aligncenter {
 }
 .sticky {}
 .wp-caption-text {}
-
+.assistive-text,
+.screen-reader-text {
+	position: absolute !important;
+	clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
+	clip: rect(1px, 1px, 1px, 1px);
+}
 
 /* =Smaller Text, Lighter Color
 -------------------------------------------------------------- */

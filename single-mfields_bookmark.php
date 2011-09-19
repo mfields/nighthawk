@@ -51,9 +51,9 @@ if ( have_posts() ) {
 	print "\n" . '<div class="entry-content">';
 	the_content();
 	print "\n" . '</div><!--entry-content-->';
-	
+
 	print '<div class="footer"><a href="' . esc_url( get_post_type_archive_link( $nighthawk_post_type ) ) . '">' . __( 'View all bookmarks', 'nighthawk' ) . '</a></div>';
-	
+
 	do_action( 'nighthawk_entry_end' );
 
 	}
@@ -63,8 +63,8 @@ if ( have_posts() ) {
 </div><!--content-->
 
 <div id="page-footer">
-	<?php previous_post_link( '<div class="nav-paged timeline-regress">%link</div>', __( 'Next', 'nighthawk' ) ); ?>
-	<?php next_post_link( '<div class="nav-paged timeline-progress">%link</div>', __( 'Back', 'nighthawk' ) ); ?>
+	<?php previous_post_link( '<div class="nav-paged timeline-regress">%link</div>', __( 'Older', 'nighthawk' ) ); ?>
+	<?php next_post_link( '<div class="nav-paged timeline-progress">%link</div>', __( 'Newer', 'nighthawk' ) ); ?>
 </div>
 
 <?php get_footer( $nighthawk_post_type ); ?>
