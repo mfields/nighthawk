@@ -78,7 +78,7 @@ if ( 0 < $count ) {
  * but is a nice touch.
  */
 ( function() {
-	var title, chars, first, summary, meta, className;
+	var title, first, chars, className, elements, i, el;
 
 	title = document.getElementById( 'document-title' );
 
@@ -89,6 +89,7 @@ if ( 0 < $count ) {
 
 	chars = [ 't', 'T', 'y', 'Y', 'i', '1' ];
 	if ( chars.indexOf( first ) ) {
+		className = 'nudge';
 		elements = [
 			'summary',
 			'intro-meta',
@@ -98,7 +99,10 @@ if ( 0 < $count ) {
 			el = document.getElementById( elements[i] );
 			if ( null == el )
 				continue;
-			el.className = ' nudge';
+			if ( '' == el.className )
+				el.className = className;
+			else
+				el.className += ' ' + className;
 		}
 	}
 
