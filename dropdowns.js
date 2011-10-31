@@ -82,7 +82,7 @@ jQuery( document ) .ready( function( $ ) {
 		var boxPos = active.box.position();
 		var triggerPos = active.trigger.position();
 		var rightEdge = boxPos.left + active.box.outerWidth();
-		
+
 		if ( rightEdge > parent.innerWidth() ) {
 			active.box.css( {
 				left  : 'auto',

@@ -3,13 +3,13 @@
  * Alternative Footer Template.
  *
  * Just like footer.php with the following things omitted:
- * 
+ *
  * Paged navigation.
  * Widgetized areas.
  * Secondary theme location for nav menu.
  *
  * This file should close any html tags opened in header-no-nav.php.
- * 
+ *
  * @package      Nighthawk
  * @author       Michael Fields <michael@mfields.org>
  * @copyright    Copyright (c) 2011, Michael Fields

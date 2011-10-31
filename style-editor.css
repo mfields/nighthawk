@@ -3,7 +3,7 @@ html .mceContentBody {
 	font-size:14px;
 	max-width:608px;
 }
- 
+
 /* Font-size + margin for all headings */
 h1, h2, h3, h4, h5, h6 { margin:0; padding:0; line-height:1.2em; clear:both; }
 h1 { font-size:1.50em; margin-bottom:.67em; }
@@ -78,7 +78,7 @@ small {
 	font-size:0.9em;
 	line-height:1.5em;
 }
-	
+
 /* Typography: Style + Color */
 pre, tt, code, samp, kbd, var {
 	font-family:Consolas, "Courier New", Courier, monospace;
@@ -103,7 +103,7 @@ dt {
 ins {
 	text-decoration:none;
 	background-color:#fffabf;
-	background-color:#bfffc5; 
+	background-color:#bfffc5;
 }
 del, strike, s {
 	text-decoration:line-through;

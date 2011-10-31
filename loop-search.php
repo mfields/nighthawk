@@ -36,7 +36,7 @@ if ( have_posts() ) {
 		do_action( 'nighthawk_entry_end' );
 
 		print "\n" . '</div>';
-		
+
 		do_action( 'nighthawk_append_to_entry_template' );
 	}
 }
