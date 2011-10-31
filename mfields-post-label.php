@@ -36,7 +36,7 @@ class Mfields_Post_Label {
 	static public $map = null;
 	static public $labels = null;
 	static public $textdomain = null;
-	
+
 	static public $count = null;
 
 	static public function init( $textdomain = null ) {

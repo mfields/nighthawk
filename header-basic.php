@@ -3,7 +3,7 @@
  * Alternative Header Template.
  *
  * Just like header.php only without the nav menu.
- * 
+ *
  * @package      Nighthawk
  * @author       Michael Fields <michael@mfields.org>
  * @copyright    Copyright (c) 2011, Michael Fields

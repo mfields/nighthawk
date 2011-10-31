@@ -8,7 +8,7 @@
  * via the "Users" administration panel.
  *
  * This template will only work for post_types
- * that support authors. 
+ * that support authors.
  *
  * @package      Nighthawk
  * @author       Michael Fields <michael@mfields.org>
