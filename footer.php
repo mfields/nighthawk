@@ -91,9 +91,9 @@ if ( 0 < $count ) {
 	if ( chars.indexOf( first ) ) {
 		className = 'nudge';
 		elements = [
-			'summary',
+			'byline',
 			'intro-meta',
-			'byline'
+			'summary'
 		];
 		for ( i = 0; i < elements.length; i++ ) {
 			el = document.getElementById( elements[i] );
