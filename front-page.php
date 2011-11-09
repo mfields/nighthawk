@@ -107,7 +107,13 @@ while ( have_posts() ) {
 	if ( is_sticky() ) {
 		continue;
 	}
-	get_template_part( 'entry', get_post_type() );
+
+	$context = get_post_type();
+	$format = get_post_format();
+	if ( ! empty ( $format ) )
+		$context .= '-' . $format;
+
+	get_template_part( 'entry', $context );
 }
 ?>
 

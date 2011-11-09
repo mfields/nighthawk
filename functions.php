@@ -236,8 +236,9 @@ function nighthawk_entry_meta_taxonomy() {
 		return;
 	}
 
-	$label      = nighthawk_post_label_singular();
-	$label_url  = get_post_format_link( get_post_format() );
+	$label     = nighthawk_post_label_singular();
+	#$label_url = get_post_format_link( get_post_format() );
+	$label_url = get_permalink();
 
 	if ( 'post' != get_post_type() ) {
 		return;

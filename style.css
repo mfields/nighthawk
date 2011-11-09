@@ -520,6 +520,7 @@ ul.form-errors li.form-error-message {
 	clear: both;
 	color: #666;
 	position: relative;
+	margin: 1.5em 0 0;
 	padding: 0;
 	-moz-box-shadow: 0 0 .75em rgba( 0, 0, 0, 0.4 );
 	-webkit-box-shadow: 0 0 .75em rgba( 0, 0, 0, 0.4 );
@@ -736,9 +737,9 @@ ul.form-errors li.form-error-message {
 .meta p {
 	margin:0;
 }
-.entry-meta {
-	clear:both;
-	font-size:.8em;
+.entry-taxonomy {
+	clear: both;
+	font-size: .8em;
 }
 
 
@@ -746,13 +747,13 @@ ul.form-errors li.form-error-message {
 -------------------------------------------------------------- */
 
 #blog {
-	padding:1.5em 0;
-	overflow:hidden;
+	overflow: hidden;
+	padding: 1.5em 0;
 }
 #blog .entry {
-	border-bottom:1px solid #ddd;
-	margin:1.5em 0;
-	padding:0 3em;
+	border-bottom: 1px solid #ddd;
+	margin: 0;
+	padding: 1.3em 3em 0;
 }
 #blog h2.entry-title {
 	margin-top:0;
@@ -782,15 +783,33 @@ ul.form-errors li.form-error-message {
 	border-radius:        .5em;
 }
 #blog .format-status .content,
-#blog .format-status .entry-meta {
+#blog .format-status .entry-taxonomy {
 	margin-left:85px;
 }
-#blog .format-status .entry-meta p {
+#blog .format-status .entry-taxonomy p {
 	margin-top:.25em;
 }
 #blog .post-password-required form p {
 	margin:0;
 	padding:0;
+}
+#blog .format-image {
+	padding-left: 1em;
+	padding-right: 1em;
+}
+#blog .format-image p {
+	margin: 0;
+	padding: 0;
+}
+#blog .format-image img {
+	display: block;
+	margin: 0 auto;
+	max-width: 100%;
+	height: auto;
+}
+#blog .format-image .entry-taxonomy {
+	text-align: center;
+	margin: 1em;
 }
 
 
