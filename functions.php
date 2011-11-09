@@ -69,7 +69,6 @@ function _nighthawk_setup() {
 	}
 
 	load_theme_textdomain( 'nighthawk', get_template_directory() . '/languages' );
-	add_action( 'template_redirect', 'nighthawk_post_labels_init' );
 
 	add_theme_support( 'menus' );
 	add_theme_support( 'post-formats', array( 'image', 'status' ) );
@@ -105,16 +104,10 @@ function _nighthawk_setup() {
 	add_action( 'widget_title',       '_nighthawk_calendar_widget_title', 10, 3 );
 	add_action( 'widgets_init',       '_nighthawk_widgets_init' );
 	add_action( 'wp_loaded',          '_nighthawk_custom_image_header' );
+	add_action( 'template_redirect',  '_nighthawk_post_labels_init' );
 	add_action( 'wp_enqueue_scripts', '_nighthawk_comment_reply_js' );
 	add_action( 'wp_enqueue_scripts', '_nighthawk_heading_font_css' );
 	add_action( 'wp_enqueue_scripts', '_nighthawk_widget_dropdowns_scripts' );
-
-	/* Ajax Callbacks */
-	add_action( 'wp_ajax_nighthawk_hide_message_nav_menu', '_nighthawk_ajax_hide_message_nav_menu' );
-
-	/* Theme modifications. */
-	add_action( 'custom_header_options', '_nighthawk_settings_custom_header_text_controls' );
-	add_action( 'admin_head-appearance_page_custom-header', '_nighthawk_process_custom_header_settings', 51 );
 
 	add_filter( 'syntaxhighlighter_themes', '_nighthawk_syntaxhighlighter_theme' );
 }
@@ -823,84 +816,6 @@ function _nighthawk_syntaxhighlighter_theme( $themes ) {
 }
 
 /**
- * Custom Header Controls.
- *
- * Print a settings section enabling user to choose which
- * individual text settings will appear in the theme.
- * These controls should appear at the bottom of the form
- * located under Appearance -> Header in the administration
- * panels. It will inherit a nonce from the core form. The
- * values will be saved as "Theme Modifications" and the values
- * are processed by _nighthawk_process_custom_header_settings().
- *
- * This action is attached to the 'custom_header_options'
- * hook in the _nighthawk_setup() function.
- *
- * @return    void
- *
- * @access    private
- * @since     1.0
- */
-function _nighthawk_settings_custom_header_text_controls() {
-	echo '<table class="form-table"><tbody><tr><th>' . esc_html__( 'Header Text', 'nighthawk' ) . '</th><td>';
-	_nighthawk_control_boolean( 'nighthawk_display_site_title', esc_html__( 'Display site title.', 'nighthawk' ), get_theme_mod( 'nighthawk_display_site_title', 1 ) );
-	_nighthawk_control_boolean( 'nighthawk_display_tagline', esc_html__( 'Display tagline.', 'nighthawk' ), get_theme_mod( 'nighthawk_display_tagline', 1 ) );
-	echo '</td></tr></tbody></table>';
-}
-
-/**
- * Process Custom Header Settings.
- *
- * This action is attached to the 'admin_head-appearance_page_custom-header'
- * hook in the _nighthawk_setup() function.
- *
- * @return    void
- *
- * @access    private
- * @since     1.0
- */
-function _nighthawk_process_custom_header_settings() {
-	if ( isset( $_POST['save-header-options'] ) ) {
-		check_admin_referer( 'custom-header-options', '_wpnonce-custom-header-options' );
-
-		if ( ! current_user_can( 'edit_theme_options' ) ) {
-			return;
-		}
-
-		$display_title = 0;
-		if ( isset( $_POST['nighthawk_display_site_title'] ) ) {
-			$display_title = 1;
-		}
-		set_theme_mod( 'nighthawk_display_site_title', $display_title );
-
-		$display_tagline = 0;
-		if ( isset( $_POST['nighthawk_display_tagline'] ) ) {
-			$display_tagline = 1;
-		}
-		set_theme_mod( 'nighthawk_display_tagline', $display_tagline );
-	}
-}
-
-/**
- * Boolean control.
- *
- * Generates and prints a form element/label to
- * control a boolean setting.
- *
- * @param     string    $id The key of a recognized setting.
- * @param     string    $label Localized, human-readable label for the setting.
- * @param     bool      $value Current value of the setting.
- * @return    void
- *
- * @access    private
- * @since     1.0
- */
-function _nighthawk_control_boolean( $id, $label, $value = 0 ) {
-	echo "\n\n" . '<input' . ( ! empty( $value ) ? ' checked="checked"' : '' ) . ' type="checkbox" id="' . esc_attr( $id ) . '" name="' . esc_attr( $id ) . '" value="1" /> ';
-	echo "\n" . '<label for="' . esc_attr( $id ) . '">' . esc_html( $label ) . '</label>';
-}
-
-/**
  * Search Form ID.
  *
  * @return    string    ID attribute for search form.
@@ -929,129 +844,6 @@ function _nighthawk_password_form( $form ) {
 	$form = ob_get_contents();
 	ob_end_clean();
 	return $form;
-}
-
-/**
- * Menu dialog.
- *
- * Override WordPress default fallback for wp_nav_menu().
- * Instead of listing all pages, we will display a dialog
- * informing users with the appropriate capability that
- * they can create a custom menu for this section of their
- * theme. A link will be provided to wp-admin.nav-menus.php.
- * Visitors and authenticated users with insufficient
- * capabilities will be shown nothing.
- *
- * User has the option of hiding the menu in the event that
- * they do not wish to see the message anymore.
- *
- * @todo      Enable Ajax functionality for menu hiding.
- *
- * @param     array     $args Arguments originally passed to wp_nav_menu.
- * @return    string    Dialog for those who can edit theme options - empty sting to all others.
- *
- * @access    private
- * @since     1.0
- */
-function _nighthawk_menu_dialog( $args ) {
-	$defaults = array(
-		'container'      => 'div',
-		'container_id'   => '',
-		'theme_location' => ''
-		);
-
-	$args = wp_parse_args( $args, $defaults );
-
-	if ( ! in_array( trim( strtolower( $args['container'] ) ), array( 'div', 'section', 'nav', 'li' ) ) ) {
-		$args['container'] = $defaults['container'];
-	}
-
-	$id = '';
-	if ( ! empty( $args['container_id'] ) ) {
-		$id = ' id="' . esc_attr( $args['container_id'] ) . '"';
-	}
-
-	if ( ! isset( $args['theme_location'] ) ) {
-		return;
-	}
-
-	if ( 1 == get_theme_mod( 'hide_message_for_menu_' . $args['theme_location'], 0 ) ) {
-		echo '<' . $args['container'] . $id . '></' . $args['container'] . '>';
-		return;
-	}
-
-	$class = '';
-	$message = '';
-
-	/* Only create a message for users who can edit nav menus. */
-	if ( current_user_can( 'edit_theme_options' ) ) {
-		$class = ' class="no-menu"';
-
-		global $_wp_registered_nav_menus;
-
-		/* Default message. */
-		$first = esc_html__( 'You have not defined a navigation menu for this theme location.', 'nighthawk' );
-
-		/* Attempt to retrieve the actual name of the current theme location. */
-		if ( ! empty( $args['theme_location'] ) && isset( $_wp_registered_nav_menus[$args['theme_location']] ) ) {
-			$first = sprintf( esc_html__( 'You have not defined a navigation menu for the theme location named "%1$s".', 'nighthawk' ), $_wp_registered_nav_menus[$args['theme_location']] );
-		}
-
-		$message = '<p class="dialog notice">';
-
-		/* Provide a link to the appropriate administration panel. */
-		$message.= $first . sprintf( esc_html__( 'Please visit the %1$s to manage your menus.', 'nighthawk' ), '<a href="' . esc_url( admin_url( '/nav-menus.php' ) ) . '">' . esc_html__( 'menus page' ) . '</a>' );
-
-		/* Build a link to hide the message. */
-		$message.= '<a href="' . esc_url( admin_url( '/admin-ajax.php?action=nighthawk_hide_message_nav_menu&_wpnonce=' . wp_create_nonce( 'nighthawk_hide_menu_' . $args['theme_location'] ) . '&menu=' . $args['theme_location'] ) ) . '"> ' . esc_html__( 'Hide this message', 'nighthawk' ) . '</a>';
-
-		$message.= '</p>';
-	}
-
-	echo '<' . $args['container'] . $id . $class . '>' . $message . '</' . $args['container'] . '>';
-}
-
-/**
- * Hide nav menu messages.
- *
- * This function will fire on a request to admin-ajax.php
- * where action is passed as "nighthawk_hide_message_nav_menu".
- * Although Ajax is not currently used this seemed like the
- * most appropriate place to hook into WordPress.
- *
- * @todo      Enable Ajax functionality for menu hiding.
- *
- * @access    private
- * @since     1.0
- */
-function _nighthawk_ajax_hide_message_nav_menu() {
-
-	$clean = array();
-
-	/* Menu needs to be set. */
-	if ( ! isset( $_GET['menu'] ) ) {
-		wp_safe_redirect( wp_get_referer() );
-	}
-
-	/* Menu needs to exist. */
-	$locations = (array) get_nav_menu_locations();
-	if ( ! array_key_exists( $_GET['menu'], $locations ) ) {
-		wp_safe_redirect( wp_get_referer() );
-	}
-
-	$clean['menu'] = $_GET['menu'];
-
-	/* Nonce check. */
-	if ( false === check_ajax_referer( 'nighthawk_hide_menu_' . $clean['menu'], false, false ) ) {
-		wp_safe_redirect( wp_get_referer() );
-	}
-
-	/* User needs to have the correct capability. */
-	if ( current_user_can( 'edit_theme_options' ) ) {
-		set_theme_mod( 'hide_message_for_menu_' . $clean['menu'], 1 );
-	}
-
-	wp_safe_redirect( wp_get_referer() );
 }
 
 /**
@@ -1126,8 +918,8 @@ function _nighthawk_widget_dropdowns_scripts() {
 	);
 }
 
-function nighthawk_post_labels_init() {
-	require_once 'mfields-post-label.php';
+function _nighthawk_post_labels_init() {
+	require_once get_template_directory() . '/inc/post-labels.php';
 	Mfields_Post_Label::init( 'nighthawk' );
 	#add_action( 'shutdown', array( 'Mfields_Post_Label', 'dump' ) );
 }

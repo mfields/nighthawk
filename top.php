@@ -29,5 +29,5 @@
 		'theme_location' => 'primary',
 		'depth'          => 1,
 		'items_wrap'     => '<ul id="%1$s" class="%2$s" role="navigation">%3$s</ul>',
-		'fallback_cb'    => '_nighthawk_menu_dialog',
+		'fallback_cb'    => '__return_false',
 	) ) );
