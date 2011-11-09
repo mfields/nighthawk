@@ -31,14 +31,14 @@ get_header( 'archive' );
 		}
 
 		if ( ! empty( $url ) ) {
-			print '<a href="' . esc_url( $url ) . '">' . esc_html( $title ) . '</a>';
+			echo '<a href="' . esc_url( $url ) . '">' . esc_html( $title ) . '</a>';
 		}
 		else {
-			print esc_html( $title );
+			echo esc_html( $title );
 		}
 
 	?></h1>
-	<?php nighthawk_summary_meta( '<div id="intro-meta">', '</div>' ) ?>
+	<?php nighthawk_summary_meta( '<div id="intro-meta">', '</div>' ); ?>
 </header>
 
 <div id="content" class="contain">

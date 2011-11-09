@@ -20,16 +20,16 @@ get_header( 'author' );
 
 the_post();
 
-print '<header id="intro" class="vcard">';
+echo '<header id="intro" class="vcard">';
 
-print '<h1 id="document-title" class="url fn n">' . esc_html( get_the_author() ) . '</h1>';
+echo '<h1 id="document-title" class="url fn n">' . esc_html( get_the_author() ) . '</h1>';
 
 $bio = get_the_author_meta( 'description' );
 if ( ! empty( $bio ) ) {
-	print '<div id="summary">' . $bio . '</div>';
+	echo '<div id="summary">' . $bio . '</div>';
 }
 
-print '</header>';
+echo '</header>';
 
 rewind_posts();
 

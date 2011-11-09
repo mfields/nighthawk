@@ -24,45 +24,45 @@
 			else {
 				$avatar = '<span class="image">' . $avatar . '</span>';
 			}
-			print $avatar;
-			print "\n" . '<div class="content">';
+			echo $avatar;
+			echo "\n" . '<div class="content">';
 			the_content();
-			print "\n" . '</div><!--content-->';
+			echo "\n" . '</div><!--content-->';
 
-			print '<div class="entry-meta">';
+			echo '<div class="entry-meta">';
 			nighthawk_entry_meta_taxonomy();
-			print '</div><!--meta-->';
+			echo '</div><!--meta-->';
 
-			/*print '<a href="' . esc_url( get_permalink() . '#respond' ) . '" class="comment-icon" title="' . esc_attr__( 'Add a comment', 'nighthawk' ) . '"><img src="' . get_template_directory_uri() . '/images/comment.png" alt="" /></a>';*/
+			/*echo '<a href="' . esc_url( get_permalink() . '#respond' ) . '" class="comment-icon" title="' . esc_attr__( 'Add a comment', 'nighthawk' ) . '"><img src="' . get_template_directory_uri() . '/images/comment.png" alt="" /></a>';*/
 			break;
 		case 'image' :
 			the_content();
 			the_title( '<h2 style="text-align:center">', '</h2>' );
-			print '<div class="entry-meta">';
-			print esc_html( get_the_date() );
-			print '</div><!--meta-->';
+			echo '<div class="entry-meta">';
+			echo esc_html( get_the_date() );
+			echo '</div><!--meta-->';
 			break;
 		default :
 			$featured_image = get_the_post_thumbnail();
 			if ( ! empty( $featured_image ) ) {
-				print "\n" . '<div class="featured-image">';
-				print '<a href="' . esc_url( get_permalink() ) . '">' . $featured_image . '</a>';
-				print '</div>';
+				echo "\n" . '<div class="featured-image">';
+				echo '<a href="' . esc_url( get_permalink() ) . '">' . $featured_image . '</a>';
+				echo '</div>';
 			}
 
 			if ( ! is_singular() ) {
 				the_title( "\n" . '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '">', '</a></h2>' );
 			}
 
-			print "\n" . '<div class="entry-content">';
+			echo "\n" . '<div class="entry-content">';
 			the_content( __( 'Continue Reading', 'nighthawk' ) );
-			print "\n" . '</div><!--entry-content-->';
+			echo "\n" . '</div><!--entry-content-->';
 
 			wp_link_pages( array( 'before' => '<div class="page-link">' . __( 'Pages:', 'nighthawk' ), 'after' => '</div>' ) );
 
-			print '<div class="entry-meta">';
+			echo '<div class="entry-meta">';
 			nighthawk_entry_meta_taxonomy();
-			print '</div><!--meta-->';
+			echo '</div><!--meta-->';
 			break;
 	}
 

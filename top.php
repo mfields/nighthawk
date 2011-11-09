@@ -11,7 +11,7 @@
 		else {
 			$text = '<a href="' . esc_url( home_url() ) . '">' . esc_html( $text ) . '</a>';
 		}
-		print "\n" . '<div id="site-title">' . $text . '</div>';
+		echo "\n" . '<div id="site-title">' . $text . '</div>';
 	}
 
 	if ( 0 != (int) get_theme_mod( 'nighthawk_display_tagline', 1 ) ) {
@@ -19,7 +19,7 @@
 		if ( empty( $text ) ) {
 			return;
 		}
-		print "\n" . '<div id="tagline">' . esc_html( $text ) . '</div>';
+		echo "\n" . '<div id="tagline">' . esc_html( $text ) . '</div>';
 	}
 
 	wp_nav_menu( apply_filters( 'nighthawk_menu_args_primary', array(

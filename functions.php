@@ -36,7 +36,7 @@
  * @since        Nighthawk 1.0
  */
 
-define( 'NIGHTHAWK_VERSION', '0.2DEV' );
+define( 'NIGHTHAWK_VERSION', '0.3DEV' );
 
 /**
  * Theme Setup
@@ -185,7 +185,7 @@ function nighthawk_summary_meta( $before = '', $after = '', $print = true ) {
 				$taxonomy_name = $taxonomy->labels->singular_name;
 			}
 
-			switch( $term->taxonomy ) {
+			switch ( $term->taxonomy ) {
 				case 'post_format' :
 					$feed_title = sprintf( __( 'Get updated whenever a new %1$s is published.', 'nighthawk' ), nighthawk_post_label_singular() );
 					$sentence = sprintf( _n( 'This site contains one %2$s.', 'This site contains %1$s %3$s.', $total, 'nighthawk' ), number_format_i18n( $total ), nighthawk_post_label_singular(), nighthawk_post_label_plural() );
@@ -204,7 +204,7 @@ function nighthawk_summary_meta( $before = '', $after = '', $print = true ) {
 	if ( ! empty( $sentence ) ) {
 		$sentence = "\n" . $before . $sentence . $after;
 		if ( $print ) {
-			print $sentence;
+			echo $sentence;
 		}
 		else {
 			return $sentence;
@@ -239,7 +239,7 @@ function nighthawk_entry_meta_taxonomy() {
 
 	$sentence = apply_filters( 'nighthawk_entry_meta_taxonomy', '' );
 	if ( ! empty( $sentence ) ) {
-		print $sentence;
+		echo $sentence;
 		return;
 	}
 
@@ -263,7 +263,7 @@ function nighthawk_entry_meta_taxonomy() {
 	}
 
 	if ( ! empty( $label ) ) {
-		if( ! empty( $categories ) && ! empty( $post_tags ) ) {
+		if ( ! empty( $categories ) && ! empty( $post_tags ) ) {
 			$sentence = sprintf( __( 'This %1$s is filed under %2$s and tagged %3$s.', 'nighthawk' ), $label, $categories, $post_tags );
 		}
 		else if ( ! empty( $categories ) ) {
@@ -286,7 +286,7 @@ function nighthawk_entry_meta_taxonomy() {
 	}
 
 	if ( ! empty( $sentence ) ) {
-		print '<p>' . $sentence . '</p>';
+		echo '<p>' . $sentence . '</p>';
 	}
 }
 
@@ -390,7 +390,7 @@ function nighthawk_subscribe_to_comments_manual_form( $before = '', $after = '',
 
 	sg_subscribe_start();
 
-	$sg_subscribe->show_errors( 'solo_subscribe', '<div class="solo-subscribe-errors">', '</div>', __( 'Error: ', 'nighthawk' ), '<br />' );
+	$sg_subscribe->show_errors( 'solo_subscribe', '<div class="solo-subscribe-errors">', '</div>', __( 'Error: ', 'nighthawk' ), '' );
 
 	if ( ! $sg_subscribe->current_viewer_subscription_status() ) {
 		get_currentuserinfo();
@@ -411,7 +411,7 @@ function nighthawk_subscribe_to_comments_manual_form( $before = '', $after = '',
 	}
 
 	if ( $print ) {
-		print $form;
+		echo $form;
 	}
 	else {
 		return $form;
@@ -549,7 +549,7 @@ function _nighthawk_custom_image_header() {
  * @since     1.0
  */
 function _nighthawk_custom_image_header_live() {
-	print '<style>#site-name,#site-name a,#tagline{color:#' . HEADER_TEXTCOLOR . '}</style>';
+	echo '<style>#site-name,#site-name a,#tagline{color:#' . HEADER_TEXTCOLOR . '}</style>';
 }
 
 /**
@@ -562,7 +562,7 @@ function _nighthawk_custom_image_header_live() {
  */
 function _nighthawk_custom_image_header_admin() {
 	$background_color = get_theme_mod( 'background_color', 'ffffff' );
-	print <<< EOF
+	echo <<< EOF
 <style type="text/css">
 div#headimg {
 	overflow:hidden;
@@ -710,21 +710,21 @@ function _nighthawk_comment_start( $comment, $args, $depth ) {
 	$GLOBALS['comment'] = $comment;
 
 	if ( '' == $comment->comment_type ) {
-		print "\n\n\n\n" . '<li id="comment-'; comment_ID(); print '" '; comment_class( 'box' ); print '>';
+		echo "\n\n\n\n" . '<li id="comment-'; comment_ID(); echo '" '; comment_class( 'box' ); echo '>';
 		if ( 0 === (int) $comment->comment_approved ) {
-			print esc_html__( 'Your comment is awaiting moderation.', 'nighthawk' );
+			echo esc_html__( 'Your comment is awaiting moderation.', 'nighthawk' );
 		}
 		else {
-			print "\n" . get_avatar( $comment, 45 );
-			print "\n" . '<span class="heading commenter">' . get_comment_author_link( $comment->comment_ID ) . '</span>';
-			print "\n" . '<span class="meta">';
+			echo "\n" . get_avatar( $comment, 45 );
+			echo "\n" . '<span class="heading commenter">' . get_comment_author_link( $comment->comment_ID ) . '</span>';
+			echo "\n" . '<span class="meta">';
 
 			/* Comment date. */
-			print "\n" . '<a class="comment-date" href="' . get_comment_link( $comment->comment_ID ) . '"  title="' . esc_attr__( 'Direct link to this comment.', 'nighthawk' ) . '">' . sprintf( esc_html__( '%1$s at %2$s', 'nighthawk' ), get_comment_date(),  get_comment_time() ) . '</a>';
+			echo "\n" . '<a class="comment-date" href="' . get_comment_link( $comment->comment_ID ) . '"  title="' . esc_attr__( 'Direct link to this comment.', 'nighthawk' ) . '">' . sprintf( esc_html__( '%1$s at %2$s', 'nighthawk' ), get_comment_date(),  get_comment_time() ) . '</a>';
 
 			/* Edit comment link. */
 			if ( current_user_can( 'edit_comment', $comment->comment_ID ) ) {
-				print "\n" . '<span class="comment-edit"> <a href="' . esc_url( get_edit_comment_link( $comment->comment_ID ) ) . '">' . esc_html__( 'Edit', 'nighthawk' ) . '</a></span>';
+				echo "\n" . '<span class="comment-edit"> <a href="' . esc_url( get_edit_comment_link( $comment->comment_ID ) ) . '">' . esc_html__( 'Edit', 'nighthawk' ) . '</a></span>';
 			}
 
 			/* Reply to comment link. */
@@ -735,19 +735,19 @@ function _nighthawk_comment_start( $comment, $args, $depth ) {
 				'after'     => '</span>'
 				) ) );
 
-			print '</span><!-- .meta -->';
+			echo '</span><!-- .meta -->';
 
-			print "\n" . '<div class="content">'; comment_text(); print '</div>';
+			echo "\n" . '<div class="content">'; comment_text(); echo '</div>';
 		}
 	}
 	else {
-		print '<li class="trackback box">';
-		print '<div class="content">';
+		echo '<li class="trackback box">';
+		echo '<div class="content">';
 			comment_author_link();
 			if ( current_user_can( 'edit_comment', $comment->comment_ID ) ) {
-				print "\n" . '<span class="comment-edit"> <a href="' . esc_url( get_edit_comment_link( $comment->comment_ID ) ) . '">' . esc_html__( 'Edit', 'nighthawk' ) . '</a></span>';
+				echo "\n" . '<span class="comment-edit"> <a href="' . esc_url( get_edit_comment_link( $comment->comment_ID ) ) . '">' . esc_html__( 'Edit', 'nighthawk' ) . '</a></span>';
 			}
-		print '</div>';
+		echo '</div>';
 	}
 }
 
@@ -765,7 +765,7 @@ function _nighthawk_comment_start( $comment, $args, $depth ) {
  * @since     1.0
  */
 function _nighthawk_comment_end( $comment, $args, $depth ) {
-	print '</li>';
+	echo '</li>';
 }
 
 /**
@@ -842,10 +842,10 @@ function _nighthawk_syntaxhighlighter_theme( $themes ) {
  * @since     1.0
  */
 function _nighthawk_settings_custom_header_text_controls() {
-	print '<table class="form-table"><tbody><tr><th>' . esc_html__( 'Header Text', 'nighthawk' ) . '</th><td>';
+	echo '<table class="form-table"><tbody><tr><th>' . esc_html__( 'Header Text', 'nighthawk' ) . '</th><td>';
 	_nighthawk_control_boolean( 'nighthawk_display_site_title', esc_html__( 'Display site title.', 'nighthawk' ), get_theme_mod( 'nighthawk_display_site_title', 1 ) );
 	_nighthawk_control_boolean( 'nighthawk_display_tagline', esc_html__( 'Display tagline.', 'nighthawk' ), get_theme_mod( 'nighthawk_display_tagline', 1 ) );
-	print '</td></tr></tbody></table>';
+	echo '</td></tr></tbody></table>';
 }
 
 /**
@@ -896,8 +896,8 @@ function _nighthawk_process_custom_header_settings() {
  * @since     1.0
  */
 function _nighthawk_control_boolean( $id, $label, $value = 0 ) {
-	print "\n\n" . '<input' . ( ! empty( $value ) ? ' checked="checked"' : '' ) . ' type="checkbox" id="' . esc_attr( $id ) . '" name="' . esc_attr( $id ) . '" value="1" /> ';
-	print "\n" . '<label for="' . esc_attr( $id ) . '">' . esc_html( $label ) . '</label><br />';
+	echo "\n\n" . '<input' . ( ! empty( $value ) ? ' checked="checked"' : '' ) . ' type="checkbox" id="' . esc_attr( $id ) . '" name="' . esc_attr( $id ) . '" value="1" /> ';
+	echo "\n" . '<label for="' . esc_attr( $id ) . '">' . esc_html( $label ) . '</label>';
 }
 
 /**
@@ -976,7 +976,7 @@ function _nighthawk_menu_dialog( $args ) {
 	}
 
 	if ( 1 == get_theme_mod( 'hide_message_for_menu_' . $args['theme_location'], 0 ) ) {
-		print '<' . $args['container'] . $id . '></' . $args['container'] . '>';
+		echo '<' . $args['container'] . $id . '></' . $args['container'] . '>';
 		return;
 	}
 
@@ -1000,7 +1000,7 @@ function _nighthawk_menu_dialog( $args ) {
 		$message = '<p class="dialog notice">';
 
 		/* Provide a link to the appropriate administration panel. */
-		$message.= $first . '<br>' . sprintf( esc_html__( 'Please visit the %1$s to manage your menus.', 'nighthawk' ), '<a href="' . esc_url( admin_url( '/nav-menus.php' ) ) . '">' . esc_html__( 'menus page' ) . '</a>' );
+		$message.= $first . sprintf( esc_html__( 'Please visit the %1$s to manage your menus.', 'nighthawk' ), '<a href="' . esc_url( admin_url( '/nav-menus.php' ) ) . '">' . esc_html__( 'menus page' ) . '</a>' );
 
 		/* Build a link to hide the message. */
 		$message.= '<a href="' . esc_url( admin_url( '/admin-ajax.php?action=nighthawk_hide_message_nav_menu&_wpnonce=' . wp_create_nonce( 'nighthawk_hide_menu_' . $args['theme_location'] ) . '&menu=' . $args['theme_location'] ) ) . '"> ' . esc_html__( 'Hide this message', 'nighthawk' ) . '</a>';
@@ -1008,7 +1008,7 @@ function _nighthawk_menu_dialog( $args ) {
 		$message.= '</p>';
 	}
 
-	print '<' . $args['container'] . $id . $class . '>' . $message . '</' . $args['container'] . '>';
+	echo '<' . $args['container'] . $id . $class . '>' . $message . '</' . $args['container'] . '>';
 }
 
 /**
@@ -1068,7 +1068,7 @@ function _nighthawk_edit_post_link( $html, $ID ) {
 }
 
 function nighthawk_entry_id() {
-	print esc_attr( nighthawk_entry_id_get() );
+	echo esc_attr( nighthawk_entry_id_get() );
 }
 
 function nighthawk_entry_id_get() {
@@ -1107,12 +1107,12 @@ function _nighthawk_filter_post_title( $title ) {
 add_action( 'the_title', '_nighthawk_filter_post_title' );
 
 function _nighthawk_commentform_before() {
-	print "\n" . '<div class="box">';
+	echo "\n" . '<div class="box">';
 }
 add_action( 'comment_form_before', '_nighthawk_commentform_before' );
 
 function _nighthawk_commentform_after() {
-	print "\n" . '</div>';
+	echo "\n" . '</div>';
 }
 add_action( 'comment_form_after', '_nighthawk_commentform_after' );
 
@@ -1187,15 +1187,15 @@ class Nighthawk {
 }
 
 function nighthawk_td_edit( $column = array() ) {
-	print "\n\t" . '<td class="' . esc_attr( $column['class'] ) . '">';
-	print '<a href="' . esc_url( get_edit_post_link() ) . '"><img src="' . esc_url( get_template_directory_uri() . '/images/edit.png' ) . '" alt="' . esc_attr__( 'Edit', 'nighthawk' ) . '"></a>';
-	print '</td>';
+	echo "\n\t" . '<td class="' . esc_attr( $column['class'] ) . '">';
+	echo '<a href="' . esc_url( get_edit_post_link() ) . '"><img src="' . esc_url( get_template_directory_uri() . '/images/edit.png' ) . '" alt="' . esc_attr__( 'Edit', 'nighthawk' ) . '"></a>';
+	echo '</td>';
 }
 
 function nighthawk_td_title( $column = array() ) {
 	$post_type = get_post_type();
 	if ( ! post_type_supports( $post_type, 'title' ) ) {
-		print "\n\t" . '<td class="' . esc_attr( $column['class'] ) . ' empty-cell"></td>';
+		echo "\n\t" . '<td class="' . esc_attr( $column['class'] ) . ' empty-cell"></td>';
 		return;
 	}
 
@@ -1214,23 +1214,23 @@ function nighthawk_td_title( $column = array() ) {
 		$title  = '<a href="' . esc_url( $url ) . '" rel="external"' . $title_attr . '>' . $title . '</a>';
 	}
 
-	print "\n\t" . '<td class="' . esc_attr( $column['class'] ) . '"><a href="' . esc_url( get_permalink() ) . '">' . $title . '</a></td>';
+	echo "\n\t" . '<td class="' . esc_attr( $column['class'] ) . '"><a href="' . esc_url( get_permalink() ) . '">' . $title . '</a></td>';
 }
 
 function nighthawk_td_comment_count( $column = array() ) {
 	if ( post_password_required() ) {
-		print "\n\t" . '<td class="' . esc_attr( $column['class'] ) . ' empty-cell"></td>';
+		echo "\n\t" . '<td class="' . esc_attr( $column['class'] ) . ' empty-cell"></td>';
 		return;
 	}
-	print "\n\t" . '<td class="' . esc_attr( $column['class'] ) . '">';
+	echo "\n\t" . '<td class="' . esc_attr( $column['class'] ) . '">';
 	comments_popup_link( '', '1', '%', 'comments-link', '' );
-	print '</td>';
+	echo '</td>';
 }
 
 function nighthawk_td_comment_icon( $column = array() ) {
 	$post_type = get_post_type();
 	if ( ! post_type_supports( $post_type, 'comments' ) ) {
-		print "\n\t" . '<td class="' . esc_attr( $column['class'] ) . ' empty-cell"></td>';
+		echo "\n\t" . '<td class="' . esc_attr( $column['class'] ) . ' empty-cell"></td>';
 		return;
 	}
 
@@ -1239,11 +1239,11 @@ function nighthawk_td_comment_icon( $column = array() ) {
 		return;
 	}
 
-	print "\n\t" . '<td class="' . esc_attr( $column['class'] ) . '"><a href="' . esc_url( get_permalink() . '#respond' ) . '" class="comment-icon">' . esc_html__( 'Add a comment', 'nighthawk' ) . '</a></td>';
+	echo "\n\t" . '<td class="' . esc_attr( $column['class'] ) . '"><a href="' . esc_url( get_permalink() . '#respond' ) . '" class="comment-icon">' . esc_html__( 'Add a comment', 'nighthawk' ) . '</a></td>';
 }
 
 function nighthawk_td_permalink_icon( $column = array() ) {
-	print "\n\t" . '<td class="' . esc_attr( $column['class'] ) . '"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark" class="permalink-icon">' . esc_html__( 'Permalink', 'nighthawk' ) . '</a></td>';
+	echo "\n\t" . '<td class="' . esc_attr( $column['class'] ) . '"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark" class="permalink-icon">' . esc_html__( 'Permalink', 'nighthawk' ) . '</a></td>';
 }
 
 function nighthawk_td_bookmark_source( $column = array() ) {
@@ -1265,7 +1265,7 @@ function nighthawk_td_bookmark_source( $column = array() ) {
 		}
 	}
 
-	print "\n\t" . '<td class="' . esc_attr( $column['class'] ) . '">' . $link . '</td>';
+	echo "\n\t" . '<td class="' . esc_attr( $column['class'] ) . '">' . $link . '</td>';
 }
 
 function _nighthawk_prepend_attachment( $content ) {

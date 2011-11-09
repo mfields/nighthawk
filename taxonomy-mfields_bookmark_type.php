@@ -21,13 +21,13 @@ get_header( $taxonomy );
 
 <header id="intro">
 
-	<?php print apply_filters( 'taxonomy-images-queried-term-image', '', array(
+	<?php echo apply_filters( 'taxonomy-images-queried-term-image', '', array(
 		'size'   => 'post-thumbnail',
 		'before' => '<div id="featured-image">',
 		'after'  => '</div>',
 		) ); ?>
-	<h1 id="document-title"><?php single_term_title() ?></h1>
-	<div id="summary"><?php print term_description(); ?></div>
+	<h1 id="document-title"><?php single_term_title(); ?></h1>
+	<div id="summary"><?php echo term_description(); ?></div>
 
 	<?php
 
@@ -44,7 +44,7 @@ get_header( $taxonomy );
 
 	$sentence.= ' <span class="subscribe"><a href="' . esc_url( $feed_url ) . '" title="' . esc_attr( $feed_title ) . '">' . esc_html__( 'Subscribe', 'nighthawk' ) . '</a></span>';
 
-	print '<div id="intro-meta">' . $sentence . '</div>';
+	echo '<div id="intro-meta">' . $sentence . '</div>';
 
 	?>
 

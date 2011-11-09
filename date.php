@@ -43,7 +43,7 @@ get_header( 'archive-date' );
 	}
 ?>
 
-	<?php print '<div id="intro-meta">' . $meta . '</div>'; ?>
+	<?php echo '<div id="intro-meta">' . $meta . '</div>'; ?>
 </header>
 
 <div id="content" class="contain">

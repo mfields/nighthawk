@@ -35,14 +35,14 @@ if ( have_posts() ) {
 
 	/* Date Information. */
 	if ( apply_filters( 'nighthawk-show-date-for-single-' . $nighthawk_post_type, true ) ) {
-		print "\n" . '<div id="dateline">';
+		echo "\n" . '<div id="dateline">';
 		printf( __( 'Posted on %1$s', 'nighthawk' ), '<time class="date" pubdate="pubdate" datetime="' . esc_attr( get_post_time( 'Y-m-d\TH:i:s\Z', true ) ) . '">' . esc_html( get_post_time( get_option( 'date_format' ) ) ) . '</time>' );
-		print "\n" .'</div>';
+		echo "\n" .'</div>';
 	}
 
 	/* Byline. */
 	if ( post_type_supports( $nighthawk_post_type, 'author' ) ) {
-		print "\n" . '<p id="byline">' . sprintf( esc_html__( 'By %1$s', 'nighthawk' ), get_the_author() ) . '</p>';
+		echo "\n" . '<p id="byline">' . sprintf( esc_html__( 'By %1$s', 'nighthawk' ), get_the_author() ) . '</p>';
 	}
 ?>
 </header>
@@ -55,17 +55,17 @@ if ( have_posts() ) {
 
 	/* Content. */
 	if ( post_type_supports( $nighthawk_post_type, 'editor' ) ) {
-		print "\n" . '<div class="entry-content">';
+		echo "\n" . '<div class="entry-content">';
 		the_content();
-		print "\n" . '</div><!--entry-content-->';
+		echo "\n" . '</div><!--entry-content-->';
 		wp_link_pages( array( 'before' => '<div class="page-link">' . __( 'Pages:', 'nighthawk' ), 'after' => '</div>' ) );
 	}
 
 	/* Excerpt - Attempt to display excerpt only if the post_type does not support content. */
 	else if ( post_type_supports( $nighthawk_post_type, 'excerpt' ) ) {
-		print "\n" . '<div class="entry-content">';
+		echo "\n" . '<div class="entry-content">';
 		the_excerpt();
-		print "\n" . '</div><!--entry-content-->';
+		echo "\n" . '</div><!--entry-content-->';
 	}
 
 	do_action( 'nighthawk_entry_end' );

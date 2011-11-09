@@ -20,14 +20,14 @@ get_header( $taxonomy );
 ?>
 
 <header id="intro">
-	<?php print apply_filters( 'taxonomy-images-queried-term-image', '', array(
+	<?php echo apply_filters( 'taxonomy-images-queried-term-image', '', array(
 		'size'   => 'post-thumbnail',
 		'before' => '<div id="featured-image">',
 		'after'  => '</div>',
 		) ); ?>
-	<h1 id="document-title"><?php single_term_title() ?></h1>
-	<div id="summary"><?php print term_description(); ?></div>
-	<?php nighthawk_summary_meta( '<div id="intro-meta">', '</div>' ) ?>
+	<h1 id="document-title"><?php single_term_title(); ?></h1>
+	<div id="summary"><?php echo term_description(); ?></div>
+	<?php nighthawk_summary_meta( '<div id="intro-meta">', '</div>' ); ?>
 </header>
 
 <div id="content" class="contain">

@@ -71,7 +71,7 @@ class Mfields_Post_Label {
 		$post_types = get_post_types( array( 'public' => true, '_builtin' => false ), 'objects' );
 		if ( ! empty( $post_types ) && is_array( $post_types ) ) {
 			self::$labels['custom'] = array();
-			foreach( (array) $post_types as $name => $post_type ) {
+			foreach ( (array) $post_types as $name => $post_type ) {
 				self::$labels['custom'][$name] = array(
 					0          => $post_type->labels->singular_name,
 					1          => $post_type->labels->name,
@@ -102,7 +102,7 @@ class Mfields_Post_Label {
 
 		$post_type = get_post_type();
 
-		switch( get_post_type() ) {
+		switch ( get_post_type() ) {
 			case 'post' :
 				$output = self::post();
 				break;
@@ -142,7 +142,7 @@ class Mfields_Post_Label {
 
 	static public function attachment() {
 		$mime = get_post_mime_type();
-		switch( $mime ) {
+		switch ( $mime ) {
 			case 'image/jpeg' :
 			case 'image/gif' :
 			case 'image/png' :
@@ -208,11 +208,11 @@ class Mfields_Post_Label {
 	}
 
 	static public function dump() {
-		print '<pre>';
-		print __class__ . ' v' . self::version . "\n";
-		print "\n" . 'Times used: ' . self::$count;
-		print "\n" . '$map: ' . print_r( self::$map, true );
-		print "\n" . '$labels: ' . print_r( self::$labels, true );
-		print '</pre>';
+		echo '<pre>';
+		echo __class__ . ' v' . self::version . "\n";
+		echo "\n" . 'Times used: ' . self::$count;
+		echo "\n" . '$map: ' . print_r( self::$map, true );
+		echo "\n" . '$labels: ' . print_r( self::$labels, true );
+		echo '</pre>';
 	}
 }

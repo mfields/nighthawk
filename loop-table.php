@@ -20,32 +20,32 @@
 if ( have_posts() ) {
 	$columns = Nighthawk::columns();
 
-	print "\n\n" . '<table class="post-archive">' . "\n";
+	echo "\n\n" . '<table class="post-archive">' . "\n";
 
 	foreach ( $columns as $column ) {
-		print "\n" . '<col class="' . esc_attr( $column['class'] ) . '"></col>';
+		echo "\n" . '<col class="' . esc_attr( $column['class'] ) . '"></col>';
 	}
 
-	print "\n\n" . '<thead>';
-	print "\n" . '<tr>';
+	echo "\n\n" . '<thead>';
+	echo "\n" . '<tr>';
 
 	foreach ( $columns as $column ) {
-		print "\n\t" . '<th scope="col">' . esc_attr( $column['label'] ) . '</th>';
+		echo "\n\t" . '<th scope="col">' . esc_attr( $column['label'] ) . '</th>';
 	}
 
-	print "\n" . '</tr>';
-	print "\n" . '</thead>';
+	echo "\n" . '</tr>';
+	echo "\n" . '</thead>';
 
-	print "\n\n" . '<tbody>';
+	echo "\n\n" . '<tbody>';
 	while ( have_posts() ) {
 		the_post();
-		print "\n" . '<tr '; post_class(); print '>';
+		echo "\n" . '<tr '; post_class(); echo '>';
 		foreach ( $columns as $column ) {
 			call_user_func( $column['callback'], $column );
 		}
-		print "\n" . '</tr>';
+		echo "\n" . '</tr>';
 	}
 
-	print "\n" . '</tbody>';
-	print "\n" . '</table>';
+	echo "\n" . '</tbody>';
+	echo "\n" . '</table>';
 }

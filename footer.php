@@ -25,7 +25,7 @@
  */
 ?>
 
-	<?php do_action( 'nighthawk_append_to_page_div' ) ?>
+	<?php do_action( 'nighthawk_append_to_page_div' ); ?>
 
 </div><!-- #page -->
 
@@ -43,14 +43,14 @@ foreach ( $areas as $area ) {
 }
 $count = count( $active );
 if ( 0 < $count ) {
-	print '<div id="widgets" class="count-' . $count . '" role="complementary">';
+	echo '<div id="widgets" class="count-' . $count . '" role="complementary">';
 	foreach ( $active as $order => $area ) {
-		print '<div id="' . esc_attr( $area ) . '" class="area area-' . ( 1 + $order ) . '">' . "\n";
+		echo '<div id="' . esc_attr( $area ) . '" class="area area-' . ( 1 + $order ) . '">' . "\n";
 		dynamic_sidebar( $area . '-footer-widget-area' );
-		print '</div>' . "\n";
+		echo '</div>' . "\n";
 	}
-	print '<div class="clear"></div>';
-	print '</div><!-- #footer-widget-area -->';
+	echo '<div class="clear"></div>';
+	echo '</div><!-- #footer-widget-area -->';
 }
 ?>
 

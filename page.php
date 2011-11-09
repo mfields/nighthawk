@@ -27,7 +27,7 @@ while ( have_posts() ) {
 		<?php the_title( '<h1 id="document-title">', '</h1>' ); ?>
 		<p id="byline"><?php printf( esc_html__( 'By %1$s', 'nighthawk' ), get_the_author() ); ?></p>
 		<?php if ( has_excerpt() ) { ?>
-			<div id="summary"><?php the_excerpt() ?></div>
+			<div id="summary"><?php the_excerpt(); ?></div>
 		<?php } ?>
 		<?php nighthawk_summary_meta( '<div id="intro-meta">', '</div>' ); ?>
 	</header>

@@ -16,7 +16,7 @@
 <?php get_header( 'search' ); ?>
 
 <header id="intro">
-	<h1 id="document-title"><?php _e( 'Search Results', 'nighthawk' ) ?></h1>
+	<h1 id="document-title"><?php _e( 'Search Results', 'nighthawk' ); ?></h1>
 
 	<?php get_search_form(); ?>
 

@@ -52,7 +52,7 @@ if ( ! empty( $stickies ) ) {
 		$class = ' class="has-featured-image"';
 	}
 
-	print "\n" . '<header id="intro"' . $class . '>';
+	echo "\n" . '<header id="intro"' . $class . '>';
 
 	$title = __( 'Featured', 'nighthawk' );
 
@@ -61,24 +61,24 @@ if ( ! empty( $stickies ) ) {
 		$title = $post_title;
 	}
 
-	print "\n" . '<h1 id="document-title"><a href="' . esc_url( get_permalink() ) . '">' . $title . '</a></h1>';
+	echo "\n" . '<h1 id="document-title"><a href="' . esc_url( get_permalink() ) . '">' . $title . '</a></h1>';
 
 	if ( ! empty( $featured_image ) ) {
-		print "\n" . '<div id="featured-image">';
-		print '<a href="' . esc_url( get_permalink() ) . '">' . $featured_image . '</a>';
-		print '</div>';
+		echo "\n" . '<div id="featured-image">';
+		echo '<a href="' . esc_url( get_permalink() ) . '">' . $featured_image . '</a>';
+		echo '</div>';
 	}
 
-	print "\n" . '<div id="summary">';
+	echo "\n" . '<div id="summary">';
 	the_content( __( 'Continue Reading', 'nighthawk' ) );
-	print "\n" . '</div>';
+	echo "\n" . '</div>';
 
 	wp_link_pages( array(
 		'before' => '<div class="page-link contain">',
 		'after'  => '</div>'
 	) );
 
-	print "\n" . '</header>';
+	echo "\n" . '</header>';
 }
 
 /*
@@ -88,12 +88,12 @@ if ( ! empty( $stickies ) ) {
  * displayed in a custom list under the intro.
  */
 if ( ! empty( $stickies ) ) {
-	print "\n\n" . '<ul id="intro-list">';
+	echo "\n\n" . '<ul id="intro-list">';
 	foreach ( $stickies as $i => $post ) {
 		setup_postdata( $post );
 		the_title( '<li><a href="' . esc_url( get_permalink() ) . '">', '</a></li>' );
 	}
-	print "\n" . '</ul>';
+	echo "\n" . '</ul>';
 }
 
 wp_reset_postdata();

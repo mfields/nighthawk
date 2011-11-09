@@ -28,7 +28,7 @@
 <head>
 <meta charset="<?php bloginfo( 'charset' ); ?>">
 <title><?php bloginfo( 'blogname' ); ?><?php wp_title(); ?></title>
-<link rel="stylesheet" media="all" href="<?php print get_stylesheet_uri(); ?>" />
+<link rel="stylesheet" media="all" href="<?php echo get_stylesheet_uri(); ?>" />
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <?php wp_head(); ?>
@@ -51,9 +51,9 @@
 
 	<?php
 		if ( empty( $header_image ) ) {
-			print "\n" . '<div id="header">';
+			echo "\n" . '<div id="header">';
 			get_template_part( 'top', 'no-image' );
-			print "\n" . '</div>';
+			echo "\n" . '</div>';
 		}
 		else {
 			printf(

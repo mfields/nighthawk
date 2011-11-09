@@ -25,7 +25,7 @@
  */
 if ( post_password_required() ) {
 	if ( have_comments() )
-	print '<p class="nopassword">' . sprintf( __( 'This %1$s is password protected. Enter the password to view any comments.', 'nighthawk' ), nighthawk_post_label_singular() ) . '</p>';
+	echo '<p class="nopassword">' . sprintf( __( 'This %1$s is password protected. Enter the password to view any comments.', 'nighthawk' ), nighthawk_post_label_singular() ) . '</p>';
 	return;
 }
 
@@ -58,23 +58,23 @@ if ( have_comments() ) {
 	}
 
 	/* Print heading. */
-	print '<h2 id="comments">' . $heading . ' ' . $addendum . '</h2>';
+	echo '<h2 id="comments">' . $heading . ' ' . $addendum . '</h2>';
 
 	/* List the comments. */
-	print '<ol class="comment-list">';
+	echo '<ol class="comment-list">';
 	wp_list_comments( apply_filters( 'nighthawk_list_comments_args', array(
 		'callback'     => '_nighthawk_comment_start',
 		'end-callback' => '_nighthawk_comment_end',
 		'max-depth'    => 1
 		) ) );
-	print '</ol>';
+	echo '</ol>';
 
 	/* Paged navigation. */
 	if ( get_comment_pages_count() > 1 && get_option( 'page_comments' ) ) {
-		print '<div class="navigation">';
-		print '<div class="nav-previous">'; previous_comments_link( __( '&laquo; Older Comments', 'nighthawk' ) ); print '</div>';
-		print '<div class="nav-next">'; next_comments_link( __( 'Newer Comments &raquo;', 'nighthawk' ) ); print '</div>';
-		print '</div>';
+		echo '<div class="navigation">';
+		echo '<div class="nav-previous">'; previous_comments_link( __( '&laquo; Older Comments', 'nighthawk' ) ); echo '</div>';
+		echo '<div class="nav-next">'; next_comments_link( __( 'Newer Comments &raquo;', 'nighthawk' ) ); echo '</div>';
+		echo '</div>';
 	}
 }
 

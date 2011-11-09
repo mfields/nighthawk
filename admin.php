@@ -33,19 +33,19 @@ class Nighthawk_Admin {
 	}
 
 	static public function template() {
-		print "\n" . '<div class="wrap">';
+		echo "\n" . '<div class="wrap">';
 		screen_icon();
 
-		print "\n" . '<h2>Nighthawk</h2>';
-		print "\n" . '<div id="nighthawk">';
+		echo "\n" . '<h2>Nighthawk</h2>';
+		echo "\n" . '<div id="nighthawk">';
 
 		do_settings_sections( 'nighthawk' );
 
-		print "\n" . '</div></div>';
+		echo "\n" . '</div></div>';
 	}
 
 	static public function intro() {
-		print '<p>This is some stuff about Nighthawk!</p>';
+		echo '<p>This is some stuff about Nighthawk!</p>';
 	}
 
 	static public function plugins() {

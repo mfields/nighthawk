@@ -3,7 +3,7 @@
  * Alternative Header Template.
  *
  * Just like header.php only without the nav menu.
- * 
+ *
  * @package      Nighthawk
  * @author       Michael Fields <michael@mfields.org>
  * @copyright    Copyright (c) 2011, Michael Fields
@@ -15,7 +15,7 @@
 <head>
 <meta charset="<?php bloginfo( 'charset' ); ?>">
 <title><?php bloginfo( 'blogname' ); ?><?php wp_title(); ?></title>
-<link rel="stylesheet" media="all" href="<?php print get_stylesheet_uri(); ?>" />
+<link rel="stylesheet" media="all" href="<?php echo get_stylesheet_uri(); ?>" />
 <link rel="pingback" href="<?php bloginfo( 'pingback_url' ); ?>">
 <link rel="profile" href="http://gmpg.org/xfn/11">
 <?php wp_head(); ?>

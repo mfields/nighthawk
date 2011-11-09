@@ -35,9 +35,9 @@ if ( have_posts() ) {
 
 	the_title( "\n" . '<h1 id="document-title">', '</h1>' );
 
-	print "\n" . '<div id="dateline">';
+	echo "\n" . '<div id="dateline">';
 	printf( __( 'Bookmarked on %1$s', 'nighthawk' ), '<time class="date" pubdate="pubdate" datetime="' . esc_attr( get_post_time( 'Y-m-d\TH:i:s\Z', true ) ) . '">' . esc_html( get_the_time( get_option( 'date_format' ) ) ) . '</time> by <span rel="author">' .  get_the_author() . '</span>' );
-	print "\n" .'</div>';
+	echo "\n" .'</div>';
 
 ?>
 </header>
@@ -48,11 +48,11 @@ if ( have_posts() ) {
 
 	do_action( 'nighthawk_entry_start' );
 
-	print "\n" . '<div class="entry-content">';
+	echo "\n" . '<div class="entry-content">';
 	the_content();
-	print "\n" . '</div><!--entry-content-->';
+	echo "\n" . '</div><!--entry-content-->';
 
-	print '<div class="footer"><a href="' . esc_url( get_post_type_archive_link( $nighthawk_post_type ) ) . '">' . __( 'View all bookmarks', 'nighthawk' ) . '</a></div>';
+	echo '<div class="footer"><a href="' . esc_url( get_post_type_archive_link( $nighthawk_post_type ) ) . '">' . __( 'View all bookmarks', 'nighthawk' ) . '</a></div>';
 
 	do_action( 'nighthawk_entry_end' );
 
