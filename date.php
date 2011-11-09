@@ -1,12 +1,12 @@
 <?php
 /**
- * Default Archive Template
+ * Date Archive Template.
  *
  * @package      Nighthawk
  * @author       Michael Fields <michael@mfields.org>
  * @copyright    Copyright (c) 2011, Michael Fields
  * @license      http://opensource.org/licenses/gpl-2.0.php GNU Public License
- * @since        1.0
+ * @since        Nighthawk 1.0
  */
 
 if ( ! have_posts() ) {
@@ -25,7 +25,7 @@ get_header( 'archive-date' );
 	$total = Nighthawk::post_total();
 
 	if ( is_year() ) {
-		$meta = sprintf( _n( 'One entry was published in %2$s.', '%1$s entries were published in %2$s.', $total, 'nighthawk' ), number_format_i18n( $total ), get_the_date( 'Y' ) );
+		$meta = sprintf( _n( 'One entry was published in %2$d.', '%1$d entries were published in %2$d.', $total, 'nighthawk' ), number_format_i18n( $total ), get_the_date( 'Y' ) );
 	}
 
 	else if ( is_day() ) {

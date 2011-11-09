@@ -8,11 +8,13 @@
  *
  * This file terminates script execution.
  *
+ * @todo         Delete extra args from the_widget() once WP3.3 hits the shelf.
+ *
  * @package      Nighthawk
  * @author       Michael Fields <michael@mfields.org>
  * @copyright    Copyright (c) 2011, Michael Fields
  * @license      http://opensource.org/licenses/gpl-2.0.php GNU Public License
- * @since        1.0
+ * @since        Nighthawk 1.0
  */
 ?>
 
@@ -26,8 +28,8 @@
 
 <div id="content" class="error404">
 	<div class="entry 404">
-	<?php the_widget( 'WP_Widget_Tag_Cloud' ); ?>
-	<?php the_widget( 'WP_Widget_Recent_Posts', array( 'number' => 10 ), array( 'widget_id' => null ) ); ?>
+		<?php the_widget( 'WP_Widget_Tag_Cloud' ); ?>
+		<?php the_widget( 'WP_Widget_Recent_Posts', array( 'number' => 10 ), array( 'widget_id' => null ) ); ?>
 	</div>
 </div>
 

@@ -1,14 +1,12 @@
 <?php
 /**
- * Taxonomy Template
- *
- * This file closes all html tags that it opens.
+ * Author Template.
  *
  * @package      Nighthawk
  * @author       Michael Fields <michael@mfields.org>
  * @copyright    Copyright (c) 2011, Michael Fields
  * @license      http://opensource.org/licenses/gpl-2.0.php GNU Public License
- * @since        1.0
+ * @since        Nighthawk 1.0
  *
  * @todo         Add edit link.
  * @todo         Add website link.

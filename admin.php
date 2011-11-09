@@ -115,7 +115,7 @@ class Nighthawk_Supported_Plugins extends WP_List_Table {
 		return array(
 			'name'   => __( 'Plugin Name', 'nighthawk' ),
 			'link'   => __( 'Plugin Page', 'nighthawk' ),
-			'author' => __( 'Author', 'nighthawk' ),
+			'author' => __( 'Author',      'nighthawk' ),
 		);
 	}
 
