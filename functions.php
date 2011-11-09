@@ -72,7 +72,7 @@ function _nighthawk_setup() {
 	add_action( 'template_redirect', 'nighthawk_post_labels_init' );
 
 	add_theme_support( 'menus' );
-	add_theme_support( 'post-formats', array( 'status' ) );
+	add_theme_support( 'post-formats', array( 'image', 'status' ) );
 	add_theme_support( 'post-thumbnails' );
 	add_theme_support( 'automatic-feed-links' );
 	add_custom_background();

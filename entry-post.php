@@ -35,6 +35,13 @@
 
 			/*print '<a href="' . esc_url( get_permalink() . '#respond' ) . '" class="comment-icon" title="' . esc_attr__( 'Add a comment', 'nighthawk' ) . '"><img src="' . get_template_directory_uri() . '/images/comment.png" alt="" /></a>';*/
 			break;
+		case 'image' :
+			the_content();
+			the_title( '<h2 style="text-align:center">', '</h2>' );
+			print '<div class="entry-meta">';
+			print esc_html( get_the_date() );
+			print '</div><!--meta-->';
+			break;
 		default :
 			$featured_image = get_the_post_thumbnail();
 			if ( ! empty( $featured_image ) ) {
