@@ -911,7 +911,7 @@ add_action( 'comment_form_after', '_nighthawk_commentform_after' );
 function _nighthawk_widget_dropdowns_scripts() {
 	wp_enqueue_script(
 		'dropdown-widgets',
-		get_template_directory_uri() . '/dropdowns.js',
+		get_template_directory_uri() . '/inc/dropdowns.js',
 		array( 'jquery' ),
 		'0.1',
 		true
