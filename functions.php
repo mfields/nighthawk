@@ -95,18 +95,19 @@ function _nighthawk_setup() {
 	add_filter( 'get_the_author_description', 'wpautop' );
 
 	/* WordPress Core. */
-	add_filter( 'edit_post_link',    '_nighthawk_edit_post_link', 9, 2 );
-	add_filter( 'embed_oembed_html', '_nighthawk_oembed_dataparse', 10, 4 );
-	add_filter( 'embed_googlevideo', '_nighthawk_oembed_dataparse', 10, 2 );
-	add_filter( 'excerpt_more',      '_nighthawk_excerpt_more_auto' );
-	add_filter( 'post_class',        '_nighthawk_post_class' );
-	add_action( 'the_content',       '_nighthawk_related_images' );
-	add_filter( 'the_password_form', '_nighthawk_password_form' );
-	add_action( 'widget_title',      '_nighthawk_calendar_widget_title', 10, 3 );
-	add_action( 'widgets_init',      '_nighthawk_widgets_init' );
-	add_action( 'wp_loaded',         '_nighthawk_custom_image_header' );
-	add_action( 'wp_print_scripts',  '_nighthawk_comment_reply_js' );
-	add_action( 'wp_print_styles',   '_nighthawk_google_fonts' );
+	add_filter( 'edit_post_link',     '_nighthawk_edit_post_link', 9, 2 );
+	add_filter( 'embed_oembed_html',  '_nighthawk_oembed_dataparse', 10, 4 );
+	add_filter( 'embed_googlevideo',  '_nighthawk_oembed_dataparse', 10, 2 );
+	add_filter( 'excerpt_more',       '_nighthawk_excerpt_more_auto' );
+	add_filter( 'post_class',         '_nighthawk_post_class' );
+	add_action( 'the_content',        '_nighthawk_related_images' );
+	add_filter( 'the_password_form',  '_nighthawk_password_form' );
+	add_action( 'widget_title',       '_nighthawk_calendar_widget_title', 10, 3 );
+	add_action( 'widgets_init',       '_nighthawk_widgets_init' );
+	add_action( 'wp_loaded',          '_nighthawk_custom_image_header' );
+	add_action( 'wp_enqueue_scripts', '_nighthawk_comment_reply_js' );
+	add_action( 'wp_enqueue_scripts', '_nighthawk_heading_font_css' );
+	add_action( 'wp_enqueue_scripts', '_nighthawk_widget_dropdowns_scripts' );
 
 	/* Ajax Callbacks */
 	add_action( 'wp_ajax_nighthawk_hide_message_nav_menu', '_nighthawk_ajax_hide_message_nav_menu' );
@@ -115,8 +116,6 @@ function _nighthawk_setup() {
 	add_action( 'custom_header_options', '_nighthawk_settings_custom_header_text_controls' );
 	add_action( 'admin_head-appearance_page_custom-header', '_nighthawk_process_custom_header_settings', 51 );
 
-	/* SyntaxHighlighter Evolved plugin. */
-	wp_register_style( 'syntaxhighlighter-theme-nighthawk', get_template_directory_uri() . '/style-syntax-highlighter.css', array( 'syntaxhighlighter-core' ), '1' );
 	add_filter( 'syntaxhighlighter_themes', '_nighthawk_syntaxhighlighter_theme' );
 }
 add_action( 'after_setup_theme', '_nighthawk_setup' );
@@ -419,8 +418,22 @@ function nighthawk_subscribe_to_comments_manual_form( $before = '', $after = '',
 	}
 }
 
-function _nighthawk_google_fonts() {
-	wp_enqueue_style( 'nighthawk-cabin', 'http://fonts.googleapis.com/css?family=Cabin:regular,regularitalic,bold,bolditalic', array(), NIGHTHAWK_VERSION );
+function _nighthawk_heading_font_css() {
+	wp_enqueue_style(
+		'nighthawk-cabin',
+		'http://fonts.googleapis.com/css?family=Cabin:regular,regularitalic,bold,bolditalic',
+		array(),
+		NIGHTHAWK_VERSION
+	);
+}
+
+function _nighthawk_syntax_highlighter_plugin_style() {
+	wp_register_style(
+		'syntaxhighlighter-theme-nighthawk',
+		get_template_directory_uri() . '/style-syntax-highlighter.css',
+		array( 'syntaxhighlighter-core' ),
+		'1'
+	);
 }
 
 /**
@@ -1104,9 +1117,6 @@ function _nighthawk_commentform_after() {
 add_action( 'comment_form_after', '_nighthawk_commentform_after' );
 
 function _nighthawk_widget_dropdowns_scripts() {
-	if ( is_admin() ) {
-		return;
-	}
 	wp_enqueue_script(
 		'dropdown-widgets',
 		get_template_directory_uri() . '/dropdowns.js',
@@ -1115,7 +1125,6 @@ function _nighthawk_widget_dropdowns_scripts() {
 		true
 	);
 }
-add_action( 'wp_print_scripts', '_nighthawk_widget_dropdowns_scripts' );
 
 function nighthawk_post_labels_init() {
 	require_once 'mfields-post-label.php';
