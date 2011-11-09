@@ -43,15 +43,15 @@
 			print '</div><!--meta-->';
 			break;
 		default :
+			if ( ! is_singular() ) {
+				the_title( "\n" . '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '">', '</a></h2>' );
+			}
+			
 			$featured_image = get_the_post_thumbnail();
 			if ( ! empty( $featured_image ) ) {
 				print "\n" . '<div class="featured-image">';
 				print '<a href="' . esc_url( get_permalink() ) . '">' . $featured_image . '</a>';
 				print '</div>';
-			}
-
-			if ( ! is_singular() ) {
-				the_title( "\n" . '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '">', '</a></h2>' );
 			}
 
 			print "\n" . '<div class="entry-content">';
