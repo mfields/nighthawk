@@ -5,6 +5,13 @@ A one-column theme for the [WordPress](http://wordpress.org/) designed by [Micha
 
 Theme is currently in development. Using it in production is probably a bad idea.
 
+Get in Launchable!
+------------------
+
+* Current theme has been stored in "yay" branch.
+* Bring master up to code standards using fewer templates.
+* Incorporate other templates after it's launchable.
+
 Goals
 -----
 
