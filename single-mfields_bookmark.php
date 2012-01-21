@@ -43,7 +43,7 @@ if ( have_posts() ) {
 </header>
 
 <div id="content" class="contain">
-	<div id="<?php nighthawk_entry_id(); ?>" <?php post_class(); ?>>
+	<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 <?php
 
 	do_action( 'nighthawk_entry_start' );
