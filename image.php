@@ -17,10 +17,25 @@ if ( have_posts() ) {
 ?>
 
 <header id="intro" <?php post_class( 'contain' ); ?>>
+
 	<?php the_title( "\n" . '<h1 id="document-title">', '</h1>' ); ?>
+
+	<?php
+		$parent_ID = wp_get_post_parent_id( 0 );
+		if ( ! empty( $parent_ID ) ) {
+			$parent = get_post( $parent_ID );
+			$sentence = 'This image is attached to %1$s.';
+			if ( 'gallery' == get_post_format( $parent_ID ) )
+				$sentence = 'This image is part of the gallery titled %1$s.';
+
+			printf( __( '<div id="summary"><p>' . $sentence . '</p></div>', 'nighthawk' ), '<a href="' . esc_url( get_permalink( $parent_ID ) ) . '">' . apply_filters( 'the_title', $parent->post_title ) . '</a>' );
+		}
+	?>
+
 	<div id="dateline"><?php
 		printf( __( 'Uploaded on %1$s', 'nighthawk' ), '<time class="date" pubdate="pubdate" datetime="' . esc_attr( get_post_time( 'Y-m-d\TH:i:s\Z', true ) ) . '">' . esc_html( get_post_time( get_option( 'date_format' ) ) ) . '</time>' );
 	?></div>
+
 </header>
 
 <div id="content" <?php post_class( 'image contain' ); ?>>
