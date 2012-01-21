@@ -860,23 +860,6 @@ function _nighthawk_edit_post_link( $html, $ID ) {
 	return '<a class="post-edit-link" href="' . esc_url( get_edit_post_link( $ID ) ) . '" title="' . sprintf( esc_attr__( 'Edit this %1$s', 'nighthawk' ), nighthawk_post_label_singular() ) . '">' . esc_html( wp_strip_all_tags( $html ) ) . '</a>';
 }
 
-function nighthawk_entry_id() {
-	echo esc_attr( nighthawk_entry_id_get() );
-}
-
-function nighthawk_entry_id_get() {
-	$parts = array(
-		get_post_type(),
-		get_post_format(),
-		get_the_ID()
-		);
-	$attr = implode( '-', array_filter( $parts ) );
-	if ( ctype_alnum( $attr ) ) {
-		return 'entry-' . $attr;
-	}
-	return $attr;
-}
-
 function nighthawk_entry_template_name() {
 	$template = get_post_type();
 	if ( 'post' == $template ) {
