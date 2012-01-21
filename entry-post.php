@@ -15,14 +15,14 @@
 	<?php $featured_image = get_the_post_thumbnail(); ?>
 
 	<?php if ( ! empty( $featured_image ) ) : ?>
-		<div class="featured-image"><a href="<?php echo esc_url( get_permalink() ); ?>"><?php echo $featured_image; ?></a></div>';
+		<div class="featured-image"><a href="<?php echo esc_url( get_permalink() ); ?>"><?php echo $featured_image; ?></a></div>
 	<?php endif; ?>
 
 	<?php if ( ! is_singular() ) : ?>
 		<?php the_title( "\n" . '<h2 class="entry-title"><a href="' . esc_url( get_permalink() ) . '">', '</a></h2>' ); ?>
 	<?php endif; ?>
 
-	<div class="entry-content">';
+	<div class="entry-content">
 		<?php the_content( __( 'Continue Reading', 'nighthawk' ) ); ?>
 	</div><!--entry-content-->
 
