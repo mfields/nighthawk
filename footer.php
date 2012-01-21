@@ -65,49 +65,8 @@ if ( 0 < $count ) {
 		'depth'          => 1,
 		'items_wrap'     => '<ul id="%1$s" class="%2$s" role="navigation">%3$s</ul>',
 		'fallback_cb'    => '__return_false',
-		) ) );
+	) ) );
 ?>
-
-<script>
-/**
- * Special padding for introduction header.
- *
- * Add whitespace to the left of most elements in the
- * the introduction when the title starts with a letter
- * like T or Y. This only really works for one-liners,
- * but is a nice touch.
- */
-( function() {
-	var title, first, chars, className, elements, i, el;
-
-	title = document.getElementById( 'document-title' );
-
-	first = '';
-	if ( null != title ) {
-		first = title.toString().charAt( 0 );
-	}
-
-	chars = [ 't', 'T', 'y', 'Y', 'i', '1' ];
-	if ( chars.indexOf( first ) ) {
-		className = 'nudge';
-		elements = [
-			'byline',
-			'intro-meta',
-			'summary'
-		];
-		for ( i = 0; i < elements.length; i++ ) {
-			el = document.getElementById( elements[i] );
-			if ( null == el )
-				continue;
-			if ( '' == el.className )
-				el.className = className;
-			else
-				el.className += ' ' + className;
-		}
-	}
-
-} )();
-</script>
 
 <?php wp_footer(); ?>
 

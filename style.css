@@ -732,12 +732,12 @@ ul.form-errors li.form-error-message {
 }
 /* Meta. */
 .meta {
-	clear:both;
+	clear: both;
 }
 .meta p {
-	margin:0;
+	margin: 0;
 }
-.entry-taxonomy {
+.entry-terms {
 	clear: both;
 	font-size: .8em;
 }
@@ -756,58 +756,59 @@ ul.form-errors li.form-error-message {
 	padding: 1.3em 3em 0;
 }
 #blog h2.entry-title {
-	margin-top:0;
-	margin-bottom:.25em;
+	margin-top: 0;
+	margin-bottom: .25em;
 }
 #blog .has-featured-image h2.entry-title {
-	margin-right:190px;
-	clear:none;
+	margin-right: 190px;
+	clear: none;
 }
 #blog .format-status .image {
-	float:left;
-	width:70px;
-	height:70px;
-	border:1px solid #ccc;
-	position:relative;
-	top:.3em;
-	-webkit-border-radius:.5em;
-	-moz-border-radius:   .5em;
-	border-radius:        .5em;
-	overflow:hidden;
+	float: left;
+	width: 70px;
+	height: 70px;
+	border: 1px solid #ccc;
+	position: relative;
+	top: .3em;
+	-webkit-border-radius: .5em;
+	-moz-border-radius: .5em;
+	border-radius: .5em;
+	overflow: hidden;
 }
 #blog .format-status .image img {
-	width:100%;
-	height:100%;
-	-webkit-border-radius:.5em;
-	-moz-border-radius:   .5em;
-	border-radius:        .5em;
+	width: 100%;
+	height: 100%;
+	-webkit-border-radius: .5em;
+	-moz-border-radius: .5em;
+	border-radius: .5em;
 }
 #blog .format-status .content,
-#blog .format-status .entry-taxonomy {
-	margin-left:85px;
+#blog .format-status .entry-terms {
+	margin-left: 85px;
 }
-#blog .format-status .entry-taxonomy p {
-	margin-top:.25em;
+#blog .format-status .entry-terms p {
+	margin-top: .25em;
 }
 #blog .post-password-required form p {
-	margin:0;
-	padding:0;
-}
-#blog .format-image {
-	padding-left: 1em;
-	padding-right: 1em;
-}
-#blog .format-image p {
 	margin: 0;
 	padding: 0;
 }
-#blog .format-image img {
+
+.format-image {
+	padding-left: 1em;
+	padding-right: 1em;
+}
+.format-image p {
+	margin: 0;
+	padding: 0 0 1.5em;
+}
+.format-image img {
 	display: block;
 	margin: 0 auto;
 	max-width: 100%;
 	height: auto;
 }
-#blog .format-image .entry-taxonomy {
+.format-image .entry-terms {
 	text-align: center;
 	margin: 1em;
 }
@@ -817,16 +818,16 @@ ul.form-errors li.form-error-message {
 -------------------------------------------------------------- */
 
 .search-result {
-	margin-bottom:3em;
+	margin-bottom: 3em;
 }
 .search-result .heading {
-	font-weight:normal;
-	font-size:1.2em;
-	margin:0 0 .25em;
+	font-weight: normal;
+	font-size: 1.2em;
+	margin: 0 0 .25em;
 }
 .search-result .content {
-	margin:0;
-	padding:0;
+	margin: 0;
+	padding: 0;
 }
 
 
@@ -834,16 +835,16 @@ ul.form-errors li.form-error-message {
 -------------------------------------------------------------- */
 
 #related-images {
-	margin:0;
-	padding:0;
+	margin: 0;
+	padding: 0;
 }
 #related-images li {
-	float:left;
-	width:70px;
-	height:70px;
-	margin:.5em .5em 0 0;
-	padding:0;
-	list-style-type:none;
+	float: left;
+	width: 70px;
+	height: 70px;
+	margin: .5em .5em 0 0;
+	padding: 0;
+	list-style-type: none;
 }
 
 
@@ -851,32 +852,32 @@ ul.form-errors li.form-error-message {
 -------------------------------------------------------------- */
 
 .comment {
-	min-height:55px;
+	min-height: 55px;
 }
 .comment-list {
-	list-style-type:none;
-	margin:0;
-	padding:0;
+	list-style-type: none;
+	margin: 0;
+	padding: 0;
 }
 .comment-date {
-	color:#888;
+	color: #888;
 }
 .trackback {
-	border:.1em solid #ccc;
-	-webkit-border-radius:.5em;
-	-moz-border-radius:   .5em;
-	border-radius:        .5em;
-	background:#eef3fa url( images/icons.png ) -90px -35px no-repeat;
+	border: .1em solid #ccc;
+	-webkit-border-radius: .5em;
+	-moz-border-radius: .5em;
+	border-radius: .5em;
+	background: #eef3fa url( images/icons.png ) -90px -35px no-repeat;
 }
 .trackback .content {
-	margin-left:28px;
-	padding:.25em .5em;
-	background:#fff;
-	-webkit-background-clip:padding-box;
-	background-clip:padding-box;
-	-webkit-border-radius:.5em;
-	-moz-border-radius:   .5em;
-	border-radius:        .5em;
+	margin-left: 28px;
+	padding: .25em .5em;
+	background: #fff;
+	-webkit-background-clip: padding-box;
+	background-clip: padding-box;
+	-webkit-border-radius: .5em;
+	-moz-border-radius: .5em;
+	border-radius: .5em;
 }
 
 
@@ -884,37 +885,38 @@ ul.form-errors li.form-error-message {
 -------------------------------------------------------------- */
 
 #respond label {
-	display:block;
+	display: block;
 }
 .comment-form-comment textarea {
-	width:98%;
-	height:16em;
+	width: 98%;
+	height: 16em;
 }
 .required {
-	display:none;
-	height:0;
-	width:0;
+	display: none;
+	height: 0;
+	width: 0;
 }
 .addendum {
-	font-size:.6em;
+	font-size: .6em;
 }
 
 
 /* =Post Navigation
 -------------------------------------------------------------- */
+
 #page-footer {
-	clear:both;
+	clear: both;
 }
 .nav-paged {
-	background:#555;
-	margin:0;
-	padding:.75em 1.75em;
+	background: #555;
+	margin: 0;
+	padding: .75em 1.75em;
 }
 .nav-paged a {
-	color:#fff;
-	font-size:1.25em;
-	letter-spacing:.075em;
-	text-transform:uppercase;
+	color: #fff;
+	font-size: 1.25em;
+	letter-spacing: .075em;
+	text-transform: uppercase;
 }
 .timeline-progress {
 	float: right;
@@ -934,47 +936,47 @@ ul.form-errors li.form-error-message {
 -------------------------------------------------------------- */
 
 #widgets {
-	clear:both;
-	position:relative;
-	z-index:0;
-	background-color:#fff;
-	margin:0 1em;
-	padding:1em;
-	color:#666;
+	clear: both;
+	position: relative;
+	z-index: 0;
+	background-color: #fff;
+	margin: 0 1em;
+	padding: 1em;
+	color: #666;
 	-webkit-border-bottom-left-radius: .5em;
-	-webkit-border-bottom-right-radius:.5em;
-	-moz-border-radius-bottomright:    .5em;
-	-moz-border-radius-bottomleft:     .5em;
-	border-bottom-left-radius:         .5em;
-	border-bottom-right-radius:        .5em;
+	-webkit-border-bottom-right-radius: .5em;
+	-moz-border-radius-bottomright: .5em;
+	-moz-border-radius-bottomleft: .5em;
+	border-bottom-left-radius: .5em;
+	border-bottom-right-radius: .5em;
 	-webkit-box-shadow: 0 0 .75em rgba( 0, 0, 0, 0.4 );
-	-moz-box-shadow:    0 0 .75em rgba( 0, 0, 0, 0.4 );
-	box-shadow:         0 0 .75em rgba( 0, 0, 0, 0.4 );
+	-moz-box-shadow: 0 0 .75em rgba( 0, 0, 0, 0.4 );
+	box-shadow: 0 0 .75em rgba( 0, 0, 0, 0.4 );
 }
 #widgets .area {
-	float:left;
+	float: left;
 }
-#widgets.count-1 .area-1 { width:100%; }
-#widgets.count-2 .area-1 { width:30em; }
-#widgets.count-2 .area-2 { width:15em; margin:0 0 0 1.5em; }
-#widgets.count-3 .area   { width:14em; }
-#widgets.count-3 .area-1 { margin:0; }
-#widgets.count-3 .area-2 { margin:0 2em; }
-#widgets.count-3 .area-3 { margin:0; }
+#widgets.count-1 .area-1 { width: 100%; }
+#widgets.count-2 .area-1 { width: 30em; }
+#widgets.count-2 .area-2 { width: 15em; margin:0 0 0 1.5em; }
+#widgets.count-3 .area   { width: 14em; }
+#widgets.count-3 .area-1 { margin: 0; }
+#widgets.count-3 .area-2 { margin: 0 2em; }
+#widgets.count-3 .area-3 { margin: 0; }
 #widgets .area,
 #widgets .area p,
 #widgets .area li {
-	line-height:1.4;
+	line-height: 1.4;
 }
 #widgets h3.widget-title {
-	margin-bottom:.25em;
-	font-size:1.1em;
+	margin-bottom: .25em;
+	font-size: 1.1em;
 }
 #widgets .widget-container {
-	margin-bottom:1.5em;
+	margin-bottom: 1.5em;
 }
 #widgets .widget-container ul {
-	list-style-type:square;
+	list-style-type: square;
 }
 #widgets .widget-title,
 #widgets .widget-container ol,
@@ -982,17 +984,17 @@ ul.form-errors li.form-error-message {
 #widgets .widget-container p:first-child,
 #widgets .widget-container ul:first-child,
 #widgets .textwidget p:first-child {
-	margin-top:0;
+	margin-top: 0;
 }
 #wp-calendar {
-	border-color:#ccc;
+	border-color: #ccc;
 }
 #wp-calendar td {
-	padding:1.5% 0;
-	text-align:center;
-	width:14.28%;
-	font-weight:bold;
-	border-color:#ccc;
+	padding: 1.5% 0;
+	text-align: center;
+	width: 14.28%;
+	font-weight: bold;
+	border-color: #ccc;
 }
 
 
@@ -1003,14 +1005,14 @@ button,
 .button,
 input#submit,
 input.pushbutton-wide { /* Grunion Contact Form Plugin */
-	padding:5px 7px 3px;
-	color:#bbb;
-	line-height:1;
-	text-decoration:none;
-	border:1px solid #303030;
-	border-radius:5px;
-	-webkit-transition:-webkit-box-shadow 0.1s linear;
-	-moz-transition:box-shadow 0.2s;
+	padding: 5px 7px 3px;
+	color: #bbb;
+	line-height: 1;
+	text-decoration: none;
+	border: 1px solid #303030;
+	border-radius: 5px;
+	-webkit-transition: -webkit-box-shadow 0.1s linear;
+	-moz-transition: box-shadow 0.2s;
 
 	background: #555;
 	background: -moz-linear-gradient( top, #555 1%, #333 100% );
@@ -1024,11 +1026,10 @@ input.pushbutton-wide { /* Grunion Contact Form Plugin */
 button:hover,
 .button:hover,
 input#submit:hover,
-input.pushbutton-wide /* Grunion Contact Form Plugin */
-{
-	outline:none;
-	color:#ddd;
-	cursor:pointer;
+input.pushbutton-wide { /* Grunion Contact Form Plugin */
+	outline: none;
+	color: #ddd;
+	cursor: pointer;
 }
 button:active,
 button:focus,
@@ -1036,14 +1037,14 @@ button:focus,
 .button:focus,
 input#submit:focus,
 input#submit:active {
-	background:#333;
-	background:-moz-linear-gradient( top, #333 1%, #555 100% );
-	background:-webkit-gradient( linear, left top, left bottom, color-stop( 1%, #333 ), color-stop( 100%, #555 ) );
-	background:-webkit-linear-gradient( top, #333 1%, #555 100% );
-	background:-o-linear-gradient( top, #333 1%, #555 100% );
-	background:-ms-linear-gradient( top, #333 1%, #555 100% );
+	background: #333;
+	background: -moz-linear-gradient( top, #333 1%, #555 100% );
+	background: -webkit-gradient( linear, left top, left bottom, color-stop( 1%, #333 ), color-stop( 100%, #555 ) );
+	background: -webkit-linear-gradient( top, #333 1%, #555 100% );
+	background: -o-linear-gradient( top, #333 1%, #555 100% );
+	background: -ms-linear-gradient( top, #333 1%, #555 100% );
 	filter:progid:DXImageTransform.Microsoft.gradient( startColorstr='#333', endColorstr='#555', GradientType=0 );
-	background:linear-gradient( top, #333 1%, #555 100% );
+	background: linear-gradient( top, #333 1%, #555 100% );
 }
 
 
@@ -1052,35 +1053,35 @@ input#submit:active {
 
 .alignnone,
 div.alignnone {
-	margin:0 1em 0 0;
+	margin: 0 1em 0 0;
 }
 .alignleft,
 div.alignleft {
-	float:left;
-	margin:0 1em 1em 0;
+	float: left;
+	margin: 0 1em 1em 0;
 }
 .alignright,
 div.alignright {
-	float:right;
-	margin:0 0 1em 1em;
+	float: right;
+	margin: 0 0 1em 1em;
 }
 .aligncenter,
 div.aligncenter {
-	display:block;
-	margin:1em auto;
+	display: block;
+	margin: 1em auto;
 }
 .aligncenter .wp-caption-text {
-	text-align:center
+	text-align: center
 }
 .bypostauthor {}
 .clear {
-	clear:both;
+	clear: both;
 }
 .embed {
-	width:100%;
+	width: 100%;
 }
 .page-link {
-	clear:both;
+	clear: both;
 }
 .sticky {}
 .wp-caption-text {}
@@ -1090,9 +1091,6 @@ div.aligncenter {
 	clip: rect(1px 1px 1px 1px); /* IE6, IE7 */
 	clip: rect(1px, 1px, 1px, 1px);
 }
-.nudge {
-	padding-left: 6px;
-}
 
 /* =Smaller Text, Lighter Color
 -------------------------------------------------------------- */
@@ -1101,10 +1099,10 @@ small,
 .meta,
 .wp-caption-text,
 .gallery-caption {
-	color:#888;
-	font-size:.8em;
-	line-height:1.5;
-	font-weight:normal;
+	color: #888;
+	font-size: .8em;
+	line-height: 1.5;
+	font-weight: normal;
 }
 
 
@@ -1116,7 +1114,7 @@ small,
 .comment-link:before,
 .comment-edit:before,
 .comment-reply:before {
-	content:'\2022\00A0';
+	content: '\2022\00A0';
 }
 
 
@@ -1127,9 +1125,9 @@ blockquote,
 pre,
 .format-standard .featured-image,
 .gallery img {
-	box-shadow:         .2em .2em .3em rgba( 0, 0, 0, 0.3 );
+	-moz-box-shadow: .2em .2em .3em rgba( 0, 0, 0, 0.3 );
 	-webkit-box-shadow: .2em .2em .3em rgba( 0, 0, 0, 0.3 );
-	-moz-box-shadow:    .2em .2em .3em rgba( 0, 0, 0, 0.3 );
+	box-shadow: .2em .2em .3em rgba( 0, 0, 0, 0.3 );
 }
 
 
@@ -1137,20 +1135,20 @@ pre,
 -------------------------------------------------------------- */
 
 #cws-imp-plugin-list {
-	padding:0;
+	padding: 0;
 }
 a.cws-imp-plugin-title {
-	font-weight:bold;
-	margin-bottom:.73em;
-	font-size:1.38em;
+	font-weight: bold;
+	margin-bottom: .73em;
+	font-size: 1.38em;
 }
 p.cws-imp-plugin-description {
-	margin-top:0;
+	margin-top: 0;
 }
 li.cws-imp-plugin {
-	margin:0;
-	padding:0;
-	list-style-type:none;
+	margin: 0;
+	padding: 0;
+	list-style-type: none;
 }
 
 img.forced-dimensions {}
@@ -1169,7 +1167,7 @@ img.forced-dimensions {}
 .entry #gallery-8 img,
 .entry #gallery-9 img,
 .entry #gallery-10 img {
-	border-width:0;
+	border-width: 0;
 }
 
 
@@ -1177,59 +1175,59 @@ img.forced-dimensions {}
 -------------------------------------------------------------- */
 
 .post-archive {
-	width:100%;
-	border-width:0;
+	width: 100%;
+	border-width: 0;
 }
 .post-archive thead {
-	display:none;
+	display: none;
 }
 .post-archive td {
-	border-width:1px 0;
-	border-color:#ccc;
-	padding:7px;
+	border-width: 1px 0;
+	border-color: #ccc;
+	padding: 7px;
 }
 .post-archive td:first-child {
-	text-align:left;
+	text-align: left;
 }
 .post-archive tr:first-child td {
-	border-top-width:0;
+	border-top-width: 0;
 }
 .post-archive tr:last-child td {
-	border-bottom-width:0;
+	border-bottom-width: 0;
 }
 .post-archive .comment-count {
-	text-align:center;
+	text-align: center;
 }
 .post-archive td.edit-post,
 .post-archive td.comment-respond {
-	width:20px;
-	vertical-align:middle;
+	width: 20px;
+	vertical-align: middle;
 }
 a.permalink-icon,
 a.comment-icon {
-	display:block;
-	width:16px;
-	height:16px;
-	text-indent:-9999em;
-	padding:0;
-	background:url( images/icon-sprite.png ) no-repeat;
+	display: block;
+	width: 16px;
+	height: 16px;
+	text-indent: -9999em;
+	padding: 0;
+	background: url( images/icon-sprite.png ) no-repeat;
 }
 a.permalink-icon {
-	background-position:-16px 0;
+	background-position: -16px 0;
 }
 a.permalink-icon:hover,
 a.permalink-icon:focus,
 a.permalink-icon:active {
-	background-position:-16px -16px;
+	background-position: -16px -16px;
 }
 
 a.comment-icon {
-	background-position:0 0;
+	background-position: 0 0;
 }
 a.comment-icon:hover,
 a.comment-icon:focus,
 a.comment-icon:active {
-	background-position:0 -16px;
+	background-position: 0 -16px;
 }
 
 
@@ -1237,20 +1235,20 @@ a.comment-icon:active {
 -------------------------------------------------------------- */
 
 .github-commits {
-	border-color:#ddd;
+	border-color: #ddd;
 }
 .github-commits .time {
-	width:170px;
+	width: 170px;
 }
 .github-commits td {
-	border-color:#ddd;
+	border-color: #ddd;
 }
 .github-commits thead th {
-	border-color:#ddd;
-	background-color:#eef3fa;
-	color:#666;
-	text-align:left;
-	font-weight:normal;
+	border-color: #ddd;
+	background-color: #eef3fa;
+	color: #666;
+	text-align: left;
+	font-weight: normal;
 }
 
 
@@ -1258,15 +1256,15 @@ a.comment-icon:active {
 -------------------------------------------------------------- */
 
 #menu {
-	font-weight:normal;
-	position:relative;
-	z-index:10;
-	margin:0 0 1em;
-	padding:0;
-	width:100%;
-	float:left;
-	border:1px solid #222;
-	border-top-width:0;
+	font-weight: normal;
+	position: relative;
+	z-index: 10;
+	margin: 0 0 1em;
+	padding: 0;
+	width: 100%;
+	float: left;
+	border: 1px solid #222;
+	border-top-width: 0;
 
 	-webkit-border-bottom-left-radius:  8px;
 	-webkit-border-bottom-right-radius: 8px;
