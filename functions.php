@@ -60,7 +60,6 @@ function _nighthawk_setup() {
 
 	if ( is_admin() ) {
 		require_once get_template_directory() . '/admin.php';
-		Nighthawk_Admin::init();
 	}
 
 	global $content_width;
@@ -442,9 +441,9 @@ function _nighthawk_syntax_highlighter_plugin_style() {
  * @since     1.0
  */
 function _nighthawk_calendar_widget_title( $title = '', $instance = '', $id_base = '' ) {
-	if ( 'calendar' == $id_base && '&nbsp;' == $title ) {
+	if ( 'calendar' == $id_base && '&nbsp;' == $title )
 		$title = '';
-	}
+
 	return $title;
 }
 
@@ -511,21 +510,21 @@ function _nighthawk_widgets_init() {
  * @since     1.0
  */
 function _nighthawk_custom_image_header() {
-	if ( ! defined( 'HEADER_TEXTCOLOR' ) ) {
+	if ( ! defined( 'HEADER_TEXTCOLOR' ) )
 		define( 'HEADER_TEXTCOLOR', '777' );
-	}
-	if ( ! defined( 'HEADER_IMAGE' ) ) {
+
+	if ( ! defined( 'HEADER_IMAGE' ) )
 		define( 'HEADER_IMAGE', get_template_directory_uri() . '/images/lanterns.jpg' );
-	}
-	if ( ! defined( 'HEADER_IMAGE_WIDTH' ) ) {
+
+	if ( ! defined( 'HEADER_IMAGE_WIDTH' ) )
 		define( 'HEADER_IMAGE_WIDTH', 1000 );
-	}
-	if ( ! defined( 'HEADER_IMAGE_HEIGHT' ) ) {
+
+	if ( ! defined( 'HEADER_IMAGE_HEIGHT' ) )
 		define( 'HEADER_IMAGE_HEIGHT', 288 );
-	}
-	if ( ! defined( 'NO_HEADER_TEXT' ) ) {
+
+	if ( ! defined( 'NO_HEADER_TEXT' ) )
 		define( 'NO_HEADER_TEXT', true );
-	}
+
 	add_custom_image_header( '_nighthawk_custom_image_header_live', '_nighthawk_custom_image_header_admin' );
 }
 
@@ -574,17 +573,15 @@ EOF;
  * @since     1.0
  */
 function _nighthawk_post_class( $classes ) {
-	if ( is_search() ) {
+	if ( is_search() )
 		return array( 'search-result', 'box' );
-	}
 
 	$classes[] = 'entry';
 	$classes[] = 'box';
 
 	$featured_image = get_the_post_thumbnail();
-	if ( ! empty( $featured_image ) ) {
+	if ( ! empty( $featured_image ) )
 		$classes[] = 'has-featured-image';
-	}
 
 	return array_unique( $classes );
 }
