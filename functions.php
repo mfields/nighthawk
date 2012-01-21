@@ -162,10 +162,6 @@ function nighthawk_summary_meta( $before = '', $after = '', $print = true ) {
 			$label = nighthawk_post_label_singular();
 			$sentence = sprintf( __( 'This %1$s is attached to %2$s.', 'nighthawk' ), $label, $parent_link );
 			$sentence = apply_filters( 'nighthawk_summary_file', $sentence );
-			if ( 'gallery' == get_post_format( $parent->ID ) ) {
-				$sentence = sprintf( __( 'This %1$s is part of the gallery titled %2$s.', 'nighthawk' ), $label, $parent_link );
-				$sentence = apply_filters( 'nighthawk_summary_image_in_gallery', $sentence );
-			}
 		}
 	}
 	else if ( is_tax() ) {
