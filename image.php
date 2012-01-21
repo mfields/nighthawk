@@ -1,10 +1,6 @@
 <?php
 /**
- * Default Single Post Template.
- *
- * This template is loaded whenever a single
- * post is being viewed. This template has been
- * coded to handle any public post_type.
+ * Image Template.
  *
  * @package      Nighthawk
  * @author       Michael Fields <michael@mfields.org>
