@@ -25,7 +25,11 @@ TODO
 * Fix positioning of link icon.
 * Rework icon sprite.
 
-DONE
-----
 
-* Code blocks are cut off on right-hand side.
+Changelog
+----------
+
+ * Standardize entry templates.
+ * Remove nighthawk_entry_ID().
+ * Move code from front-page.php to home.php.
+ * Remove front-page.php.
