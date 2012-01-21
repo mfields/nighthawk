@@ -1,9 +1,9 @@
-<div id="<?php nighthawk_entry_id(); ?>" <?php post_class( 'contain' ); ?>>
+<div id="post-<?php the_ID(); ?>" <?php post_class( 'contain' ); ?>>
 
 	<?php the_content(); ?>
 
-	<div class="entry-taxonomy">
-	<?php nighthawk_entry_meta_taxonomy(); ?>
-	</div><!--meta-->
+	<div class="entry-terms">
+		<?php nighthawk_entry_meta_taxonomy(); ?>
+	</div><!--entry-terms-->
 
 </div>
