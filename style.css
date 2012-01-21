@@ -831,15 +831,40 @@ ul.form-errors li.form-error-message {
 }
 
 
-/* =Image Template
+/* =Image.php
 -------------------------------------------------------------- */
 
-#related-images {
+#image {
+	text-align: center;
+}
+.single-attachment .image .description {
+	border-top: 1px solid #555;
+	border-bottom: 1px solid #555;
+	margin-right: 2em;
+	margin-left: 2em;
+	padding-right: 1em;
+	padding-left: 1em;
+}
+.single-attachment .wp-caption-text {
+	text-align: center;
+	margin-right: 6em;
+	margin-left: 6em;
+}
+
+.single-attachment .return-to-parent {
+	text-align: center;
+}
+
+#related-images h2 {
+	text-align: center;
+}
+#related-images ul {
 	margin: 0;
 	padding: 0;
 }
 #related-images li {
-	float: left;
+	/*float: left;*/
+	display: inline;
 	width: 70px;
 	height: 70px;
 	margin: .5em .5em 0 0;
@@ -1154,9 +1179,12 @@ li.cws-imp-plugin {
 img.forced-dimensions {}
 
 
-/* =Gallery Shortcode Reset
+/* =Gallery Shortcode
 -------------------------------------------------------------- */
 
+.gallery {
+	clear: both;
+}
 .entry #gallery-1 img,
 .entry #gallery-2 img,
 .entry #gallery-3 img,

@@ -99,7 +99,6 @@ function _nighthawk_setup() {
 	add_filter( 'embed_googlevideo',  '_nighthawk_oembed_dataparse', 10, 2 );
 	add_filter( 'excerpt_more',       '_nighthawk_excerpt_more_auto' );
 	add_filter( 'post_class',         '_nighthawk_post_class' );
-	add_action( 'the_content',        '_nighthawk_related_images' );
 	add_filter( 'the_password_form',  '_nighthawk_password_form' );
 	add_action( 'widget_title',       '_nighthawk_calendar_widget_title', 10, 3 );
 	add_action( 'widgets_init',       '_nighthawk_widgets_init' );
@@ -595,76 +594,6 @@ function _nighthawk_post_class( $classes ) {
 }
 
 /**
- * Related Images.
- *
- * Print images related to the image being queried.
- *
- * Child themes and plugins may disable this feature
- * by using the following code:
- *
- * <code>
- * <?php remove_action( 'nighthawk_entry_end', 'nighthawk_related_images' ); ?>
- * </code>
- *
- * Code similar to the following can be used to change the title text.
- *
- * <code>
- * function mytheme_related_images_title_text() {
- *     return 'MY CUSTOM TEXT';
- * }
- * add_filter( 'nighthawk_related_images_title_text', 'mytheme_related_images_title_text' );
- * </code>
- *
- * Likewise, the size of the image can be changed with the following code.
- * It is suggested that you only use image sizes that are cropped.
- *
- * <code>
- * function mytheme_related_images_size() {
- *     return 'thumbnail';
- * }
- * add_filter( 'nighthawk_related_images_size', 'mytheme_related_images_size' );
- * </code>
- *
- * @todo      Update docs. This is now a filter for the_content.
- *
- * @return    void
- *
- * @access    private
- * @since     1.0
- */
-function _nighthawk_related_images( $content ) {
-	if ( is_attachment() ) {
-		$images = array();
-		$size = apply_filters( 'nighthawk_related_images_size', 'nighthawk_detail' );
-		$title = apply_filters( 'nighthawk_related_images_title_text',  __( 'Related Images', 'nighthawk' ) );
-		$parent_id = (int) wp_get_post_parent_id( 0 );
-		if ( 0 === strpos( get_post_mime_type(), 'image' ) && ! empty( $parent_id ) ) {
-			$images = get_children( array(
-				'post_parent'    => $parent_id,
-				'post_status'    => 'inherit',
-				'post_type'      => 'attachment',
-				'post_mime_type' => 'image',
-				'exclude'        => get_the_ID()
-				) );
-		}
-		if ( ! empty( $images ) && ! empty( $title ) ) {
-			$content.= "\n" . '<h2>' . esc_html( $title ) . '</h2>';
-		}
-		if ( ! empty( $images ) ) {
-			$content.= "\n" . '<ul id="related-images">';
-			foreach ( (array) $images as $image ) {
-				if ( isset( $image->ID ) ) {
-					$content.= "\n" . '<li>' . wp_get_attachment_link( $image->ID, $size, true, false ) . '</li>';
-				}
-			}
-			$content.= "\n" . '</ul>';
-			$content.= "\n" . '<div class="clear"></div>';
-		}
-	}
-	return $content;
-}
-
-/**
  * Excerpt More (auto).
  *
  * In cases where a post does not have an excerpt defined
@@ -1043,17 +972,3 @@ function nighthawk_td_bookmark_source( $column = array() ) {
 
 	echo "\n\t" . '<td class="' . esc_attr( $column['class'] ) . '">' . $link . '</td>';
 }
-
-function _nighthawk_prepend_attachment( $content ) {
-	$post_type = get_post_type();
-
-	if ( empty( $post_type ) || 'attachment' != $post_type ) {
-		return $content;
-	}
-
-	$p = '<p class="attachment">' . wp_get_attachment_link( 0, 'large', false ) . '</p>';
-
-	return $p . "\n" . $content;
-}
-remove_filter( 'the_content', 'prepend_attachment' );
-add_filter( 'the_content', '_nighthawk_prepend_attachment' );
