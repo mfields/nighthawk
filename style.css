@@ -798,6 +798,21 @@ ul.form-errors li.form-error-message {
 	padding-left: 1em;
 	padding-right: 1em;
 }
+.format-image .wp-caption {
+	float: none;
+	margin: 0 auto;
+	max-width: 100%;
+	padding: 0 !important;
+	width: auto;
+}
+.format-image .wp-caption img {
+	display: block;
+	margin-bottom: .75em;
+}
+.format-image .wp-caption-text {
+	text-align: center;
+	line-height: 1.5;
+}
 .format-image p {
 	margin: 0;
 	padding: 0 0 1.5em;
@@ -1109,7 +1124,6 @@ div.aligncenter {
 	clear: both;
 }
 .sticky {}
-.wp-caption-text {}
 .assistive-text,
 .screen-reader-text {
 	position: absolute !important;
