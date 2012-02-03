@@ -737,9 +737,11 @@ ul.form-errors li.form-error-message {
 .meta p {
 	margin: 0;
 }
-.entry-terms {
+.entry-footer {
 	clear: both;
+	display: block;
 	font-size: .8em;
+	text-align: center;
 }
 
 
@@ -823,7 +825,7 @@ ul.form-errors li.form-error-message {
 	max-width: 100%;
 	height: auto;
 }
-.format-image .entry-terms {
+.format-image .entry-footer {
 	text-align: center;
 	margin: 1em;
 }
