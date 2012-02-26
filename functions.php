@@ -36,8 +36,6 @@
  * @since        Nighthawk 1.0
  */
 
-define( 'NIGHTHAWK_VERSION', '0.3DEV' );
-
 /**
  * Theme Setup
  *
@@ -411,7 +409,7 @@ function _nighthawk_heading_font_css() {
 		'nighthawk-cabin',
 		'http://fonts.googleapis.com/css?family=Cabin:regular,regularitalic,bold,bolditalic',
 		array(),
-		NIGHTHAWK_VERSION
+		'1'
 	);
 }
 
