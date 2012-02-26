@@ -1,12 +1,6 @@
 <?php
-
-var_dump( ! is_home() );
-var_dump( is_paged() );
-
 if ( ! is_home() || is_paged() )
 	return;
-
-var_dump( 'MADE IT!!!!!!!!!!' );
 
 /*
  * Do we have sticky posts?
