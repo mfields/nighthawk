@@ -33,12 +33,12 @@ get_header( $taxonomy );
 
 	$sentence = sprintf( _n( 'This site contains one %2$s from %4$s.', 'This site contains %1$s %3$s from %4$s.', Nighthawk::post_total(), 'nighthawk' ),
 		number_format_i18n( Nighthawk::post_total() ),
-		'<a href="' . esc_url( get_post_type_archive_link( 'mfields_bookmark' ) ) . '">' . nighthawk_post_label_singular() . '</a>',
-		'<a href="' . esc_url( get_post_type_archive_link( 'mfields_bookmark' ) ) . '">' . nighthawk_post_label_plural() . '</a>',
+		'<a href="' . esc_url( get_post_type_archive_link( 'mfields_bookmark' ) ) . '">' . Nighthawk::post_label() . '</a>',
+		'<a href="' . esc_url( get_post_type_archive_link( 'mfields_bookmark' ) ) . '">' . Nighthawk::post_label( 'plural' ) . '</a>',
 		single_term_title( '', false )
 	);
 
-	$feed_title = sprintf( esc_attr__( 'Get updated when a new %1$s by %2$s is published.', 'nighthawk' ), nighthawk_post_label_singular(), single_term_title( '', false ) );
+	$feed_title = sprintf( esc_attr__( 'Get updated when a new %1$s by %2$s is published.', 'nighthawk' ), Nighthawk::post_label(), single_term_title( '', false ) );
 
 	$feed_url = get_term_feed_link( get_queried_object_id(), get_query_var( 'taxonomy' ) );
 
@@ -53,7 +53,7 @@ get_header( $taxonomy );
 <div id="content" class="contain">
 
 <?php
-	Nighthawk::set_columns( array(
+	Nighthawk::set_table_columns( array(
 		array(
 			'label'    => __( 'Post Title', 'nighthawk' ),
 			'class'    => 'post-title',

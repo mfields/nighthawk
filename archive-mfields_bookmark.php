@@ -45,7 +45,7 @@ get_header( $nighthawk_post_type );
 
 <?php
 
-	Nighthawk::set_columns( array(
+	Nighthawk::set_table_columns( array(
 		array(
 			'label'    => __( 'Post Title', 'nighthawk' ),
 			'class'    => 'post-title',

@@ -20,8 +20,6 @@
 
 	<div id="post-<?php the_ID(); ?>" <?php post_class(); ?>>
 
-		<?php do_action( 'nighthawk_entry_start' ); ?>
-
 		<?php the_title( "\t" . '<h2 class="entry-title heading">', '</h2>' ); ?>
 
 		<p class="content">
@@ -33,7 +31,7 @@
 			<span class="post-excerpt"><?php the_excerpt(); ?></span>
 
 			<a class="permalink" href="<?php echo esc_url( get_permalink() ); ?>"><?php
-				printf( esc_html__( 'View this %1$s', 'nighthawk' ), nighthawk_post_label_singular() );
+				printf( esc_html__( 'View this %1$s', 'nighthawk' ), Nighthawk::post_label() );
 			?></a>
 
 		</p>

@@ -29,118 +29,74 @@
  * @since     Nighthawk 1.0
  */
 
-class Mfields_Post_Label {
-	const version = '2.0';
-	const context = 'post label';
+class NighthawkPostLabel {
 
-	static public $map = null;
-	static public $labels = null;
-	static public $textdomain = null;
+	public static $labels = null;
 
-	static public $count = null;
-
-	static public function init( $textdomain = null ) {
+	public static function init() {
 		self::$labels = array(
 			'page' => array(
-				'standard' => _nx_noop( 'page',            'pages',            self::context ),
+				'standard' => _nx_noop( 'page',            'pages',            'Post Label' ),
 			),
-			'post_format' => array(
-				'standard' => _nx_noop( 'post',            'posts',            self::context ),
-				'aside'    => _nx_noop( 'aside',           'asides',           self::context ),
-				'audio'    => _nx_noop( 'audio file',      'audio files',      self::context ),
-				'chat'     => _nx_noop( 'chat transcript', 'chat transcripts', self::context ),
-				'gallery'  => _nx_noop( 'gallery',         'galleries',        self::context ),
-				'image'    => _nx_noop( 'image',           'images',           self::context ),
-				'link'     => _nx_noop( 'link',            'links',            self::context ),
-				'quote'    => _nx_noop( 'quote',           'quotes',           self::context ),
-				'status'   => _nx_noop( 'status update',   'status updates',   self::context ),
-				'video'    => _nx_noop( 'video',           'videos',           self::context )
+			'post' => array(
+				'standard' => _nx_noop( 'post',            'posts',            'Post Label' ),
+				'aside'    => _nx_noop( 'aside',           'asides',           'Post Label' ),
+				'audio'    => _nx_noop( 'audio file',      'audio files',      'Post Label' ),
+				'chat'     => _nx_noop( 'chat transcript', 'chat transcripts', 'Post Label' ),
+				'gallery'  => _nx_noop( 'gallery',         'galleries',        'Post Label' ),
+				'image'    => _nx_noop( 'image',           'images',           'Post Label' ),
+				'link'     => _nx_noop( 'link',            'links',            'Post Label' ),
+				'quote'    => _nx_noop( 'quote',           'quotes',           'Post Label' ),
+				'status'   => _nx_noop( 'status update',   'status updates',   'Post Label' ),
+				'video'    => _nx_noop( 'video',           'videos',           'Post Label' )
 			),
 			'attachment' => array(
-				'standard'    => _nx_noop( 'file',        'files',             self::context ),
-				'image'       => _nx_noop( 'image',       'images',            self::context ),
-				'icon'        => _nx_noop( 'icon',        'icons',             self::context ),
-				'zip'         => _nx_noop( 'zip archive', 'zip archives',      self::context ),
-				'doc'         => _nx_noop( 'document',    'documents',         self::context ),
-				'pdf'         => _nx_noop( 'PDF',         'PDFs',              self::context ),
-				'spreadsheet' => _nx_noop( 'spreadsheet', 'spreadsheets',      self::context ),
-				'video'       => _nx_noop( 'video',       'videos',            self::context ),
+				'standard'    => _nx_noop( 'file',        'files',             'Post Label' ),
+				'image'       => _nx_noop( 'image',       'images',            'Post Label' ),
+				'icon'        => _nx_noop( 'icon',        'icons',             'Post Label' ),
+				'zip'         => _nx_noop( 'zip archive', 'zip archives',      'Post Label' ),
+				'doc'         => _nx_noop( 'document',    'documents',         'Post Label' ),
+				'pdf'         => _nx_noop( 'PDF',         'PDFs',              'Post Label' ),
+				'spreadsheet' => _nx_noop( 'spreadsheet', 'spreadsheets',      'Post Label' ),
+				'video'       => _nx_noop( 'video',       'videos',            'Post Label' ),
 			),
 		);
 
 		$post_types = get_post_types( array( 'public' => true, '_builtin' => false ), 'objects' );
 		if ( ! empty( $post_types ) && is_array( $post_types ) ) {
-			self::$labels['custom'] = array();
 			foreach ( (array) $post_types as $name => $post_type ) {
-				self::$labels['custom'][$name] = array(
+				self::$labels[$post_type]['standard'] = array(
 					0          => $post_type->labels->singular_name,
 					1          => $post_type->labels->name,
-					2          => self::context,
+					2          => 'Post Label',
 					'singular' => $post_type->labels->singular_name,
 					'plural'   => $post_type->labels->name,
-					'context'  => self::context,
+					'context'  => 'Post Label',
 				);
 			}
 		}
 	}
 
-	static public function get_label() {
-		self::$count++;
+	public static function get( $type = 'singular' ) {
+		$count = ( 'singular' == $type ) ? 1 : 2;
+		return translate_nooped_plural( self::get_noop(), $count, 'nighthawk' );
+	}
 
-		$key = get_the_ID();
-		if ( is_tax( 'post_format' ) ) {
-			global $wp_query;
-			$term = get_term( $wp_query->get_queried_object(), 'post_format' );
-			if ( isset( $term->slug ) ) {
-				$key = str_replace( 'post-format-', '', $term->slug );
-			}
-		}
+	private static function get_noop() {
+		$key = 'standard';
 
-		if ( isset( self::$map[$key] ) ) {
-			return self::$map[$key];
-		}
+		$post_format = get_post_format();
+		if ( ! empty( $post_format ) )
+			$key = $post_format;
 
 		$post_type = get_post_type();
+		if ( isset( self::$labels[$post_type][$key] ) )
+			return self::$labels[$post_type][$key];
 
-		switch ( get_post_type() ) {
-			case 'post' :
-				$output = self::post();
-				break;
-			case 'page' :
-				$output = array(
-					'context' => 'page',
-					'type'    => 'standard',
-				);
-				break;
-			case 'attachment' :
-				$output = self::attachment();
-				break;
-			default :
-				$output = array(
-					'context' => 'custom',
-					'type'    => $post_type,
-				);
-				break;
-		}
-
-		$output = self::find( $output );
-
-		self::$map[$key] = $output;
-		return $output;
+		return _nx_noop( 'entry', 'entries', 'post label' );
 	}
 
-	static public function post() {
-		$type = get_post_format();
-		if ( empty( $type ) ) {
-			$type = 'standard';
-		}
-		return array(
-			'context' => 'post_format',
-			'type'    => $type,
-		);
-	}
-
-	static public function attachment() {
+	private static function get_attachment_key() {
 		$mime = get_post_mime_type();
 		switch ( $mime ) {
 			case 'image/jpeg' :
@@ -157,62 +113,33 @@ class Mfields_Post_Label {
 			case 'video/mp4' :
 			case 'video/ogg' :
 			case 'video/x-matroska' :
-				$parts = explode( '/', $mime );
-				$type = $parts[0];
+				$key = 'video';
 				break;
 			case 'image/x-icon' :
-				$type = 'icon';
+				$key = 'icon';
 				break;
 			case 'application/pdf' :
-				$type = 'pdf';
+				$key = 'pdf';
 				break;
 			case 'application/zip' :
-				$type = 'zip';
+				$key = 'zip';
 				break;
 			case 'image/x-icon' :
-				$type = 'icon';
+				$key = 'icon';
 				break;
 			case 'application/vnd.ms-excel' :
 			case 'application/vnd.oasis.opendocument.spreadsheet' :
-				$type = 'doc';
+				$key = 'doc';
 				break;
 			case 'application/msword' :
 			case 'application/vnd.oasis.opendocument.text' :
-				$type = 'doc';
+				$key = 'doc';
 				break;
 			default :
-				$type = 'default';
+				$key = 'standard';
 				break;
 		}
 
-		return array(
-			'context' => 'attachment',
-			'type'    => $type,
-		);
-	}
-
-	static public function find( $v ) {
-		$v = wp_parse_args( $v, array(
-			'context' => null,
-			'type'    => null,
-		) );
-
-		extract( (array) $v );
-
-		if ( isset( self::$labels[$context][$type] ) ) {
-			return self::$labels[$context][$type];
-		}
-		else {
-			return _nx_noop( 'entry', 'entries', 'post label' );
-		}
-	}
-
-	static public function dump() {
-		echo '<pre>';
-		echo __class__ . ' v' . self::version . "\n";
-		echo "\n" . 'Times used: ' . self::$count;
-		echo "\n" . '$map: ' . print_r( self::$map, true );
-		echo "\n" . '$labels: ' . print_r( self::$labels, true );
-		echo '</pre>';
+		return $type;
 	}
 }

@@ -2,33 +2,6 @@
 /**
  * Functions
  *
- * This file defines three specific types of functions.
- * Please see the @type tag in each function's docblock
- * to determine how the function should be used.
- *
- * 1. Template Tags
- *
- * Any function defined in this this section may be used
- * freely in appropriate template files. Please see
- * each function's documentation for intended usage.
- *
- * 2. Core Callbacks
- *
- * Functions of this type are intended to be used as callbacks
- * for WordPress core functions and template tags. They are not
- * to be used on their own.
- *
- * 3. Private Functions.
- *
- * The functions defined below are deemed to be private
- * meaning that they should not be used in any template file for
- * any reason. These functions may or may not be presnt in
- * future releases of the Nighthawk theme. If you feel that you
- * absolutely need to use one of them it is suggested that you
- * copy the full function into your child theme's functions.php file
- * and rename it. This will ensure that it always exists in your
- * installation regardless of how Nighthawk changes.
- *
  * @package      Nighthawk
  * @author       Michael Fields <michael@mfields.org>
  * @copyright    Copyright (c) 2011, Michael Fields
@@ -36,78 +9,429 @@
  * @since        Nighthawk 1.0
  */
 
-/**
- * Theme Setup
- *
- * If you would like to customize the theme setup you
- * are encouraged to adopt the following process.
- *
- * <ol>
- * <li>Create a child theme with a functions.php file.</li>
- * <li>Create a new function named mytheme_nighthawk_setup().</li>
- * <li>Hook this function into the 'after_setup_theme' action at or after 11.</li>
- * <li>call remove_filter(), remove_action() and/or remove_theme_support() as needed.</li>
- * </ol>
- *
- * @return    void
- *
- * @access    private
- * @since     1.0
- */
-function _nighthawk_setup() {
+class Nighthawk {
 
-	if ( is_admin() ) {
-		require_once get_template_directory() . '/admin.php';
+	/**
+	 * Table Columns.
+	 *
+	 * @since Nighthawk 1.0
+	 */
+	static private $columns = null;
+
+	/**
+	 * Init.
+	 *
+	 * @since Nighthawk 1.0
+	 */
+	public static function init() {
+		add_action( 'after_setup_theme', array( __class__, 'setup' ) );
+
+		self::$columns = array(
+			array(
+				'label'    => __( 'Post Title', 'nighthawk' ),
+				'class'    => 'post-title',
+				'callback' => 'nighthawk_td_title',
+			),
+			array(
+				'label'    => __( 'Comment Count', 'nighthawk' ),
+				'class'    => 'comment-count',
+				'callback' => 'nighthawk_td_comment_count',
+			),
+			array(
+				'label'    => __( 'Comment Link', 'nighthawk' ),
+				'class'    => 'comment-respond icon',
+				'callback' => 'nighthawk_td_comment_icon',
+			),
+		);
 	}
 
-	global $content_width;
-	if ( ! isset( $content_width ) ) {
-		$content_width = 700;
+	/**
+	 * Setup Nighthawk
+	 *
+	 * If you would like to customize the theme setup you
+	 * are encouraged to adopt the following process.
+	 *
+	 * <ol>
+	 * <li>Create a child theme with a functions.php file.</li>
+	 * <li>Create a new function named mytheme_nighthawk_setup().</li>
+	 * <li>Hook this function into the 'after_setup_theme' action at or after 11.</li>
+	 * <li>call remove_filter(), remove_action() and/or remove_theme_support() as needed.</li>
+	 * </ol>
+	 *
+	 * @return    void
+	 *
+	 * @since     Nighthawk 1.0
+	 */
+	public static function setup() {
+		if ( is_admin() )
+			require_once get_template_directory() . '/admin.php';
+
+		global $content_width;
+		if ( ! isset( $content_width ) )
+			$content_width = 700;
+
+		load_theme_textdomain( 'nighthawk', get_template_directory() . '/languages' );
+
+		add_editor_style( 'style-editor.css' );
+
+		add_theme_support( 'menus' );
+		add_theme_support( 'post-formats', array( 'image', 'status' ) );
+		add_theme_support( 'post-thumbnails' );
+		add_theme_support( 'automatic-feed-links' );
+
+		add_custom_background();
+
+		/* A few extras for pages. */
+		add_post_type_support( 'page', 'excerpt' );
+		add_post_type_support( 'page', 'thumbnail' );
+
+		/* Image sizes. */
+		set_post_thumbnail_size( 150, 150, false );
+		add_image_size( 'nighthawk_detail', 70, 70, true );
+
+		/* Navigation menus. */
+		register_nav_menus( array( 'primary' => 'Primary', 'secondary' => 'Secondary' ) );
+
+		add_filter( 'get_the_author_description', 'wptexturize' );
+		add_filter( 'get_the_author_description', 'convert_chars' );
+		add_filter( 'get_the_author_description', 'wpautop' );
+
+		add_action( 'comment_form_after',  array( __class__, 'commentform_after' ) );
+		add_action( 'comment_form_before', array( __class__, 'commentform_before' ) );
+		add_filter( 'edit_post_link',      array( __class__, 'edit_post_link', 9, 2 ) );
+		add_filter( 'embed_oembed_html',   array( __class__, 'oembed_dataparse' ), 10, 4 );
+		add_filter( 'embed_googlevideo',   array( __class__, 'oembed_dataparse' ), 10, 2 );
+		add_filter( 'excerpt_more',        array( __class__, 'excerpt_more_auto' ) );
+		add_filter( 'post_class',          array( __class__, 'post_class' ) );
+		add_action( 'template_redirect',   array( __class__, 'post_labels_init' ) );
+		add_filter( 'the_password_form',   array( __class__, 'password_form' ) );
+		add_action( 'the_title',           array( __class__, 'filter_post_title' ) );
+		add_action( 'widgets_init',        array( __class__, 'register_widget_areas' ) );
+		add_action( 'wp_enqueue_scripts',  array( __class__, 'script_comment_reply' ) );
+		add_action( 'wp_enqueue_scripts',  array( __class__, 'css_heading_font' ) );
+		add_action( 'wp_enqueue_scripts',  array( __class__, 'css_syntaxhighlighter' ) );
+		add_action( 'wp_enqueue_scripts',  array( __class__, 'script_dropdown_widgets' ) );
+		add_action( 'wp_loaded',           '_nighthawk_custom_image_header' );
+
+		add_filter( 'syntaxhighlighter_themes', array( __class__, 'syntaxhighlighter_theme' ) );
 	}
 
-	load_theme_textdomain( 'nighthawk', get_template_directory() . '/languages' );
+	/**
+	 * Comment Reply Script.
+	 *
+	 * Enqueue comment reply script on singular views.
+	 *
+	 * In the event that a user has threaded comments enabled
+	 * for their installation this function will include the
+	 * appropriate javascript files on single views where
+	 * commenting is enabled.
+	 *
+	 * @since     Nighthawk 1.0
+	 */
+	public static function script_comment_reply() {
+		if ( is_singular() && comments_open() ) {
+			if ( get_option( 'thread_comments' ) )
+				wp_enqueue_script( 'comment-reply' );
+		}
+	}
 
-	add_theme_support( 'menus' );
-	add_theme_support( 'post-formats', array( 'image', 'status' ) );
-	add_theme_support( 'post-thumbnails' );
-	add_theme_support( 'automatic-feed-links' );
-	add_custom_background();
-	add_editor_style( 'style-editor.css' );
+	public static function script_dropdown_widgets() {
+		wp_enqueue_script(
+			'dropdown-widgets',
+			get_template_directory_uri() . '/inc/dropdowns.js',
+			array( 'jquery' ),
+			'0.1',
+			true
+		);
+	}
 
-	/* A few extras for pages. */
-	add_post_type_support( 'page', 'excerpt' );
-	add_post_type_support( 'page', 'thumbnail' );
+	public static function css_heading_font() {
+		wp_enqueue_style(
+			'nighthawk-cabin',
+			'http://fonts.googleapis.com/css?family=Cabin:regular,regularitalic,bold,bolditalic',
+			array(),
+			'1'
+		);
+	}
 
-	/* Image sizes. */
-	set_post_thumbnail_size( 150, 150, false );
-	add_image_size( 'nighthawk_detail', 70, 70, true );
+	public static function css_syntaxhighlighter() {
+		wp_register_style(
+			'syntaxhighlighter-theme-nighthawk',
+			get_template_directory_uri() . '/style-syntax-highlighter.css',
+			array( 'syntaxhighlighter-core' ),
+			'1'
+		);
+	}
 
-	/* Navigation menus. */
-	register_nav_menus( array( 'primary' => 'Primary', 'secondary' => 'Secondary' ) );
+	/**
+	 * Register Widgetized Areas.
+	 *
+	 * @return    void
+	 *
+	 * @since     Nighthawk 1.0
+	 */
+	public static function register_widget_areas() {
+		register_sidebar( array(
+			'name'          => 'Dropdowns',
+			'id'            => 'dropdowns',
+			'description'   => 'Dropdowns that appear at the top of the page on all views.',
+			'before_widget' => '<div id="%1$s" class="dropdown widget %2$s">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<h3 class="widget-title">',
+			'after_title'   => '</h3>',
+		) );
 
-	/* WordPress Hooking into WordPress */
-	add_filter( 'get_the_author_description', 'wptexturize' );
-	add_filter( 'get_the_author_description', 'convert_chars' );
-	add_filter( 'get_the_author_description', 'wpautop' );
+		/* Area 1 - Left column below content. */
+		register_sidebar( array(
+			'name'          => __( 'Bottom 1', 'nighthawk' ),
+			'id'            => 'first-footer-widget-area',
+			'description'   => __( 'The first footer widget area', 'nighthawk' ),
+			'before_widget' => '<div id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<h3 class="widget-title">',
+			'after_title'   => '</h3>',
+		) );
 
-	/* WordPress Core. */
-	add_filter( 'edit_post_link',     '_nighthawk_edit_post_link', 9, 2 );
-	add_filter( 'embed_oembed_html',  '_nighthawk_oembed_dataparse', 10, 4 );
-	add_filter( 'embed_googlevideo',  '_nighthawk_oembed_dataparse', 10, 2 );
-	add_filter( 'excerpt_more',       '_nighthawk_excerpt_more_auto' );
-	add_filter( 'post_class',         '_nighthawk_post_class' );
-	add_filter( 'the_password_form',  '_nighthawk_password_form' );
-	add_action( 'widget_title',       '_nighthawk_calendar_widget_title', 10, 3 );
-	add_action( 'widgets_init',       '_nighthawk_widgets_init' );
-	add_action( 'wp_loaded',          '_nighthawk_custom_image_header' );
-	add_action( 'template_redirect',  '_nighthawk_post_labels_init' );
-	add_action( 'wp_enqueue_scripts', '_nighthawk_comment_reply_js' );
-	add_action( 'wp_enqueue_scripts', '_nighthawk_heading_font_css' );
-	add_action( 'wp_enqueue_scripts', '_nighthawk_widget_dropdowns_scripts' );
+		/* Area 2 - Middle column below content. */
+		register_sidebar( array(
+			'name'          => __( 'Bottom 2', 'nighthawk' ),
+			'id'            => 'second-footer-widget-area',
+			'description'   => __( 'The second footer widget area', 'nighthawk' ),
+			'before_widget' => '<div id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<h3 class="widget-title">',
+			'after_title'   => '</h3>',
+		) );
 
-	add_filter( 'syntaxhighlighter_themes', '_nighthawk_syntaxhighlighter_theme' );
+		/* Area 3, Right column bottom of content . */
+		register_sidebar( array(
+			'name'          => __( 'Bottom 3', 'nighthawk' ),
+			'id'            => 'third-footer-widget-area',
+			'description'   => __( 'The third footer widget area', 'nighthawk' ),
+			'before_widget' => '<div id="%1$s" class="widget %2$s">',
+			'after_widget'  => '</div>',
+			'before_title'  => '<h3 class="widget-title">',
+			'after_title'   => '</h3>',
+		) );
+	}
+
+	/**
+	 * Add custom class names to individual posts.
+	 *
+	 * This filter is attached to the 'post_class' hook
+	 * @see Nighthawk::setup()
+	 *
+	 * @param     array     $classes All classes for the post container.
+	 * @return    array     Modified classes for the post container.
+	 *
+	 * @access    private
+	 * @since     Nighthawk 1.0
+	 */
+	public static function post_class( $classes ) {
+		if ( is_search() )
+			return array( 'search-result', 'box' );
+
+		$classes[] = 'entry';
+		$classes[] = 'box';
+
+		$featured_image = get_the_post_thumbnail();
+		if ( ! empty( $featured_image ) )
+			$classes[] = 'has-featured-image';
+
+		return array_unique( $classes );
+	}
+
+	/**
+	 * Excerpt More (auto).
+	 *
+	 * In cases where a post does not have an excerpt defined
+	 * WordPress will append the string "[...]" to a shortened
+	 * version of the post_content field. Nighthawk will replace
+	 * this string with an ellipsis.
+	 *
+	 * This filter is attached to the 'excerpt_more' hook
+	 * @see Nighthawk::setup()
+	 *
+	 * @param     string         $more unused.
+	 * @return    string         An ellipsis followed by a link to the single post.
+	 *
+	 * @access    private
+	 * @since     Nighthawk 1.0
+	 */
+	public static function excerpt_more_auto( $more ) {
+		return ' &hellip;';
+	}
+
+	/**
+	 * Post label.
+	 *
+	 * Returns a noun representing the type or format of the global
+	 * post object. This function is used internally by the
+	 * nighthawk_entry_meta_taxonomy() function to create a sentence much
+	 * like the following: "This Status Update is filed under News."
+	 * where "Status Update" is the post label and "News" is the category.
+	 *
+	 * @uses      NighthawkPostLabel::get_label()
+	 *
+	 * @param     string    $type Optional. May be either "singular" or "plural". Defaults to "singular".
+	 * @return    string    A noun representing the global post object.
+	 *
+	 * @access    public
+	 * @since     Nighthawk 1.0
+	 */
+	public static function post_label( $type = 'singular' ) {
+		if ( class_exists( 'NighthawkPostLabel' ) )
+			return NighthawkPostLabel::get( $type );
+		else if ( 'singular' == $type )
+			return __( 'entry', 'nighthawk' );
+		else
+			return __( 'entries', 'nighthawk' );
+	}
+
+	/**
+	 * Enclose embedded media in a div.
+	 *
+	 * Wrapping all flash embeds in a div allows for easier
+	 * styling with CSS media queries.
+	 *
+	 * @todo      Document parameters.
+	 *
+	 * @access    private
+	 * @since     Nighthawk 1.0
+	 */
+	public static function oembed_dataparse( $cache, $url, $attr = '', $post_ID = '' ) {
+		return '<div class="embed">' . $cache . '</div>';
+	}
+
+	/**
+	 * SyntaxHighlighter Evolved Support.
+	 *
+	 * Registers a custom theme with the SyntaxHighlighter Evolved plugin.
+	 *
+	 * {@link http://wordpress.org/extend/plugins/syntaxhighlighter/ SyntaxHighlighter Evolved }
+	 *
+	 * @param     array     $themes All themes registered with the SyntaxHighlighter Evolved plugin.
+	 * @return    array     Same list with custom theme appended.
+	 *
+	 * @access    private
+	 * @since     Nighthawk 1.0
+	 */
+	public static function syntaxhighlighter_theme( $themes ) {
+		$themes['nighthawk'] = 'Nighthawk';
+		return $themes;
+	}
+
+	public static function filter_post_title( $title ) {
+		if ( ! is_singular() )
+			return $title;
+
+		if ( empty( $title ) && 'post' == get_post_type() )
+			$title = ucfirst( self::post_label() ); // todo: ucfirst for English only if possible.
+
+		return $title;
+	}
+	public static function commentform_before() {
+		echo '<div class="box">';
+	}
+	public static function commentform_after() {
+		echo '</div>';
+	}
+	public static function post_labels_init() {
+		require_once get_template_directory() . '/inc/post-labels.php';
+		NighthawkPostLabel::init();
+	}
+
+	/**
+	 * Edit post link filter.
+	 *
+	 * Modifies the output of WordPress
+	 * core function edit_post_link();
+	 *
+	 * @param     string    $html Default anchor tag generated by WordPress.
+	 * @param     int       $ID Post ID.
+	 *
+	 * @access    private
+	 * @since     Nighthawk 1.0
+	 */
+	public static function edit_post_link( $html, $ID ) {
+		return '<a class="post-edit-link" href="' . esc_url( get_edit_post_link( $ID ) ) . '" title="' . esc_attr( sprintf( __( 'Edit this %1$s', 'nighthawk' ), self::post_label() ) ) . '">' . esc_html( wp_strip_all_tags( $html ) ) . '</a>';
+	}
+
+	/**
+	 * Password Form.
+	 *
+	 * @param     string    $form Default password-protected post from.
+	 * @return    string    Custom form from template.
+	 *
+	 * @access    private
+	 * @since     Nighthawk 1.0
+	 */
+	public static function password_form( $form ) {
+		ob_start();
+		get_template_part( 'password-protected-post-form' );
+		$form = ob_get_contents();
+		ob_end_clean();
+		return $form;
+	}
+
+	/**
+	 * Search Form ID.
+	 *
+	 * @return    string    ID attribute for search form.
+	 *
+	 * @since     Nighthawk 1.0
+	 */
+	public static function searchform_id() {
+		static $id = 0;
+		return 'search-form-' . $id++;
+	}
+
+	/**
+	 * Total Posts.
+	 *
+	 * @return    int       ID attribute for search form.
+	 *
+	 * @since     Nighthawk 1.0
+	 */
+	static public function post_total() {
+		global $wp_query;
+		if ( isset( $wp_query->found_posts ) )
+			return (int) $wp_query->found_posts;
+		return 0;
+	}
+
+	/**
+	 * Get table columns.
+	 *
+	 * @return    int       ID attribute for search form.
+	 *
+	 * @since     Nighthawk 1.0
+	 */
+	static public function get_table_columns() {
+		if ( current_user_can( 'edit_posts' ) ) {
+			$edit = array(
+				'label'    => __( 'Edit', 'nighthawk' ),
+				'class'    => 'edit-post icon',
+				'callback' => 'nighthawk_td_edit',
+			);
+			array_unshift( self::$columns, $edit );
+		}
+		return (array) self::$columns;
+	}
+
+	/**
+	 * Set table columns.
+	 *
+	 * @return    array     Table columns configuration.
+	 *
+	 * @since     Nighthawk 1.0
+	 */
+	static public function set_table_columns( $columns = null ) {
+		self::$columns = $columns;
+	}
 }
-add_action( 'after_setup_theme', '_nighthawk_setup' );
+
+Nighthawk::init();
 
 /**
  * Summary Meta.
@@ -142,7 +466,7 @@ function nighthawk_summary_meta( $before = '', $after = '', $print = true ) {
 		if ( isset( $post_type->name ) && isset( $post_type->label ) && isset( $post_type->labels->singular_name ) ) {
 			$feed_url   = get_post_type_archive_feed_link( $post_type->name );
 			$feed_title = sprintf( __( 'Get updated whenever new %1$s are published.', 'nighthawk' ), $post_type->label );
-			$sentence   = sprintf( _n( 'Only one %3$s found in this archive.', 'There are %1$s %2$s in this archive.', $total, 'nighthawk' ), number_format_i18n( $total ), nighthawk_post_label_plural(), nighthawk_post_label_singular() );
+			$sentence   = sprintf( _n( 'Only one %3$s found in this archive.', 'There are %1$s %2$s in this archive.', $total, 'nighthawk' ), number_format_i18n( $total ), Nighthawk::post_label( 'plural' ), Nighthawk::post_label() );
 			$sentence   = apply_filters( 'nighthawk_summary_meta_post_type_archive', $sentence, $post_type );
 			$sentence   = apply_filters( "nighthawk_summary_meta_{$post_type->name}_archive", $sentence, $post_type );
 		}
@@ -156,7 +480,7 @@ function nighthawk_summary_meta( $before = '', $after = '', $print = true ) {
 		}
 		if ( isset( $parent->ID ) && isset( $parent->post_title ) ) {
 			$parent_link = '<a href="' . get_permalink( $parent->ID ) . '">' . apply_filters( 'the_title', $parent->post_title ) . '</a>';
-			$label = nighthawk_post_label_singular();
+			$label = Nighthawk::post_label();
 			$sentence = sprintf( __( 'This %1$s is attached to %2$s.', 'nighthawk' ), $label, $parent_link );
 			$sentence = apply_filters( 'nighthawk_summary_file', $sentence );
 		}
@@ -172,8 +496,8 @@ function nighthawk_summary_meta( $before = '', $after = '', $print = true ) {
 
 			switch ( $term->taxonomy ) {
 				case 'post_format' :
-					$feed_title = sprintf( __( 'Get updated whenever a new %1$s is published.', 'nighthawk' ), nighthawk_post_label_singular() );
-					$sentence = sprintf( _n( 'This site contains one %2$s.', 'This site contains %1$s %3$s.', $total, 'nighthawk' ), number_format_i18n( $total ), nighthawk_post_label_singular(), nighthawk_post_label_plural() );
+					$feed_title = sprintf( __( 'Get updated whenever a new %1$s is published.', 'nighthawk' ), Nighthawk::post_label() );
+					$sentence = sprintf( _n( 'This site contains one %2$s.', 'This site contains %1$s %3$s.', $total, 'nighthawk' ), number_format_i18n( $total ), Nighthawk::post_label(), Nighthawk::post_label( 'plural' ) );
 					break;
 				default :
 					$feed_title = sprintf( __( 'Subscribe to this %1$s', 'nighthawk' ), $taxonomy_name );
@@ -228,7 +552,7 @@ function nighthawk_entry_meta_taxonomy() {
 		return;
 	}
 
-	$label     = nighthawk_post_label_singular();
+	$label     = Nighthawk::post_label();
 	#$label_url = get_post_format_link( get_post_format() );
 	$label_url = get_permalink();
 
@@ -240,7 +564,7 @@ function nighthawk_entry_meta_taxonomy() {
 	$categories = get_the_category_list( ', ' );
 
 	if ( ! empty( $label ) && ! empty( $label_url ) ) {
-		$plural = nighthawk_post_label_plural();
+		$plural = Nighthawk::post_label( 'plural' );
 		$title = '';
 		if ( ! empty( $plural ) ) {
 			$title = ' title="' . sprintf( esc_attr__( 'View all %1$s', 'nighthawk' ), strtolower( $plural ) ) . '"';
@@ -277,54 +601,6 @@ function nighthawk_entry_meta_taxonomy() {
 }
 
 /**
- * Post label - singular.
- *
- * Returns a noun representing the type or format of the global
- * post object. This function is used internally by the
- * nighthawk_entry_meta_taxonomy() function to create a sentence much
- * like the following: "This Status Update is filed under News."
- * where "Status Update" is the post label and "News" is the category.
- *
- * @param     string    $default Value to return if no label can be calculated.
- * @return    string    A singular noun representing the global post object.
- *
- * @access    public
- * @since     1.0
- */
-function nighthawk_post_label_singular( $default = '' ) {
-	$labels = Mfields_Post_Label::get_label();
-	if ( isset( $labels[0] ) ) {
-		return $labels[0];
-	}
-	return $default;
-}
-
-/**
- * Post label - plural.
- *
- * Returns a noun representing the type or format of the global
- * post object. This function is used internally by the
- * nighthawk_summary_meta() function to create a title attribute
- * for the "Subscribe" link that reads something like:
- * "This image is part of the gallery titled Taco Pictures."
- * where "image" is the post label and "Taco Pictures" is the
- * title of the parent post.
- *
- * @param     string    $default Value to return if no label can be calculated.
- * @return    string    A singular noun representing the global post object.
- *
- * @access    public
- * @since     1.0
- */
-function nighthawk_post_label_plural( $default = '' ) {
-	$labels = Mfields_Post_Label::get_label();
-	if ( isset( $labels[1] ) ) {
-		return $labels[1];
-	}
-	return $default;
-}
-
-/**
  * Subscribe to comments checkbox.
  *
  * @return    string
@@ -356,7 +632,7 @@ function nighthawk_subscribe_to_comments_checkbox() {
 function nighthawk_subscribe_to_comments_manual_form( $before = '', $after = '', $print = true, $args = array() ) {
 	$args = wp_parse_args( $args, array(
 		'heading'   => __( 'Subscribe without commenting', 'nighthawk' ),
-		'paragraph' => sprintf( __( 'Please enter your email address and click subscribe to receive an email whenever a new comment is made about this %1$s.', 'nighthawk' ), nighthawk_post_label_singular() ),
+		'paragraph' => sprintf( __( 'Please enter your email address and click subscribe to receive an email whenever a new comment is made about this %1$s.', 'nighthawk' ), Nighthawk::post_label() ),
 		) );
 	$form = '';
 	global $id, $sg_subscribe, $user_email;
@@ -404,101 +680,6 @@ function nighthawk_subscribe_to_comments_manual_form( $before = '', $after = '',
 	}
 }
 
-function _nighthawk_heading_font_css() {
-	wp_enqueue_style(
-		'nighthawk-cabin',
-		'http://fonts.googleapis.com/css?family=Cabin:regular,regularitalic,bold,bolditalic',
-		array(),
-		'1'
-	);
-}
-
-function _nighthawk_syntax_highlighter_plugin_style() {
-	wp_register_style(
-		'syntaxhighlighter-theme-nighthawk',
-		get_template_directory_uri() . '/style-syntax-highlighter.css',
-		array( 'syntaxhighlighter-core' ),
-		'1'
-	);
-}
-
-/**
- * Calendar Widget Title
- *
- * For some reason, WordPress will print a non-breaking space
- * entity wrapped in the appropriate tags for the calendar
- * widget even if the title's value is left empty by the user.
- * This function will remove the empty heading tag.
- *
- * @param     string         $title The value of the calendar widget's title for this instance.
- * @param     unknown        $instance
- * @param     string         $id_base
- * @return    string         Calendar widget title.
- *
- * @access    private
- * @since     1.0
- */
-function _nighthawk_calendar_widget_title( $title = '', $instance = '', $id_base = '' ) {
-	if ( 'calendar' == $id_base && '&nbsp;' == $title )
-		$title = '';
-
-	return $title;
-}
-
-/**
- * Register Widgetized Areas.
- *
- * @return    void
- *
- * @access    private
- * @since     1.0
- */
-function _nighthawk_widgets_init() {
-
-	register_sidebar( array(
-		'name'          => 'Dropdowns',
-		'id'            => 'dropdowns',
-		'description'   => 'Dropdowns that appear at the top of the page on all views.',
-		'before_widget' => '<div id="%1$s" class="dropdown widget %2$s">',
-		'after_widget'  => '</div>',
-		'before_title'  => '<h3 class="widget-title">',
-		'after_title'   => '</h3>',
-	) );
-
-	/* Area 1 - Left column below content. */
-	register_sidebar( array(
-		'name'          => __( 'Bottom 1', 'nighthawk' ),
-		'id'            => 'first-footer-widget-area',
-		'description'   => __( 'The first footer widget area', 'nighthawk' ),
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</div>',
-		'before_title'  => '<h3 class="widget-title">',
-		'after_title'   => '</h3>',
-	) );
-
-	/* Area 2 - Middle column below content. */
-	register_sidebar( array(
-		'name'          => __( 'Bottom 2', 'nighthawk' ),
-		'id'            => 'second-footer-widget-area',
-		'description'   => __( 'The second footer widget area', 'nighthawk' ),
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</div>',
-		'before_title'  => '<h3 class="widget-title">',
-		'after_title'   => '</h3>',
-	) );
-
-	/* Area 3, Right column bottom of content . */
-	register_sidebar( array(
-		'name'          => __( 'Bottom 3', 'nighthawk' ),
-		'id'            => 'third-footer-widget-area',
-		'description'   => __( 'The third footer widget area', 'nighthawk' ),
-		'before_widget' => '<div id="%1$s" class="widget %2$s">',
-		'after_widget'  => '</div>',
-		'before_title'  => '<h3 class="widget-title">',
-		'after_title'   => '</h3>',
-	) );
-}
-
 /**
  * Configuration for enabling the WordPress custom header image feature.
  *
@@ -508,20 +689,11 @@ function _nighthawk_widgets_init() {
  * @since     1.0
  */
 function _nighthawk_custom_image_header() {
-	if ( ! defined( 'HEADER_TEXTCOLOR' ) )
-		define( 'HEADER_TEXTCOLOR', '777' );
-
-	if ( ! defined( 'HEADER_IMAGE' ) )
-		define( 'HEADER_IMAGE', get_template_directory_uri() . '/images/lanterns.jpg' );
-
-	if ( ! defined( 'HEADER_IMAGE_WIDTH' ) )
-		define( 'HEADER_IMAGE_WIDTH', 1000 );
-
-	if ( ! defined( 'HEADER_IMAGE_HEIGHT' ) )
-		define( 'HEADER_IMAGE_HEIGHT', 288 );
-
-	if ( ! defined( 'NO_HEADER_TEXT' ) )
-		define( 'NO_HEADER_TEXT', true );
+	define( 'HEADER_TEXTCOLOR', '777' );
+	define( 'HEADER_IMAGE', get_template_directory_uri() . '/images/lanterns.jpg' );
+	define( 'HEADER_IMAGE_WIDTH', 1000 );
+	define( 'HEADER_IMAGE_HEIGHT', 288 );
+	define( 'NO_HEADER_TEXT', true );
 
 	add_custom_image_header( '_nighthawk_custom_image_header_live', '_nighthawk_custom_image_header_admin' );
 }
@@ -559,51 +731,6 @@ div#headimg {
 }
 </style>
 EOF;
-}
-
-/**
- * Post Classes.
- *
- * @param     array     $classes All classes for the post container.
- * @return    array     Modified classes for the post container.
- *
- * @access    private
- * @since     1.0
- */
-function _nighthawk_post_class( $classes ) {
-	if ( is_search() )
-		return array( 'search-result', 'box' );
-
-	$classes[] = 'entry';
-	$classes[] = 'box';
-
-	$featured_image = get_the_post_thumbnail();
-	if ( ! empty( $featured_image ) )
-		$classes[] = 'has-featured-image';
-
-	return array_unique( $classes );
-}
-
-/**
- * Excerpt More (auto).
- *
- * In cases where a post does not have an excerpt defined
- * WordPress will append the string "[...]" to a shortened
- * version of the post_content field. Nighthawk will replace
- * this string with an ellipsis followed by a link to the
- * full post.
- *
- * This filter is attached to the 'excerpt_more' hook
- * in the _nighthawk_setup() function.
- *
- * @param     string         $more unused.
- * @return    string         An ellipsis followed by a link to the single post.
- *
- * @access    private
- * @since     1.0
- */
-function _nighthawk_excerpt_more_auto( $more ) {
-	return ' &hellip;';
 }
 
 /**
@@ -682,206 +809,6 @@ function _nighthawk_comment_end( $comment, $args, $depth ) {
 	echo '</li>';
 }
 
-/**
- * Comment Reply Script.
- *
- * Enqueue comment reply script on singular views.
- *
- * In the event that a user has threaded comments enabled
- * for their installation this function will include the
- * appropriate javascript files on single views where
- * commenting is enabled.
- *
- * @access    private
- * @since     1.0
- */
-function _nighthawk_comment_reply_js() {
-	if ( is_singular() && comments_open() ) {
-		if ( get_option( 'thread_comments' ) ) {
-			wp_enqueue_script( 'comment-reply' );
-		}
-	}
-}
-
-/**
- * Enclose embedded media in a div.
- *
- * Wrapping all flash embeds in a div allows for easier
- * styling with CSS media queries.
- *
- * @todo      Document parameters.
- *
- * @access    private
- * @since     1.0
- */
-function _nighthawk_oembed_dataparse( $cache, $url, $attr = '', $post_ID = '' ) {
-	return '<div class="embed">' . $cache . '</div>';
-}
-
-/**
- * SyntaxHighlighter Evolved Support.
- *
- * Registers a custom theme with the SyntaxHighlighter Evolved plugin.
- *
- * {@link http://wordpress.org/extend/plugins/syntaxhighlighter/ SyntaxHighlighter Evolved }
- *
- * @param     array     $themes All themes registered with the SyntaxHighlighter Evolved plugin.
- * @return    array     Same list with custom theme appended.
- *
- * @access    private
- * @since     1.0
- */
-function _nighthawk_syntaxhighlighter_theme( $themes ) {
-	$themes['nighthawk'] = 'Nighthawk';
-	return $themes;
-}
-
-/**
- * Search Form ID.
- *
- * @return    string    ID attribute for search form.
- *
- * @access    public
- * @since     1.0
- */
-function nighthawk_search_id() {
-	static $id = 0;
-	$id++;
-	return 'search-form-' . $id;
-}
-
-/**
- * Password Form.
- *
- * @param     string    $form Default WordPress search from.
- * @return    string    Custom Search form.
- *
- * @access    private
- * @since     1.0
- */
-function _nighthawk_password_form( $form ) {
-	ob_start();
-	get_template_part( 'password-protected-post-form' );
-	$form = ob_get_contents();
-	ob_end_clean();
-	return $form;
-}
-
-/**
- * Edit post link filter.
- *
- * @param     string    $html Default anchor tag generated by WordPress.
- * @param     int       $ID Post ID.
- *
- * @access    private
- * @since     1.0
- */
-function _nighthawk_edit_post_link( $html, $ID ) {
-	return '<a class="post-edit-link" href="' . esc_url( get_edit_post_link( $ID ) ) . '" title="' . sprintf( esc_attr__( 'Edit this %1$s', 'nighthawk' ), nighthawk_post_label_singular() ) . '">' . esc_html( wp_strip_all_tags( $html ) ) . '</a>';
-}
-
-function nighthawk_entry_template_name() {
-	$template = get_post_type();
-	if ( 'post' == $template ) {
-		$format = get_post_format();
-		if ( ! empty( $format ) ) {
-			$template .= '-' . get_post_format();
-		}
-	}
-	return sanitize_title_with_dashes( $template );
-}
-
-function _nighthawk_filter_post_title( $title ) {
-	if ( ! is_singular() ) {
-		return $title;
-	}
-	if ( empty( $title ) && 'post' == get_post_type() ) {
-		$title = ucfirst( nighthawk_post_label_singular() );
-	}
-	return $title;
-}
-add_action( 'the_title', '_nighthawk_filter_post_title' );
-
-function _nighthawk_commentform_before() {
-	echo "\n" . '<div class="box">';
-}
-add_action( 'comment_form_before', '_nighthawk_commentform_before' );
-
-function _nighthawk_commentform_after() {
-	echo "\n" . '</div>';
-}
-add_action( 'comment_form_after', '_nighthawk_commentform_after' );
-
-function _nighthawk_widget_dropdowns_scripts() {
-	wp_enqueue_script(
-		'dropdown-widgets',
-		get_template_directory_uri() . '/inc/dropdowns.js',
-		array( 'jquery' ),
-		'0.1',
-		true
-	);
-}
-
-function _nighthawk_post_labels_init() {
-	require_once get_template_directory() . '/inc/post-labels.php';
-	Mfields_Post_Label::init( 'nighthawk' );
-	#add_action( 'shutdown', array( 'Mfields_Post_Label', 'dump' ) );
-}
-
-Nighthawk::init();
-
-class Nighthawk {
-	static private $query = null;
-	static private $theme = null;
-	static public function init() {
-		add_action( 'template_redirect', array( __class__, 'setup' ) );
-	}
-	static public function post_total() {
-		return (int) self::$query->total;
-	}
-	static public function columns() {
-		if ( current_user_can( 'edit_posts' ) ) {
-			$edit = array(
-				'label'    => __( 'Edit', 'nighthawk' ),
-				'class'    => 'edit-post icon',
-				'callback' => 'nighthawk_td_edit',
-			);
-			array_unshift( self::$theme->columns, $edit );
-		}
-		return (array) self::$theme->columns;
-	}
-	static public function set_columns( $columns = null ) {
-		self::$theme->columns = $columns;
-	}
-	static public function setup() {
-		self::$query = new stdClass();
-
-		global $wp_query;
-		$total = 0;
-		if ( isset( $wp_query->found_posts ) ) {
-			self::$query->total = $wp_query->found_posts;
-		}
-
-		self::$theme->columns = array(
-			array(
-				'label'    => __( 'Post Title', 'nighthawk' ),
-				'class'    => 'post-title',
-				'callback' => 'nighthawk_td_title',
-			),
-			array(
-				'label'    => __( 'Comment Count', 'nighthawk' ),
-				'class'    => 'comment-count',
-				'callback' => 'nighthawk_td_comment_count',
-			),
-			array(
-				'label'    => __( 'Comment Link', 'nighthawk' ),
-				'class'    => 'comment-respond icon',
-				'callback' => 'nighthawk_td_comment_icon',
-			),
-		);
-	}
-}
-
 function nighthawk_td_edit( $column = array() ) {
 	echo "\n\t" . '<td class="' . esc_attr( $column['class'] ) . '">';
 	echo '<a href="' . esc_url( get_edit_post_link() ) . '"><img src="' . esc_url( get_template_directory_uri() . '/images/edit.png' ) . '" alt="' . esc_attr__( 'Edit', 'nighthawk' ) . '"></a>';
@@ -896,13 +823,12 @@ function nighthawk_td_title( $column = array() ) {
 	}
 
 	$title = the_title( '', '', false );
-	if ( empty( $title ) ) {
-		$title = sprintf( 'untitled %1$s', nighthawk_post_label_singular() );
-	}
+	if ( empty( $title ) )
+		$title = sprintf( __( 'Untitled %1$s', 'nighthawk' ), Nighthawk::post_label() );
 
 	$url = get_post_meta( get_the_ID(), '_mfields_bookmark_url', true );
 	if ( ! empty( $url ) ) {
-		$title_attr = 'Visit this document';
+		$title_attr = __( 'Visit this document', 'nighthawk' );
 		$action = get_post_meta( get_the_ID(), '_mfields_bookmark_link_text', true );
 		if ( ! empty( $action ) ) {
 			$title_attr = ' title="' . esc_attr( $action ) . '"';
@@ -946,9 +872,8 @@ function nighthawk_td_bookmark_source( $column = array() ) {
 	$taxonomy = 'mfields_bookmark_source';
 	$sources = get_the_terms( get_the_ID(), $taxonomy );
 
-	if ( is_wp_error( $sources ) ) {
+	if ( is_wp_error( $sources ) )
 		return;
-	}
 
 	$link = '';
 	if ( ! empty( $sources ) && is_array( $sources ) ) {

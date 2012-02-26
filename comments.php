@@ -25,7 +25,7 @@
  */
 if ( post_password_required() ) {
 	if ( have_comments() )
-	echo '<p class="nopassword">' . sprintf( __( 'This %1$s is password protected. Enter the password to view any comments.', 'nighthawk' ), nighthawk_post_label_singular() ) . '</p>';
+	echo '<p class="nopassword">' . sprintf( __( 'This %1$s is password protected. Enter the password to view any comments.', 'nighthawk' ), Nighthawk::post_label() ) . '</p>';
 	return;
 }
 

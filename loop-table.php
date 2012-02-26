@@ -18,7 +18,7 @@
  */
 
 if ( have_posts() ) {
-	$columns = Nighthawk::columns();
+	$columns = Nighthawk::get_table_columns();
 
 	echo "\n\n" . '<table class="post-archive">' . "\n";
 

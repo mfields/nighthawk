@@ -9,7 +9,7 @@
  * @since        Nighthawk 1.0
  */
 
-$id_attr = nighthawk_search_id();
+$id_attr = Nighthawk::searchform_id();
 ?>
 
 <form class="bullet" role="search" method="get" action="<?php echo get_option( 'siteurl' ); ?>">
