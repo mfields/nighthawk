@@ -43,7 +43,7 @@ foreach ( $areas as $area ) {
 }
 $count = count( $active );
 if ( 0 < $count ) {
-	echo '<div id="widgets" class="count-' . $count . '" role="complementary">';
+	echo '<div id="footer-widgets" class="footer-widgets footer-widgets-count-' . $count . '" role="complementary">';
 	foreach ( $active as $order => $area ) {
 		echo '<div id="' . esc_attr( $area ) . '" class="area area-' . ( 1 + $order ) . '">' . "\n";
 		dynamic_sidebar( $area . '-footer-widget-area' );
