@@ -16,36 +16,32 @@
  * @license      http://opensource.org/licenses/gpl-2.0.php GNU Public License
  * @since        Nighthawk 1.0
  */
+?>
 
-if ( have_posts() ) {
-	$columns = Nighthawk::get_table_columns();
+<?php $columns = Nighthawk::get_table_columns(); ?>
 
-	echo "\n\n" . '<table class="post-archive">' . "\n";
+<?php if ( have_posts() ) : ?>
 
-	foreach ( $columns as $column ) {
-		echo "\n" . '<col class="' . esc_attr( $column['class'] ) . '"></col>';
-	}
+	<table class="post-archive">
+	<thead>
+	<tr>
 
-	echo "\n\n" . '<thead>';
-	echo "\n" . '<tr>';
+	<?php foreach ( $columns as $column ) : ?>
+		<th scope="col"><?php echo esc_html( $column['label'] ); ?></th>
+	<?php endforeach; ?>
 
-	foreach ( $columns as $column ) {
-		echo "\n\t" . '<th scope="col">' . esc_attr( $column['label'] ) . '</th>';
-	}
+	</tr>
+	</thead>
 
-	echo "\n" . '</tr>';
-	echo "\n" . '</thead>';
+	<tbody>
+	<?php while ( have_posts() ) : the_post(); ?>
+		<tr><?php
+			foreach ( $columns as $column ) {
+				call_user_func( $column['callback'], $column );
+			}
+		?></tr>
+	<?php endwhile; ?>
 
-	echo "\n\n" . '<tbody>';
-	while ( have_posts() ) {
-		the_post();
-		echo "\n" . '<tr '; post_class(); echo '>';
-		foreach ( $columns as $column ) {
-			call_user_func( $column['callback'], $column );
-		}
-		echo "\n" . '</tr>';
-	}
-
-	echo "\n" . '</tbody>';
-	echo "\n" . '</table>';
-}
+	</tbody>
+	</table>
+<?php endif ?>
