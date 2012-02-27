@@ -104,6 +104,7 @@ class Nighthawk {
 		add_filter( 'embed_googlevideo',   self::prefix . 'oembed_dataparse', 10, 2 );
 		add_filter( 'excerpt_more',        self::prefix . 'excerpt_more_auto' );
 		add_filter( 'post_class',          self::prefix . 'post_class' );
+		add_action( 'template_redirect',   self::prefix . 'filter_table_columns' );
 		add_action( 'template_redirect',   self::prefix . 'post_labels_init' );
 		add_filter( 'the_password_form',   self::prefix . 'password_form' );
 		add_action( 'the_title',           self::prefix . 'filter_post_title' );
@@ -459,6 +460,20 @@ class Nighthawk {
 	 */
 	static public function set_table_columns( $columns = null ) {
 		self::$columns = $columns;
+	}
+
+	/**
+	 * Filter table columns.
+	 *
+	 * Allow plugins to adjust the table columns.
+	 *
+	 * @uses      Nighthawk::$columns
+	 * @return    array     Table columns configuration.
+	 *
+	 * @since     Nighthawk 1.0
+	 */
+	static public function filter_table_columns() {
+		self::$columns = apply_filters( 'nighthawk_table_columns', self::$columns );
 	}
 }
 
