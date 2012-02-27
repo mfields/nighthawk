@@ -53,24 +53,6 @@ get_header( $taxonomy );
 <div id="content" class="contain">
 
 <?php
-	Nighthawk::set_table_columns( array(
-		array(
-			'label'    => __( 'Post Title', 'nighthawk' ),
-			'class'    => 'post-title',
-			'callback' => 'nighthawk_td_title',
-		),
-		array(
-			'label'    => __( 'Source', 'nighthawk' ),
-			'class'    => 'bookmark-source',
-			'callback' => 'nighthawk_td_bookmark_source',
-		),
-		array(
-			'label'    => __( 'Permalink', 'nighthawk' ),
-			'class'    => 'permalink',
-			'callback' => 'nighthawk_td_permalink_icon',
-		),
-	) );
-
 	query_posts( wp_parse_args( $query_string, array( 'posts_per_page' => 30 ) ) );
 	get_template_part( 'loop-table' );
 ?>
