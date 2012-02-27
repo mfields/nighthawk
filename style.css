@@ -211,7 +211,6 @@ table,
 ul,
 .embed,
 .entry-content div {
-	
 	font-size: 1em;
 	line-height: 1.5em;
 	margin: 1.5em 0;
@@ -291,7 +290,7 @@ blockquote blockquote:last-child {
 -------------------------------------------------------------- */
 
 table {
-	border: .1em solid #555;
+	border: 1px solid #555;
 	border-collapse: collapse;
 	width: 100%;
 }
@@ -304,7 +303,7 @@ th {
 	color: #fff;
 }
 td {
-	border: .1em solid #777;
+	border: 1px solid #777;
 }
 
 
@@ -495,6 +494,7 @@ ul.form-errors li.form-error-message {
 	padding: 0 1em 1em;
 }
 #header {
+	background: #fff;
 	margin: 0;
 	min-height: 100px;
 	padding: 1em;
@@ -521,20 +521,23 @@ ul.form-errors li.form-error-message {
 	text-align: center;
 }
 #page {
-	background: #fff;
 	clear: both;
 	color: #666;
 	position: relative;
 	margin: 1.5em 0 0;
 	padding: 0;
+	/*
 	-moz-box-shadow: 0 0 .75em rgba( 0, 0, 0, 0.4 );
 	-webkit-box-shadow: 0 0 .75em rgba( 0, 0, 0, 0.4 );
 	box-shadow: 0 0 .75em rgba( 0, 0, 0, 0.4 );
+	*/
 	z-index: 1;
 }
 #content {
-	padding: 1.5em 6em;
+	background: #fff;
+	margin: 0;
 	overflow: hidden;
+	padding: 0 6em 1.5em;
 }
 
 
@@ -680,60 +683,69 @@ ul.form-errors li.form-error-message {
 	color: #fff;
 	text-decoration: none;
 }
+#featured-posts {
+	background: #fff;
+}
 #intro-list {
+	background: #fff;
 	border: 1px solid #ddd;
+	border-radius: 0 0 40% 40% / 0 0 15% 15%;
 	border-top-width: 0;
-	-moz-border-radius-bottomright: .5em;
-	-webkit-border-bottom-right-radius: .5em;
-	border-bottom-right-radius: .5em;
-	-moz-border-radius-bottomleft: .5em;
-	-webkit-border-bottom-left-radius: .5em;
-	border-bottom-left-radius: .5em;
 	list-style-type: none;
 	margin: 0 3em;
-	padding: .5em;
+	padding: .5em 1.5em 2em;
+}
+#intro-list li {
+	border-top: 1px dotted #ccc;
+	line-height: 2.2em;
+}
+#intro-list li:first-child {
+	border-top: none;
 }
 
 
 /* =All Entries
 -------------------------------------------------------------- */
 
+.entry {
+	background: #fff;
+}
 .entry-content img {
-	max-width:860px;
-	height:auto;
+	max-width: 860px;
+	height: auto;
 }
 .entry .footer {
-	border-top:1px dotted #ccc;
-	margin-top:2.5em;
-	padding-top:1em;
-	font-size:.9em;
-	text-align:center;
+	border-top: 1px dotted #ccc;
+	margin-top: 2.5em;
+	padding-top: 1em;
+	font-size: .9em;
+	text-align: center;
 }
 .entry .footer a {
-	color:#999;
+	color: #999;
 }
 .entry pre {
-	padding:5%;
-	width:90%;
-	overflow:auto;
+	padding: 5%;
+	width: 90%;
+	overflow: auto;
 }
 .entry .attachment-ghostbird_detail {
-	margin-right:10px;
+	margin-right: 10px;
 }
 .entry .bullet {
-	border-color:#ccc;
+	border-color: #ccc;
 }
 .entry .attachment {
-	text-align:center;
+	text-align: center;
 }
 /* Featured image. */
 .entry .featured-image {
-	float:right;
-	margin:0 0 1em 1em;
-	padding:10px 12px 8px 10px;
-	border:.1em solid #ccc;
-	background-color:#fff;
-	text-align:center;
+	float: right;
+	margin: 0 0 1em 1em;
+	padding: 10px 12px 8px 10px;
+	border: .1em solid #ccc;
+	background-color: #fff;
+	text-align: center;
 }
 /* Meta. */
 .meta {
@@ -753,10 +765,6 @@ ul.form-errors li.form-error-message {
 /* =Entries in Blog View
 -------------------------------------------------------------- */
 
-#blog {
-	overflow: hidden;
-	padding: 1.5em 0;
-}
 #blog .entry {
 	border-bottom: 1px solid #ddd;
 	margin: 0;
@@ -952,6 +960,7 @@ ul.form-errors li.form-error-message {
 -------------------------------------------------------------- */
 
 #page-footer {
+	background: #fff;
 	clear: both;
 }
 .nav-paged {
@@ -1030,7 +1039,6 @@ ul.form-errors li.form-error-message {
 	font-style: italic;
 	line-height: 2em;
 }
-
 .widget_calendar {
 	border-color: #ccc;
 }
@@ -1245,8 +1253,6 @@ li.cws-imp-plugin {
 	list-style-type: none;
 }
 
-img.forced-dimensions {}
-
 
 /* =Gallery Shortcode
 -------------------------------------------------------------- */
@@ -1272,8 +1278,8 @@ img.forced-dimensions {}
 -------------------------------------------------------------- */
 
 .post-archive {
-	width: 100%;
 	border-width: 0;
+	border-collapse: collapse;
 }
 .post-archive thead {
 	display: none;
