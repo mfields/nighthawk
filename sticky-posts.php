@@ -58,7 +58,6 @@ if ( ! empty( $stickies ) ) :
 
 <?php if ( ! empty( $stickies ) ) : ?>
 	<div id="featured-posts">
-		<h2>Featured</h2>
 		<ul id="intro-list"><?php
 			foreach ( $stickies as $i => $post ) {
 				setup_postdata( $post );
