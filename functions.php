@@ -26,8 +26,6 @@ class Nighthawk {
 	 * @since Nighthawk 1.0
 	 */
 	public static function init() {
-		add_action( 'after_setup_theme', array( __class__, 'setup' ) );
-
 		self::$columns = array(
 			array(
 				'label'    => __( 'Post Title', 'nighthawk' ),
@@ -45,6 +43,7 @@ class Nighthawk {
 				'callback' => 'nighthawk_td_comment_icon',
 			),
 		);
+		add_action( 'after_setup_theme', array( __class__, 'setup' ) );
 	}
 
 	/**
