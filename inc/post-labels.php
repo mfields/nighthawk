@@ -65,7 +65,7 @@ class NighthawkPostLabel {
 		$post_types = get_post_types( array( 'public' => true, '_builtin' => false ), 'objects' );
 		if ( ! empty( $post_types ) && is_array( $post_types ) ) {
 			foreach ( (array) $post_types as $name => $post_type ) {
-				self::$labels[$post_type]['standard'] = array(
+				self::$labels[$name]['standard'] = array(
 					0          => $post_type->labels->singular_name,
 					1          => $post_type->labels->name,
 					2          => 'Post Label',
