@@ -435,6 +435,7 @@ class Nighthawk {
 	/**
 	 * Get table columns.
 	 *
+	 * @uses      Nighthawk::$columns
 	 * @return    int       ID attribute for search form.
 	 *
 	 * @since     Nighthawk 1.0
@@ -454,6 +455,7 @@ class Nighthawk {
 	/**
 	 * Set table columns.
 	 *
+	 * @uses      Nighthawk::$columns
 	 * @return    array     Table columns configuration.
 	 *
 	 * @since     Nighthawk 1.0
