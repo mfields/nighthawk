@@ -11,8 +11,6 @@
 
 class Nighthawk {
 
-	const prefix = 'Nighthawk::';
-
 	/**
 	 * Table Columns.
 	 *
@@ -97,25 +95,25 @@ class Nighthawk {
 		add_filter( 'get_the_author_description', 'convert_chars' );
 		add_filter( 'get_the_author_description', 'wpautop' );
 
-		add_action( 'comment_form_after',  self::prefix . 'commentform_after' );
-		add_action( 'comment_form_before', self::prefix . 'commentform_before' );
-		add_filter( 'edit_post_link',      self::prefix . 'edit_post_link', 9, 2 );
-		add_filter( 'embed_oembed_html',   self::prefix . 'oembed_dataparse', 10, 4 );
-		add_filter( 'embed_googlevideo',   self::prefix . 'oembed_dataparse', 10, 2 );
-		add_filter( 'excerpt_more',        self::prefix . 'excerpt_more_auto' );
-		add_filter( 'post_class',          self::prefix . 'post_class' );
-		add_action( 'template_redirect',   self::prefix . 'filter_table_columns' );
-		add_action( 'template_redirect',   self::prefix . 'post_labels_init' );
-		add_filter( 'the_password_form',   self::prefix . 'password_form' );
-		add_action( 'the_title',           self::prefix . 'filter_post_title' );
-		add_action( 'widgets_init',        self::prefix . 'register_widget_areas' );
-		add_action( 'wp_enqueue_scripts',  self::prefix . 'script_comment_reply' );
-		add_action( 'wp_enqueue_scripts',  self::prefix . 'css_heading_font' );
-		add_action( 'wp_enqueue_scripts',  self::prefix . 'css_syntaxhighlighter' );
-		add_action( 'wp_enqueue_scripts',  self::prefix . 'script_dropdown_widgets' );
-		add_action( 'wp_loaded',           self::prefix . 'custom_header_config' );
+		add_action( 'comment_form_after',  'Nighthawk::commentform_after' );
+		add_action( 'comment_form_before', 'Nighthawk::commentform_before' );
+		add_filter( 'edit_post_link',      'Nighthawk::edit_post_link', 9, 2 );
+		add_filter( 'embed_oembed_html',   'Nighthawk::oembed_dataparse', 10, 4 );
+		add_filter( 'embed_googlevideo',   'Nighthawk::oembed_dataparse', 10, 2 );
+		add_filter( 'excerpt_more',        'Nighthawk::excerpt_more_auto' );
+		add_filter( 'post_class',          'Nighthawk::post_class' );
+		add_action( 'template_redirect',   'Nighthawk::filter_table_columns' );
+		add_action( 'template_redirect',   'Nighthawk::post_labels_init' );
+		add_filter( 'the_password_form',   'Nighthawk::password_form' );
+		add_action( 'the_title',           'Nighthawk::filter_post_title' );
+		add_action( 'widgets_init',        'Nighthawk::register_widget_areas' );
+		add_action( 'wp_enqueue_scripts',  'Nighthawk::script_comment_reply' );
+		add_action( 'wp_enqueue_scripts',  'Nighthawk::css_heading_font' );
+		add_action( 'wp_enqueue_scripts',  'Nighthawk::css_syntaxhighlighter' );
+		add_action( 'wp_enqueue_scripts',  'Nighthawk::script_dropdown_widgets' );
+		add_action( 'wp_loaded',           'Nighthawk::custom_header_config' );
 
-		add_filter( 'syntaxhighlighter_themes', self::prefix . 'syntaxhighlighter_theme' );
+		add_filter( 'syntaxhighlighter_themes', 'Nighthawk::syntaxhighlighter_theme' );
 	}
 	/**
 	 * Configuration for enabling the WordPress custom header image feature.
