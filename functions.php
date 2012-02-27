@@ -28,17 +28,17 @@ class Nighthawk {
 			array(
 				'label'    => __( 'Post Title', 'nighthawk' ),
 				'class'    => 'post-title',
-				'callback' => 'nighthawk_td_title',
+				'callback' => 'Nighthawk::td_title',
 			),
 			array(
 				'label'    => __( 'Comment Count', 'nighthawk' ),
 				'class'    => 'comment-count',
-				'callback' => 'nighthawk_td_comment_count',
+				'callback' => 'Nighthawk::td_comment_count',
 			),
 			array(
 				'label'    => __( 'Comment Link', 'nighthawk' ),
 				'class'    => 'comment-respond icon',
-				'callback' => 'nighthawk_td_comment_icon',
+				'callback' => 'Nighthawk::td_comment_icon',
 			),
 		);
 		add_action( 'after_setup_theme', array( __class__, 'setup' ) );
@@ -443,7 +443,7 @@ class Nighthawk {
 			$edit = array(
 				'label'    => __( 'Edit', 'nighthawk' ),
 				'class'    => 'edit-post icon',
-				'callback' => 'nighthawk_td_edit',
+				'callback' => 'Nighthawk::td_edit',
 			);
 			array_unshift( self::$columns, $edit );
 		}
@@ -474,6 +474,65 @@ class Nighthawk {
 	 */
 	static public function filter_table_columns() {
 		self::$columns = apply_filters( 'nighthawk_table_columns', self::$columns );
+	}
+
+	public static function td_edit( $column = array() ) {
+		echo "\n\t" . '<td class="' . esc_attr( $column['class'] ) . '">';
+		echo '<a href="' . esc_url( get_edit_post_link() ) . '"><img src="' . esc_url( get_template_directory_uri() . '/images/edit.png' ) . '" alt="' . esc_attr__( 'Edit', 'nighthawk' ) . '"></a>';
+		echo '</td>';
+	}
+
+	public static function td_title( $column = array() ) {
+		$post_type = get_post_type();
+		if ( ! post_type_supports( $post_type, 'title' ) ) {
+			echo "\n\t" . '<td class="' . esc_attr( $column['class'] ) . ' empty-cell"></td>';
+			return;
+		}
+
+		$title = the_title( '', '', false );
+		if ( empty( $title ) )
+			$title = sprintf( __( 'Untitled %1$s', 'nighthawk' ), Nighthawk::post_label() );
+
+		$url = get_post_meta( get_the_ID(), '_mfields_bookmark_url', true );
+		if ( ! empty( $url ) ) {
+			$title_attr = __( 'Visit this document', 'nighthawk' );
+			$action = get_post_meta( get_the_ID(), '_mfields_bookmark_link_text', true );
+			if ( ! empty( $action ) ) {
+				$title_attr = ' title="' . esc_attr( $action ) . '"';
+			}
+			$title  = '<a href="' . esc_url( $url ) . '" rel="external"' . $title_attr . '>' . $title . '</a>';
+		}
+
+		echo "\n\t" . '<td class="' . esc_attr( $column['class'] ) . '"><a href="' . esc_url( get_permalink() ) . '">' . $title . '</a></td>';
+	}
+
+	public static function td_comment_count( $column = array() ) {
+		if ( post_password_required() ) {
+			echo "\n\t" . '<td class="' . esc_attr( $column['class'] ) . ' empty-cell"></td>';
+			return;
+		}
+		echo "\n\t" . '<td class="' . esc_attr( $column['class'] ) . '">';
+		comments_popup_link( '', '1', '%', 'comments-link', '' );
+		echo '</td>';
+	}
+
+	public static function td_comment_icon( $column = array() ) {
+		$post_type = get_post_type();
+		if ( ! post_type_supports( $post_type, 'comments' ) ) {
+			echo "\n\t" . '<td class="' . esc_attr( $column['class'] ) . ' empty-cell"></td>';
+			return;
+		}
+
+		if ( ! comments_open( get_the_ID() ) ) {
+			self::td_permalink_icon( $column );
+			return;
+		}
+
+		echo "\n\t" . '<td class="' . esc_attr( $column['class'] ) . '"><a href="' . esc_url( get_permalink() . '#respond' ) . '" class="comment-icon">' . esc_html__( 'Add a comment', 'nighthawk' ) . '</a></td>';
+	}
+
+	public static function td_permalink_icon( $column = array() ) {
+		echo "\n\t" . '<td class="' . esc_attr( $column['class'] ) . '"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark" class="permalink-icon">' . esc_html__( 'Permalink', 'nighthawk' ) . '</a></td>';
 	}
 }
 
@@ -835,63 +894,4 @@ function _nighthawk_comment_start( $comment, $args, $depth ) {
  */
 function _nighthawk_comment_end( $comment, $args, $depth ) {
 	echo '</li>';
-}
-
-function nighthawk_td_edit( $column = array() ) {
-	echo "\n\t" . '<td class="' . esc_attr( $column['class'] ) . '">';
-	echo '<a href="' . esc_url( get_edit_post_link() ) . '"><img src="' . esc_url( get_template_directory_uri() . '/images/edit.png' ) . '" alt="' . esc_attr__( 'Edit', 'nighthawk' ) . '"></a>';
-	echo '</td>';
-}
-
-function nighthawk_td_title( $column = array() ) {
-	$post_type = get_post_type();
-	if ( ! post_type_supports( $post_type, 'title' ) ) {
-		echo "\n\t" . '<td class="' . esc_attr( $column['class'] ) . ' empty-cell"></td>';
-		return;
-	}
-
-	$title = the_title( '', '', false );
-	if ( empty( $title ) )
-		$title = sprintf( __( 'Untitled %1$s', 'nighthawk' ), Nighthawk::post_label() );
-
-	$url = get_post_meta( get_the_ID(), '_mfields_bookmark_url', true );
-	if ( ! empty( $url ) ) {
-		$title_attr = __( 'Visit this document', 'nighthawk' );
-		$action = get_post_meta( get_the_ID(), '_mfields_bookmark_link_text', true );
-		if ( ! empty( $action ) ) {
-			$title_attr = ' title="' . esc_attr( $action ) . '"';
-		}
-		$title  = '<a href="' . esc_url( $url ) . '" rel="external"' . $title_attr . '>' . $title . '</a>';
-	}
-
-	echo "\n\t" . '<td class="' . esc_attr( $column['class'] ) . '"><a href="' . esc_url( get_permalink() ) . '">' . $title . '</a></td>';
-}
-
-function nighthawk_td_comment_count( $column = array() ) {
-	if ( post_password_required() ) {
-		echo "\n\t" . '<td class="' . esc_attr( $column['class'] ) . ' empty-cell"></td>';
-		return;
-	}
-	echo "\n\t" . '<td class="' . esc_attr( $column['class'] ) . '">';
-	comments_popup_link( '', '1', '%', 'comments-link', '' );
-	echo '</td>';
-}
-
-function nighthawk_td_comment_icon( $column = array() ) {
-	$post_type = get_post_type();
-	if ( ! post_type_supports( $post_type, 'comments' ) ) {
-		echo "\n\t" . '<td class="' . esc_attr( $column['class'] ) . ' empty-cell"></td>';
-		return;
-	}
-
-	if ( ! comments_open( get_the_ID() ) ) {
-		nighthawk_td_permalink_icon( $column );
-		return;
-	}
-
-	echo "\n\t" . '<td class="' . esc_attr( $column['class'] ) . '"><a href="' . esc_url( get_permalink() . '#respond' ) . '" class="comment-icon">' . esc_html__( 'Add a comment', 'nighthawk' ) . '</a></td>';
-}
-
-function nighthawk_td_permalink_icon( $column = array() ) {
-	echo "\n\t" . '<td class="' . esc_attr( $column['class'] ) . '"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark" class="permalink-icon">' . esc_html__( 'Permalink', 'nighthawk' ) . '</a></td>';
 }
