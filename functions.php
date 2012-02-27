@@ -897,24 +897,3 @@ function nighthawk_td_comment_icon( $column = array() ) {
 function nighthawk_td_permalink_icon( $column = array() ) {
 	echo "\n\t" . '<td class="' . esc_attr( $column['class'] ) . '"><a href="' . esc_url( get_permalink() ) . '" rel="bookmark" class="permalink-icon">' . esc_html__( 'Permalink', 'nighthawk' ) . '</a></td>';
 }
-
-function nighthawk_td_bookmark_source( $column = array() ) {
-	$taxonomy = 'mfields_bookmark_source';
-	$sources = get_the_terms( get_the_ID(), $taxonomy );
-
-	if ( is_wp_error( $sources ) )
-		return;
-
-	$link = '';
-	if ( ! empty( $sources ) && is_array( $sources ) ) {
-		$source = current( $sources );
-
-		$link = esc_html( $source->name );
-
-		if ( 1 < absint( $source->count ) ) {
-			$link = '<a href="' . esc_url( get_term_link( $source, $taxonomy ) ) . '">' . $link . '</a>';
-		}
-	}
-
-	echo "\n\t" . '<td class="' . esc_attr( $column['class'] ) . '">' . $link . '</td>';
-}
