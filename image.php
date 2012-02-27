@@ -78,7 +78,7 @@ if ( have_posts() ) {
 
 </div><!--content-->
 
-<div id="page-footer">
+<div id="page-footer" class="paged-navigation contain">
 	<h1 class="assistive-text"><?php _e( 'Image navigation', 'shaan' ); ?></h1>
 	<div class="nav-paged timeline-regress"><?php previous_image_link( false, __( 'Previous', 'nighthawk' ) ); ?></div>
 	<div class="nav-paged timeline-progress"><?php next_image_link( false, __( 'Next', 'nighthawk' ) ); ?></div>

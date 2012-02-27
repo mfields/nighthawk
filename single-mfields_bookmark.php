@@ -62,7 +62,7 @@ if ( have_posts() ) {
 	</div><!--entry-->
 </div><!--content-->
 
-<div id="page-footer">
+<div id="page-footer" class="paged-navigation contain">
 	<?php previous_post_link( '<div class="nav-paged timeline-regress">%link</div>', __( 'Older', 'nighthawk' ) ); ?>
 	<?php next_post_link( '<div class="nav-paged timeline-progress">%link</div>', __( 'Newer', 'nighthawk' ) ); ?>
 </div>
